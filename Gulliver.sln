@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gulliver", "Gulliver\Gulliver.csproj", "{B1C7E07C-8AF2-42AD-8C8F-EF73A4BB5D72}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gulliver.Tests", "Gulliver.Tests\Gulliver.Tests.csproj", "{A5E3A10B-9D68-46D4-AB13-965BE26A5815}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{D2F5012F-9140-4E18-A64A-A35F8812C1B3}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		acknowledgements.md = acknowledgements.md
+		analyzers.ruleset = analyzers.ruleset
+		Gulliver.sln.DotSettings = Gulliver.sln.DotSettings
+		HUMANS.md = HUMANS.md
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+		stylecop.json = stylecop.json
+		tests_analyzers.ruleset = tests_analyzers.ruleset
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1C7E07C-8AF2-42AD-8C8F-EF73A4BB5D72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1C7E07C-8AF2-42AD-8C8F-EF73A4BB5D72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1C7E07C-8AF2-42AD-8C8F-EF73A4BB5D72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1C7E07C-8AF2-42AD-8C8F-EF73A4BB5D72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5E3A10B-9D68-46D4-AB13-965BE26A5815}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5E3A10B-9D68-46D4-AB13-965BE26A5815}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5E3A10B-9D68-46D4-AB13-965BE26A5815}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5E3A10B-9D68-46D4-AB13-965BE26A5815}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3AD453FE-C4DC-49E5-987E-5CD24284B345}
+	EndGlobalSection
+EndGlobal
