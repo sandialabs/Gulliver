@@ -2,6 +2,9 @@
 
 namespace Gulliver.Tests
 {
+    /// <summary>
+    ///     Conversion ByteArrayUtils Tests
+    /// </summary>
     public partial class ByteArrayUtilsTests
     {
         [Theory]

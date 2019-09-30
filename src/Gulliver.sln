@@ -8,17 +8,26 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gulliver.Tests", "Gulliver.Tests\Gulliver.Tests.csproj", "{A5E3A10B-9D68-46D4-AB13-965BE26A5815}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{D2F5012F-9140-4E18-A64A-A35F8812C1B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeQuality", "CodeQuality", "{7D7ECA08-4C98-4752-9BA6-7F5407A19166}"
 	ProjectSection(SolutionItems) = preProject
-		.gitattributes = .gitattributes
-		.gitignore = .gitignore
-		acknowledgements.md = acknowledgements.md
 		analyzers.ruleset = analyzers.ruleset
 		Gulliver.sln.DotSettings = Gulliver.sln.DotSettings
-		HUMANS.md = HUMANS.md
-		LICENSE.txt = LICENSE.txt
-		README.md = README.md
 		stylecop.json = stylecop.json
 		tests_analyzers.ruleset = tests_analyzers.ruleset
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{88C96C1F-DCD0-4E74-B8BE-DBE25CD03DAB}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{ED5DBB6E-5660-43ED-899B-9BF78CC4A7A2}"
+	ProjectSection(SolutionItems) = preProject
+		..\HUMANS.md = ..\HUMANS.md
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Global
@@ -38,6 +47,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7D7ECA08-4C98-4752-9BA6-7F5407A19166} = {D2F5012F-9140-4E18-A64A-A35F8812C1B3}
+		{88C96C1F-DCD0-4E74-B8BE-DBE25CD03DAB} = {D2F5012F-9140-4E18-A64A-A35F8812C1B3}
+		{ED5DBB6E-5660-43ED-899B-9BF78CC4A7A2} = {D2F5012F-9140-4E18-A64A-A35F8812C1B3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3AD453FE-C4DC-49E5-987E-5CD24284B345}

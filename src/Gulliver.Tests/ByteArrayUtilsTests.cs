@@ -7,6 +7,10 @@ using Xunit.Abstractions;
 namespace Gulliver.Tests
 {
     // ReSharper disable once TestClassNameDoesNotMatchFileNameWarning
+
+    /// <summary>
+    ///     General ByteArrayUtils Tests
+    /// </summary>
     [Trait("Category", "ByteArrayUtils")]
     public partial class ByteArrayUtilsTests
     {
