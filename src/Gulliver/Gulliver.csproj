@@ -1,30 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-    <Authors>Sandia National Laboratories</Authors>
-    <Copyright>Copyright 2019 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.</Copyright>
-    <Description>Gulliver is a C# utility package and library engineered for the manipulation of arbitrary sized byte arrays accounting for appropriate endianness and jagged byte length. Functionality includes the as previously unsupported standard set of boolean algebraic operations, bitwise shifting, and unsigned endian aware mathematical addition, subtraction, and comparison.</Description>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <Icon>https://raw.githubusercontent.com/sandialabs/Gulliver/master/resources/images/icon_64x64.png</Icon>
-    <IncludeBuildOutput>true</IncludeBuildOutput>
-    <IncludeSymbols>true</IncludeSymbols>
-    <IsPackable>true</IsPackable>
-    <LangVersion>latest</LangVersion>
-    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/sandialabs/gulliver</PackageProjectUrl>
-    <PackageTags>big-endian; bigendian; binary; bitwise; bitwise; boolean-logic; byte; byte-array; bytearray; bytes; csharp; dotnet; endian; endianness; fixedbytes; linq; little-endian; littleendian; math</PackageTags>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <ReleaseNotes></ReleaseNotes>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/sandialabs/gulliver</RepositoryUrl>
-    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <TargetFramework>netstandard1.3</TargetFramework>
-    <Title>Gulliver</Title>
-    <Version>1.0.1</Version>
+    <NeutralLanguage>en</NeutralLanguage>
+    <allowedoutputextensionsinpackagebuildoutputfolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</allowedoutputextensionsinpackagebuildoutputfolder>
+    <authors>Sandia National Laboratories</authors>
+    <copyright>Copyright 2019 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.</copyright>
+    <description>Gulliver is a C# utility package and library engineered for the manipulation of arbitrary sized byte arrays accounting for appropriate endianness and jagged byte length. Functionality includes the as previously unsupported standard set of boolean algebraic operations, bitwise shifting, and unsigned endian aware mathematical addition, subtraction, and comparison.</description>
+    <embeduntrackedsources>true</embeduntrackedsources>
+    <generatepackageonbuild>false</generatepackageonbuild>
+    <generateruntimeconfigurationfiles>true</generateruntimeconfigurationfiles>
+    <includebuildoutput>true</includebuildoutput>
+    <includesymbols>true</includesymbols>
+    <ispackable>true</ispackable>
+    <langversion>latest</langversion>
+    <packageiconurl>https://raw.githubusercontent.com/sandialabs/Gulliver/master/resources/images/icon_64x64.png</packageiconurl>
+    <packagelanguage>en-US</packagelanguage>
+    <packagelicense>Apache-2.0</packagelicense>
+    <packagelicenseurl>http://www.apache.org/licenses/LICENSE-2.0</packagelicenseurl>
+    <packageprojecturl>https://github.com/sandialabs/gulliver</packageprojecturl>
+    <packagesummary>Gulliver is a C# utility package and library engineered for the manipulation of arbitrary sized byte arrays accounting for appropriate endianness and jagged byte length. Functionality includes the as previously unsupported standard set of boolean algebraic operations, bitwise shifting, and unsigned endian aware mathematical addition, subtraction, and comparison.</packagesummary>
+    <packagetags>big-endian; bigendian; binary; bitwise; bitwise; boolean-logic; byte; byte-array; bytearray; bytes; csharp; dotnet; endian; endianness; fixedbytes; linq; little-endian; littleendian; math</packagetags>
+    <publishrepositoryurl>true</publishrepositoryurl>
+    <releasenotes></releasenotes>
+    <repositorytype>git</repositorytype>
+    <repositoryurl>https://github.com/sandialabs/gulliver</repositoryurl>
+    <requirelicenseacceptance>false</requirelicenseacceptance>
+    <symbolpackageformat>snupkg</symbolpackageformat>
+    <targetframework>netstandard1.3</targetframework>
+    <title>Gulliver</title>
+    <version>1.0.1</version>
   </PropertyGroup>
 
   <ItemGroup>
