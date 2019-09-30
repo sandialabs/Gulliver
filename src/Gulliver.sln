@@ -12,9 +12,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeQuality", "CodeQuality", "{7D7ECA08-4C98-4752-9BA6-7F5407A19166}"
 	ProjectSection(SolutionItems) = preProject
 		analyzers.ruleset = analyzers.ruleset
+		analyzers.tests.ruleset = analyzers.tests.ruleset
 		Gulliver.sln.DotSettings = Gulliver.sln.DotSettings
 		stylecop.json = stylecop.json
-		tests_analyzers.ruleset = tests_analyzers.ruleset
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{88C96C1F-DCD0-4E74-B8BE-DBE25CD03DAB}"
