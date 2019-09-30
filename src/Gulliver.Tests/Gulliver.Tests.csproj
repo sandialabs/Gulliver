@@ -5,9 +5,6 @@
     <IsPackable>false</IsPackable>
     <LangVersion>latest</LangVersion>
     <Copyright>Copyright 2019 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.</Copyright>
-    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <RepositoryUrl>https://github.com/sandialabs/gulliver</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/sandialabs/gulliver</PackageProjectUrl>
     <Description>Unit test package for Gulliver</Description>
     <Authors>Sandia National Laboratories</Authors>
     <Company>Sandia National Laboratories</Company>
