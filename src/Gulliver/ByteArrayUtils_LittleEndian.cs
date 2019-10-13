@@ -29,39 +29,6 @@ namespace Gulliver
                 throw new ArgumentNullException(nameof(right));
             }
 
-            //var leftEffectiveLength = LittleEndianEffectiveLength(left);
-            //var rightEffectiveLength = LittleEndianEffectiveLength(right);
-
-            //// left is a larger unsigned number
-            //if (leftEffectiveLength > rightEffectiveLength)
-            //{
-            //    return 1;
-            //}
-
-            //// right is a larger unsigned number
-            //if (leftEffectiveLength < rightEffectiveLength)
-            //{
-            //    return -1;
-            //}
-
-            //// left and right have the same effective width, must compare starting at left edge MSB
-            //for (var i = leftEffectiveLength - 1; i >= 0; i--)
-            //{
-            //    var a = left[i];
-            //    var b = right[i];
-
-            //    var comparison = a.CompareTo(b);
-
-            //    if (comparison != 0)
-            //    {
-            //        return comparison > 0
-            //                   ? 1
-            //                   : -1;
-            //    }
-            //}
-
-            //return 0; // bytes are equal
-
             var enumerable = new ConcurrentLittleEndianByteEnumerable(left, right).GetMsbToLsbEnumerable();
             foreach (var (leftByte, rightByte) in enumerable)
             {
@@ -199,7 +166,7 @@ namespace Gulliver
                     // long.MinValue (-9223372036854775808) is a special case
                     // getting the absolute value of a the minimum value of a twos complement number is invalid and will cause a OverflowException
                     // We must therefor build the equivalent of abs(long.MinValue) little endian bytes manually
-                    return new byte[] {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80};
+                    return new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80 };
                 }
 
                 var bytes = BitConverter.GetBytes(Math.Abs(input));
@@ -229,42 +196,6 @@ namespace Gulliver
                 throw new ArgumentNullException(nameof(right));
             }
 
-            //var resultQueue = new Queue<byte>(); // FIFO byte array building
-
-            //var length = left.Length > right.Length
-            //                 ? left.Length
-            //                 : right.Length;
-
-            //var carry = 0x00; // start with no carry value
-
-            //for (var i = 0; i < length; i++) // loop based on longest input array
-            //{
-            //    var sum = carry; // sum is initialized to carry in order to always incorporate it
-
-            //    if (i < left.Length) // if there are still items left in left add it
-            //    {
-            //        sum += left[i];
-            //    }
-
-            //    if (i < right.Length) // if there are still items left in right add it
-            //    {
-            //        sum += right[i];
-            //    }
-
-            //    resultQueue.Enqueue((byte) (sum & 0xFF)); // enqueue the byte value of sum
-            //    carry = sum >> 8;                         // new carry value is sum shifted by 8 bits (a byte)
-            //}
-
-            //if (carry == 0) // if there is no carry return it trimming the possible 0-valued most most significant bytes
-            //{
-            //    return resultQueue.ToArray()
-            //                      .TrimLittleEndianLeadingZeroBytes();
-            //}
-
-            //resultQueue.Enqueue((byte) carry); // enqueue carry
-
-            //return resultQueue.ToArray(); // return as an array
-
             var enumerable = new ConcurrentLittleEndianByteEnumerable(left, right).GetLsbToMsbEnumerable();
             var resultQueue = new Queue<byte>(); // use stack for fifo
             var carry = 0;
@@ -272,13 +203,13 @@ namespace Gulliver
             {
                 var sum = carry + leftByte + rightByte;
 
-                resultQueue.Enqueue((byte) (sum & 0xFF)); // push the byte value of sum
+                resultQueue.Enqueue((byte)(sum & 0xFF)); // push the byte value of sum
                 carry = sum >> 8;                         // new carry value is sum shifted by 8 bits (a byte)
             }
 
             if (carry != 0) // if a carry value exists it should be pushed as it is the new MSB
             {
-                resultQueue.Enqueue((byte) carry); // enqueue carry
+                resultQueue.Enqueue((byte)carry); // enqueue carry
             }
 
             return resultQueue.ToArray();
@@ -327,7 +258,7 @@ namespace Gulliver
 
                 if (borrowed && canBorrow) // previous operation needed to borrow, and a borrow is possible
                 {
-                    minuend = (byte) (leftByte - 1); // decrement as this value has been borrowed from in the previous iteration
+                    minuend = (byte)(leftByte - 1); // decrement as this value has been borrowed from in the previous iteration
                 }
                 else if (borrowed) // && !canBorrow (implied)
                 {
@@ -340,14 +271,14 @@ namespace Gulliver
 
                 if (minuend >= rightByte) // left is big enough to subtract right
                 {
-                    var difference = (byte) (minuend - rightByte);
+                    var difference = (byte)(minuend - rightByte);
                     resultQueue.Enqueue(difference);
 
                     borrowed = borrowed && !canBorrow; // set borrow if a borrow happened some time previously but it could not be accommodated in this iteration; borrow from next
                 }
                 else // left is less than right, automatically borrow from next iteration
                 {
-                    var difference = (byte) ((minuend + 0x0100) - rightByte); // handle borrowed
+                    var difference = (byte)((minuend + 0x0100) - rightByte); // handle borrowed
                     resultQueue.Enqueue(difference);
                     borrowed = true;
                 }
@@ -383,29 +314,8 @@ namespace Gulliver
                 throw new ArgumentNullException(nameof(right));
             }
 
-            //var length = left.Length > right.Length
-            //                 ? left.Length
-            //                 : right.Length;
-
-            //var result = new byte[length];
-
-            //for (var i = 0; i < length; i++)
-            //{
-            //    var a = i < left.Length
-            //                ? left[i]
-            //                : 0x00;
-
-            //    var b = i < right.Length
-            //                ? right[i]
-            //                : 0x00;
-
-            //    result[i] = (byte) (a & b);
-            //}
-
-            //return result;
-
             return new ConcurrentLittleEndianByteEnumerable(left, right, false)
-                   .Select(bytes => (byte) (bytes.leftByte & bytes.rightByte))
+                   .Select(bytes => (byte)(bytes.leftByte & bytes.rightByte))
                    .ToArray();
         }
 
@@ -431,29 +341,8 @@ namespace Gulliver
                 throw new ArgumentNullException(nameof(right));
             }
 
-            //var length = left.Length > right.Length
-            //                 ? left.Length
-            //                 : right.Length;
-
-            //var result = new byte[length];
-
-            //for (var i = 0; i < length; i++)
-            //{
-            //    var a = i < left.Length
-            //                ? left[i]
-            //                : 0x00;
-
-            //    var b = i < right.Length
-            //                ? right[i]
-            //                : 0x00;
-
-            //    result[i] = (byte) (a | b);
-            //}
-
-            //return result;
-
             return new ConcurrentLittleEndianByteEnumerable(left, right, false)
-                   .Select(bytes => (byte) (bytes.leftByte | bytes.rightByte))
+                   .Select(bytes => (byte)(bytes.leftByte | bytes.rightByte))
                    .ToArray();
         }
 
@@ -479,29 +368,8 @@ namespace Gulliver
                 throw new ArgumentNullException(nameof(right));
             }
 
-            //var length = left.Length > right.Length
-            //                 ? left.Length
-            //                 : right.Length;
-
-            //var result = new byte[length];
-
-            //for (var i = 0; i < length; i++)
-            //{
-            //    var a = i < left.Length
-            //                ? left[i]
-            //                : 0x00;
-
-            //    var b = i < right.Length
-            //                ? right[i]
-            //                : 0x00;
-
-            //    result[i] = (byte) (a ^ b);
-            //}
-
-            //return result;
-
             return new ConcurrentLittleEndianByteEnumerable(left, right, false)
-                   .Select(bytes => (byte) (bytes.leftByte ^ bytes.rightByte))
+                   .Select(bytes => (byte)(bytes.leftByte ^ bytes.rightByte))
                    .ToArray();
         }
 

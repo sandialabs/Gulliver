@@ -288,7 +288,7 @@ namespace Gulliver
         {
             return !ReferenceEquals(null, obj)
                    && (ReferenceEquals(this, obj)
-                       || (obj.GetType() == GetType() && this.Equals((FixedBytes) obj)));
+                       || (obj.GetType() == GetType() && this.Equals((FixedBytes)obj)));
         }
 
         /// <inheritdoc />

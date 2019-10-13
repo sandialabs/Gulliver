@@ -151,7 +151,7 @@ namespace Gulliver
                                           int? paddingWidth = null,
                                           char paddingChar = '0')
             {
-                if (!new[] {2, 8, 10, 16}.Contains(@base))
+                if (!new[] { 2, 8, 10, 16 }.Contains(@base))
                 {
                     throw new ArgumentException($"{nameof(@base)} must be 2, 8, 10, or 16 (binary, octal, decimal, or hexadecimal respectively)", nameof(@base));
                 }

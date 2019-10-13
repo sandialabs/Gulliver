@@ -77,7 +77,7 @@ namespace Gulliver.Tests.Enumerables
         public void Iteration_Trimmed_Test()
         {
             // Arrange
-            var input = new byte[] {0x00, 0x00, 0xAC, 0xCA, 0x00};
+            var input = new byte[] { 0x00, 0x00, 0xAC, 0xCA, 0x00 };
             var expected = input.SkipWhile(b => b == 0x00);
 
             var enumerable = new BigEndianByteEnumerable(input);
@@ -91,7 +91,7 @@ namespace Gulliver.Tests.Enumerables
         public void Iteration_Untrimmed_Test()
         {
             // Arrange
-            var input = new byte[] {0x00, 0x00, 0xAC, 0xCA, 0x00};
+            var input = new byte[] { 0x00, 0x00, 0xAC, 0xCA, 0x00 };
             var expected = input;
 
             var enumerable = new BigEndianByteEnumerable(input, false);
@@ -109,7 +109,7 @@ namespace Gulliver.Tests.Enumerables
         public void ReverseIteration_Trimmed_Test()
         {
             // Arrange
-            var input = new byte[] {0x00, 0x00, 0xAC, 0xCA, 0x00};
+            var input = new byte[] { 0x00, 0x00, 0xAC, 0xCA, 0x00 };
             var expected = input.SkipWhile(b => b == 0x00)
                                 .Reverse();
 
@@ -128,7 +128,7 @@ namespace Gulliver.Tests.Enumerables
         public void ReverseIteration_Untrimmed_Test()
         {
             // Arrange
-            var input = new byte[] {0x00, 0x00, 0xAC, 0xCA, 0x00};
+            var input = new byte[] { 0x00, 0x00, 0xAC, 0xCA, 0x00 };
             var expected = input.Reverse();
 
             var enumerable = new BigEndianByteEnumerable(input, false);
@@ -154,7 +154,7 @@ namespace Gulliver.Tests.Enumerables
         public void Enumerate_Trimmed_Test()
         {
             // Arrange
-            var input = new byte[] {0x00, 0x00, 0xAC, 0xCA, 0x00};
+            var input = new byte[] { 0x00, 0x00, 0xAC, 0xCA, 0x00 };
             var expected = input.SkipWhile(b => b == 0x00);
 
             var enumerable = new BigEndianByteEnumerable(input);
@@ -174,7 +174,7 @@ namespace Gulliver.Tests.Enumerables
         public void Enumerate_Untrimmed_Test()
         {
             // Arrange
-            var input = new byte[] {0x00, 0x00, 0xAC, 0xCA, 0x00};
+            var input = new byte[] { 0x00, 0x00, 0xAC, 0xCA, 0x00 };
             var expected = input;
 
             var enumerable = new BigEndianByteEnumerable(input, false);
@@ -200,7 +200,7 @@ namespace Gulliver.Tests.Enumerables
         public void ReverseEnumeration_Trimmed_Test()
         {
             // Arrange
-            var input = new byte[] {0x00, 0x00, 0xAC, 0xCA, 0x00};
+            var input = new byte[] { 0x00, 0x00, 0xAC, 0xCA, 0x00 };
             var expected = input.SkipWhile(b => b == 0x00)
                                 .Reverse();
 
@@ -219,7 +219,7 @@ namespace Gulliver.Tests.Enumerables
         public void ReverseEnumeration_Untrimmed_Test()
         {
             // Arrange
-            var input = new byte[] {0x00, 0x00, 0xAC, 0xCA, 0x00};
+            var input = new byte[] { 0x00, 0x00, 0xAC, 0xCA, 0x00 };
             var expected = input.Reverse();
 
             var enumerable = new BigEndianByteEnumerable(input, false);

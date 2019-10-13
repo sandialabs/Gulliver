@@ -19,8 +19,8 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> TrySumLittleEndian_Test_Values()
         {
-            var deltas = new[] {long.MinValue, -255, -129, -127, -1, 0, 1, 127, 129, 255, long.MaxValue};
-            var uints = new uint[] {uint.MinValue, 1, 127, 129, 255, uint.MaxValue};
+            var deltas = new[] { long.MinValue, -255, -129, -127, -1, 0, 1, 127, 129, 255, long.MaxValue };
+            var uints = new uint[] { uint.MinValue, 1, 127, 129, 255, uint.MaxValue };
 
             foreach (var delta in deltas)
             {
@@ -39,7 +39,7 @@ namespace Gulliver.Tests
                     if (delta < 0
                         && input - delta < 0)
                     {
-                        yield return new object[] {false, Array.Empty<byte>(), inputBytes, delta};
+                        yield return new object[] { false, Array.Empty<byte>(), inputBytes, delta };
                         yield break;
                     }
 
@@ -47,7 +47,7 @@ namespace Gulliver.Tests
                                             ? ByteArrayUtils.SubtractUnsignedLittleEndian(inputBytes, deltaBytes)
                                             : ByteArrayUtils.AddUnsignedLittleEndian(inputBytes, deltaBytes);
 
-                    yield return new object[] {true, expectedBytes, inputBytes, delta};
+                    yield return new object[] { true, expectedBytes, inputBytes, delta };
                 }
             }
         }
@@ -114,10 +114,10 @@ namespace Gulliver.Tests
                     var leftBytesTrimmed = leftBytes.TrimLittleEndianLeadingZeroBytes();
                     var rightBytesTrimmed = rightBytes.TrimLittleEndianLeadingZeroBytes();
 
-                    yield return new object[] {expected, leftBytes, rightBytes};
-                    yield return new object[] {expected, leftBytesTrimmed, rightBytes};
-                    yield return new object[] {expected, leftBytes, rightBytesTrimmed};
-                    yield return new object[] {expected, leftBytesTrimmed, rightBytesTrimmed};
+                    yield return new object[] { expected, leftBytes, rightBytes };
+                    yield return new object[] { expected, leftBytesTrimmed, rightBytes };
+                    yield return new object[] { expected, leftBytes, rightBytesTrimmed };
+                    yield return new object[] { expected, leftBytesTrimmed, rightBytesTrimmed };
                 }
             }
         }
@@ -143,8 +143,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [InlineData(null, new byte[] {0x00})]
-        [InlineData(new byte[] {0x00}, null)]
+        [InlineData(null, new byte[] { 0x00 })]
+        [InlineData(new byte[] { 0x00 }, null)]
         public void AddUnsignedLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left,
                                                                                        byte[] right)
         {
@@ -194,10 +194,10 @@ namespace Gulliver.Tests
                     var leftBytesTrimmed = leftBytes.TrimLittleEndianLeadingZeroBytes();
                     var rightBytesTrimmed = rightBytes.TrimLittleEndianLeadingZeroBytes();
 
-                    yield return new object[] {expected, leftBytes, rightBytes};
-                    yield return new object[] {expected, leftBytesTrimmed, rightBytes};
-                    yield return new object[] {expected, leftBytes, rightBytesTrimmed};
-                    yield return new object[] {expected, leftBytesTrimmed, rightBytesTrimmed};
+                    yield return new object[] { expected, leftBytes, rightBytes };
+                    yield return new object[] { expected, leftBytesTrimmed, rightBytes };
+                    yield return new object[] { expected, leftBytes, rightBytesTrimmed };
+                    yield return new object[] { expected, leftBytesTrimmed, rightBytesTrimmed };
                 }
             }
         }
@@ -223,8 +223,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [InlineData(null, new byte[] {0x00})]
-        [InlineData(new byte[] {0x00}, null)]
+        [InlineData(null, new byte[] { 0x00 })]
+        [InlineData(new byte[] { 0x00 }, null)]
         public void SubtractUnsignedLittleEndian_NullInput_Throws_ArgumentNullException_Test(byte[] left,
                                                                                              byte[] right)
         {
@@ -238,8 +238,8 @@ namespace Gulliver.Tests
         public void SubtractUnsignedLittleEndian_SignedOperation_Throws_InvalidOperationException_Test()
         {
             // Arrange
-            var left = new byte[] {0x00};
-            var right = new byte[] {0x00, 0x0F};
+            var left = new byte[] { 0x00 };
+            var right = new byte[] { 0x00, 0x0F };
 
             // Act
             // Assert
@@ -281,10 +281,10 @@ namespace Gulliver.Tests
 
                     var expected = (left ?? 0).CompareTo(right ?? 0);
 
-                    yield return new object[] {expected, leftBytes, rightBytes};
-                    yield return new object[] {expected, leftBytesTrimmed, rightBytes};
-                    yield return new object[] {expected, leftBytes, rightBytesTrimmed};
-                    yield return new object[] {expected, leftBytesTrimmed, rightBytesTrimmed};
+                    yield return new object[] { expected, leftBytes, rightBytes };
+                    yield return new object[] { expected, leftBytesTrimmed, rightBytes };
+                    yield return new object[] { expected, leftBytes, rightBytesTrimmed };
+                    yield return new object[] { expected, leftBytesTrimmed, rightBytesTrimmed };
                 }
             }
         }
@@ -314,8 +314,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [InlineData(null, new byte[] {0x00})]
-        [InlineData(new byte[] {0x00}, null)]
+        [InlineData(null, new byte[] { 0x00 })]
+        [InlineData(new byte[] { 0x00 }, null)]
         public void CompareUnsignedLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left,
                                                                                            byte[] right)
         {
@@ -331,12 +331,12 @@ namespace Gulliver.Tests
 
         [Theory]
         [InlineData(0, new byte[] { })]
-        [InlineData(1, new byte[] {0xff})]
-        [InlineData(1, new byte[] {0xff, 0x00})]
-        [InlineData(2, new byte[] {0xff, 0xff, 0x00})]
-        [InlineData(2, new byte[] {0xff, 0xff})]
-        [InlineData(3, new byte[] {0x00, 0xff, 0xff})]
-        [InlineData(3, new byte[] {0x00, 0xff, 0xff, 0x00})]
+        [InlineData(1, new byte[] { 0xff })]
+        [InlineData(1, new byte[] { 0xff, 0x00 })]
+        [InlineData(2, new byte[] { 0xff, 0xff, 0x00 })]
+        [InlineData(2, new byte[] { 0xff, 0xff })]
+        [InlineData(3, new byte[] { 0x00, 0xff, 0xff })]
+        [InlineData(3, new byte[] { 0x00, 0xff, 0xff, 0x00 })]
         public void LittleEndianEffectiveLength_Test(int expected,
                                                      byte[] input)
         {
@@ -356,7 +356,7 @@ namespace Gulliver.Tests
             // Act
             // Assert
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => ((byte[]) null).LittleEndianEffectiveLength());
+            Assert.Throws<ArgumentNullException>(() => ((byte[])null).LittleEndianEffectiveLength());
         }
 
         #endregion
@@ -448,8 +448,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [InlineData(null, new byte[] {0x00})]
-        [InlineData(new byte[] {0x00}, null)]
+        [InlineData(null, new byte[] { 0x00 })]
+        [InlineData(new byte[] { 0x00 }, null)]
         public void BitwiseAndLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left,
                                                                                       byte[] right)
         {
@@ -546,8 +546,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [InlineData(null, new byte[] {0x00})]
-        [InlineData(new byte[] {0x00}, null)]
+        [InlineData(null, new byte[] { 0x00 })]
+        [InlineData(new byte[] { 0x00 }, null)]
         public void BitwiseOrLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left,
                                                                                      byte[] right)
         {
@@ -644,8 +644,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [InlineData(null, new byte[] {0x00})]
-        [InlineData(new byte[] {0x00}, null)]
+        [InlineData(null, new byte[] { 0x00 })]
+        [InlineData(new byte[] { 0x00 }, null)]
         public void BitwiseXorLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left,
                                                                                       byte[] right)
         {
@@ -669,37 +669,37 @@ namespace Gulliver.Tests
                 var expected = Array.Empty<byte>();
 
                 var input = Enumerable.Range(0, i)
-                                      .Select(_ => (byte) 0x00)
+                                      .Select(_ => (byte)0x00)
                                       .Concat(expected.ToList())
                                       .ToArray();
 
-                yield return new object[] {expected, input};
+                yield return new object[] { expected, input };
             }
 
             // don't trim left
             for (var i = 0; i < 5; i++)
             {
-                var expected = new byte[] {0x00, 0x0A, 0xF0};
+                var expected = new byte[] { 0x00, 0x0A, 0xF0 };
 
                 var input = expected
                             .Concat(Enumerable.Range(0, i)
-                                              .Select(_ => (byte) 0x00))
+                                              .Select(_ => (byte)0x00))
                             .ToArray();
 
-                yield return new object[] {expected, input};
+                yield return new object[] { expected, input };
             }
 
             // trim right
             for (var i = 0; i < 5; i++)
             {
-                var expected = new byte[] {0x0A, 0xF0};
+                var expected = new byte[] { 0x0A, 0xF0 };
 
                 var input = expected
                             .Concat(Enumerable.Range(0, i)
-                                              .Select(_ => (byte) 0x00))
+                                              .Select(_ => (byte)0x00))
                             .ToArray();
 
-                yield return new object[] {expected, input};
+                yield return new object[] { expected, input };
             }
         }
 
@@ -723,7 +723,7 @@ namespace Gulliver.Tests
         public void TrimLittleEndianLeadingZeros_NullInput_ThrowsArgumentNullException_Test()
         {
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => ((byte[]) null).TrimLittleEndianLeadingZeroBytes());
+            Assert.Throws<ArgumentNullException>(() => ((byte[])null).TrimLittleEndianLeadingZeroBytes());
         }
 
         #endregion
@@ -733,25 +733,25 @@ namespace Gulliver.Tests
         public static IEnumerable<object[]> PadLittleEndianMostSignificantBytes_Test_Vales()
         {
             // no padding, not padded
-            yield return new object[] { Array.Empty<byte>(), Array.Empty<byte>(), 0, 0x00};
-            yield return new object[] {new byte[] {0xfc}, new byte[] {0xfc}, 0, 0x00};
+            yield return new object[] { Array.Empty<byte>(), Array.Empty<byte>(), 0, 0x00 };
+            yield return new object[] { new byte[] { 0xfc }, new byte[] { 0xfc }, 0, 0x00 };
 
             // input length equal to final length, not padded
-            yield return new object[] {new byte[] {0x00, 0x00}, new byte[] {0x00, 0x00}, 2, 0x00};
-            yield return new object[] {new byte[] {0x00, 0x00}, new byte[] {0x00, 0x00}, 2, 0xfc};
+            yield return new object[] { new byte[] { 0x00, 0x00 }, new byte[] { 0x00, 0x00 }, 2, 0x00 };
+            yield return new object[] { new byte[] { 0x00, 0x00 }, new byte[] { 0x00, 0x00 }, 2, 0xfc };
 
             // input length greater than final length, not padded
-            yield return new object[] {new byte[] {0x00, 0x00}, new byte[] {0x00, 0x00}, 1, 0x00};
-            yield return new object[] {new byte[] {0xfc, 0xac}, new byte[] {0xfc, 0xac}, 1, 0xfc};
+            yield return new object[] { new byte[] { 0x00, 0x00 }, new byte[] { 0x00, 0x00 }, 1, 0x00 };
+            yield return new object[] { new byte[] { 0xfc, 0xac }, new byte[] { 0xfc, 0xac }, 1, 0xfc };
 
             // empty input, padded
-            yield return new object[] {new byte[] {0x00, 0x00}, Array.Empty<byte>(), 2, 0x00};
-            yield return new object[] {new byte[] {0xfc, 0xfc}, Array.Empty<byte>(), 2, 0xfc};
+            yield return new object[] { new byte[] { 0x00, 0x00 }, Array.Empty<byte>(), 2, 0x00 };
+            yield return new object[] { new byte[] { 0xfc, 0xfc }, Array.Empty<byte>(), 2, 0xfc };
 
             // input length less than final length, padded
-            yield return new object[] {new byte[] {0x00, 0x00, 0x00, 0x00}, new byte[] {0x00, 0x00}, 4, 0x00};
-            yield return new object[] {new byte[] {0x00, 0x00, 0xfc, 0xfc}, new byte[] {0x00, 0x00}, 4, 0xfc};
-            yield return new object[] {new byte[] {0xac, 0xac, 0xfc, 0xfc}, new byte[] {0xac, 0xac}, 4, 0xfc};
+            yield return new object[] { new byte[] { 0x00, 0x00, 0x00, 0x00 }, new byte[] { 0x00, 0x00 }, 4, 0x00 };
+            yield return new object[] { new byte[] { 0x00, 0x00, 0xfc, 0xfc }, new byte[] { 0x00, 0x00 }, 4, 0xfc };
+            yield return new object[] { new byte[] { 0xac, 0xac, 0xfc, 0xfc }, new byte[] { 0xac, 0xac }, 4, 0xfc };
         }
 
         [Theory]
@@ -778,7 +778,7 @@ namespace Gulliver.Tests
             // Act
             // Assert
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => ((byte[]) null).PadLittleEndianMostSignificantBytes(42));
+            Assert.Throws<ArgumentNullException>(() => ((byte[])null).PadLittleEndianMostSignificantBytes(42));
         }
 
         [Fact]

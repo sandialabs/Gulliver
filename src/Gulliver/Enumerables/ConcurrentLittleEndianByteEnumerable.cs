@@ -36,27 +36,27 @@ namespace Gulliver.Enumerables
             using (var leftEnumerator = Left.GetReverseEnumerator()) // enumerate in reverse
             {
                 using (var rightEnumerator = Right.GetReverseEnumerator())
-            {
-                for (var i = 0; i < count; i++)
                 {
-                    byte leftByte = 0x00;
-                    byte rightByte = 0x00;
-
-                    if (i + leftCount >= count)
+                    for (var i = 0; i < count; i++)
                     {
-                        leftEnumerator.MoveNext();
-                        leftByte = leftEnumerator.Current;
-                    }
+                        byte leftByte = 0x00;
+                        byte rightByte = 0x00;
 
-                    if (i + rightCount >= count)
-                    {
-                        rightEnumerator.MoveNext();
-                        rightByte = rightEnumerator.Current;
-                    }
+                        if (i + leftCount >= count)
+                        {
+                            leftEnumerator.MoveNext();
+                            leftByte = leftEnumerator.Current;
+                        }
 
-                    yield return (leftByte, rightByte);
+                        if (i + rightCount >= count)
+                        {
+                            rightEnumerator.MoveNext();
+                            rightByte = rightEnumerator.Current;
+                        }
+
+                        yield return (leftByte, rightByte);
+                    }
                 }
-            }
             }
         }
 
@@ -70,27 +70,27 @@ namespace Gulliver.Enumerables
             using (var leftEnumerator = Left.GetEnumerator())
             {
                 using (var rightEnumerator = Right.GetEnumerator())
-            {
-                for (var i = count - 1; i >= 0; i--)
                 {
-                    byte leftByte = 0x00;
-                    byte rightByte = 0x00;
-
-                    if (i + leftCount >= count)
+                    for (var i = count - 1; i >= 0; i--)
                     {
-                        leftEnumerator.MoveNext();
-                        leftByte = leftEnumerator.Current;
-                    }
+                        byte leftByte = 0x00;
+                        byte rightByte = 0x00;
 
-                    if (i + rightCount >= count)
-                    {
-                        rightEnumerator.MoveNext();
-                        rightByte = rightEnumerator.Current;
-                    }
+                        if (i + leftCount >= count)
+                        {
+                            leftEnumerator.MoveNext();
+                            leftByte = leftEnumerator.Current;
+                        }
 
-                    yield return (leftByte, rightByte);
+                        if (i + rightCount >= count)
+                        {
+                            rightEnumerator.MoveNext();
+                            rightByte = rightEnumerator.Current;
+                        }
+
+                        yield return (leftByte, rightByte);
+                    }
                 }
-            }
             }
         }
     }

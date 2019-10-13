@@ -65,7 +65,7 @@ namespace Gulliver.Tests
 
                 foreach (var i in Enumerable.Range(0, 5))
                 {
-                    yield return (uint) i;
+                    yield return (uint)i;
                 }
             }
         }
@@ -150,7 +150,7 @@ namespace Gulliver.Tests
                                     ? BitConverter.GetBytes(u.Value)
                                     : Array.Empty<byte>();
 
-                    yield return new object[] {expected, bytes};
+                    yield return new object[] { expected, bytes };
                 }
             }
         }
@@ -214,9 +214,9 @@ namespace Gulliver.Tests
         {
             for (var i = 0; i < 8; i++)
             {
-                yield return new object[] {true, i, new byte[] {(byte) (0x01 << i), 0x00}};
-                yield return new object[] {true, i + 8, new byte[] {0x00, (byte) (0x01 << i)}};
-                yield return new object[] {false, i, new[] {(byte) ~(0x01 << i)}};
+                yield return new object[] { true, i, new byte[] { (byte)(0x01 << i), 0x00 } };
+                yield return new object[] { true, i + 8, new byte[] { 0x00, (byte)(0x01 << i) } };
+                yield return new object[] { false, i, new[] { (byte)~(0x01 << i) } };
             }
         }
 
@@ -241,7 +241,7 @@ namespace Gulliver.Tests
         public void AddressBit_NullInput_ThrowsArgumentNullException_Test()
         {
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => ((byte[]) null).AddressBit(default));
+            Assert.Throws<ArgumentNullException>(() => ((byte[])null).AddressBit(default));
         }
 
         [Theory]
@@ -250,7 +250,7 @@ namespace Gulliver.Tests
         public void AddressBit_IndexOutOfRange_ThrowsArgumentOutOfRangeException_Test(int index)
         {
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] {0xff}.AddressBit(index));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] { 0xff }.AddressBit(index));
         }
 
         #endregion
@@ -260,38 +260,38 @@ namespace Gulliver.Tests
         public static IEnumerable<object[]> ShiftBitsRight_Test_Values()
         {
             // nothing to shift, no shifting
-            yield return new object[] { Array.Empty<byte>(), Array.Empty<byte>(), Array.Empty<byte>(), 0};
+            yield return new object[] { Array.Empty<byte>(), Array.Empty<byte>(), Array.Empty<byte>(), 0 };
 
             // no shifting
-            yield return new object[] { Array.Empty<byte>(), Array.Empty<byte>(), Array.Empty<byte>(), 8};
-            yield return new object[] {new byte[] {0xac}, Array.Empty<byte>(), new byte[] {0xac}, 0};
+            yield return new object[] { Array.Empty<byte>(), Array.Empty<byte>(), Array.Empty<byte>(), 8 };
+            yield return new object[] { new byte[] { 0xac }, Array.Empty<byte>(), new byte[] { 0xac }, 0 };
 
             // shift across byte boundary
-            yield return new object[] {new byte[] {0x00}, new byte[] {0xac}, new byte[] {0xac}, 8};
-            yield return new object[] {new byte[] {0x00, 0xca}, new byte[] {0xac}, new byte[] {0xca, 0xac}, 8};
-            yield return new object[] {new byte[] {0x00, 0x00}, new byte[] {0xca, 0xac}, new byte[] {0xca, 0xac}, 16};
+            yield return new object[] { new byte[] { 0x00 }, new byte[] { 0xac }, new byte[] { 0xac }, 8 };
+            yield return new object[] { new byte[] { 0x00, 0xca }, new byte[] { 0xac }, new byte[] { 0xca, 0xac }, 8 };
+            yield return new object[] { new byte[] { 0x00, 0x00 }, new byte[] { 0xca, 0xac }, new byte[] { 0xca, 0xac }, 16 };
 
             // far shifting
-            yield return new object[] {new byte[] {0x00}, new byte[] {0x00, 0x00, 0x00, 0xFF}, new byte[] {0xFF}, 32};
+            yield return new object[] { new byte[] { 0x00 }, new byte[] { 0x00, 0x00, 0x00, 0xFF }, new byte[] { 0xFF }, 32 };
 
             // ragged shifting
-            yield return new object[] {new byte[] {0b0111_1111}, new byte[] {0b1000_0000}, new byte[] {0b1111_1111}, 1};
-            yield return new object[] {new byte[] {0b0011_1111}, new byte[] {0b1100_0000}, new byte[] {0b1111_1111}, 2};
-            yield return new object[] {new byte[] {0b0001_1111}, new byte[] {0b1110_0000}, new byte[] {0b1111_1111}, 3};
-            yield return new object[] {new byte[] {0b0000_1111}, new byte[] {0b1111_0000}, new byte[] {0b1111_1111}, 4};
-            yield return new object[] {new byte[] {0b0000_0111}, new byte[] {0b1111_1000}, new byte[] {0b1111_1111}, 5};
-            yield return new object[] {new byte[] {0b0000_0011}, new byte[] {0b1111_1100}, new byte[] {0b1111_1111}, 6};
-            yield return new object[] {new byte[] {0b0000_0001}, new byte[] {0b1111_1110}, new byte[] {0b1111_1111}, 7};
+            yield return new object[] { new byte[] { 0b0111_1111 }, new byte[] { 0b1000_0000 }, new byte[] { 0b1111_1111 }, 1 };
+            yield return new object[] { new byte[] { 0b0011_1111 }, new byte[] { 0b1100_0000 }, new byte[] { 0b1111_1111 }, 2 };
+            yield return new object[] { new byte[] { 0b0001_1111 }, new byte[] { 0b1110_0000 }, new byte[] { 0b1111_1111 }, 3 };
+            yield return new object[] { new byte[] { 0b0000_1111 }, new byte[] { 0b1111_0000 }, new byte[] { 0b1111_1111 }, 4 };
+            yield return new object[] { new byte[] { 0b0000_0111 }, new byte[] { 0b1111_1000 }, new byte[] { 0b1111_1111 }, 5 };
+            yield return new object[] { new byte[] { 0b0000_0011 }, new byte[] { 0b1111_1100 }, new byte[] { 0b1111_1111 }, 6 };
+            yield return new object[] { new byte[] { 0b0000_0001 }, new byte[] { 0b1111_1110 }, new byte[] { 0b1111_1111 }, 7 };
 
-            yield return new object[] {new byte[] {0b0000_0000}, new byte[] {0b0000_1111, 0b1111_0000}, new byte[] {0b1111_1111}, 12};
-            yield return new object[] {new byte[] {0b0000_0000}, new byte[] {0b0000_0001, 0b1111_1110}, new byte[] {0b1111_1111}, 15};
+            yield return new object[] { new byte[] { 0b0000_0000 }, new byte[] { 0b0000_1111, 0b1111_0000 }, new byte[] { 0b1111_1111 }, 12 };
+            yield return new object[] { new byte[] { 0b0000_0000 }, new byte[] { 0b0000_0001, 0b1111_1110 }, new byte[] { 0b1111_1111 }, 15 };
 
-            yield return new object[] {new byte[] {0b0000_0101}, new byte[] {0b1100_0000}, new byte[] {0b0101_1100}, 4};
-            yield return new object[] {new byte[] {0b0000_0101, 0b1100_1100}, new byte[] {0b0011_0000}, new byte[] {0b0101_1100, 0b1100_0011}, 4};
-            yield return new object[] {new byte[] {0b0000_0000, 0b0000_0001}, new byte[] {0b1011_1001, 0b1000_0110}, new byte[] {0b1101_1100, 0b1100_0011}, 15};
+            yield return new object[] { new byte[] { 0b0000_0101 }, new byte[] { 0b1100_0000 }, new byte[] { 0b0101_1100 }, 4 };
+            yield return new object[] { new byte[] { 0b0000_0101, 0b1100_1100 }, new byte[] { 0b0011_0000 }, new byte[] { 0b0101_1100, 0b1100_0011 }, 4 };
+            yield return new object[] { new byte[] { 0b0000_0000, 0b0000_0001 }, new byte[] { 0b1011_1001, 0b1000_0110 }, new byte[] { 0b1101_1100, 0b1100_0011 }, 15 };
 
             // ragged far shift
-            yield return new object[] {new byte[] {0x00}, new byte[] {0x00, 0x00, 0x01, 0xFE}, new byte[] {0xFF}, 31};
+            yield return new object[] { new byte[] { 0x00 }, new byte[] { 0x00, 0x00, 0x01, 0xFE }, new byte[] { 0xFF }, 31 };
         }
 
         [Theory]
@@ -324,20 +324,20 @@ namespace Gulliver.Tests
         public void ShiftBitsRight_NullInput_ThrowsArgumentNullException_Test()
         {
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => ((byte[]) null).ShiftBitsRight(42, out _));
+            Assert.Throws<ArgumentNullException>(() => ((byte[])null).ShiftBitsRight(42, out _));
 
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => ((byte[]) null).ShiftBitsRight(42));
+            Assert.Throws<ArgumentNullException>(() => ((byte[])null).ShiftBitsRight(42));
         }
 
         [Fact]
         public void ShiftBitsRight_ShiftLessThanZero_ThrowsArgumentOutOfRangeException_Test()
         {
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] {0x00}.ShiftBitsRight(-1, out _));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] { 0x00 }.ShiftBitsRight(-1, out _));
 
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] {0x00}.ShiftBitsRight(-1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] { 0x00 }.ShiftBitsRight(-1));
         }
 
         #endregion
@@ -347,40 +347,40 @@ namespace Gulliver.Tests
         public static IEnumerable<object[]> ShiftBitsLeft_Test_Values()
         {
             // nothing to shift, no shifting
-            yield return new object[] { Array.Empty<byte>(), Array.Empty<byte>(), Array.Empty<byte>(), 0};
+            yield return new object[] { Array.Empty<byte>(), Array.Empty<byte>(), Array.Empty<byte>(), 0 };
 
             // no shifting
-            yield return new object[] { Array.Empty<byte>(), Array.Empty<byte>(), Array.Empty<byte>(), 8};
-            yield return new object[] {new byte[] {0xac}, Array.Empty<byte>(), new byte[] {0xac}, 0};
+            yield return new object[] { Array.Empty<byte>(), Array.Empty<byte>(), Array.Empty<byte>(), 8 };
+            yield return new object[] { new byte[] { 0xac }, Array.Empty<byte>(), new byte[] { 0xac }, 0 };
 
             // shift across byte boundary
-            yield return new object[] {new byte[] {0x00}, new byte[] {0xac}, new byte[] {0xac}, 8};
-            yield return new object[] {new byte[] {0xac, 0x00}, new byte[] {0xca}, new byte[] {0xca, 0xac}, 8};
-            yield return new object[] {new byte[] {0x00, 0x00}, new byte[] {0xca, 0xac}, new byte[] {0xca, 0xac}, 16};
+            yield return new object[] { new byte[] { 0x00 }, new byte[] { 0xac }, new byte[] { 0xac }, 8 };
+            yield return new object[] { new byte[] { 0xac, 0x00 }, new byte[] { 0xca }, new byte[] { 0xca, 0xac }, 8 };
+            yield return new object[] { new byte[] { 0x00, 0x00 }, new byte[] { 0xca, 0xac }, new byte[] { 0xca, 0xac }, 16 };
 
             // far shifting
-            yield return new object[] {new byte[] {0x00}, new byte[] {0xFF, 0x00, 0x00, 0x00}, new byte[] {0xFF}, 32};
+            yield return new object[] { new byte[] { 0x00 }, new byte[] { 0xFF, 0x00, 0x00, 0x00 }, new byte[] { 0xFF }, 32 };
 
             // ragged shifting
-            yield return new object[] {new byte[] {0b1111_1110}, new byte[] {0b0000_0001}, new byte[] {0b1111_1111}, 1};
-            yield return new object[] {new byte[] {0b1111_1100}, new byte[] {0b0000_0011}, new byte[] {0b1111_1111}, 2};
-            yield return new object[] {new byte[] {0b1111_1000}, new byte[] {0b0000_0111}, new byte[] {0b1111_1111}, 3};
-            yield return new object[] {new byte[] {0b1111_0000}, new byte[] {0b0000_1111}, new byte[] {0b1111_1111}, 4};
-            yield return new object[] {new byte[] {0b1110_0000}, new byte[] {0b0001_1111}, new byte[] {0b1111_1111}, 5};
-            yield return new object[] {new byte[] {0b1100_0000}, new byte[] {0b0011_1111}, new byte[] {0b1111_1111}, 6};
-            yield return new object[] {new byte[] {0b1000_0000}, new byte[] {0b0111_1111}, new byte[] {0b1111_1111}, 7};
+            yield return new object[] { new byte[] { 0b1111_1110 }, new byte[] { 0b0000_0001 }, new byte[] { 0b1111_1111 }, 1 };
+            yield return new object[] { new byte[] { 0b1111_1100 }, new byte[] { 0b0000_0011 }, new byte[] { 0b1111_1111 }, 2 };
+            yield return new object[] { new byte[] { 0b1111_1000 }, new byte[] { 0b0000_0111 }, new byte[] { 0b1111_1111 }, 3 };
+            yield return new object[] { new byte[] { 0b1111_0000 }, new byte[] { 0b0000_1111 }, new byte[] { 0b1111_1111 }, 4 };
+            yield return new object[] { new byte[] { 0b1110_0000 }, new byte[] { 0b0001_1111 }, new byte[] { 0b1111_1111 }, 5 };
+            yield return new object[] { new byte[] { 0b1100_0000 }, new byte[] { 0b0011_1111 }, new byte[] { 0b1111_1111 }, 6 };
+            yield return new object[] { new byte[] { 0b1000_0000 }, new byte[] { 0b0111_1111 }, new byte[] { 0b1111_1111 }, 7 };
 
-            yield return new object[] {new byte[] {0b0000_0000}, new byte[] {0b0000_1111, 0b1111_0000}, new byte[] {0b1111_1111}, 12};
-            yield return new object[] {new byte[] {0b0000_0000}, new byte[] {0b0111_1111, 0b1000_0000}, new byte[] {0b1111_1111}, 15};
+            yield return new object[] { new byte[] { 0b0000_0000 }, new byte[] { 0b0000_1111, 0b1111_0000 }, new byte[] { 0b1111_1111 }, 12 };
+            yield return new object[] { new byte[] { 0b0000_0000 }, new byte[] { 0b0111_1111, 0b1000_0000 }, new byte[] { 0b1111_1111 }, 15 };
 
-            yield return new object[] {new byte[] {0b1110_0000, 0b0000_0000}, new byte[] {0b00001_1111, 0b1111_1111}, new byte[] {0b1111_1111, 0b1111_1111}, 13};
+            yield return new object[] { new byte[] { 0b1110_0000, 0b0000_0000 }, new byte[] { 0b00001_1111, 0b1111_1111 }, new byte[] { 0b1111_1111, 0b1111_1111 }, 13 };
 
-            yield return new object[] {new byte[] {0b1100_0000}, new byte[] {0b0000_0101}, new byte[] {0b101_1100}, 4};
-            yield return new object[] {new byte[] {0b1100_1100, 0b0011_0000}, new byte[] {0b0000_0101}, new byte[] {0b0101_1100, 0b1100_0011}, 4};
-            yield return new object[] {new byte[] {0b1000_0000, 0b0000_0000}, new byte[] {0b0110_1110, 0b0110_0001}, new byte[] {0b01101_1100, 0b1100_0011}, 15};
+            yield return new object[] { new byte[] { 0b1100_0000 }, new byte[] { 0b0000_0101 }, new byte[] { 0b101_1100 }, 4 };
+            yield return new object[] { new byte[] { 0b1100_1100, 0b0011_0000 }, new byte[] { 0b0000_0101 }, new byte[] { 0b0101_1100, 0b1100_0011 }, 4 };
+            yield return new object[] { new byte[] { 0b1000_0000, 0b0000_0000 }, new byte[] { 0b0110_1110, 0b0110_0001 }, new byte[] { 0b01101_1100, 0b1100_0011 }, 15 };
 
             // ragged far shift
-            yield return new object[] {new byte[] {0x00}, new byte[] {0x7F, 0x80, 0x00, 0x00}, new byte[] {0xFF}, 31};
+            yield return new object[] { new byte[] { 0x00 }, new byte[] { 0x7F, 0x80, 0x00, 0x00 }, new byte[] { 0xFF }, 31 };
         }
 
         [Theory]
@@ -413,20 +413,20 @@ namespace Gulliver.Tests
         public void ShiftBitsLeft_NullInput_ThrowsArgumentNullException_Test()
         {
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => ((byte[]) null).ShiftBitsLeft(42, out _));
+            Assert.Throws<ArgumentNullException>(() => ((byte[])null).ShiftBitsLeft(42, out _));
 
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => ((byte[]) null).ShiftBitsLeft(42));
+            Assert.Throws<ArgumentNullException>(() => ((byte[])null).ShiftBitsLeft(42));
         }
 
         [Fact]
         public void ShiftBitsLeft_ShiftLessThanZero_ThrowsArgumentOutOfRangeException_Test()
         {
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] {0x00}.ShiftBitsLeft(-1, out _));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] { 0x00 }.ShiftBitsLeft(-1, out _));
 
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] {0x00}.ShiftBitsLeft(-1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] { 0x00 }.ShiftBitsLeft(-1));
         }
 
         #endregion
@@ -458,7 +458,7 @@ namespace Gulliver.Tests
         public void Reverse_InputNull_ThrowsArgumentNullException_Test()
         {
             // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => ((byte[]) null).ReverseBytes());
+            Assert.Throws<ArgumentNullException>(() => ((byte[])null).ReverseBytes());
         }
 
         #endregion
@@ -480,7 +480,7 @@ namespace Gulliver.Tests
                 {
                     var right = new byte[j];
                     rand.NextBytes(right);
-                    yield return new object[] {left, right};
+                    yield return new object[] { left, right };
                 }
             }
         }
@@ -544,8 +544,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [InlineData(null, new byte[] {0x00})]
-        [InlineData(new byte[] {0x00}, null)]
+        [InlineData(null, new byte[] { 0x00 })]
+        [InlineData(new byte[] { 0x00 }, null)]
         public void AppendShortest_NullInput_ThrowsArgumentNullException_Test(byte[] left,
                                                                               byte[] right)
         {
@@ -561,11 +561,11 @@ namespace Gulliver.Tests
 
         [Theory]
         [InlineData(new byte[] { }, 0, 0x00)]
-        [InlineData(new byte[] {0x01, 0x02}, 0, 0x00)]
-        [InlineData(new byte[] {0x01, 0x02}, 2, 0x00)]
+        [InlineData(new byte[] { 0x01, 0x02 }, 0, 0x00)]
+        [InlineData(new byte[] { 0x01, 0x02 }, 2, 0x00)]
         [InlineData(new byte[] { }, 0, 0xAC)]
-        [InlineData(new byte[] {0x34, 0x12}, 0, 0xAC)]
-        [InlineData(new byte[] {0x34, 0x12}, 2, 0xAC)]
+        [InlineData(new byte[] { 0x34, 0x12 }, 0, 0xAC)]
+        [InlineData(new byte[] { 0x34, 0x12 }, 2, 0xAC)]
         public void AppendBytes_Test(byte[] source,
                                      int count,
                                      byte element)
@@ -599,7 +599,7 @@ namespace Gulliver.Tests
         public void AppendBytes_CountLessThan0_ThrowsArgumentOutOfRangeException_Test()
         {
             // Arrange
-            var source = new byte[] {0xFF, 0xFF};
+            var source = new byte[] { 0xFF, 0xFF };
             const int count = -1;
 
             // Act
@@ -611,7 +611,7 @@ namespace Gulliver.Tests
         public void AppendBytes_DefaultsTo0x00_Test()
         {
             // Arrange
-            var source = new byte[] {0xFF, 0xFF};
+            var source = new byte[] { 0xFF, 0xFF };
             const int count = 4;
 
             // Act
@@ -627,11 +627,11 @@ namespace Gulliver.Tests
 
         [Theory]
         [InlineData(new byte[] { }, 0, 0x00)]
-        [InlineData(new byte[] {0x01, 0x02}, 0, 0x00)]
-        [InlineData(new byte[] {0x01, 0x02}, 2, 0x00)]
+        [InlineData(new byte[] { 0x01, 0x02 }, 0, 0x00)]
+        [InlineData(new byte[] { 0x01, 0x02 }, 2, 0x00)]
         [InlineData(new byte[] { }, 0, 0xAC)]
-        [InlineData(new byte[] {0x34, 0x12}, 0, 0xAC)]
-        [InlineData(new byte[] {0x34, 0x12}, 2, 0xAC)]
+        [InlineData(new byte[] { 0x34, 0x12 }, 0, 0xAC)]
+        [InlineData(new byte[] { 0x34, 0x12 }, 2, 0xAC)]
         public void PrependBytes_Test(byte[] source,
                                       int count,
                                       byte element)
@@ -665,7 +665,7 @@ namespace Gulliver.Tests
         public void PrependBytes_CountLessThan0_ThrowsArgumentOutOfRangeException_Test()
         {
             // Arrange
-            var source = new byte[] {0xFF, 0xFF};
+            var source = new byte[] { 0xFF, 0xFF };
             const int count = -1;
 
             // Act
@@ -677,7 +677,7 @@ namespace Gulliver.Tests
         public void PrependBytes_DefaultsTo0x00_Test()
         {
             // Arrange
-            var source = new byte[] {0xFF, 0xFF};
+            var source = new byte[] { 0xFF, 0xFF };
             const int count = 4;
 
             // Act
@@ -706,7 +706,7 @@ namespace Gulliver.Tests
                 {
                     var right = new byte[j];
                     rand.NextBytes(right);
-                    yield return new object[] {left, right};
+                    yield return new object[] { left, right };
                 }
             }
         }
@@ -770,8 +770,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [InlineData(null, new byte[] {0x00})]
-        [InlineData(new byte[] {0x00}, null)]
+        [InlineData(null, new byte[] { 0x00 })]
+        [InlineData(new byte[] { 0x00 }, null)]
         public void PrependShortest_NullInput_ThrowsArgumentNullException_Test(byte[] left,
                                                                                byte[] right)
         {

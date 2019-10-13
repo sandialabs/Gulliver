@@ -46,7 +46,7 @@ namespace Gulliver.Tests.Enumerables
             {
                 foreach (var right in byteValues)
                 {
-                    yield return new object[] {left, right};
+                    yield return new object[] { left, right };
                 }
             }
 
@@ -87,11 +87,11 @@ namespace Gulliver.Tests.Enumerables
             this._testOutputHelper.WriteLine($"expectedLength: {length}");
 
             var expectedLeft = leftBytes.Take(expectedTrimmedLeftLength)
-                                        .Concat(Enumerable.Repeat((byte) 0x00, length - expectedTrimmedLeftLength))
+                                        .Concat(Enumerable.Repeat((byte)0x00, length - expectedTrimmedLeftLength))
                                         .ToArray();
 
             var expectedRight = rightBytes.Take(expectedTrimmedRightLength)
-                                          .Concat(Enumerable.Repeat((byte) 0x00, length - expectedTrimmedRightLength))
+                                          .Concat(Enumerable.Repeat((byte)0x00, length - expectedTrimmedRightLength))
                                           .ToArray();
 
             this._testOutputHelper.WriteLine($"expected left: [{expectedLeft.ToString("h")}]");
@@ -134,10 +134,10 @@ namespace Gulliver.Tests.Enumerables
 
             this._testOutputHelper.WriteLine($"expectedLength: {length}");
 
-            var expectedLeft = leftBytes.Concat(Enumerable.Repeat((byte) 0x00, length - leftBytes.Length))
+            var expectedLeft = leftBytes.Concat(Enumerable.Repeat((byte)0x00, length - leftBytes.Length))
                                         .ToArray();
 
-            var expectedRight = rightBytes.Concat(Enumerable.Repeat((byte) 0x00, length - rightBytes.Length))
+            var expectedRight = rightBytes.Concat(Enumerable.Repeat((byte)0x00, length - rightBytes.Length))
                                           .ToArray();
 
             this._testOutputHelper.WriteLine($"expected left: [{expectedLeft.ToString("h")}]");
@@ -186,12 +186,12 @@ namespace Gulliver.Tests.Enumerables
             this._testOutputHelper.WriteLine($"expectedLength: {length}");
 
             var expectedLeft = leftBytes.Take(expectedTrimmedLeftLength)
-                                        .Concat(Enumerable.Repeat((byte) 0x00, length - expectedTrimmedLeftLength))
+                                        .Concat(Enumerable.Repeat((byte)0x00, length - expectedTrimmedLeftLength))
                                         .Reverse()
                                         .ToArray();
 
             var expectedRight = rightBytes.Take(expectedTrimmedRightLength)
-                                          .Concat(Enumerable.Repeat((byte) 0x00, length - expectedTrimmedRightLength))
+                                          .Concat(Enumerable.Repeat((byte)0x00, length - expectedTrimmedRightLength))
                                           .Reverse()
                                           .ToArray();
 
@@ -236,11 +236,11 @@ namespace Gulliver.Tests.Enumerables
 
             this._testOutputHelper.WriteLine($"expectedLength: {length}");
 
-            var expectedLeft = leftBytes.Concat(Enumerable.Repeat((byte) 0x00, length - leftBytes.Length))
+            var expectedLeft = leftBytes.Concat(Enumerable.Repeat((byte)0x00, length - leftBytes.Length))
                                         .Reverse()
                                         .ToArray();
 
-            var expectedRight = rightBytes.Concat(Enumerable.Repeat((byte) 0x00, length - rightBytes.Length))
+            var expectedRight = rightBytes.Concat(Enumerable.Repeat((byte)0x00, length - rightBytes.Length))
                                           .Reverse()
                                           .ToArray();
 
