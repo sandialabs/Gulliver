@@ -29,39 +29,6 @@ namespace Gulliver
                 throw new ArgumentNullException(nameof(right));
             }
 
-            //var rightEffectiveLength = BigEndianEffectiveLength(left);
-            //var leftEffectiveLength = BigEndianEffectiveLength(right);
-
-            //// left is a larger unsigned number
-            //if (rightEffectiveLength > leftEffectiveLength)
-            //{
-            //    return 1;
-            //}
-
-            //// right is a larger unsigned number
-            //if (rightEffectiveLength < leftEffectiveLength)
-            //{
-            //    return -1;
-            //}
-
-            //// left and right have the same effective width, must compare starting at right edge MSB
-            //for (var i = rightEffectiveLength - 1; i >= 0; i--)
-            //{
-            //    var a = left[left.Length - i - 1];
-            //    var b = right[right.Length - i - 1];
-
-            //    var comparison = a.CompareTo(b);
-
-            //    if (comparison != 0)
-            //    {
-            //        return comparison > 0
-            //                   ? 1
-            //                   : -1;
-            //    }
-            //}
-
-            //return 0; // bytes are equal
-
             var enumerable = new ConcurrentBigEndianByteEnumerable(left, right).GetMsbToLsbEnumerable();
             foreach (var (leftByte, rightByte) in enumerable)
             {
@@ -228,48 +195,6 @@ namespace Gulliver
                 throw new ArgumentNullException(nameof(left));
             }
 
-            //var resultStack = new Stack<byte>();
-
-            //var length = right.Length > left.Length
-            //                 ? right.Length
-            //                 : left.Length;
-
-            //var carry = 0x00; // start with no carry value
-
-            //for (var i = 0; i < length; i++)
-            //{
-            //    var sum = carry; // sum is initialized to carry in order to always incorporate it
-
-            //    var leftIndex = right.Length - i - 1; // select left byte in reverse index order (right most edge)
-
-            //    if (leftIndex >= 0
-            //        && leftIndex < right.Length)
-            //    {
-            //        sum += right[leftIndex];
-            //    }
-
-            //    var rightIndex = left.Length - i - 1; // right left byte in reverse index order
-
-            //    if (rightIndex >= 0
-            //        && rightIndex < left.Length)
-            //    {
-            //        sum += left[rightIndex];
-            //    }
-
-            //    resultStack.Push((byte) (sum & 0xFF)); // push the byte value of sum
-            //    carry = sum >> 8;                      // new carry value is sum shifted by 8 bits (a byte)
-            //}
-
-            //if (carry == 0) // if there is no carry return it trimming the possible 0-valued most most significant bytes
-            //{
-            //    return resultStack.ToArray()
-            //                      .TrimBigEndianLeadingZeroBytes();
-            //}
-
-            //resultStack.Push((byte) carry); // push carry
-
-            //return resultStack.ToArray();
-
             var enumerable = new ConcurrentBigEndianByteEnumerable(left, right).GetLsbToMsbEnumerable();
             var resultStack = new Stack<byte>(); // use stack for filo
             var carry = 0;
@@ -320,64 +245,6 @@ namespace Gulliver
             {
                 throw new InvalidOperationException("This operation would create an unsupported signed result");
             }
-
-            //var resultStack = new Stack<byte>();
-
-            //var length = left.Length > right.Length
-            //                 ? left.Length
-            //                 : right.Length;
-
-            //var borrowed = false;
-            //for (var i = 0; i < length; i++)
-            //{
-            //    byte leftByte = 0x00;
-            //    byte rightByte = 0x00;
-
-            //    var leftIndex = left.Length - i - 1; // select left byte in reverse index order (right most edge)
-
-            //    if (leftIndex >= 0
-            //        && leftIndex < left.Length)
-            //    {
-            //        leftByte = left[leftIndex];
-            //    }
-
-            //    var rightIndex = right.Length - i - 1; // right left byte in reverse index order
-
-            //    if (rightIndex >= 0
-            //        && rightIndex < right.Length)
-            //    {
-            //        rightByte = right[rightIndex];
-            //    }
-
-            //    var canBorrow = leftByte > 0x00;
-            //    if (borrowed && canBorrow) // previous operation needed to borrow, and a borrow is possible
-            //    {
-            //        leftByte--; // decrement as this value has been borrowed from in the previous iteration
-            //    }
-
-            //    if (borrowed && !canBorrow)
-            //    {
-            //        leftByte = 0xff; // 0 byte becomes 255
-            //    }
-
-            //    if (leftByte >= rightByte) // left is big enough to subtract right
-            //    {
-            //        var difference = (byte)(leftByte - rightByte);
-            //        resultStack.Push(difference);
-
-            //        borrowed = borrowed && !canBorrow; // set borrow if a borrow happened some time previously but it could not be accommodated in this iteration; borrow from next
-            //    }
-            //    else // left is less than right, automatically borrow from next iteration
-            //    {
-            //        var difference = (byte)(leftByte + 0x0100 - rightByte); // handle borrowed
-            //        resultStack.Push(difference);
-
-            //        borrowed = true;
-            //    }
-            //}
-
-            //return resultStack.ToArray()
-            //                  .TrimBigEndianLeadingZeroBytes();
 
             var enumerable = new ConcurrentBigEndianByteEnumerable(left, right).GetLsbToMsbEnumerable();
             var resultStack = new Stack<byte>();
@@ -446,30 +313,6 @@ namespace Gulliver
                 throw new ArgumentNullException(nameof(right));
             }
 
-            //var length = left.Length > right.Length
-            //                 ? left.Length
-            //                 : right.Length;
-
-            //var result = new byte[length];
-
-            //for (var i = 0; i < length; i++)
-            //{
-            //    var aIndex = left.Length - length + i;
-            //    var bIndex = right.Length - length + i;
-
-            //    var a = aIndex >= 0 && aIndex < left.Length
-            //                ? left[aIndex]
-            //                : 0x00;
-
-            //    var b = bIndex >= 0 && bIndex < right.Length
-            //                ? right[bIndex]
-            //                : 0x00;
-
-            //    result[i] = (byte) (a & b);
-            //}
-
-            //return result;
-
             return new ConcurrentBigEndianByteEnumerable(left, right, false)
                    .Select(bytes => (byte)(bytes.leftByte & bytes.rightByte))
                    .ToArray();
@@ -497,30 +340,6 @@ namespace Gulliver
                 throw new ArgumentNullException(nameof(right));
             }
 
-            //var length = left.Length > right.Length
-            //                 ? left.Length
-            //                 : right.Length;
-
-            //var result = new byte[length];
-
-            //for (var i = 0; i < length; i++)
-            //{
-            //    var aIndex = left.Length - length + i;
-            //    var bIndex = right.Length - length + i;
-
-            //    var a = aIndex >= 0 && aIndex < left.Length
-            //                ? left[aIndex]
-            //                : 0x00;
-
-            //    var b = bIndex >= 0 && bIndex < right.Length
-            //                ? right[bIndex]
-            //                : 0x00;
-
-            //    result[i] = (byte) (a | b);
-            //}
-
-            //return result;
-
             return new ConcurrentBigEndianByteEnumerable(left, right, false)
                    .Select(bytes => (byte)(bytes.leftByte | bytes.rightByte))
                    .ToArray();
@@ -547,30 +366,6 @@ namespace Gulliver
             {
                 throw new ArgumentNullException(nameof(right));
             }
-
-            //var length = left.Length > right.Length
-            //                 ? left.Length
-            //                 : right.Length;
-
-            //var result = new byte[length];
-
-            //for (var i = 0; i < length; i++)
-            //{
-            //    var aIndex = left.Length - length + i;
-            //    var bIndex = right.Length - length + i;
-
-            //    var a = aIndex >= 0 && aIndex < left.Length
-            //                ? left[aIndex]
-            //                : 0x00;
-
-            //    var b = bIndex >= 0 && bIndex < right.Length
-            //                ? right[bIndex]
-            //                : 0x00;
-
-            //    result[i] = (byte) (a ^ b);
-            //}
-
-            //return result;
 
             return new ConcurrentBigEndianByteEnumerable(left, right, false)
                    .Select(bytes => (byte)(bytes.leftByte ^ bytes.rightByte))
