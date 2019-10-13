@@ -24,13 +24,6 @@ Gulliver originally came to be for the sake of `Arcus <https://github.com/sandia
    Concurent-Endian-Byte-Enumerables
    FixedBytes
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
 Contribute
 ----------
 

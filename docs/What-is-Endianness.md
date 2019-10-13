@@ -12,7 +12,7 @@ In Big-Endian, often referred to as *Network Byte Order*, ordering is left-to-ri
 
 For example, the decimal value of the unsigned integer `6060842` may be represented as `0x5C7B2A` in hexadecimal. This hexadecimal value is composed of the three bytes `0x5C`, `0x7B`, and `0x28`. As such the value `6060842` may be represented in Big-Endian as a byte stream of `[0x5C, 0x7B, 0x2A]`. 
 
-Big-Endian integer representation likely comes as second nature to developers familiar with right-to-left [Arabic numerals]( https://en.wikipedia.org/wiki/Arabic_numerals) representation 
+Big-Endian integer representation likely comes as second nature to developers familiar with right-to-left [Arabic numerals]( https://en.wikipedia.org/wiki/Arabic_numerals) representation.
 
 ## Little-Endian
 
