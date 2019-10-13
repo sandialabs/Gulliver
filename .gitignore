@@ -343,7 +343,7 @@ fabric.properties
 **___jb_tmp___
 
 ### VisualStudioCode ###
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -554,3 +554,7 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/rider,aspnetcore,visualstudio,visualstudiocode
+
+# Read the Docs
+docs/_build
+
