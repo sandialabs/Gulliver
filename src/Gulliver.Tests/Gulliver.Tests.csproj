@@ -8,6 +8,9 @@
     <Description>Unit test package for Gulliver</Description>
     <Authors>Sandia National Laboratories</Authors>
     <Company>Sandia National Laboratories</Company>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Features>IOperation</Features>
   </PropertyGroup>
 
   <ItemGroup>

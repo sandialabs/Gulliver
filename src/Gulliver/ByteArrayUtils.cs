@@ -79,7 +79,7 @@ namespace Gulliver
 
             for (var i = 0; i < bytes.Length; i++)
             {
-                result[i] = (byte) ~bytes[i];
+                result[i] = (byte)~bytes[i];
             }
 
             return result;
@@ -210,8 +210,8 @@ namespace Gulliver
             {
                 // shift one byte (8 bits) at a time
                 var sourceByte = bytes[i];
-                var resultByte = (byte) (sourceByte << shiftOffset);      // left shift source byte by the bit shift offset creating a 0-suffixed bits
-                var carryByte = (byte) (sourceByte >> (8 - shiftOffset)); // right shift source byte so that its value is equivalent to the carry of the above left shift operation
+                var resultByte = (byte)(sourceByte << shiftOffset);      // left shift source byte by the bit shift offset creating a 0-suffixed bits
+                var carryByte = (byte)(sourceByte >> (8 - shiftOffset)); // right shift source byte so that its value is equivalent to the carry of the above left shift operation
 
                 var resultIndex = i - byteOffset; //length - 1 - byteOffset + i -1;
                 var carryIndex = resultIndex - 1;
@@ -333,8 +333,8 @@ namespace Gulliver
             {
                 // shift one byte (8 bits) at a time
                 var sourceByte = bytes[i];
-                var resultByte = (byte) (sourceByte >> shiftOffset);      // right shift source byte by the bit shift offset creating a 0-prefixed bits
-                var carryByte = (byte) (sourceByte << (8 - shiftOffset)); // left shift source byte so that its value is equivalent to the carry of the above right shift operation
+                var resultByte = (byte)(sourceByte >> shiftOffset);      // right shift source byte by the bit shift offset creating a 0-prefixed bits
+                var carryByte = (byte)(sourceByte << (8 - shiftOffset)); // left shift source byte so that its value is equivalent to the carry of the above right shift operation
 
                 var resultIndex = i + byteOffset;
                 var carryIndex = resultIndex + 1; // the cary byte sits on byte after the destination byte

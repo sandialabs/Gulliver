@@ -10,9 +10,9 @@ namespace Gulliver.Tests
         [Theory]
         [InlineData("", null)]
         [InlineData("", new byte[] { })]
-        [InlineData("00000000", new byte[] {0x00})]
-        [InlineData("00001111", new byte[] {0x0F})]
-        [InlineData("1010110011001010", new byte[] {0xAC, 0xCA})]
+        [InlineData("00000000", new byte[] { 0x00 })]
+        [InlineData("00001111", new byte[] { 0x0F })]
+        [InlineData("1010110011001010", new byte[] { 0xAC, 0xCA })]
         public void ToString_Binary_Contiguous_Test(string expected,
                                                     byte[] input)
         {
@@ -26,9 +26,9 @@ namespace Gulliver.Tests
         [Theory]
         [InlineData("", null)]
         [InlineData("", new byte[] { })]
-        [InlineData("00000000", new byte[] {0x00})]
-        [InlineData("00001111", new byte[] {0x0F})]
-        [InlineData("10101100 11001010", new byte[] {0xAC, 0xCA})]
+        [InlineData("00000000", new byte[] { 0x00 })]
+        [InlineData("00001111", new byte[] { 0x0F })]
+        [InlineData("10101100 11001010", new byte[] { 0xAC, 0xCA })]
         public void ToString_Binary_Test(string expected,
                                          byte[] input)
         {
@@ -42,9 +42,9 @@ namespace Gulliver.Tests
         [Theory]
         [InlineData("", null)]
         [InlineData("", new byte[] { })]
-        [InlineData("000", new byte[] {0x00})]
-        [InlineData("015", new byte[] {0x0F})]
-        [InlineData("172 202", new byte[] {0xAC, 0xCA})]
+        [InlineData("000", new byte[] { 0x00 })]
+        [InlineData("015", new byte[] { 0x0F })]
+        [InlineData("172 202", new byte[] { 0xAC, 0xCA })]
         public void ToString_Decimal_Test(string expected,
                                           byte[] input)
         {
@@ -58,9 +58,9 @@ namespace Gulliver.Tests
         [Theory]
         [InlineData("", null)]
         [InlineData("0", new byte[] { })]
-        [InlineData("0", new byte[] {0x00})]
-        [InlineData("15", new byte[] {0x0F})]
-        [InlineData("44234", new byte[] {0xAC, 0xCA})]
+        [InlineData("0", new byte[] { 0x00 })]
+        [InlineData("15", new byte[] { 0x0F })]
+        [InlineData("44234", new byte[] { 0xAC, 0xCA })]
         public void ToString_IntegerBigEndian_Test(string expected,
                                                    byte[] input)
         {
@@ -74,9 +74,9 @@ namespace Gulliver.Tests
         [Theory]
         [InlineData("", null)]
         [InlineData("0", new byte[] { })]
-        [InlineData("0", new byte[] {0x00})]
-        [InlineData("15", new byte[] {0x0F})]
-        [InlineData("51884", new byte[] {0xAC, 0xCA})]
+        [InlineData("0", new byte[] { 0x00 })]
+        [InlineData("15", new byte[] { 0x0F })]
+        [InlineData("51884", new byte[] { 0xAC, 0xCA })]
         public void ToString_IntegerLittleEndian_Test(string expected,
                                                       byte[] input)
         {
@@ -89,9 +89,9 @@ namespace Gulliver.Tests
         [Theory]
         [InlineData("", null)]
         [InlineData("", new byte[] { })]
-        [InlineData("00", new byte[] {0x00})]
-        [InlineData("0f", new byte[] {0x0F})]
-        [InlineData("acca", new byte[] {0xAC, 0xCA})]
+        [InlineData("00", new byte[] { 0x00 })]
+        [InlineData("0f", new byte[] { 0x0F })]
+        [InlineData("acca", new byte[] { 0xAC, 0xCA })]
         public void ToString_LowerHexadecimal_Contiguous_Test(string expected,
                                                               byte[] input)
         {
@@ -104,9 +104,9 @@ namespace Gulliver.Tests
         [Theory]
         [InlineData("", null)]
         [InlineData("", new byte[] { })]
-        [InlineData("00", new byte[] {0x00})]
-        [InlineData("0f", new byte[] {0x0F})]
-        [InlineData("ac ca", new byte[] {0xAC, 0xCA})]
+        [InlineData("00", new byte[] { 0x00 })]
+        [InlineData("0f", new byte[] { 0x0F })]
+        [InlineData("ac ca", new byte[] { 0xAC, 0xCA })]
         public void ToString_LowerHexadecimal_Test(string expected,
                                                    byte[] input)
         {
@@ -119,9 +119,9 @@ namespace Gulliver.Tests
         [Theory]
         [InlineData("", null)]
         [InlineData("", new byte[] { })]
-        [InlineData("000", new byte[] {0x00})]
-        [InlineData("017", new byte[] {0x0F})]
-        [InlineData("254 312", new byte[] {0xAC, 0xCA})]
+        [InlineData("000", new byte[] { 0x00 })]
+        [InlineData("017", new byte[] { 0x0F })]
+        [InlineData("254 312", new byte[] { 0xAC, 0xCA })]
         public void ToString_Octal_Test(string expected,
                                         byte[] input)
         {
@@ -135,9 +135,9 @@ namespace Gulliver.Tests
         [Theory]
         [InlineData("", null)]
         [InlineData("", new byte[] { })]
-        [InlineData("00", new byte[] {0x00})]
-        [InlineData("0F", new byte[] {0x0F})]
-        [InlineData("ACCA", new byte[] {0xAC, 0xCA})]
+        [InlineData("00", new byte[] { 0x00 })]
+        [InlineData("0F", new byte[] { 0x0F })]
+        [InlineData("ACCA", new byte[] { 0xAC, 0xCA })]
         public void ToString_UpperHexadecimal_Contiguous_Test(string expected,
                                                               byte[] input)
         {
@@ -150,9 +150,9 @@ namespace Gulliver.Tests
         [Theory]
         [InlineData("", null)]
         [InlineData("", new byte[] { })]
-        [InlineData("00", new byte[] {0x00})]
-        [InlineData("0F", new byte[] {0x0F})]
-        [InlineData("AC CA", new byte[] {0xAC, 0xCA})]
+        [InlineData("00", new byte[] { 0x00 })]
+        [InlineData("0F", new byte[] { 0x0F })]
+        [InlineData("AC CA", new byte[] { 0xAC, 0xCA })]
         public void ToString_UpperHexadecimal_Test(string expected,
                                                    byte[] input)
         {

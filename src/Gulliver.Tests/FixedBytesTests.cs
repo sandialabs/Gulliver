@@ -43,7 +43,7 @@ namespace Gulliver.Tests
         public void GetBytes_Test()
         {
             // Arrange
-            var bytes = new byte[] {0xAC, 0xCA};
+            var bytes = new byte[] { 0xAC, 0xCA };
             var fixedBytes = new FixedBytes(bytes);
 
             // Act
@@ -63,7 +63,7 @@ namespace Gulliver.Tests
         public void GetBytesLittleEndian_Test()
         {
             // Arrange
-            var bytes = new byte[] {0xAC, 0xCA};
+            var bytes = new byte[] { 0xAC, 0xCA };
             var fixedBytes = new FixedBytes(bytes);
 
             // Act
@@ -88,7 +88,7 @@ namespace Gulliver.Tests
         public void Construct_ProvidedBytesAtLength_Test()
         {
             // Arrange
-            var input = new byte[] {0xAC, 0x00, 0xCA};
+            var input = new byte[] { 0xAC, 0x00, 0xCA };
 
             // Act
             var fixedBytes = new FixedBytes(input, input.Length);
@@ -117,7 +117,7 @@ namespace Gulliver.Tests
         public void Construct_LengthLessThanBytesLength_Throws_ArgumentException_Test()
         {
             // Arrange
-            var input = new byte[] {0xAC, 0x00, 0xCA};
+            var input = new byte[] { 0xAC, 0x00, 0xCA };
 
             // Act
             // Assert
@@ -133,7 +133,7 @@ namespace Gulliver.Tests
         public void Construct_LengthNegative_Throws_ArgumentException_Test()
         {
             // Arrange
-            var input = new byte[] {0xAC, 0x00, 0xCA};
+            var input = new byte[] { 0xAC, 0x00, 0xCA };
 
             // Act
             // Assert
@@ -149,7 +149,7 @@ namespace Gulliver.Tests
         public void Construct_ProvidedBytesShorterThanLength_Test()
         {
             // Arrange
-            var input = new byte[] {0xAC, 0x00, 0xCA};
+            var input = new byte[] { 0xAC, 0x00, 0xCA };
             const int length = 10;
 
             // Act
@@ -158,7 +158,7 @@ namespace Gulliver.Tests
             // Assert
             var bytes = fixedBytes.GetBytes();
             Assert.Equal(length, bytes.Length);
-            Assert.Equal(Enumerable.Repeat((byte) 0x00, length - input.Length)
+            Assert.Equal(Enumerable.Repeat((byte)0x00, length - input.Length)
                                    .Concat(input),
                          bytes);
         }
@@ -189,17 +189,17 @@ namespace Gulliver.Tests
         public static IEnumerable<object[]> Equal_IEnumerableBytes_Test_Values()
         {
             // equality compare to null
-            yield return new object[] {false, new FixedBytes(Array.Empty<byte>()), null};
+            yield return new object[] { false, new FixedBytes(Array.Empty<byte>()), null };
 
             // equality compare to equal valued bytes
-            var sameBytes = new byte[] {0xAC, 0xCA};
-            yield return new object[] {true, new FixedBytes(sameBytes), sameBytes};
+            var sameBytes = new byte[] { 0xAC, 0xCA };
+            yield return new object[] { true, new FixedBytes(sameBytes), sameBytes };
 
             // equality compare non-equal bytes by length
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00}), new byte[] {0xFF, 0xFF}};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00 }), new byte[] { 0xFF, 0xFF } };
 
             // equality compare non-equal bytes
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00}), new byte[] {0xFF}};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00 }), new byte[] { 0xFF } };
         }
 
         [Theory]
@@ -223,17 +223,17 @@ namespace Gulliver.Tests
         public static IEnumerable<object[]> Equal_FixedBytes_Test_Values()
         {
             // equality compare to null
-            yield return new object[] {false, new FixedBytes(Array.Empty<byte>()), null};
+            yield return new object[] { false, new FixedBytes(Array.Empty<byte>()), null };
 
             // equality compare to equal valued bytes
-            var sameBytes = new byte[] {0xAC, 0xCA};
-            yield return new object[] {true, new FixedBytes(sameBytes), new FixedBytes(sameBytes)};
+            var sameBytes = new byte[] { 0xAC, 0xCA };
+            yield return new object[] { true, new FixedBytes(sameBytes), new FixedBytes(sameBytes) };
 
             // equality compare non-equal bytes by length
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0xFF, 0xFF})};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0xFF, 0xFF }) };
 
             // equality compare non-equal bytes
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0xFF})};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0xFF }) };
         }
 
         [Theory]
@@ -263,20 +263,20 @@ namespace Gulliver.Tests
             foreach (var (left, right) in Values())
             {
                 var expected = new FixedBytes(ByteArrayUtils.AddUnsignedBigEndian(left, right));
-                yield return new object[] {expected, new FixedBytes(left), new FixedBytes(right)};
+                yield return new object[] { expected, new FixedBytes(left), new FixedBytes(right) };
             }
 
-            yield return new object[] {null, null, new FixedBytes(new byte[] {0xFF})};
-            yield return new object[] {null, new FixedBytes(new byte[] {0xFF}), null};
-            yield return new object[] {null, null, null};
+            yield return new object[] { null, null, new FixedBytes(new byte[] { 0xFF }) };
+            yield return new object[] { null, new FixedBytes(new byte[] { 0xFF }), null };
+            yield return new object[] { null, null, null };
 
             IEnumerable<(byte[] left, byte[] right)> Values()
             {
-                yield return (new byte[] {0xFF}, Array.Empty<byte>());
-                yield return (new byte[] {0x00}, new byte[] {0x00});
-                yield return (new byte[] {0xF0}, new byte[] {0x0F});
-                yield return (new byte[] {0x42}, new byte[] {0xBD});
-                yield return (new byte[] {0xFF}, new byte[] {0xBD});
+                yield return (new byte[] { 0xFF }, Array.Empty<byte>());
+                yield return (new byte[] { 0x00 }, new byte[] { 0x00 });
+                yield return (new byte[] { 0xF0 }, new byte[] { 0x0F });
+                yield return (new byte[] { 0x42 }, new byte[] { 0xBD });
+                yield return (new byte[] { 0xFF }, new byte[] { 0xBD });
             }
         }
 
@@ -302,22 +302,22 @@ namespace Gulliver.Tests
             foreach (var (left, right) in Values())
             {
                 var expected = new FixedBytes(ByteArrayUtils.SubtractUnsignedBigEndian(left, right));
-                yield return new object[] {expected, new FixedBytes(left), new FixedBytes(right)};
+                yield return new object[] { expected, new FixedBytes(left), new FixedBytes(right) };
             }
 
-            yield return new object[] {null, null, new FixedBytes(new byte[] {0xFF})};
-            yield return new object[] {null, new FixedBytes(new byte[] {0xFF}), null};
-            yield return new object[] {null, null, null};
+            yield return new object[] { null, null, new FixedBytes(new byte[] { 0xFF }) };
+            yield return new object[] { null, new FixedBytes(new byte[] { 0xFF }), null };
+            yield return new object[] { null, null, null };
 
             IEnumerable<(byte[] left, byte[] right)> Values()
             {
-                yield return (new byte[] {0xFF}, Array.Empty<byte>());
-                yield return (new byte[] {0x00}, new byte[] {0x00});
-                yield return (new byte[] {0xF0}, new byte[] {0x0F});
-                yield return (new byte[] {0x42}, new byte[] {0xBD});
-                yield return (new byte[] {0xFF, 0xFF}, new byte[] {0xFF, 0x00});
-                yield return (new byte[] {0xFF, 0xFF}, new byte[] {0x00, 0xFF});
-                yield return (new byte[] {0xFF, 0xFF}, new byte[] {0x0A, 0xC0});
+                yield return (new byte[] { 0xFF }, Array.Empty<byte>());
+                yield return (new byte[] { 0x00 }, new byte[] { 0x00 });
+                yield return (new byte[] { 0xF0 }, new byte[] { 0x0F });
+                yield return (new byte[] { 0x42 }, new byte[] { 0xBD });
+                yield return (new byte[] { 0xFF, 0xFF }, new byte[] { 0xFF, 0x00 });
+                yield return (new byte[] { 0xFF, 0xFF }, new byte[] { 0x00, 0xFF });
+                yield return (new byte[] { 0xFF, 0xFF }, new byte[] { 0x0A, 0xC0 });
             }
         }
 
@@ -339,8 +339,8 @@ namespace Gulliver.Tests
         public void Subtraction_LeftSmallerThanRight_Throws_InvalidOperationException_Test()
         {
             // Arrange
-            var left = new FixedBytes(new byte[] {0x00, 0xAC});
-            var right = new FixedBytes(new byte[] {0xCA});
+            var left = new FixedBytes(new byte[] { 0x00, 0xAC });
+            var right = new FixedBytes(new byte[] { 0xCA });
 
             // Act
             // Assert
@@ -364,21 +364,21 @@ namespace Gulliver.Tests
             foreach (var (right, left) in Values())
             {
                 var expected = new FixedBytes(ByteArrayUtils.BitwiseOrBigEndian(left, right));
-                yield return new object[] {expected, new FixedBytes(right), new FixedBytes(left)};
+                yield return new object[] { expected, new FixedBytes(right), new FixedBytes(left) };
             }
 
-            yield return new object[] {null, null, new FixedBytes(new byte[] {0xFF})};
-            yield return new object[] {null, new FixedBytes(new byte[] {0xFF}), null};
-            yield return new object[] {null, null, null};
+            yield return new object[] { null, null, new FixedBytes(new byte[] { 0xFF }) };
+            yield return new object[] { null, new FixedBytes(new byte[] { 0xFF }), null };
+            yield return new object[] { null, null, null };
 
             IEnumerable<(byte[] left, byte[] right)> Values()
             {
-                yield return (new byte[] {0xFF}, Array.Empty<byte>());
-                yield return (new byte[] {0x00}, new byte[] {0x00});
-                yield return (new byte[] {0xF0}, new byte[] {0x0F});
-                yield return (new byte[] {0x42}, new byte[] {0xBD});
-                yield return (new byte[] {0xFF}, new byte[] {0xBD});
-                yield return (new byte[] {0xFF, 0xFF}, new byte[] {0xBD});
+                yield return (new byte[] { 0xFF }, Array.Empty<byte>());
+                yield return (new byte[] { 0x00 }, new byte[] { 0x00 });
+                yield return (new byte[] { 0xF0 }, new byte[] { 0x0F });
+                yield return (new byte[] { 0x42 }, new byte[] { 0xBD });
+                yield return (new byte[] { 0xFF }, new byte[] { 0xBD });
+                yield return (new byte[] { 0xFF, 0xFF }, new byte[] { 0xBD });
             }
         }
 
@@ -404,21 +404,21 @@ namespace Gulliver.Tests
             foreach (var (left, right) in Values())
             {
                 var expected = new FixedBytes(ByteArrayUtils.BitwiseAndBigEndian(left, right));
-                yield return new object[] {expected, new FixedBytes(left), new FixedBytes(right)};
+                yield return new object[] { expected, new FixedBytes(left), new FixedBytes(right) };
             }
 
-            yield return new object[] {null, null, new FixedBytes(new byte[] {0xFF})};
-            yield return new object[] {null, new FixedBytes(new byte[] {0xFF}), null};
-            yield return new object[] {null, null, null};
+            yield return new object[] { null, null, new FixedBytes(new byte[] { 0xFF }) };
+            yield return new object[] { null, new FixedBytes(new byte[] { 0xFF }), null };
+            yield return new object[] { null, null, null };
 
             IEnumerable<(byte[] left, byte[] right)> Values()
             {
-                yield return (new byte[] {0xFF}, Array.Empty<byte>());
-                yield return (new byte[] {0x00}, new byte[] {0x00});
-                yield return (new byte[] {0xF0}, new byte[] {0x0F});
-                yield return (new byte[] {0x42}, new byte[] {0xBD});
-                yield return (new byte[] {0xFF}, new byte[] {0xBD});
-                yield return (new byte[] {0xFF, 0xFF}, new byte[] {0xBD});
+                yield return (new byte[] { 0xFF }, Array.Empty<byte>());
+                yield return (new byte[] { 0x00 }, new byte[] { 0x00 });
+                yield return (new byte[] { 0xF0 }, new byte[] { 0x0F });
+                yield return (new byte[] { 0x42 }, new byte[] { 0xBD });
+                yield return (new byte[] { 0xFF }, new byte[] { 0xBD });
+                yield return (new byte[] { 0xFF, 0xFF }, new byte[] { 0xBD });
             }
         }
 
@@ -444,21 +444,21 @@ namespace Gulliver.Tests
             foreach (var (left, right) in Values())
             {
                 var expected = new FixedBytes(ByteArrayUtils.BitwiseXorBigEndian(left, right));
-                yield return new object[] {expected, new FixedBytes(left), new FixedBytes(right)};
+                yield return new object[] { expected, new FixedBytes(left), new FixedBytes(right) };
             }
 
-            yield return new object[] {null, null, new FixedBytes(new byte[] {0xFF})};
-            yield return new object[] {null, new FixedBytes(new byte[] {0xFF}), null};
-            yield return new object[] {null, null, null};
+            yield return new object[] { null, null, new FixedBytes(new byte[] { 0xFF }) };
+            yield return new object[] { null, new FixedBytes(new byte[] { 0xFF }), null };
+            yield return new object[] { null, null, null };
 
             IEnumerable<(byte[] left, byte[] right)> Values()
             {
-                yield return (new byte[] {0xFF}, Array.Empty<byte>());
-                yield return (new byte[] {0x00}, new byte[] {0x00});
-                yield return (new byte[] {0xF0}, new byte[] {0x0F});
-                yield return (new byte[] {0x42}, new byte[] {0xBD});
-                yield return (new byte[] {0xFF}, new byte[] {0xBD});
-                yield return (new byte[] {0xFF, 0xFF}, new byte[] {0xBD});
+                yield return (new byte[] { 0xFF }, Array.Empty<byte>());
+                yield return (new byte[] { 0x00 }, new byte[] { 0x00 });
+                yield return (new byte[] { 0xF0 }, new byte[] { 0x0F });
+                yield return (new byte[] { 0x42 }, new byte[] { 0xBD });
+                yield return (new byte[] { 0xFF }, new byte[] { 0xBD });
+                yield return (new byte[] { 0xFF, 0xFF }, new byte[] { 0xBD });
             }
         }
 
@@ -484,17 +484,17 @@ namespace Gulliver.Tests
             foreach (var bytes in Values())
             {
                 var expected = new FixedBytes(ByteArrayUtils.BitwiseNot(bytes));
-                yield return new object[] {expected, new FixedBytes(bytes)};
+                yield return new object[] { expected, new FixedBytes(bytes) };
             }
 
-            yield return new object[] {null, null};
+            yield return new object[] { null, null };
 
             IEnumerable<byte[]> Values()
             {
                 yield return Array.Empty<byte>();
-                yield return new byte[] {0x00};
-                yield return new byte[] {0x0F};
-                yield return new byte[] {0xAC, 0xCA};
+                yield return new byte[] { 0x00 };
+                yield return new byte[] { 0x0F };
+                yield return new byte[] { 0xAC, 0xCA };
             }
         }
 
@@ -517,23 +517,23 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> LogicalLeftShift_Test_Values()
         {
-            foreach (var shift in new[] {0, 1, 8, 32})
+            foreach (var shift in new[] { 0, 1, 8, 32 })
             {
                 foreach (var bytes in Values())
                 {
                     var expected = new FixedBytes(bytes.ShiftBitsLeft(shift));
-                    yield return new object[] {expected, new FixedBytes(bytes), shift};
+                    yield return new object[] { expected, new FixedBytes(bytes), shift };
                 }
             }
 
-            yield return new object[] {null, null, 42};
+            yield return new object[] { null, null, 42 };
 
             IEnumerable<byte[]> Values()
             {
                 yield return Array.Empty<byte>();
-                yield return new byte[] {0x00};
-                yield return new byte[] {0x0F};
-                yield return new byte[] {0xAC, 0xCA};
+                yield return new byte[] { 0x00 };
+                yield return new byte[] { 0x0F };
+                yield return new byte[] { 0xAC, 0xCA };
             }
         }
 
@@ -555,7 +555,7 @@ namespace Gulliver.Tests
         public void LogicalLeftShift_ShiftLessThan0_Throws_ArgumentException_TestTest()
         {
             // Arrange
-            var fixedBytes = new FixedBytes(new byte[] {0x00});
+            var fixedBytes = new FixedBytes(new byte[] { 0x00 });
 
             // Act
             // Assert
@@ -572,23 +572,23 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> LogicalRightShift_Test_Values()
         {
-            foreach (var shift in new[] {0, 1, 8, 32})
+            foreach (var shift in new[] { 0, 1, 8, 32 })
             {
                 foreach (var bytes in Values())
                 {
                     var expected = new FixedBytes(bytes.ShiftBitsRight(shift));
-                    yield return new object[] {expected, new FixedBytes(bytes), shift};
+                    yield return new object[] { expected, new FixedBytes(bytes), shift };
                 }
             }
 
-            yield return new object[] {null, null, 42};
+            yield return new object[] { null, null, 42 };
 
             IEnumerable<byte[]> Values()
             {
                 yield return Array.Empty<byte>();
-                yield return new byte[] {0x00};
-                yield return new byte[] {0x0F};
-                yield return new byte[] {0xAC, 0xCA};
+                yield return new byte[] { 0x00 };
+                yield return new byte[] { 0x0F };
+                yield return new byte[] { 0xAC, 0xCA };
             }
         }
 
@@ -610,7 +610,7 @@ namespace Gulliver.Tests
         public void LogicalRightShift_ShiftLessThan0_Throws_ArgumentException_TestTest()
         {
             // Arrange
-            var fixedBytes = new FixedBytes(new byte[] {0x00});
+            var fixedBytes = new FixedBytes(new byte[] { 0x00 });
 
             // Act
             // Assert
@@ -633,7 +633,7 @@ namespace Gulliver.Tests
         public void Explicit_FixedBytes_To_ByteArray_Test()
         {
             // Arrange
-            var bytes = new byte[] {0x00, 0xAC, 0xCA};
+            var bytes = new byte[] { 0x00, 0xAC, 0xCA };
             var fixedBytes = new FixedBytes(bytes);
 
             // Act
@@ -650,7 +650,7 @@ namespace Gulliver.Tests
             // Arrange
             // Act
             // ReSharper disable once ExpressionIsAlwaysNull
-            byte[] asBytes = (FixedBytes) null;
+            byte[] asBytes = (FixedBytes)null;
 
             // Assert
             Assert.Null(asBytes);
@@ -664,10 +664,10 @@ namespace Gulliver.Tests
         public void Explicit_ByteArray_To_FixedBytes_Test()
         {
             // Arrange
-            var bytes = new byte[] {0x00, 0xAC, 0xCA};
+            var bytes = new byte[] { 0x00, 0xAC, 0xCA };
 
             // Act
-            var fixedBytes = (FixedBytes) bytes;
+            var fixedBytes = (FixedBytes)bytes;
 
             // Assert
             Assert.NotNull(fixedBytes);
@@ -680,7 +680,7 @@ namespace Gulliver.Tests
         {
             // Arrange
             // Act
-            var fixedBytes = (FixedBytes) (byte[]) null;
+            var fixedBytes = (FixedBytes)(byte[])null;
 
             // Assert
             Assert.Null(fixedBytes);
@@ -690,10 +690,10 @@ namespace Gulliver.Tests
         public void Explicit_ByteList_To_FixedBytes_Test()
         {
             // Arrange
-            var bytes = new byte[] {0x00, 0xAC, 0xCA}.ToList();
+            var bytes = new byte[] { 0x00, 0xAC, 0xCA }.ToList();
 
             // Act
-            var fixedBytes = (FixedBytes) bytes;
+            var fixedBytes = (FixedBytes)bytes;
 
             // Assert
             Assert.NotNull(fixedBytes);
@@ -706,7 +706,7 @@ namespace Gulliver.Tests
         {
             // Arrange
             // Act
-            var fixedBytes = (FixedBytes) (List<byte>) null;
+            var fixedBytes = (FixedBytes)(List<byte>)null;
 
             // Assert
             Assert.Null(fixedBytes);
@@ -721,21 +721,21 @@ namespace Gulliver.Tests
             // expected: Left > Right
             // compare to self
             var self = new FixedBytes(Array.Empty<byte>());
-            yield return new object[] {false, self, self};
+            yield return new object[] { false, self, self };
 
             // compare to equal valued bytes
-            var sameBytes = new byte[] {0xAC, 0xCA};
-            yield return new object[] {false, new FixedBytes(sameBytes), new FixedBytes(sameBytes)};
+            var sameBytes = new byte[] { 0xAC, 0xCA };
+            yield return new object[] { false, new FixedBytes(sameBytes), new FixedBytes(sameBytes) };
 
             // compare less than value
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0xFF})};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0xFF }) };
 
             // compare to greater than value
-            yield return new object[] {true, new FixedBytes(new byte[] {0xFF}), new FixedBytes(new byte[] {0x00})};
+            yield return new object[] { true, new FixedBytes(new byte[] { 0xFF }), new FixedBytes(new byte[] { 0x00 }) };
 
             // compare to greater than value of different sizes
-            yield return new object[] {true, new FixedBytes(new byte[] {0x00, 0xFF}), new FixedBytes(new byte[] {0x00})};
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0x00, 0xFF})};
+            yield return new object[] { true, new FixedBytes(new byte[] { 0x00, 0xFF }), new FixedBytes(new byte[] { 0x00 }) };
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0x00, 0xFF }) };
         }
 
         [Theory]
@@ -756,21 +756,21 @@ namespace Gulliver.Tests
             // expected: Left < Right
             // compare to self
             var self = new FixedBytes(Array.Empty<byte>());
-            yield return new object[] {false, self, self};
+            yield return new object[] { false, self, self };
 
             // compare to equal valued bytes
-            var sameBytes = new byte[] {0xAC, 0xCA};
-            yield return new object[] {false, new FixedBytes(sameBytes), new FixedBytes(sameBytes)};
+            var sameBytes = new byte[] { 0xAC, 0xCA };
+            yield return new object[] { false, new FixedBytes(sameBytes), new FixedBytes(sameBytes) };
 
             // compare less than value
-            yield return new object[] {true, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0xFF})};
+            yield return new object[] { true, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0xFF }) };
 
             // compare to greater than value
-            yield return new object[] {false, new FixedBytes(new byte[] {0xFF}), new FixedBytes(new byte[] {0x00})};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0xFF }), new FixedBytes(new byte[] { 0x00 }) };
 
             // compare to greater than value of different sizes
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00, 0xFF}), new FixedBytes(new byte[] {0x00})};
-            yield return new object[] {true, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0x00, 0xFF})};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00, 0xFF }), new FixedBytes(new byte[] { 0x00 }) };
+            yield return new object[] { true, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0x00, 0xFF }) };
         }
 
         [Theory]
@@ -792,21 +792,21 @@ namespace Gulliver.Tests
             // expected: Left >= Right
             // compare to self
             var self = new FixedBytes(Array.Empty<byte>());
-            yield return new object[] {true, self, self};
+            yield return new object[] { true, self, self };
 
             // compare to equal valued bytes
-            var sameBytes = new byte[] {0xAC, 0xCA};
-            yield return new object[] {true, new FixedBytes(sameBytes), new FixedBytes(sameBytes)};
+            var sameBytes = new byte[] { 0xAC, 0xCA };
+            yield return new object[] { true, new FixedBytes(sameBytes), new FixedBytes(sameBytes) };
 
             // compare less than value
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0xFF})};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0xFF }) };
 
             // compare to greater than value
-            yield return new object[] {true, new FixedBytes(new byte[] {0xFF}), new FixedBytes(new byte[] {0x00})};
+            yield return new object[] { true, new FixedBytes(new byte[] { 0xFF }), new FixedBytes(new byte[] { 0x00 }) };
 
             // compare to greater than value of different sizes
-            yield return new object[] {true, new FixedBytes(new byte[] {0x00, 0xFF}), new FixedBytes(new byte[] {0x00})};
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0x00, 0xFF})};
+            yield return new object[] { true, new FixedBytes(new byte[] { 0x00, 0xFF }), new FixedBytes(new byte[] { 0x00 }) };
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0x00, 0xFF }) };
         }
 
         [Theory]
@@ -828,21 +828,21 @@ namespace Gulliver.Tests
             // expected: Left <= Right
             // compare to self
             var self = new FixedBytes(Array.Empty<byte>());
-            yield return new object[] {true, self, self};
+            yield return new object[] { true, self, self };
 
             // compare to equal valued bytes
-            var sameBytes = new byte[] {0xAC, 0xCA};
-            yield return new object[] {true, new FixedBytes(sameBytes), new FixedBytes(sameBytes)};
+            var sameBytes = new byte[] { 0xAC, 0xCA };
+            yield return new object[] { true, new FixedBytes(sameBytes), new FixedBytes(sameBytes) };
 
             // compare less than value
-            yield return new object[] {true, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0xFF})};
+            yield return new object[] { true, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0xFF }) };
 
             // compare to greater than value
-            yield return new object[] {false, new FixedBytes(new byte[] {0xFF}), new FixedBytes(new byte[] {0x00})};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0xFF }), new FixedBytes(new byte[] { 0x00 }) };
 
             // compare to greater than value of different sizes
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00, 0xFF}), new FixedBytes(new byte[] {0x00})};
-            yield return new object[] {true, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0x00, 0xFF})};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00, 0xFF }), new FixedBytes(new byte[] { 0x00 }) };
+            yield return new object[] { true, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0x00, 0xFF }) };
         }
 
         [Theory]
@@ -863,14 +863,14 @@ namespace Gulliver.Tests
         {
             // equality compare to self
             var self = new FixedBytes(Array.Empty<byte>());
-            yield return new object[] {true, self, self};
+            yield return new object[] { true, self, self };
 
             // equality compare to equal valued bytes
-            var sameBytes = new byte[] {0xAC, 0xCA};
-            yield return new object[] {true, new FixedBytes(sameBytes), new FixedBytes(sameBytes)};
+            var sameBytes = new byte[] { 0xAC, 0xCA };
+            yield return new object[] { true, new FixedBytes(sameBytes), new FixedBytes(sameBytes) };
 
-            yield return new object[] {true, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0x00, 0x00})};
-            yield return new object[] {true, new FixedBytes(new byte[] {0xFF}), new FixedBytes(new byte[] {0x00, 0xFF})};
+            yield return new object[] { true, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0x00, 0x00 }) };
+            yield return new object[] { true, new FixedBytes(new byte[] { 0xFF }), new FixedBytes(new byte[] { 0x00, 0xFF }) };
         }
 
         [Theory]
@@ -903,7 +903,7 @@ namespace Gulliver.Tests
         public void Comparision_ToNull_Test()
         {
             // Arrange
-            var fixedByte = new FixedBytes(new byte[] {0x00});
+            var fixedByte = new FixedBytes(new byte[] { 0x00 });
 
             // Act
             // Assert operator ==
@@ -946,24 +946,24 @@ namespace Gulliver.Tests
         public static IEnumerable<object[]> CompareTo_FixedBytes_Test_Values()
         {
             // compare to null
-            yield return new object[] {1, new FixedBytes(Array.Empty<byte>()), null};
+            yield return new object[] { 1, new FixedBytes(Array.Empty<byte>()), null };
 
             // compare to self
             var self = new FixedBytes(Array.Empty<byte>());
-            yield return new object[] {0, self, self};
+            yield return new object[] { 0, self, self };
 
             // compare to equal valued bytes
-            var sameBytes = new byte[] {0xAC, 0xCA};
-            yield return new object[] {0, new FixedBytes(sameBytes), new FixedBytes(sameBytes)};
+            var sameBytes = new byte[] { 0xAC, 0xCA };
+            yield return new object[] { 0, new FixedBytes(sameBytes), new FixedBytes(sameBytes) };
 
-            yield return new object[] { -1, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0xFF})};
-            yield return new object[] {1, new FixedBytes(new byte[] {0xFF}), new FixedBytes(new byte[] {0x00})};
+            yield return new object[] { -1, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0xFF }) };
+            yield return new object[] { 1, new FixedBytes(new byte[] { 0xFF }), new FixedBytes(new byte[] { 0x00 }) };
 
-            yield return new object[] { -1, new FixedBytes(new byte[] {0x00, 0x00}), new FixedBytes(new byte[] {0xFF})};
-            yield return new object[] {1, new FixedBytes(new byte[] {0xFF}), new FixedBytes(new byte[] {0x00, 0x00})};
+            yield return new object[] { -1, new FixedBytes(new byte[] { 0x00, 0x00 }), new FixedBytes(new byte[] { 0xFF }) };
+            yield return new object[] { 1, new FixedBytes(new byte[] { 0xFF }), new FixedBytes(new byte[] { 0x00, 0x00 }) };
 
-            yield return new object[] { -1, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0x00, 0xFF})};
-            yield return new object[] {1, new FixedBytes(new byte[] {0x00, 0xFF}), new FixedBytes(new byte[] {0x00})};
+            yield return new object[] { -1, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0x00, 0xFF }) };
+            yield return new object[] { 1, new FixedBytes(new byte[] { 0x00, 0xFF }), new FixedBytes(new byte[] { 0x00 }) };
         }
 
         [Theory]
@@ -976,7 +976,7 @@ namespace Gulliver.Tests
             // Act
             // Assert
             Assert.Equal(expected, fixedBytes.CompareTo(comparedTo));
-            Assert.Equal(expected, fixedBytes.CompareTo((FixedBytes) comparedTo));
+            Assert.Equal(expected, fixedBytes.CompareTo((FixedBytes)comparedTo));
         }
 
         #endregion
@@ -986,20 +986,20 @@ namespace Gulliver.Tests
         public static IEnumerable<object[]> CompareTo_Bytes_Test_Values()
         {
             // compare to null
-            yield return new object[] {1, new FixedBytes(Array.Empty<byte>()), null};
+            yield return new object[] { 1, new FixedBytes(Array.Empty<byte>()), null };
 
             // compare to equal valued bytes
-            var sameBytes = new byte[] {0xAC, 0xCA};
-            yield return new object[] {0, new FixedBytes(sameBytes), sameBytes};
+            var sameBytes = new byte[] { 0xAC, 0xCA };
+            yield return new object[] { 0, new FixedBytes(sameBytes), sameBytes };
 
-            yield return new object[] { -1, new FixedBytes(new byte[] {0x00}), new byte[] {0xFF}};
-            yield return new object[] {1, new FixedBytes(new byte[] {0xFF}), new byte[] {0x00}};
+            yield return new object[] { -1, new FixedBytes(new byte[] { 0x00 }), new byte[] { 0xFF } };
+            yield return new object[] { 1, new FixedBytes(new byte[] { 0xFF }), new byte[] { 0x00 } };
 
-            yield return new object[] { -1, new FixedBytes(new byte[] {0x00, 0x00}), new byte[] {0xFF}};
-            yield return new object[] {1, new FixedBytes(new byte[] {0xFF}), new byte[] {0x00, 0x00}};
+            yield return new object[] { -1, new FixedBytes(new byte[] { 0x00, 0x00 }), new byte[] { 0xFF } };
+            yield return new object[] { 1, new FixedBytes(new byte[] { 0xFF }), new byte[] { 0x00, 0x00 } };
 
-            yield return new object[] { -1, new FixedBytes(new byte[] {0x00}), new byte[] {0x00, 0xFF}};
-            yield return new object[] {1, new FixedBytes(new byte[] {0x00, 0xFF}), new byte[] {0x00}};
+            yield return new object[] { -1, new FixedBytes(new byte[] { 0x00 }), new byte[] { 0x00, 0xFF } };
+            yield return new object[] { 1, new FixedBytes(new byte[] { 0x00, 0xFF }), new byte[] { 0x00 } };
         }
 
         [Theory]
@@ -1032,14 +1032,14 @@ namespace Gulliver.Tests
         {
             // equality compare to self
             var self = new FixedBytes(Array.Empty<byte>());
-            yield return new object[] {true, self, self};
+            yield return new object[] { true, self, self };
 
             // equality compare to equal valued bytes
-            var sameBytes = new byte[] {0xAC, 0xCA};
-            yield return new object[] {true, new FixedBytes(sameBytes), new FixedBytes(sameBytes)};
+            var sameBytes = new byte[] { 0xAC, 0xCA };
+            yield return new object[] { true, new FixedBytes(sameBytes), new FixedBytes(sameBytes) };
 
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00}), new FixedBytes(new byte[] {0x00, 0x00})};
-            yield return new object[] {false, new FixedBytes(new byte[] {0xFF}), new FixedBytes(new byte[] {0x00, 0xFF})};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00 }), new FixedBytes(new byte[] { 0x00, 0x00 }) };
+            yield return new object[] { false, new FixedBytes(new byte[] { 0xFF }), new FixedBytes(new byte[] { 0x00, 0xFF }) };
         }
 
         [Theory]
@@ -1062,20 +1062,20 @@ namespace Gulliver.Tests
         public static IEnumerable<object[]> Exactly_Bytes_Test_Values()
         {
             // equality compare to null
-            yield return new object[] {false, new FixedBytes(Array.Empty<byte>()), null};
+            yield return new object[] { false, new FixedBytes(Array.Empty<byte>()), null };
 
             // equality compare to equal valued bytes
-            var sameBytes = new byte[] {0xAC, 0xCA};
-            yield return new object[] {true, new FixedBytes(sameBytes), sameBytes};
+            var sameBytes = new byte[] { 0xAC, 0xCA };
+            yield return new object[] { true, new FixedBytes(sameBytes), sameBytes };
 
             // equality compare non-equal bytes by length
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00}), new byte[] {0xFF, 0xFF}};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00 }), new byte[] { 0xFF, 0xFF } };
 
             // equality compare non-equal bytes
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00}), new byte[] {0xFF}};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00 }), new byte[] { 0xFF } };
 
-            yield return new object[] {false, new FixedBytes(new byte[] {0x00}), new byte[] {0x00, 0x00}};
-            yield return new object[] {false, new FixedBytes(new byte[] {0xFF}), new byte[] {0x00, 0xFF}};
+            yield return new object[] { false, new FixedBytes(new byte[] { 0x00 }), new byte[] { 0x00, 0x00 } };
+            yield return new object[] { false, new FixedBytes(new byte[] { 0xFF }), new byte[] { 0x00, 0xFF } };
         }
 
         [Theory]
@@ -1101,8 +1101,8 @@ namespace Gulliver.Tests
         public static IEnumerable<object[]> GetHashCode_SameByteValue_Collides_Test_Values()
         {
             yield return new object[] { Array.Empty<byte>() };
-            yield return new object[] {new byte[] {0x00}};
-            yield return new object[] {new byte[] {0xAC, 0xCA}};
+            yield return new object[] { new byte[] { 0x00 } };
+            yield return new object[] { new byte[] { 0xAC, 0xCA } };
         }
 
         [Theory]
@@ -1123,7 +1123,7 @@ namespace Gulliver.Tests
         public void GetHashCode_LargeBytes_Test()
         {
             // Arrange
-            var lotsOfBytes = Enumerable.Repeat((byte) 0xCA, 100);
+            var lotsOfBytes = Enumerable.Repeat((byte)0xCA, 100);
             var fixedBytes = new FixedBytes(lotsOfBytes);
 
             // Act
@@ -1142,7 +1142,7 @@ namespace Gulliver.Tests
         public void Indexer_Test()
         {
             // Arrange
-            var bytes = new byte[] {0x00, 0xAC, 0xCA, 0xFF};
+            var bytes = new byte[] { 0x00, 0xAC, 0xCA, 0xFF };
             var fixedBytes = new FixedBytes(bytes);
 
             // Act
@@ -1173,7 +1173,7 @@ namespace Gulliver.Tests
         public void Indexer_Index_GreaterThanCount_Throws_ArgumentOutOfRangeException_Test()
         {
             // Arrange
-            var fixedBytes = new FixedBytes(new byte[] {0xAC, 0xCA});
+            var fixedBytes = new FixedBytes(new byte[] { 0xAC, 0xCA });
 
             // Act
             // Assert
@@ -1192,7 +1192,7 @@ namespace Gulliver.Tests
         public void ToString_Default_Test()
         {
             // Arrange
-            var fixedBytes = new FixedBytes(new byte[] {0xAC, 0xFF, 0xCA});
+            var fixedBytes = new FixedBytes(new byte[] { 0xAC, 0xFF, 0xCA });
 
             // Act
             var result = fixedBytes.ToString();
@@ -1210,21 +1210,21 @@ namespace Gulliver.Tests
                 foreach (var format in Formats())
                 {
                     var expected = bytes.ToString(format, formatProvider);
-                    yield return new object[] {expected, new FixedBytes(bytes), format, formatProvider};
+                    yield return new object[] { expected, new FixedBytes(bytes), format, formatProvider };
                 }
             }
 
             IEnumerable<string> Formats()
             {
-                return new[] {null, string.Empty, "g", "G", "H", "h", "HC", "hc", "d", "D", "o", "O", "b", "B", "bc", "BC", "I", "IBE", "ILE"};
+                return new[] { null, string.Empty, "g", "G", "H", "h", "HC", "hc", "d", "D", "o", "O", "b", "B", "bc", "BC", "I", "IBE", "ILE" };
             }
 
             IEnumerable<byte[]> Values()
             {
                 yield return Array.Empty<byte>();
-                yield return new byte[] {0x00};
-                yield return new byte[] {0x0F};
-                yield return new byte[] {0xAC, 0xCA};
+                yield return new byte[] { 0x00 };
+                yield return new byte[] { 0x0F };
+                yield return new byte[] { 0xAC, 0xCA };
             }
         }
 

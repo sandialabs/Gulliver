@@ -198,7 +198,7 @@ namespace Gulliver
                     // long.MinValue (-9223372036854775808) is a special case
                     // getting the absolute value of a the minimum value of a twos complement number is invalid and will cause a OverflowException
                     // We must therefor build the equivalent of abs(long.MinValue) big endian bytes manually
-                    return new byte[] {0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+                    return new byte[] { 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
                 }
 
                 var bytes = BitConverter.GetBytes(Math.Abs(input));
@@ -277,13 +277,13 @@ namespace Gulliver
             {
                 var sum = carry + leftByte + rightByte;
 
-                resultStack.Push((byte) (sum & 0xFF)); // push the byte value of sum
+                resultStack.Push((byte)(sum & 0xFF)); // push the byte value of sum
                 carry = sum >> 8;                      // new carry value is sum shifted by 8 bits (a byte)
             }
 
             if (carry != 0) // if a carry value exists it should be pushed as it is the new MSB
             {
-                resultStack.Push((byte) carry); // push carry
+                resultStack.Push((byte)carry); // push carry
             }
 
             return resultStack.ToArray();
@@ -390,7 +390,7 @@ namespace Gulliver
 
                 if (borrowed && canBorrow) // previous operation needed to borrow, and a borrow is possible
                 {
-                    minuend = (byte) (leftByte - 1); // decrement as this value has been borrowed from in the previous iteration
+                    minuend = (byte)(leftByte - 1); // decrement as this value has been borrowed from in the previous iteration
                 }
                 else if (borrowed) // && !canBorrow (implied)
                 {
@@ -403,14 +403,14 @@ namespace Gulliver
 
                 if (minuend >= rightByte) // left is big enough to subtract right
                 {
-                    var difference = (byte) (minuend - rightByte);
+                    var difference = (byte)(minuend - rightByte);
                     resultStack.Push(difference);
 
                     borrowed = borrowed && !canBorrow; // set borrow if a borrow happened some time previously but it could not be accommodated in this iteration; borrow from next
                 }
                 else // left is less than right, automatically borrow from next iteration
                 {
-                    var difference = (byte) ((minuend + 0x0100) - rightByte); // handle borrowed
+                    var difference = (byte)((minuend + 0x0100) - rightByte); // handle borrowed
                     resultStack.Push(difference);
                     borrowed = true;
                 }
@@ -471,7 +471,7 @@ namespace Gulliver
             //return result;
 
             return new ConcurrentBigEndianByteEnumerable(left, right, false)
-                   .Select(bytes => (byte) (bytes.leftByte & bytes.rightByte))
+                   .Select(bytes => (byte)(bytes.leftByte & bytes.rightByte))
                    .ToArray();
         }
 
@@ -522,7 +522,7 @@ namespace Gulliver
             //return result;
 
             return new ConcurrentBigEndianByteEnumerable(left, right, false)
-                   .Select(bytes => (byte) (bytes.leftByte | bytes.rightByte))
+                   .Select(bytes => (byte)(bytes.leftByte | bytes.rightByte))
                    .ToArray();
         }
 
@@ -573,7 +573,7 @@ namespace Gulliver
             //return result;
 
             return new ConcurrentBigEndianByteEnumerable(left, right, false)
-                   .Select(bytes => (byte) (bytes.leftByte ^ bytes.rightByte))
+                   .Select(bytes => (byte)(bytes.leftByte ^ bytes.rightByte))
                    .ToArray();
         }
 
