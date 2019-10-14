@@ -41,23 +41,19 @@
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <!--Ruleset configuration; only valid for Debug or Dev configuration-->
+    <!--Ruleset configuration; only valid for Debug configuration-->
     <CodeAnalysisRuleSet>..\analyzers.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>bin\</OutputPath>
     <DocumentationFile>bin\Gulliver.xml</DocumentationFile>
+    <OutputPath>bin\</OutputPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet />
+  <PropertyGroup>
     <DocumentationFile>bin\Gulliver.xml</DocumentationFile>
     <OutputPath>bin\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(Configuration)'=='Debug'">
-    <!-- Analyzers; only valid for Debug or Dev configuration-->
+    <!-- Analyzers; only valid for Debug configuration-->
     <AdditionalFiles Include="..\stylecop.json">
       <Link>stylecop.json</Link>
     </AdditionalFiles>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gulliver", "Gulliver\Gulliver.csproj", "{B1C7E07C-8AF2-42AD-8C8F-EF73A4BB5D72}"
 EndProject
@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeQuality", "CodeQuality", "{7D7ECA08-4C98-4752-9BA6-7F5407A19166}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		analyzers.ruleset = analyzers.ruleset
 		analyzers.tests.ruleset = analyzers.tests.ruleset
 		Gulliver.sln.DotSettings = Gulliver.sln.DotSettings
@@ -30,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{ED5DBB6E-5
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gulliver.DocExamples", "Gulliver.DocExamples\Gulliver.DocExamples.csproj", "{33803929-3B7C-47B7-A816-71A30CF597E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +47,10 @@ Global
 		{A5E3A10B-9D68-46D4-AB13-965BE26A5815}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5E3A10B-9D68-46D4-AB13-965BE26A5815}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5E3A10B-9D68-46D4-AB13-965BE26A5815}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33803929-3B7C-47B7-A816-71A30CF597E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33803929-3B7C-47B7-A816-71A30CF597E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33803929-3B7C-47B7-A816-71A30CF597E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33803929-3B7C-47B7-A816-71A30CF597E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
