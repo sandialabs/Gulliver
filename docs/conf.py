@@ -47,7 +47,7 @@ html_theme = 'sphinx_rtd_theme'
 
 html_theme_options = {
     'logo_only': False,
-    'style_external_links': True,
+    'style_external_links': False,
 }
 
 html_logo = 'img/logo.png'

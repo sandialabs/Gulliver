@@ -2,6 +2,8 @@
 
 Endianness, at least as far as computing is concerned, is the ordering of bytes within a binary representation of data. The most common representations of endianness are [Big-Endian](#Big-Endian) and [Little-Endian](#Little-Endian). There exist other forms, such as Middle-Endian, but those are beyond the scope of this document.
 
+![Simply Explaind. Comic by Oliver Widder Released under Attribution 3.0 Unported (CC BY 3.0)](/img/endianpig.png)
+
 ## Entomology
 
 The Computer Science terms Big-Endian and Little-Endian were introduced by [Danny Cohen]( https://en.wikipedia.org/wiki/Danny_Cohen_(computer_scientist)) in 1980. The key term *endian* has its roots in the novel [Gulliver’s Travels]( https://en.wikipedia.org/wiki/Gulliver%27s_Travels) by [Jonathan Swift]( https://en.wikipedia.org/wiki/Jonathan_Swift) where within a war occurs between two factions who are fighting over which end of a boiled egg should be opened for eating. The big end or the little end. Unsurprisingly, the same said book was the inspiration for the naming of the [Gulliver]( https://github.com/sandialabs/gulliver) library. 
@@ -26,3 +28,4 @@ To some developers most affiliated with right-to-left natural languages Little-E
 
 Wikipedia contributors. (2019, October 10). Endianness. In Wikipedia, The Free Encyclopedia. Retrieved 18:31, October 13, 2019, from [https://en.wikipedia.org/w/index.php?title=Endianness&oldid=920566520](https://en.wikipedia.org/w/index.php?title=Endianness&oldid=920566520).
 
+Widder, O. (2011, September 7). Simply Explained. Retrieved October 13, 2019, from [http://geek-and-poke.com/geekandpoke/2011/9/7/simply-explained.html](http://geek-and-poke.com/geekandpoke/2011/9/7/simply-explained.html).
