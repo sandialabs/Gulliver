@@ -6,9 +6,37 @@ Unless otherwise stated the following methods are statically defined in the `Byt
 
 ### Create
 
+Sometimes it is necessary to create a byte array filled with a known value. In this case `ByteArrayUtils.CreateByteArray` can be used to create a byte array of a given `length` filled with an option `element` value.
+
 ```c#
 public static byte[] ByteArrayUtils.CreateByteArray(int length, byte element = 0x00)
 ```
+
+For example the following code
+
+```c#
+
+   /// <summary>
+   ///     Example usage of <see cref="ByteArrayUtils.CreateByteArray"/>
+   /// </summary>
+   public static void CreateByteArrayExample()
+   {
+      // Setup
+      const int length = 10;
+      const byte element = 0x42;  // optional, defaults to 0x00
+   
+      // Act
+      var resultBytes = ByteArrayUtils.CreateByteArray(length, element);  // creates a byte array of length 10, filled with bytes of 0x42
+   
+      // Conclusion
+      var asString = string.Join(", ", resultBytes.Select(b => $"0x{b:x2}"));
+      Console.WriteLine($"[{asString}]"); // outputs "[0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42]"
+   }
+
+```
+
+Creates a byte array `resultBytes` with a value of `[0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42]`
+
 
 ## Byte Array Mutation
 

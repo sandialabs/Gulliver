@@ -1,4 +1,5 @@
 ﻿using System;
+using Gulliver.DocExamples.GeneralByteArrayOperations;
 
 namespace Gulliver.DocExamples
 {
@@ -10,6 +11,9 @@ namespace Gulliver.DocExamples
         /// <summary>
         ///     PSVM
         /// </summary>
-        public static void Main() { }
+        public static void Main()
+        {
+            ByteArrayCreationAndPopulation.CreateByteArrayExample();
+        }
     }
 }
