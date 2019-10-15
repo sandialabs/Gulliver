@@ -13,7 +13,11 @@ namespace Gulliver.DocExamples
         /// </summary>
         public static void Main()
         {
+            // ByteArrayCreationAndPopulation
             ByteArrayCreationAndPopulation.CreateByteArrayExample();
+
+            ByteArrayCreationAndPopulation.TrimBigEndianLeadingZeroBytes();
+            ByteArrayCreationAndPopulation.TrimLittleEndianLeadingZeroBytes();
         }
     }
 }
