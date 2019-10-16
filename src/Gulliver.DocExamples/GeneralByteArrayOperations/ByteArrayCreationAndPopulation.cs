@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Linq;
 
 namespace Gulliver.DocExamples.GeneralByteArrayOperations
 {
-
     /// <summary>
     ///     Byte Array Creation and Population examples
     /// </summary>
     public static class ByteArrayCreationAndPopulation
     {
+        #region Byte Array Creation and Population
 
         #region CreateByteArray
 
@@ -33,50 +32,6 @@ namespace Gulliver.DocExamples.GeneralByteArrayOperations
 
         #endregion end: CreateByteArray
 
-        #region TrimLeadingZeroBytes
-
-        #region TrimBigEndianLeadingZeroBytes
-
-        /// <summary>
-        ///     Example usage of <see cref="ByteArrayUtils.TrimBigEndianLeadingZeroBytes" />
-        /// </summary>
-        public static void TrimBigEndianLeadingZeroBytes()
-        {
-            // Setup
-            var input = new byte[] { 0x00, 0x00, 0x2A, 0x00 };
-
-            // Act
-            var result = input.TrimBigEndianLeadingZeroBytes();
-
-            // Conclusion
-            Console.WriteLine("TrimBigEndianLeadingZeroBytes example");
-            Console.WriteLine($"input:\t{input.ToString("H")}");
-            Console.WriteLine($"result:\t{result.ToString("H")}");
-        }
-
-        #endregion end: TrimBigEndianLeadingZeroBytes
-
-        #region TrimLittleEndianLeadingZeroBytes
-
-        /// <summary>
-        ///     Example usage of <see cref="ByteArrayUtils.TrimLittleEndianLeadingZeroBytes" />
-        /// </summary>
-        public static void TrimLittleEndianLeadingZeroBytes()
-        {
-            // Setup
-            var input = new byte[] { 0x2A, 0xFF, 0x2A, 0x00 };
-
-            // Act
-            var result = input.TrimLittleEndianLeadingZeroBytes();
-
-            // Conclusion
-            Console.WriteLine("TrimLittleEndianLeadingZeroBytes");
-            Console.WriteLine($"input:\t{input.ToString("H")}");
-            Console.WriteLine($"result:\t{result.ToString("H")}");
-        }
-
-        #endregion end: TrimLittleEndianLeadingZeroBytes
-
-        #endregion end: TrimLeadingZeroBytes
+        #endregion end: Byte Array Creation and Population
     }
 }

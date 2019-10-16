@@ -1,5 +1,6 @@
-﻿using System;
+﻿using Gulliver.DocExamples.BitwiseByteArrayOperations;
 using Gulliver.DocExamples.GeneralByteArrayOperations;
+using Gulliver.DocExamples.UnsignedMathematicalOperations;
 
 namespace Gulliver.DocExamples
 {
@@ -13,11 +14,58 @@ namespace Gulliver.DocExamples
         /// </summary>
         public static void Main()
         {
-            // ByteArrayCreationAndPopulation
+            // General Byte Array Operations
             ByteArrayCreationAndPopulation.CreateByteArrayExample();
 
-            ByteArrayCreationAndPopulation.TrimBigEndianLeadingZeroBytes();
-            ByteArrayCreationAndPopulation.TrimLittleEndianLeadingZeroBytes();
+            ByteArrayMutation.TrimBigEndianLeadingZeroBytesExample();
+            ByteArrayMutation.TrimLittleEndianLeadingZeroBytesExample();
+
+            ByteArrayMutation.PadBigEndianMostSignificantBytesExample();
+            ByteArrayMutation.PadLittleEndianMostSignificantBytesExample();
+
+            ByteArrayMutation.AppendBytesExample();
+            ByteArrayMutation.AppendShortestExample();
+
+            ByteArrayMutation.PrependBytesExample();
+            ByteArrayMutation.PrependShortestExample();
+
+            Stringification.StringificationExample();
+
+            Miscellaneous.BigEndianEffectiveLengthExample();
+            Miscellaneous.LittleEndianEffectiveLengthExample();
+
+            // Bitwise Byte Array Operations
+            Addressing.AddressBitExample();
+
+            BooleanOperations.BitwiseNotExample();
+
+            BooleanOperations.BitwiseAndBigEndianExample();
+            BooleanOperations.BitwiseAndLittleEndianExample();
+
+            BooleanOperations.BitwiseOrBigEndianExample();
+            BooleanOperations.BitwiseOrLittleEndianExample();
+
+            BooleanOperations.BitwiseXorBigEndianExample();
+            BooleanOperations.BitwiseXorLittleEndianExample();
+
+            Bitshifting.ShiftBitsRightExample();
+            Bitshifting.ShiftBitsRightCarryExample();
+
+            Bitshifting.ShiftBitsLeftExample();
+            Bitshifting.ShiftBitsLeftCarryExample();
+
+            // Unsigned Mathematical Operations
+            Addition.AddUnsignedBigEndianExample();
+            Addition.AddUnsignedLittleEndianExample();
+
+            Addition.TrySumBigEndianExample();
+            Addition.TrySumLittleEndianExample();
+
+            Subtraction.SubtractUnsignedBigEndianExample();
+            Subtraction.SubtractUnsignedLittleEndianExample();
+
+            Comparison.CompareUnsignedBigEndianExample();
+            Comparison.CompareUnsignedLittleEndianExample();
         }
     }
 }

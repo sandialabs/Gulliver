@@ -169,9 +169,7 @@ The `ReverseBytes` operation is endian agnostic.
 public static string ByteArrayUtils.ToString(this byte[] bytes, string format = "g", IFormatProvider formatProvider = null)
 ```
 
-## Miscellaneous
-
-### Effective Length
+## Effective Length
 
 ```c#
 public static int ByteArrayUtils.BigEndianEffectiveLength(this byte[] input)
