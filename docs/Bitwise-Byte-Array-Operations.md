@@ -13,7 +13,7 @@ public static bool ByteArrayUtils.AddressBit(this byte[] bytes, int index)
 ```c#
 ```
 
-```
+```none
 AddressBit Example
 input:  C0 1D
 input:  11000000 00011101
@@ -33,7 +33,7 @@ public static byte[] ByteArrayUtils.BitwiseNot(byte[] bytes)
 ```c#
 ```
 
-```
+```none
 BitwiseNot Example
 input:  00 11 AC FF
 result: 00 11 AC FF
@@ -53,7 +53,7 @@ public static byte[] ByteArrayUtils.BitwiseAndBigEndian(byte[] left, byte[] righ
 ```c#
 ```
 
-```
+```none
 BitwiseAndBigEndian Example
 lhs:    C0 DE
 rhs:    C0 FF EE
@@ -73,7 +73,7 @@ public static byte[] ByteArrayUtils.BitwiseAndLittleEndian(byte[] left, byte[] r
 ```c#
 ```
 
-```
+```none
 BitwiseAndLittleEndian Example
 lhs:    C0 DE
 rhs:    C0 FF EE
@@ -95,7 +95,7 @@ public static byte[] ByteArrayUtils.BitwiseOrBigEndian(byte[] left, byte[] right
 ```c#
 ```
 
-```
+```none
 BitwiseOrBigEndian Example
 lhs:    C0 DE
 rhs:    C0 FF EE
@@ -115,7 +115,7 @@ public static byte[] ByteArrayUtils.BitwiseOrLittleEndian(byte[] left, byte[] ri
 ```c#
 ```
 
-```
+```none
 BitwiseOrLittleEndian Example
 lhs:    C0 DE
 rhs:    C0 FF EE
@@ -137,7 +137,7 @@ public static byte[] ByteArrayUtils.BitwiseXorBigEndian(byte[] left, byte[] righ
 ```c#
 ```
 
-```
+```none
 BitwiseXorBigEndian Example
 lhs:    C0 DE
 rhs:    C0 FF EE
@@ -157,7 +157,7 @@ public static byte[] ByteArrayUtils.BitwiseXorLittleEndian(byte[] left, byte[] r
 ```c#
 ```
 
-```
+```none
 BitwiseXorLittleEndian Example
 lhs:    C0 DE
 rhs:    C0 FF EE
@@ -181,7 +181,7 @@ public static byte[] ByteArrayUtils.ShiftBitsRight(this byte[] bytes, int shift)
 ```c#
 ```
 
-```
+```none
 ShiftBitsRight Example
 shift:  5
 input:  AD 0B EC 0F FE E0
@@ -203,7 +203,7 @@ public static byte[] ByteArrayUtils.ShiftBitsRight(this byte[] bytes, int shift,
 ```c#
 ```
 
-```
+```none
 ShiftBitsRight Carry Example
 input:  AD 0B EC 0F FE E0
 shift:  5
@@ -224,7 +224,7 @@ public static byte[] ByteArrayUtils.ShiftBitsLeft(this byte[] bytes, int shift)
 ```c#
 ```
 
-```
+```none
 ShiftBitsLeft Example
 input:  AD 0B EC 0F FE E0
 shift:  5
@@ -243,7 +243,7 @@ result: 10100001 01111101 10000001 11111111 11011100 00000000
 public static byte[] ByteArrayUtils.ShiftBitsLeft(this byte[] bytes, int shift, out byte[] carry)
 ```
 
-```
+```none
 ShiftBitsLeft Carry Example
 input:  AD 0B EC 0F FE E0
 shift:  5

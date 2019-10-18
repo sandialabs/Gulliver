@@ -35,7 +35,7 @@ public static void CreateByteArrayExample()
 }
 ```
 
-```
+```none
 CreateByteArray example
 length:  10
 element: 66
@@ -82,7 +82,7 @@ public static void TrimBigEndianLeadingZeroBytes()
 }
 ```
 
-```
+```none
 TrimBigEndianLeadingZeroBytes example
 input:  00 00 2A 00
 result: 2A 00
@@ -116,7 +116,8 @@ public static void TrimLittleEndianLeadingZeroBytes()
    Console.WriteLine($"result:\t{result.ToString("H")}");
 }
 ```
-```
+
+```none
 TrimLittleEndianLeadingZeroBytes
 input:  2A FF 2A 00
 result: 2A FF 2A
@@ -132,10 +133,7 @@ When padding a byte array, if the the given array length is equal to or larger t
 public static byte[] ByteArrayUtils.PadBigEndianMostSignificantBytes(this byte[] source, int finalLength, byte element = 0x00)
 ```
 
-```c#
-```
-
-```
+```none
 PadBigEndianMostSignificantBytes Short Example
 input:  DE FA CE C0 DE
 result: 00 DE FA CE C0 DE
@@ -150,7 +148,7 @@ public static byte[] ByteArrayUtils.PadLittleEndianMostSignificantBytes(this byt
 ```c#
 ```
 
-```
+```none
 PadLittleEndianMostSignificantBytes Example
 input:  DE FA CE C0 DE
 result: DE FA CE C0 DE 00
@@ -169,7 +167,7 @@ public static byte[] ByteArrayUtils.AppendBytes(this byte[] source, int count, b
 ```c#
 ```
 
-```
+```none
 AppendBytes Example
 input:  C0 C0 CA FE
 result: C0 C0 CA FE 00 00 00 00
@@ -184,7 +182,7 @@ public static (byte[] left, byte[] right) ByteArrayUtils.AppendShortest(byte[] l
 ```c#
 ```
 
-```
+```none
 AppendShortest Example
 lhs:    DE CA F0
 rhs:    CA FE C0 FF EE
@@ -204,7 +202,7 @@ public static byte[] ByteArrayUtils.PrependBytes(this byte[] source, int count, 
 ```c#
 ```
 
-```
+```none
 PrependBytes Example
 input:  C0 C0 CA FE
 result: 00 00 00 00 C0 C0 CA FE
@@ -218,7 +216,7 @@ public static (byte[] left, byte[] right) ByteArrayUtils.PrependShortest(byte[] 
 ```c#
 ```
 
-```
+```none
 PrependShortest Example
 lhs:    DE CA F0
 rhs:    CA FE C0 FF EE
@@ -237,7 +235,7 @@ The `ReverseBytes` operation is endian agnostic.
 ```c#
 ```
 
-```
+```none
 ReverseBytes example
 input:  C0 1D C0 FF EE
 result: EE FF C0 1D C0
@@ -252,7 +250,7 @@ public static string ByteArrayUtils.ToString(this byte[] bytes, string format = 
 ```c#
 ```
 
-```
+```none
 Stringification Example
 input:  C0 FF EE C0 DE
 Hexadecimal Formats
@@ -268,7 +266,7 @@ d:      "192 255 238 192 222"
 IBE:    "828927557854"
 ILE:    "956719628224"
 
-```
+```none
 
 ## Effective Length
 
@@ -282,7 +280,7 @@ public static int ByteArrayUtils.BigEndianEffectiveLength(this byte[] input)
 ```c#
 ```
 
-```
+```none
 BigEndianEffectiveLength Example
 input:  00 00 00 DA BD AD
 result: 3
@@ -297,7 +295,7 @@ public static int ByteArrayUtils.LittleEndianEffectiveLength(this byte[] input)
 ```c#
 ```
 
-```
+```none
 LittleEndianEffectiveLength Example
 input:  DA B0 00 00 00 00
 result: 2

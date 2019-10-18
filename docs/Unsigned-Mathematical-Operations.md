@@ -13,7 +13,7 @@ public static byte[] ByteArrayUtils.AddUnsignedBigEndian(byte[] right, byte[] le
 ```c#
 ```
 
-```
+```none
 AddUnsignedBigEndian Example
 lhs:    AD DE D0
 rhs:    C0 DE
@@ -22,7 +22,6 @@ result: AE 9F AE
 lhs:    11394768
 rhs:    49374
 result: 11444142
-
 ```
 
 ### Little Endian
@@ -34,7 +33,7 @@ public static byte[] ByteArrayUtils.AddUnsignedLittleEndian(byte[] left, byte[] 
 ```c#
 ```
 
-```
+```none
 AddUnsignedLittleEndian Example
 lhs:    AD DE D0
 rhs:    C0 DE
@@ -51,13 +50,12 @@ result: 13745517
 
 ```c#
 public static byte[] ByteArrayUtils.SubtractUnsignedBigEndian(byte[] left, byte[] right)
-
 ```
 
 ```c#
 ```
 
-```
+```none
 ```
 
 ### Little Endian
@@ -69,7 +67,7 @@ public static byte[] ByteArrayUtils.SubtractUnsignedLittleEndian(byte[] left, by
 ```c#
 ```
 
-```
+```none
 ```
 
 ## Safe Summation
@@ -82,7 +80,7 @@ public static bool ByteArrayUtils.TrySumBigEndian(byte[] source, long delta, out
 ```c#
 ```
 
-```
+```none
 TrySumBigEndian Example
 bytes:  AD DE D0
 delta:  42
@@ -102,7 +100,7 @@ public static bool ByteArrayUtils.TrySumLittleEndian(byte[] source, long delta, 
 ```c#
 ```
 
-```
+```none
 TrySumLittleEndian Example
 bytes:  AD DE D0
 delta:  -42
@@ -128,7 +126,7 @@ public static int ByteArrayUtils.CompareUnsignedBigEndian(byte[] left, byte[] ri
 ```c#
 ```
 
-```
+```none
 lhs:    B1 66 E5 70
 rhs:    5A 11
 result: 1
@@ -147,7 +145,7 @@ public static int ByteArrayUtils.CompareUnsignedLittleEndian(byte[] left, byte[]
 ```c#
 ```
 
-```
+```none
 CompareUnsignedLittleEndian Example
 lhs:    B1 66 E5 70
 rhs:    5A 11
