@@ -12,7 +12,7 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
         public static void ShiftBitsRightExample()
         {
             // Setup
-            var input = new byte[] {0xAD, 0x0B, 0xEC, 0x0F, 0xFE, 0xE0};
+            var input = new byte[] { 0xAD, 0x0B, 0xEC, 0x0F, 0xFE, 0xE0 };
             const int shift = 5;
 
             // Act
@@ -20,6 +20,7 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
 
             // Conclusion
             Console.WriteLine("ShiftBitsRight Example");
+            Console.WriteLine($"shift:\t{shift}");
             Console.WriteLine($"input:\t{input.ToString("H")}");
             Console.WriteLine($"result:\t{result.ToString("H")}");
             Console.WriteLine(string.Empty);
@@ -31,7 +32,7 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
         public static void ShiftBitsRightCarryExample()
         {
             // Setup
-            var input = new byte[] {0xAD, 0x0B, 0xEC, 0x0F, 0xFE, 0xE0};
+            var input = new byte[] { 0xAD, 0x0B, 0xEC, 0x0F, 0xFE, 0xE0 };
             const int shift = 5;
 
             // Act
@@ -40,6 +41,7 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
             // Conclusion
             Console.WriteLine("ShiftBitsRight Carry Example");
             Console.WriteLine($"input:\t{input.ToString("H")}");
+            Console.WriteLine($"shift:\t{shift}");
             Console.WriteLine($"result:\t{result.ToString("H")}");
             Console.WriteLine($"carry:\t{carry.ToString("H")}");
             Console.WriteLine(string.Empty);
@@ -56,7 +58,7 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
         public static void ShiftBitsLeftExample()
         {
             // Setup
-            var input = new byte[] {0xAD, 0x0B, 0xEC, 0x0F, 0xFE, 0xE0};
+            var input = new byte[] { 0xAD, 0x0B, 0xEC, 0x0F, 0xFE, 0xE0 };
             const int shift = 5;
 
             // Act
@@ -65,6 +67,7 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
             // Conclusion
             Console.WriteLine("ShiftBitsLeft Example");
             Console.WriteLine($"input:\t{input.ToString("H")}");
+            Console.WriteLine($"shift:\t{shift}");
             Console.WriteLine($"result:\t{result.ToString("H")}");
             Console.WriteLine(string.Empty);
             Console.WriteLine($"input:\t{input.ToString("b")}");
@@ -75,7 +78,7 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
         public static void ShiftBitsLeftCarryExample()
         {
             // Setup
-            var input = new byte[] {0xAD, 0x0B, 0xEC, 0x0F, 0xFE, 0xE0};
+            var input = new byte[] { 0xAD, 0x0B, 0xEC, 0x0F, 0xFE, 0xE0 };
             const int shift = 5;
 
             // Act
@@ -84,6 +87,7 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
             // Conclusion
             Console.WriteLine("ShiftBitsLeft Carry Example");
             Console.WriteLine($"input:\t{input.ToString("H")}");
+            Console.WriteLine($"shift:\t{shift}");
             Console.WriteLine($"result:\t{result.ToString("H")}");
             Console.WriteLine($"carry:\t{carry.ToString("H")}");
             Console.WriteLine(string.Empty);

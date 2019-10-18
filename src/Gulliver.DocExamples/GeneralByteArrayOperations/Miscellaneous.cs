@@ -14,7 +14,7 @@ namespace Gulliver.DocExamples.GeneralByteArrayOperations
         public static void BigEndianEffectiveLengthExample()
         {
             // Setup
-            var input = new byte[] {0x00, 0x00, 0x00, 0xDA, 0xBD, 0xAD};
+            var input = new byte[] { 0x00, 0x00, 0x00, 0xDA, 0xBD, 0xAD };
 
             // Act
             var result = input.BigEndianEffectiveLength();
@@ -33,7 +33,7 @@ namespace Gulliver.DocExamples.GeneralByteArrayOperations
         public static void LittleEndianEffectiveLengthExample()
         {
             // Setup
-            var input = new byte[] {0xDA, 0xB0, 0x00, 0x00, 0x00, 0x00};
+            var input = new byte[] { 0xDA, 0xB0, 0x00, 0x00, 0x00, 0x00 };
 
             // Act
             var result = input.LittleEndianEffectiveLength();

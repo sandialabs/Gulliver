@@ -1,12 +1,19 @@
 Gulliver
 ========
-
 .. image:: https://img.shields.io/nuget/vpre/gulliver.png
    :alt: Nuget (with prereleases)
 .. image:: https://img.shields.io/github/license/sandialabs/gulliver.png 
    :alt: GitHub
 .. image:: https://img.shields.io/badge/targets-.NETStandard%201.3-blueviolet.png 
    :alt: .NetStandard 1.3
+.. .. image:: https://img.shields.io/github/stars/sandialabs/gulliver?style=social
+..    :alt: GitHub stars
+.. .. image:: https://img.shields.io/github/watchers/sandialabs/gulliver?style=social
+..    :alt: GitHub watchers
+
+.. image:: https://img.shields.io/badge/GitHub-Gulliver-lightgrey?logo=github&style=social
+   :alt: Visit us on GitHub
+   :target: https://github.com/sandialabs/gulliver
 
 Gulliver is a C# utility package and library engineered for the manipulation of arbitrary sized byte arrays accounting for appropriate endianness and jagged byte length. Functionality includes the as previously unsupported standard set of boolean algebraic operations, bitwise shifting, and unsigned endian aware mathematical addition, subtraction, and comparison. Gulliver exist to free developers from managing byte ordering and operations at the low level as was previously required by the standard C# language distributions.
 
@@ -21,6 +28,7 @@ The API surfaced by Gulliver is not outwardly complex, and the intention is to k
    :caption: Getting Started
 
    What-is-Endianness
+   FAQ
 
 .. toctree::
    :maxdepth: 2
@@ -33,8 +41,9 @@ The API surfaced by Gulliver is not outwardly complex, and the intention is to k
    Concurent-Endian-Byte-Enumerables
    FixedBytes
 
-Contribute
-----------
-
-- `Issue Tracker <https://github.com/sandialabs/Gulliver/issues>`_
-- `Source Code <https://github.com/sandialabs/Gulliver>`_
+.. toctree::
+   :maxdepth: 2
+   :caption: Development
+   
+   Community
+   Acknowledgements

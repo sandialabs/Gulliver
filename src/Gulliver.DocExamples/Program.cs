@@ -36,6 +36,8 @@ namespace Gulliver.DocExamples
 
             ByteArrayMutation.PrependShortestExample();
 
+            ByteArrayMutation.ReverseBytesExample();
+
             Stringification.StringificationExample();
 
             Miscellaneous.BigEndianEffectiveLengthExample();

@@ -10,7 +10,7 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
         public static void BitwiseNotExample()
         {
             // Setup
-            var input = new byte[] {0x00, 0x11, 0xAC, 0xFF};
+            var input = new byte[] { 0x00, 0x11, 0xAC, 0xFF };
 
             // Act
             var result = input;
@@ -30,8 +30,8 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
         public static void BitwiseAndBigEndianExample()
         {
             // Setup
-            var lhs = new byte[] {0xC0, 0xDE};
-            var rhs = new byte[] {0xC0, 0xFF, 0xEE};
+            var lhs = new byte[] { 0xC0, 0xDE };
+            var rhs = new byte[] { 0xC0, 0xFF, 0xEE };
 
             // Act
             var result = ByteArrayUtils.BitwiseAndBigEndian(lhs, rhs);
@@ -51,8 +51,8 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
         public static void BitwiseAndLittleEndianExample()
         {
             // Setup
-            var lhs = new byte[] {0xC0, 0xDE};
-            var rhs = new byte[] {0xC0, 0xFF, 0xEE};
+            var lhs = new byte[] { 0xC0, 0xDE };
+            var rhs = new byte[] { 0xC0, 0xFF, 0xEE };
 
             // Act
             var result = ByteArrayUtils.BitwiseAndLittleEndian(lhs, rhs);
@@ -76,8 +76,8 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
         public static void BitwiseOrBigEndianExample()
         {
             // Setup
-            var lhs = new byte[] {0xC0, 0xDE};
-            var rhs = new byte[] {0xC0, 0xFF, 0xEE};
+            var lhs = new byte[] { 0xC0, 0xDE };
+            var rhs = new byte[] { 0xC0, 0xFF, 0xEE };
 
             // Act
             var result = ByteArrayUtils.BitwiseOrBigEndian(lhs, rhs);
@@ -97,8 +97,8 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
         public static void BitwiseOrLittleEndianExample()
         {
             // Setup
-            var lhs = new byte[] {0xC0, 0xDE};
-            var rhs = new byte[] {0xC0, 0xFF, 0xEE};
+            var lhs = new byte[] { 0xC0, 0xDE };
+            var rhs = new byte[] { 0xC0, 0xFF, 0xEE };
 
             // Act
             var result = ByteArrayUtils.BitwiseOrLittleEndian(lhs, rhs);
@@ -122,8 +122,8 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
         public static void BitwiseXorBigEndianExample()
         {
             // Setup
-            var lhs = new byte[] {0xC0, 0xDE};
-            var rhs = new byte[] {0xC0, 0xFF, 0xEE};
+            var lhs = new byte[] { 0xC0, 0xDE };
+            var rhs = new byte[] { 0xC0, 0xFF, 0xEE };
 
             // Act
             var result = ByteArrayUtils.BitwiseXorBigEndian(lhs, rhs);
@@ -143,8 +143,8 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
         public static void BitwiseXorLittleEndianExample()
         {
             // Setup
-            var lhs = new byte[] {0xC0, 0xDE};
-            var rhs = new byte[] {0xC0, 0xFF, 0xEE};
+            var lhs = new byte[] { 0xC0, 0xDE };
+            var rhs = new byte[] { 0xC0, 0xFF, 0xEE };
 
             // Act
             var result = ByteArrayUtils.BitwiseXorLittleEndian(lhs, rhs);
