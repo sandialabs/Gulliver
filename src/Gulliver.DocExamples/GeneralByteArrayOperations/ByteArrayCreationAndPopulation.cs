@@ -28,6 +28,7 @@ namespace Gulliver.DocExamples.GeneralByteArrayOperations
             Console.WriteLine($"length:\t{length}");
             Console.WriteLine($"element:\t{element}");
             Console.WriteLine($"result:\t{result.ToString("H")}");
+            Console.WriteLine(string.Empty);
         }
 
         #endregion end: CreateByteArray

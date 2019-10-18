@@ -21,6 +21,7 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
             Console.WriteLine("AddressBit Example");
             Console.WriteLine($"input:\t{input.ToString("H")}");
             Console.WriteLine($"result:\t{result.ToString("H")}");
+            Console.WriteLine(string.Empty);
         }
 
         #endregion end: AddressBit

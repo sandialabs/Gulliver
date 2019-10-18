@@ -21,6 +21,7 @@ namespace Gulliver.DocExamples.UnsignedMathematicalOperations
             Console.WriteLine($"lhs:\t{lhs.ToString("H")}");
             Console.WriteLine($"rhs:\t{rhs.ToString("H")}");
             Console.WriteLine($"result:\t{result.ToString("H")}");
+            Console.WriteLine(string.Empty);
         }
 
         public static void CompareUnsignedLittleEndianExample()
@@ -37,6 +38,7 @@ namespace Gulliver.DocExamples.UnsignedMathematicalOperations
             Console.WriteLine($"lhs:\t{lhs.ToString("H")}");
             Console.WriteLine($"rhs:\t{rhs.ToString("H")}");
             Console.WriteLine($"result:\t{result.ToString("H")}");
+            Console.WriteLine(string.Empty);
         }
     }
 }

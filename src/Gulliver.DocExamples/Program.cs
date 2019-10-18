@@ -21,12 +21,19 @@ namespace Gulliver.DocExamples
             ByteArrayMutation.TrimLittleEndianLeadingZeroBytesExample();
 
             ByteArrayMutation.PadBigEndianMostSignificantBytesExample();
+            ByteArrayMutation.PadBigEndianMostSignificantBytesShortExample();
+
             ByteArrayMutation.PadLittleEndianMostSignificantBytesExample();
+            ByteArrayMutation.PadLittleEndianMostSignificantBytesShortExample();
 
             ByteArrayMutation.AppendBytesExample();
+            ByteArrayMutation.AppendBytesElementExample();
+
             ByteArrayMutation.AppendShortestExample();
 
             ByteArrayMutation.PrependBytesExample();
+            ByteArrayMutation.PrependBytesElementExample();
+
             ByteArrayMutation.PrependShortestExample();
 
             Stringification.StringificationExample();
@@ -59,7 +66,9 @@ namespace Gulliver.DocExamples
             Addition.AddUnsignedLittleEndianExample();
 
             Addition.TrySumBigEndianExample();
+            Addition.TrySumBigEndianSubtractionExample();
             Addition.TrySumLittleEndianExample();
+            Addition.TrySumLittleEndianSubtractionExample();
 
             Subtraction.SubtractUnsignedBigEndianExample();
             Subtraction.SubtractUnsignedLittleEndianExample();
