@@ -13,7 +13,7 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
             var input = new byte[] { 0x00, 0x11, 0xAC, 0xFF };
 
             // Act
-            var result = input;
+            var result = ByteArrayUtils.BitwiseNot(input);
 
             // Conclusion
             Console.WriteLine("BitwiseNot Example");

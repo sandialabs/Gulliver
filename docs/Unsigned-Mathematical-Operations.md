@@ -11,6 +11,24 @@ public static byte[] ByteArrayUtils.AddUnsignedBigEndian(byte[] right, byte[] le
 ```
 
 ```c#
+public static void AddUnsignedBigEndianExample()
+{
+    // Setup
+    var lhs = new byte[] { 0xAD, 0xDE, 0xD0 };
+    var rhs = new byte[] { 0xC0, 0xDE };
+    // Act
+    var result = ByteArrayUtils.AddUnsignedBigEndian(lhs, rhs);
+    // Conclusion
+    Console.WriteLine("AddUnsignedBigEndian Example");
+    Console.WriteLine($"lhs:\t{lhs.ToString("H")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("H")}");
+    Console.WriteLine($"result:\t{result.ToString("H")}");
+    Console.WriteLine(string.Empty);
+    Console.WriteLine($"lhs:\t{lhs.ToString("IBE")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("IBE")}");
+    Console.WriteLine($"result:\t{result.ToString("IBE")}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -31,6 +49,24 @@ public static byte[] ByteArrayUtils.AddUnsignedLittleEndian(byte[] left, byte[] 
 ```
 
 ```c#
+public static void AddUnsignedLittleEndianExample()
+{
+    // Setup
+    var lhs = new byte[] { 0xAD, 0xDE, 0xD0 };
+    var rhs = new byte[] { 0xC0, 0xDE };
+    // Act
+    var result = ByteArrayUtils.AddUnsignedLittleEndian(lhs, rhs);
+    // Conclusion
+    Console.WriteLine("AddUnsignedLittleEndian Example");
+    Console.WriteLine($"lhs:\t{lhs.ToString("H")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("H")}");
+    Console.WriteLine($"result:\t{result.ToString("H")}");
+    Console.WriteLine(string.Empty);
+    Console.WriteLine($"lhs:\t{lhs.ToString("ILE")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("ILE")}");
+    Console.WriteLine($"result:\t{result.ToString("ILE")}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -53,9 +89,35 @@ public static byte[] ByteArrayUtils.SubtractUnsignedBigEndian(byte[] left, byte[
 ```
 
 ```c#
+public static void SubtractUnsignedBigEndianExample()
+{
+    // Setup
+    var lhs = new byte[] { 0xDE, 0x1E, 0x7E, 0xD0 };
+    var rhs = new byte[] { 0xC0, 0xDE };
+    // Act
+    var result = ByteArrayUtils.SubtractUnsignedBigEndian(lhs, rhs);
+    // Conclusion
+    Console.WriteLine("SubtractUnsignedBigEndian Example");
+    Console.WriteLine($"lhs:\t{lhs.ToString("H")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("H")}");
+    Console.WriteLine($"result:\t{result.ToString("H")}");
+    Console.WriteLine(string.Empty);
+    Console.WriteLine($"lhs:\t{lhs.ToString("IBE")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("IBE")}");
+    Console.WriteLine($"result:\t{result.ToString("IBE")}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
+SubtractUnsignedBigEndian Example
+lhs:    DE 1E 7E D0
+rhs:    C0 DE
+result: DE 1D BD F2
+
+lhs:    3726540496
+rhs:    49374
+result: 3726491122
 ```
 
 ### Little Endian
@@ -65,9 +127,34 @@ public static byte[] ByteArrayUtils.SubtractUnsignedLittleEndian(byte[] left, by
 ```
 
 ```c#
+public static void SubtractUnsignedLittleEndianExample()
+{
+    // Setup
+    var lhs = new byte[] { 0xDE, 0x1E, 0x7E, 0xD0 };
+    var rhs = new byte[] { 0xC0, 0xDE };
+    // Act
+    var result = ByteArrayUtils.SubtractUnsignedLittleEndian(lhs, rhs);
+    // Conclusion
+    Console.WriteLine("SubtractUnsignedLittleEndian Example");
+    Console.WriteLine($"lhs:\t{lhs.ToString("H")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("H")}");
+    Console.WriteLine($"result:\t{result.ToString("H")}");
+    Console.WriteLine(string.Empty);
+    Console.WriteLine($"lhs:\t{lhs.ToString("ILE")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("ILE")}");
+    Console.WriteLine($"result:\t{result.ToString("ILE")}");
+    Console.WriteLine(string.Empty);
 ```
 
 ```none
+SubtractUnsignedLittleEndian Example
+lhs:    DE 1E 7E D0
+rhs:    C0 DE
+result: 1E 40 7D D0
+
+lhs:    3497926366
+rhs:    57024
+result: 3497869342
 ```
 
 ## Safe Summation
@@ -78,6 +165,24 @@ public static byte[] ByteArrayUtils.SubtractUnsignedLittleEndian(byte[] left, by
 public static bool ByteArrayUtils.TrySumBigEndian(byte[] source, long delta, out byte[] result)
 ```
 ```c#
+public static void TrySumBigEndianExample()
+{
+    // Setup
+    var bytes = new byte[] { 0xAD, 0xDE, 0xD0 };
+    const long delta = 42L;
+    // Act
+    var success = ByteArrayUtils.TrySumBigEndian(bytes, delta, out var result);
+    // Conclusion
+    Console.WriteLine("TrySumBigEndian Example");
+    Console.WriteLine($"bytes:\t{bytes.ToString("H")}");
+    Console.WriteLine($"delta:\t{delta}");
+    Console.WriteLine($"success:\t{success}");
+    Console.WriteLine($"result:\t{result.ToString("H")}");
+    Console.WriteLine(string.Empty);
+    Console.WriteLine($"bytes:\t{bytes.ToString("IBE")}");
+    Console.WriteLine($"result:\t{result.ToString("IBE")}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -98,6 +203,24 @@ public static bool ByteArrayUtils.TrySumLittleEndian(byte[] source, long delta, 
 ```
 
 ```c#
+public static void TrySumLittleEndianExample()
+{
+    // Setup
+    var bytes = new byte[] { 0xAD, 0xDE, 0xD0 };
+    const long delta = 42L;
+    // Act
+    var success = ByteArrayUtils.TrySumLittleEndian(bytes, delta, out var result);
+    // Conclusion
+    Console.WriteLine("TryLittleEndian Subtraction Example");
+    Console.WriteLine($"bytes:\t{bytes.ToString("H")}");
+    Console.WriteLine($"delta:\t{delta}");
+    Console.WriteLine($"success:\t{success}");
+    Console.WriteLine($"result:\t{result.ToString("H")}");
+    Console.WriteLine(string.Empty);
+    Console.WriteLine($"bytes:\t{bytes.ToString("ILE")}");
+    Console.WriteLine($"result:\t{result.ToString("ILE")}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -124,6 +247,24 @@ public static int ByteArrayUtils.CompareUnsignedBigEndian(byte[] left, byte[] ri
 ```
 
 ```c#
+public static void CompareUnsignedBigEndianExample()
+{
+    // Setup
+    var lhs = new byte[] { 0xB1, 0x66, 0xE5, 0x70 };
+    var rhs = new byte[] { 0x5A, 0x11 };
+    // Act
+    var result = ByteArrayUtils.CompareUnsignedBigEndian(lhs, rhs);
+    // Conclusion
+    Console.WriteLine("CompareUnsignedBigEndian Example");
+    Console.WriteLine($"lhs:\t{lhs.ToString("H")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("H")}");
+    Console.WriteLine($"result:\t{result}");
+    Console.WriteLine(string.Empty);
+    Console.WriteLine($"lhs:\t{lhs.ToString("IBE")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("IBE")}");
+    Console.WriteLine($"result:\t{result}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -143,6 +284,24 @@ public static int ByteArrayUtils.CompareUnsignedLittleEndian(byte[] left, byte[]
 ```
 
 ```c#
+public static void CompareUnsignedLittleEndianExample()
+{
+    // Setup
+    var lhs = new byte[] { 0xB1, 0x66, 0xE5, 0x70 };
+    var rhs = new byte[] { 0x5A, 0x11 };
+    // Act
+    var result = ByteArrayUtils.CompareUnsignedLittleEndian(lhs, rhs);
+    // Conclusion
+    Console.WriteLine("CompareUnsignedLittleEndian Example");
+    Console.WriteLine($"lhs:\t{lhs.ToString("H")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("H")}");
+    Console.WriteLine($"result:\t{result}");
+    Console.WriteLine(string.Empty);
+    Console.WriteLine($"lhs:\t{lhs.ToString("ILE")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("ILE")}");
+    Console.WriteLine($"result:\t{result}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none

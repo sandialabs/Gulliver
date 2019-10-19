@@ -15,9 +15,6 @@ public static byte[] ByteArrayUtils.CreateByteArray(int length, byte element = 0
 In the following example a byte array of length `10` is filled with the the repeated byte value of `0x42`
 
 ```c#
-/// <summary>
-///     Example usage of <see cref="ByteArrayUtils.CreateByteArray" />
-/// </summary>
 public static void CreateByteArrayExample()
 {
    // Setup
@@ -64,9 +61,6 @@ public static byte[] ByteArrayUtils.TrimBigEndianLeadingZeroBytes(this byte[] in
 The following example 
 
 ```c#
-/// <summary>
-///     Example usage of <see cref="ByteArrayUtils.TrimBigEndianLeadingZeroBytes" />
-/// </summary>
 public static void TrimBigEndianLeadingZeroBytes()
 {
    // Setup
@@ -99,9 +93,6 @@ To trim a little endian byte array use
 public static byte[] ByteArrayUtils.TrimLittleEndianLeadingZeroBytes(this byte[] input)
 ```
 ```c#
-/// <summary>
-///     Example usage of <see cref="ByteArrayUtils.TrimLittleEndianLeadingZeroBytes" />
-/// </summary>
 public static void TrimLittleEndianLeadingZeroBytes()
 {
    // Setup
@@ -133,6 +124,22 @@ When padding a byte array, if the the given array length is equal to or larger t
 public static byte[] ByteArrayUtils.PadBigEndianMostSignificantBytes(this byte[] source, int finalLength, byte element = 0x00)
 ```
 
+```c#
+public static void PadBigEndianMostSignificantBytesExample()
+{
+    // Setup
+    var bytes = new byte[] { 0xDE, 0xFA, 0xCE, 0xC0, 0xDE };
+    const int finalLength = 6;
+    // Act
+    var result = bytes.PadBigEndianMostSignificantBytes(finalLength);
+    // Conclusion
+    Console.WriteLine("PadBigEndianMostSignificantBytes Short Example");
+    Console.WriteLine($"input:\t{bytes.ToString("H")}");
+    Console.WriteLine($"result:\t{result.ToString("H")}");
+    Console.WriteLine(string.Empty);
+}
+```
+
 ```none
 PadBigEndianMostSignificantBytes Short Example
 input:  DE FA CE C0 DE
@@ -146,6 +153,19 @@ public static byte[] ByteArrayUtils.PadLittleEndianMostSignificantBytes(this byt
 ```
 
 ```c#
+public static void PadLittleEndianMostSignificantBytesExample()
+{
+    // Setup
+    var input = new byte[] { 0xDE, 0xFA, 0xCE, 0xC0, 0xDE };
+    const int finalLength = 6;
+    // Act
+    var result = input.PadLittleEndianMostSignificantBytes(finalLength);
+    // Conclusion
+    Console.WriteLine("PadLittleEndianMostSignificantBytes Example");
+    Console.WriteLine($"input:\t{input.ToString("H")}");
+    Console.WriteLine($"result:\t{result.ToString("H")}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -165,6 +185,19 @@ public static byte[] ByteArrayUtils.AppendBytes(this byte[] source, int count, b
 ```
 
 ```c#
+public static void AppendBytesExample()
+{
+    // Setup
+    var input = new byte[] { 0xC0, 0xC0, 0xCA, 0xFE };
+    const int count = 4;
+    // Act
+    var result = input.AppendBytes(count);
+    // Conclusion
+    Console.WriteLine("AppendBytes Example");
+    Console.WriteLine($"input:\t{input.ToString("H")}");
+    Console.WriteLine($"result:\t{result.ToString("H")}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -180,6 +213,21 @@ public static (byte[] left, byte[] right) ByteArrayUtils.AppendShortest(byte[] l
 ```
 
 ```c#
+public static void AppendShortestExample()
+{
+    // Setup
+    var lhs = new byte[] { 0xDE, 0xCA, 0xF0 };
+    var rhs = new byte[] { 0xCA, 0xFE, 0xC0, 0xFF, 0xEE };
+    // Act
+    var (lhsResult, rhsResult) = ByteArrayUtils.AppendShortest(lhs, rhs);
+    // Conclusion
+    Console.WriteLine("AppendShortest Example");
+    Console.WriteLine($"lhs:\t{lhs.ToString("H")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("H")}");
+    Console.WriteLine($"lhsResult:\t{lhsResult.ToString("H")}");
+    Console.WriteLine($"lhsResult:\t{rhsResult.ToString("H")}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -200,6 +248,19 @@ public static byte[] ByteArrayUtils.PrependBytes(this byte[] source, int count, 
 ```
 
 ```c#
+public static void PrependBytesExample()
+{
+    // Setup
+    var input = new byte[] { 0xC0, 0xC0, 0xCA, 0xFE };
+    const int count = 4;
+    // Act
+    var result = input.PrependBytes(count);
+    // Conclusion
+    Console.WriteLine("PrependBytes Example");
+    Console.WriteLine($"input:\t{input.ToString("H")}");
+    Console.WriteLine($"result:\t{result.ToString("H")}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -214,6 +275,21 @@ public static (byte[] left, byte[] right) ByteArrayUtils.PrependShortest(byte[] 
 ```
 
 ```c#
+public static void PrependShortestExample()
+{
+    // Setup
+    var lhs = new byte[] { 0xDE, 0xCA, 0xF0 };
+    var rhs = new byte[] { 0xCA, 0xFE, 0xC0, 0xFF, 0xEE };
+    // Act
+    var (lhsResult, rhsResult) = ByteArrayUtils.PrependShortest(lhs, rhs);
+    // Conclusion
+    Console.WriteLine("PrependShortest Example");
+    Console.WriteLine($"lhs:\t{lhs.ToString("H")}");
+    Console.WriteLine($"rhs:\t{rhs.ToString("H")}");
+    Console.WriteLine($"lhsResult:\t{lhsResult.ToString("H")}");
+    Console.WriteLine($"lhsResult:\t{rhsResult.ToString("H")}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -233,6 +309,18 @@ public static byte[] ByteArrayUtils.ReverseBytes(this byte[] bytes)
 The `ReverseBytes` operation is endian agnostic.
 
 ```c#
+public static void ReverseBytesExample()
+{
+    // Setup
+    var input = new byte[] { 0xC0, 0x1D, 0xC0, 0xFF, 0xEE };
+    // Act
+    var result = input.ReverseBytes();
+    // Conclusion
+    Console.WriteLine("ReverseBytes example");
+    Console.WriteLine($"input:\t{input.ToString("H")}");
+    Console.WriteLine($"result:\t{result.ToString("H")}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -248,6 +336,32 @@ public static string ByteArrayUtils.ToString(this byte[] bytes, string format = 
 ```
 
 ```c#
+public static void StringificationExample()
+{
+   // Setup
+   var input = new byte[] { 0xC0, 0xFF, 0xEE, 0xC0, 0xDE };
+
+   // Conclusion
+   Console.WriteLine("Stringification Example");
+   Console.WriteLine($"input:\t{input.ToString("H")}");
+
+   Console.WriteLine("Hexadecimal Formats");
+   Console.WriteLine($"H:\t\"{input.ToString("H")}\"");
+   Console.WriteLine($"h:\t\"{input.ToString("h")}\"");
+   Console.WriteLine($"HC:\t\"{input.ToString("HC")}\"");
+   Console.WriteLine($"hc:\t\"{input.ToString("hc")}\"");
+
+   Console.WriteLine("Binary Formats");
+   Console.WriteLine($"b:\t\"{input.ToString("b")}\"");
+   Console.WriteLine($"bc:\t\"{input.ToString("bc")}\"");
+
+   Console.WriteLine("Integer Formats");
+   Console.WriteLine($"d:\t\"{input.ToString("d")}\"");
+   Console.WriteLine($"IBE:\t\"{input.ToString("IBE")}\"");
+   Console.WriteLine($"ILE:\t\"{input.ToString("ILE")}\"");
+
+   Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -265,8 +379,7 @@ Integer Formats
 d:      "192 255 238 192 222"
 IBE:    "828927557854"
 ILE:    "956719628224"
-
-```none
+```
 
 ## Effective Length
 
@@ -278,6 +391,18 @@ public static int ByteArrayUtils.BigEndianEffectiveLength(this byte[] input)
 ```
 
 ```c#
+public static void BigEndianEffectiveLengthExample()
+{
+    // Setup
+    var input = new byte[] { 0x00, 0x00, 0x00, 0xDA, 0xBD, 0xAD };
+    // Act
+    var result = input.BigEndianEffectiveLength();
+    // Conclusion
+    Console.WriteLine("BigEndianEffectiveLength Example");
+    Console.WriteLine($"input:\t{input.ToString("H")}");
+    Console.WriteLine($"result:\t{result}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
@@ -293,6 +418,18 @@ public static int ByteArrayUtils.LittleEndianEffectiveLength(this byte[] input)
 ```
 
 ```c#
+public static void LittleEndianEffectiveLengthExample()
+{
+    // Setup
+    var input = new byte[] { 0xDA, 0xB0, 0x00, 0x00, 0x00, 0x00 };
+    // Act
+    var result = input.LittleEndianEffectiveLength();
+    // Conclusion
+    Console.WriteLine("LittleEndianEffectiveLength Example");
+    Console.WriteLine($"input:\t{input.ToString("H")}");
+    Console.WriteLine($"result:\t{result}");
+    Console.WriteLine(string.Empty);
+}
 ```
 
 ```none
