@@ -52,13 +52,13 @@ If a byte array has no most significant zero values then a copy of the original 
 
 #### Big Endian
 
-To trim a big endian byte array use
+To trim all `0x00` bytes starting at the 0th index of the byte array
 
 ```c#
 public static byte[] ByteArrayUtils.TrimBigEndianLeadingZeroBytes(this byte[] input)
 ```
 
-The following example 
+The following example trims the array `[0x00, 0x00, 0x2A, 0x00]` returning `[0x2A, 0x00`].
 
 ```c#
 public static void TrimBigEndianLeadingZeroBytes()
@@ -82,12 +82,12 @@ input:  00 00 2A 00
 result: 2A 00
 ```
 
-Not that the final `00` value was not removed as we were only trimming most significant zero values.
+Not that the final `0x00` value was not removed as we were only trimming most significant zero values.
 
 
 #### Little Endian
 
-To trim a little endian byte array use
+To trim all `0x00` bytes starting at the end of the byte array
 
 ```c#
 public static byte[] ByteArrayUtils.TrimLittleEndianLeadingZeroBytes(this byte[] input)
