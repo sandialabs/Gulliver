@@ -343,7 +343,7 @@ fabric.properties
 **___jb_tmp___
 
 ### VisualStudioCode ###
-.vscode/
+.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

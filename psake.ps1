@@ -15,18 +15,20 @@ properties {
    $gulliver_csproj = "$gulliver_dir\Gulliver.csproj"
 }
 
-task release {
+task release -depends build_src {
    $global:config = "release"
 }
 
-task default -depends local
-task local -depends build_src, build_docs, test
+task default -depends build_debug
+
+task build_release -depends release, build_src, build_docs
+
+task build_debug -depends build_src, build_docs, test
 
 task build_src -depends clean {
-   echo "building source..."
-   echo "config: $config"
-   echo "build: Tag is $tag"
-   echo "build: CommitHash is $commitHash"
+   echo "building $config..."
+   echo "Tag: $tag"
+   echo "CommitHash: $commitHash"
 	
    exec { dotnet --version }
    exec { dotnet --info }
@@ -43,7 +45,6 @@ task test {
 }
 
 task clean {
-   
    rd "$docs_dir\_build" -recurse -force  -ErrorAction SilentlyContinue | out-null
 
    rd "$gulliver_dir\bin" -recurse -force  -ErrorAction SilentlyContinue | out-null
@@ -54,6 +55,8 @@ task clean {
 
    rd "$docexamples_dir\bin" -recurse -force  -ErrorAction SilentlyContinue | out-null
    rd "$docexamples_dir\obj" -recurse -force  -ErrorAction SilentlyContinue | out-null
-   
 }
 
+task pack -depends release, build_src, build_docs {
+   dotnet pack $gulliver_csproj --no-restore --include-source --include-symbols -vd
+}
