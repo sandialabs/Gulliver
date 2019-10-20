@@ -1,12 +1,16 @@
 # General Byte Array Operations
 
+There exist a number of operations one may want to do on an array of bytes that don't directly relate to explicit higher order mathematical operations or typical bitwise operations, baring any other name space we're considering these general operations. Typically their about building, transforming, mutating, or gathering meta data.
+
 Unless otherwise stated the following methods are statically defined in the `ByteArrayUtils` class and do not modify their input.
 
 ## Byte Array Creation and Population
 
+It is usually easy enough to new up a new byte array, however sometimes something a little more exotic than an array of `0x00` bytes are desired.
+
 ### Create
 
-Sometimes it is necessary to create a byte array filled with a known value. In this case `ByteArrayUtils.CreateByteArray` can be used to create a byte array of a given `length` filled with an option `element` value.
+Sometimes it is necessary to create a byte array filled with a known value. In this case `ByteArrayUtils.CreateByteArray` can be used to create a byte array of a given `length` filled with an optional `element` value.
 
 ```c#
 public static byte[] ByteArrayUtils.CreateByteArray(int length, byte element = 0x00)
@@ -44,11 +48,13 @@ Creates a byte array `resultBytes` with a value of `[0x42, 0x42, 0x42, 0x42, 0x4
 
 ## Byte Array Mutation
 
+Byte arrays often need to be altered in some way to process them, the addition of needing to be concerned with endiness can make this a bit less straightforward. 
+
 ### Trimming
 
 Leading zero byte trimming works similarly for both big and little endian byte arrays. In both cases leading, or most significant, zero value bytes are removed. For big endian those bytes starting at the 0th index are removed, whereas for little endian zero bytes are removed from the tail of the array. 
 
-If a byte array has no most significant zero values then a copy of the original will be returned.
+If a byte array has no most significant zero valued bytes then a copy of the original will be returned.
 
 #### Big Endian
 
@@ -176,9 +182,11 @@ result: DE FA CE C0 DE 00
 
 ### Appending
 
-Appending operations are endian agnostic.
+Appending operations are endian agnostic, new byte values will appear after the highest order index of the input array.
 
 #### Append Bytes
+
+The `ByteArrayUtils.AppendBytes` operation simply adds `count` bytes to the end of the value provided by the `source` array. Optional the `element` parameter may be provided to use a byte value other than the default `0x00`.
 
 ```c#
 public static byte[] ByteArrayUtils.AppendBytes(this byte[] source, int count, byte element = 0x00)
@@ -207,6 +215,10 @@ result: C0 C0 CA FE 00 00 00 00
 ```
 
 #### Append Shortest
+
+`ByteArrayUtils.AppendShortest` works much like `ByteArrayUtils.AppendBytes`, except instead of providing a desired byte count, the two input arrays lengths are compared and the shortest array is returned, along with the the longest array, with enough `0x00` bytes such that both byte arrays are now the same length.
+
+Effectively this adds most significant `0x00` bytes to the shortest little endian byte array, but may be useful for big endian arrays as well.
 
 ```c#
 public static (byte[] left, byte[] right) ByteArrayUtils.AppendShortest(byte[] left, byte[] right)
@@ -240,9 +252,12 @@ lhsResult:      CA FE C0 FF EE
 
 ### Prepend
 
-Prepending operations are endian agnostic.
+Prepending operations are endian agnostic, new byte values will appear after the lowest order index of the input array.
 
 #### Prepend Bytes
+
+The `ByteArrayUtils.PrependBytes` operation simply adds `count` bytes to the start of the value provided by the `source` array. Optional the `element` parameter may be provided to use a byte value other than the default `0x00`. This is essentially the inverse of `ByteArrayUtils.AppendBytes` operation.
+
 ```c#
 public static byte[] ByteArrayUtils.PrependBytes(this byte[] source, int count, byte element = 0x00)
 ```
@@ -269,6 +284,10 @@ input:  C0 C0 CA FE
 result: 00 00 00 00 C0 C0 CA FE
 ```
 #### Prepend Shortest
+
+`ByteArrayUtils.PrependShortest` works much like `ByteArrayUtils.PrependBytes`, except instead of providing a desired byte count, the two input arrays lengths are compared and the shortest array is returned, along with the the longest array, with enough `0x00` bytes such that both byte arrays are now the same length.
+
+Effectively this adds most significant `0x00` bytes to the shortest big endian byte array, but may be useful for little endian arrays as well.
 
 ```c#
 public static (byte[] left, byte[] right) ByteArrayUtils.PrependShortest(byte[] left, byte[] right)
@@ -302,11 +321,13 @@ lhsResult:      CA FE C0 FF EE
 
 ### Reversing
 
+Unsurprisingly, hopefully, `ByteArrayUtils.ReverseBytes` returns the reverse of the provided `bytes` byte array.
+
+The `ReverseBytes` operation is endian agnostic.
+
 ```c#
 public static byte[] ByteArrayUtils.ReverseBytes(this byte[] bytes)
 ```
-
-The `ReverseBytes` operation is endian agnostic.
 
 ```c#
 public static void ReverseBytesExample()
@@ -330,6 +351,84 @@ result: EE FF C0 1D C0
 ```
 
 ## Stringification
+
+What can be better than making byte arrays slightly more human readable!? We provide a number of ways to format a byte array that will hopefully meet your needs. Because `byte[]` don't implement `IFormattable` you have to be explicit about calling `ByteArrayUtils.ToString` and cannot rely on  string interpolation or `string.Format` and the typical format provider.
+
+
+Implemented `format` values include:
+ 
+ - `g` (default) `G`, `H`, or empty string
+
+   General Format Hexadecimal (base 16) bytes
+
+   Formats as uppercase hexadecimal digits with individual bytes delimited by a single space character
+
+   example: `C0 FF EE C0 DE`
+   
+ - `HC`
+
+   Uppercase Hexadecimal (base 16) Contiguous
+   
+   Formats bytes as uppercase contiguous hexadecimal digits
+
+   *example*: `C0FFEEC0DE`
+
+ - `h`
+
+   Lowercase Hexadecimal (base 16) bytes
+
+   Formats bytes as lowercase hexadecimal digits with individual bytes delimited by a single space character
+
+   *example*: `c0 ff ee c0 de`
+ 
+ - `hc`
+
+   Lowercase Hexadecimal Contiguous
+   
+   Formats bytes as lowercase contiguous hexadecimal digits
+
+   *example*: `c0ffeec0de`
+
+ - `b`, or `B`
+
+   Binary (base 2) bytes
+
+   Formats bytes as binary digits with individual bytes delimited by a single space character
+
+   *example*: `11000000 11111111 11101110 11000000 11011110`
+
+ - `bc`, or `BC`
+
+   Binary Contiguous
+
+   Formats bytes as contiguous binary digits
+
+   *example*: `1100000011111111111011101100000011011110`
+
+ - `d`, or `D`
+
+   Decimal (base 10) bytes
+
+   Formats bytes as decimal (base 10) digits with individual bytes delimited by a single space character
+
+   *example*: `192 255 238 192 222`
+
+
+ - `I`, or `IBE`
+
+   Integer (Big Endian)
+
+   Formats bytes as big endian unsigned decimal (base 10) integer
+
+   *example*: `828927557854`
+
+ - `ILE` 
+ 
+   Integer (Little Endian)
+
+   Formats bytes as little endian unsigned decimal (base 10) integer
+
+   *example*: `956719628224`
 
 ```c#
 public static string ByteArrayUtils.ToString(this byte[] bytes, string format = "g", IFormatProvider formatProvider = null)
@@ -383,8 +482,11 @@ ILE:    "956719628224"
 
 ## Effective Length
 
+Effective length provides the ability to count the number of non-most significant bytes within a byte array. Eg. the length of meaningful bytes within the array.
+
 ### Big Endian
 
+`ByteArrayUtils.BigEndianEffectiveLength` returns an `int` representing the byte length of the given `input` disregarding the `0x00` bytes at the beginning of the array.
 
 ```c#
 public static int ByteArrayUtils.BigEndianEffectiveLength(this byte[] input)
@@ -412,6 +514,8 @@ result: 3
 ```
 
 ### Little Endian
+
+`ByteArrayUtils.LittleEndianEffectiveLength` returns an `int` representing the byte length of the given `input` disregarding the `0x00` bytes at the end of the array.
 
 ```c#
 public static int ByteArrayUtils.LittleEndianEffectiveLength(this byte[] input)
