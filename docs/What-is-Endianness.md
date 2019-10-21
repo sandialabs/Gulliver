@@ -22,7 +22,7 @@ Little-Endian ordering is right-to-left. Given the representation of an unsigned
 
 For example, the decimal value of the unsigned integer `8675309` may be represented as `0x85BF7D` in hexadecimal. This hexadecimal value is composed of the three bytes `0x85`, `0xBF`, and `0x7D`. As such the value `8675309` may be represented in Little-Endian as a byte stream of `[0x7D, 0xBFm 0x85]`. 
 
-To some developers most affiliated with right-to-left natural languages Little-Endian may be seen as backwards.
+To developers most affiliated with right-to-left natural languages Little-Endian may seem backwards.
 
 ## Citations
 
