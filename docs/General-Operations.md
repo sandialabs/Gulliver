@@ -10,7 +10,7 @@ It is usually easy enough to new up a new byte array, however sometimes somethin
 
 ### Create
 
-Sometimes it is necessary to create a byte array filled with a known value. In this case `ByteArrayUtils.CreateByteArray` can be used to create a byte array of a given `length` filled with an optional `element` value.
+It can be necessary to create a byte array filled with a known value. In this case `ByteArrayUtils.CreateByteArray` can be used to create a byte array of a given `length` filled with an optional `element` value.
 
 ```c#
 public static byte[] ByteArrayUtils.CreateByteArray(int length, byte element = 0x00)
