@@ -347,7 +347,7 @@ Bitshifting operations are endian agnostic.
 
 ### Shift Right
 
-`ByteArrayUtils.ShiftBitsRight` is an arithmetic bit shift that returns the value of `bytes` with its underlying bits shifted `shift` indexes to the right. If the `cary` value is desired there exists an overload, shown below, that outs the result.
+`ByteArrayUtils.ShiftBitsRight` is an arithmetic bit shift that returns the value of `bytes` with its underlying bits shifted `shift` indexes to the right. If the `carry` value is desired there exists an overload, shown below, that outs the result.
 
 ```c#
 public static byte[] ByteArrayUtils.ShiftBitsRight(this byte[] bytes, int shift)
