@@ -16,7 +16,7 @@ It can be necessary to create a byte array filled with a known value. In this ca
 public static byte[] ByteArrayUtils.CreateByteArray(int length, byte element = 0x00)
 ```
 
-In the following example a byte array of length `10` is filled with the the repeated byte value of `0x42`
+In the following example a byte array of length `10` is filled with the the repeated byte value of `0x42`:
 
 ```c#
 public static void CreateByteArrayExample()
