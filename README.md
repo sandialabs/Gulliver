@@ -1,5 +1,7 @@
 # ![Gulliver](https://api.nuget.org/v3-flatcontainer/gulliver/1.0.1/icon) Gulliver
 
+[![Join the chat at https://gitter.im/sandialabs/Gulliver](https://badges.gitter.im/sandialabs/Gulliver.svg)](https://gitter.im/sandialabs/Gulliver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Gulliver)
 ![GitHub](https://img.shields.io/github/license/sandialabs/gulliver)
 ![.NetStandard 1.3](https://img.shields.io/badge/targets-.NETStandard%201.3-blueviolet)
