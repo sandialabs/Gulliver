@@ -11,7 +11,7 @@ The `FixedBytes` class brings many of these operations together allowing develop
  - `IComparable<IEnumerable<byte>>`
  - `IComparable`
 
-`FixedBytes` Overloads the operators
+Operator overloads provided by `FixedBytes`:
  - For bitwise operations
    - `|` - OR
    - `&` - AND
