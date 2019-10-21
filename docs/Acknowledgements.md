@@ -20,5 +20,3 @@
   >
   > U.S. work public domain in the U.S. for unspecified reason but presumably because it was published in the U.S. before 1924.
   > This work has been identified as being free of known restrictions under copyright law, including all related and neighboring rights.
-
-## Thank Yous
