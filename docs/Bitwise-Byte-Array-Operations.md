@@ -435,7 +435,7 @@ carry:  00000000
 
 ### Shift Left
 
-`ByteArrayUtils.ShiftBitsLeft` is an arithmetic bit shift that returns the value of `bytes` with its underlying bits shifted `shift` indexes to the left. If the `cary` value is desired there exists an overload, shown below, that outs the result.
+`ByteArrayUtils.ShiftBitsLeft` is an arithmetic bit shift that returns the value of `bytes` with its underlying bits shifted `shift` indexes to the left. If the `carry` value is desired there exists an overload, shown below, that outs the result.
 
 ```c#
 public static byte[] ByteArrayUtils.ShiftBitsLeft(this byte[] bytes, int shift)
