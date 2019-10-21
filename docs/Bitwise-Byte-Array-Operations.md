@@ -60,7 +60,7 @@ result: [4]:0, [5]:0, [6]:1, [7]:1, [8]:1, [9]:0, [10]:1, [11]:1
 
 Boolean operations include the standard NOT, AND, OR, and XOR.
 
-XNOR, and the remaining 11 truth functions were deemed unnecessary. But remember, as an exercise for the developer, a XNOR may be created by using a NOT on the result of an OR operation, and given the principal of [Functional Completeness](https://en.wikipedia.org/wiki/Functional_completeness) each of the 16 truth functions can be built using your newly created gate. 
+XNOR, and the remaining 11 truth functions were deemed unnecessary. But remember, as an exercise for the developer, a XNOR may be created by using a NOT on the result of an OR operation, and given the principal of [Functional Completeness](https://en.wikipedia.org/wiki/Functional_completeness) each of the [16 truth functions](https://en.wikipedia.org/wiki/Truth_table#Binary_operations) can be built using your newly created gate. 
 
 ### NOT
 
