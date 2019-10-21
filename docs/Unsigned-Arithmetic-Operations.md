@@ -88,7 +88,7 @@ result: 13745517
 
 Both the `ByteArrayUtils.SubtractUnsignedBigEndian` and `ByteArrayUtils.SubtractUnsignedLittleEndian` methods return the subtraction result of the provided `right` (minuend) and `left` (subtrahend) byte arrays accounting for the appropriate endiness of the input.
 
-If the operation would result in a negative value, given we're only dealing with unsigned integer operations, the execution will throw a `InvalidOperationException`. 
+If the operation would result in a negative value, given we're only dealing with unsigned integer operations, the execution will throw an `InvalidOperationException`. 
 
 ### Big Endian
 
