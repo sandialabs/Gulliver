@@ -26,7 +26,8 @@ public static void CreateByteArrayExample()
    const byte element = 0x42; // optional, defaults to 0x00
 
    // Act
-   var result = ByteArrayUtils.CreateByteArray(length, element); // creates a byte array of length 10, filled with bytes of 0x42
+   // creates a byte array of length 10, filled with bytes of 0x42
+   var result = ByteArrayUtils.CreateByteArray(length, element);
 
    // Conclusion
    Console.WriteLine("CreateByteArray example");
@@ -45,14 +46,13 @@ result: 42 42 42 42 42 42 42 42 42 42
 
 Creates a byte array `resultBytes` with a value of `[0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42]`.
 
-
 ## Byte Array Mutation
 
-Byte arrays often need to be altered in some way to process them, the addition of needing to be concerned with endiness can make this a bit less straightforward. 
+Byte arrays often need to be altered in some way to process them, the addition of needing to be concerned with endiness can make this a bit less straightforward.
 
 ### Trimming
 
-Leading zero byte trimming works similarly for both big and little endian byte arrays. In both cases leading, or most significant, zero value bytes are removed. For big endian those bytes starting at the 0th index are removed, whereas for little endian zero bytes are removed from the tail of the array. 
+Leading zero byte trimming works similarly for both big and little endian byte arrays. In both cases leading, or most significant, zero value bytes are removed. For big endian those bytes starting at the 0th index are removed, whereas for little endian zero bytes are removed from the tail of the array.
 
 If a byte array has no most significant zero valued bytes then a copy of the original will be returned.
 
@@ -97,6 +97,7 @@ To trim all `0x00` bytes starting at the end of the byte array
 ```c#
 public static byte[] ByteArrayUtils.TrimLittleEndianLeadingZeroBytes(this byte[] input)
 ```
+
 ```c#
 public static void TrimLittleEndianLeadingZeroBytes()
 {
@@ -282,6 +283,7 @@ PrependBytes Example
 input:  C0 C0 CA FE
 result: 00 00 00 00 C0 C0 CA FE
 ```
+
 #### Prepend Shortest
 
 `ByteArrayUtils.PrependShortest` works much like `ByteArrayUtils.PrependBytes`, except instead of providing a desired byte count, the two input arrays lengths are compared and the shortest array is returned, along with the the longest array, with enough `0x00` bytes such that both byte arrays are now the same length.
@@ -347,136 +349,6 @@ public static void ReverseBytesExample()
 ReverseBytes example
 input:  C0 1D C0 FF EE
 result: EE FF C0 1D C0
-```
-
-## Stringification
-
-What can be better than making byte arrays slightly more human readable!? We provide a number of ways to format a byte array that will hopefully meet your needs. Because `byte[]` don't implement `IFormattable` you have to be explicit about calling `ByteArrayUtils.ToString` and cannot rely on  string interpolation or `string.Format` and the typical format provider.
-
-
-Implemented `format` values include:
- 
- - `g` (default) `G`, `H`, or empty string
-
-   General Format Hexadecimal (base 16) bytes
-
-   Formats as uppercase hexadecimal digits with individual bytes delimited by a single space character
-
-   example: `C0 FF EE C0 DE`
-   
- - `HC`
-
-   Uppercase Hexadecimal (base 16) Contiguous
-   
-   Formats bytes as uppercase contiguous hexadecimal digits
-
-   *example*: `C0FFEEC0DE`
-
- - `h`
-
-   Lowercase Hexadecimal (base 16) bytes
-
-   Formats bytes as lowercase hexadecimal digits with individual bytes delimited by a single space character
-
-   *example*: `c0 ff ee c0 de`
- 
- - `hc`
-
-   Lowercase Hexadecimal Contiguous
-   
-   Formats bytes as lowercase contiguous hexadecimal digits
-
-   *example*: `c0ffeec0de`
-
- - `b`, or `B`
-
-   Binary (base 2) bytes
-
-   Formats bytes as binary digits with individual bytes delimited by a single space character
-
-   *example*: `11000000 11111111 11101110 11000000 11011110`
-
- - `bc`, or `BC`
-
-   Binary Contiguous
-
-   Formats bytes as contiguous binary digits
-
-   *example*: `1100000011111111111011101100000011011110`
-
- - `d`, or `D`
-
-   Decimal (base 10) bytes
-
-   Formats bytes as decimal (base 10) digits with individual bytes delimited by a single space character
-
-   *example*: `192 255 238 192 222`
-
-
- - `I`, or `IBE`
-
-   Integer (Big Endian)
-
-   Formats bytes as big endian unsigned decimal (base 10) integer
-
-   *example*: `828927557854`
-
- - `ILE` 
- 
-   Integer (Little Endian)
-
-   Formats bytes as little endian unsigned decimal (base 10) integer
-
-   *example*: `956719628224`
-
-```c#
-public static string ByteArrayUtils.ToString(this byte[] bytes, string format = "g", IFormatProvider formatProvider = null)
-```
-
-```c#
-public static void StringificationExample()
-{
-   // Setup
-   var input = new byte[] { 0xC0, 0xFF, 0xEE, 0xC0, 0xDE };
-
-   // Conclusion
-   Console.WriteLine("Stringification Example");
-   Console.WriteLine($"input:\t{input.ToString("H")}");
-
-   Console.WriteLine("Hexadecimal Formats");
-   Console.WriteLine($"H:\t\"{input.ToString("H")}\"");
-   Console.WriteLine($"h:\t\"{input.ToString("h")}\"");
-   Console.WriteLine($"HC:\t\"{input.ToString("HC")}\"");
-   Console.WriteLine($"hc:\t\"{input.ToString("hc")}\"");
-
-   Console.WriteLine("Binary Formats");
-   Console.WriteLine($"b:\t\"{input.ToString("b")}\"");
-   Console.WriteLine($"bc:\t\"{input.ToString("bc")}\"");
-
-   Console.WriteLine("Integer Formats");
-   Console.WriteLine($"d:\t\"{input.ToString("d")}\"");
-   Console.WriteLine($"IBE:\t\"{input.ToString("IBE")}\"");
-   Console.WriteLine($"ILE:\t\"{input.ToString("ILE")}\"");
-
-   Console.WriteLine(string.Empty);
-}
-```
-
-```none
-Stringification Example
-input:  C0 FF EE C0 DE
-Hexadecimal Formats
-H:      "C0 FF EE C0 DE"
-h:      "c0 ff ee c0 de"
-HC:     "C0FFEEC0DE"
-hc:     "c0ffeec0de"
-Binary Formats
-b:      "11000000 11111111 11101110 11000000 11011110"
-bc:     "1100000011111111111011101100000011011110"
-Integer Formats
-d:      "192 255 238 192 222"
-IBE:    "828927557854"
-ILE:    "956719628224"
 ```
 
 ## Effective Length

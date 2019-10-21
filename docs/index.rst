@@ -31,6 +31,7 @@ The API surfaced by Gulliver is not outwardly complex, and the intention is to k
    :caption: Features & Functionality
 
    General-Operations
+   Stringification
    Bitwise-Byte-Array-Operations
    Unsigned-Arithmetic-Operations
    Endian-Byte-Enumerables
