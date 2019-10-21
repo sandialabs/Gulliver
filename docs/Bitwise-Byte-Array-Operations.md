@@ -341,7 +341,6 @@ result: 00000000 00100001 11101110
 
 ## Bitshifting
 
-
 Bitshifting allows for the shifting of the underlying bit values of bytes in the desired direction. 
 
 Bitshifting operations are endian agnostic.
