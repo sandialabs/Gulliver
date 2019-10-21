@@ -255,7 +255,7 @@ Prepending operations are endian agnostic, new byte values will appear after the
 
 #### Prepend Bytes
 
-The `ByteArrayUtils.PrependBytes` operation simply adds `count` bytes to the start of the value provided by the `source` array. Optional the `element` parameter may be provided to use a byte value other than the default `0x00`. This is essentially the inverse of `ByteArrayUtils.AppendBytes` operation.
+The `ByteArrayUtils.PrependBytes` operation simply adds `count` bytes to the start of the value provided by the `source` array. The optional `element` parameter may be provided to use a byte value other than the default `0x00`. This is essentially the inverse of `ByteArrayUtils.AppendBytes` operation.
 
 ```c#
 public static byte[] ByteArrayUtils.PrependBytes(this byte[] source, int count, byte element = 0x00)
