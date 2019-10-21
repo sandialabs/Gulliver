@@ -1,8 +1,10 @@
-# ![Gulliver](https://api.nuget.org/v3-flatcontainer/gulliver/1.0.1/icon) Gulliver
+# ![Gulliver](resources/images/icon_64x64.png) Gulliver
 
-![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Gulliver)
-![GitHub](https://img.shields.io/github/license/sandialabs/gulliver)
-![.NetStandard 1.3](https://img.shields.io/badge/targets-.NETStandard%201.3-blueviolet)
+[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Gulliver?logo=nuget)](https://www.nuget.org/packages/Gulliver/)
+[![Documentation on ReadTheDocs](https://img.shields.io/badge/Read%20the%20Docs-Gulliver-lightgrey?logo=read%20the%20docs)](https://gulliver.readthedocs.io)
+![Apache 2.0 license](https://img.shields.io/github/license/sandialabs/gulliver?logo=apache)
+![.NetStandard 1.3](https://img.shields.io/badge/targets-.NETStandard%201.3-5C2D91?logo=.net)
+[![Join the chat at https://gitter.im/sandialabs/Gulliver](https://badges.gitter.im/sandialabs/Gulliver.svg)](https://gitter.im/sandialabs/Gulliver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Gulliver is a C# utility package and library engineered for the manipulation of arbitrary sized byte arrays accounting for appropriate endianness and jagged byte length. Functionality includes the as previously unsupported standard set of boolean algebraic operations, bitwise shifting, and unsigned endian aware mathematical addition, subtraction, and comparison. Gulliver exist to free developers from managing byte ordering and operations at the low level as was previously required by the standard C# language distributions.
 
@@ -10,10 +12,11 @@ Gulliver was of course named for the titular character in "**[Gulliver's Travels
 
 Gulliver originally came to be for the sake of [Arcus]( https://github.com/sandialabs/arcus), a C# library for calculating, parsing, formatting, converting and comparing both IPv4 and IPv6 addresses and subnets. Inherently, by its nature, Arcus needed to do a great deal of byte manipulation. Eventually Gulliver came into a life of its own and it was decided that it should be broken off into its own library.
 
-
 ## Getting Started
 
-Gulliver is available via a [NuGet](https://www.nuget.org/packages/Gulliver/) package.
+Gulliver is available via a [NuGet](https://www.nuget.org/packages/Gulliver/). Our releases use [SemVer](http://semver.org/) for versioning.
+
+Documentation can be found on [Gulliver's Read the Docs site](https://gulliver.readthedocs.io/en/latest/).
 
 ## Usage
 
@@ -46,14 +49,10 @@ The `LittleEndianByteEnumerable` and `BigEndianByteEnumerable` gives access to m
 
 ## Built With
 
-* [NuGet](https://www.nuget.org/) - Dependency Management
 * [JetBrains.Annotations](https://www.jetbrains.com/help/resharper/10.0/Code_Analysis__Code_Annotations.html) - Used to keep developers honest
+* [NuGet](https://www.nuget.org/) - Dependency Management
 * [Stackoverflow](https://stackoverflow.com/) - Because who really remembers how to code
 * [xUnit.net](https://xunit.net/) - Testing, testing, 1, 2, 3...
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning.
 
 ## Primary Authors and Contributors
 

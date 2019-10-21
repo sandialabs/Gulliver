@@ -1,25 +1,25 @@
 {
-  "$schema":
-    "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
-  "settings": {
-    "documentationRules": {
-      "companyName": "Sandia National Laboratories"
-    },
-    "indentation": {
-      "indentationSize": 4,
-      "useTabs": false
-    },
-    "readabilityRules": {
-      "allowBuiltInTypeAliases": false
-    },
-    "orderingRules": {
-      "usingDirectivesPlacement": "preserve"
-    },
-    "maintainabilityRules": {
-      "topLevelTypes": ["class", "interface", "struct", "enum", "delegate"]
-    },
-    "layoutRules": {
-      "allowConsecutiveUsings": false
+    "$schema":
+        "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+    "settings": {
+        "documentationRules": {
+            "companyName": "Sandia National Laboratories"
+        },
+        "indentation": {
+            "indentationSize": 4,
+            "useTabs": false
+        },
+        "readabilityRules": {
+            "allowBuiltInTypeAliases": false
+        },
+        "orderingRules": {
+            "usingDirectivesPlacement": "outsideNamespace"
+        },
+        "maintainabilityRules": {
+            "topLevelTypes": ["class", "interface", "struct", "enum", "delegate"]
+        },
+        "layoutRules": {
+            "allowConsecutiveUsings": false
+        }
     }
-  }
 }

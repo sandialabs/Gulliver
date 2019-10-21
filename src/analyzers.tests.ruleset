@@ -1,372 +1,139 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="Code analysis rules" Description="Code analysis rules" ToolsVersion="15.0">
+<RuleSet Name="Code analysis rules" Description="Code analysis rules" ToolsVersion="16.0">
   <Rules AnalyzerId="AsyncUsageAnalyzers" RuleNamespace="AsyncUsageAnalyzers">
-    <!-- see https://github.com/DotNetAnalyzers/AsyncUsageAnalyzers/tree/master/documentation -->
-    <Rule Id="UseConfigureAwait" Action="Warning">
-      <!-- A Task whose continuation behavior has not been configured is awaited -->
-    </Rule>
+    <Rule Id="UseConfigureAwait" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="DocumentationAnalyzers" RuleNamespace="DocumentationAnalyzers">
-    <!-- see https://github.com/DotNetAnalyzers/DocumentationAnalyzers/blob/master/docs/StyleRules.md -->
-    <Rule Id="DOC100" Action="Warning">
-      <!-- A <remarks> or <note> documentation element contains content which is not wrapped in a block-level element. -->
-    </Rule>
-    <Rule Id="DOC101" Action="Warning">
-      <!-- A <remarks> or <note> documentation element contains content which is not wrapped in a block-level element.-->
-    </Rule>
-    <Rule Id="DOC102" Action="Warning">
-      <!-- The documentation for the element contains inline text, but the documentation for a sibling element of the same kind uses block-level elements.-->
-    </Rule>
-    <Rule Id="DOC103" Action="Warning">
-      <!-- The documentation contains an unnecessary or unrecognized HTML character entity.-->
-    </Rule>
-    <Rule Id="DOC104" Action="Warning">
-      <!-- The contains a language keyword reference using <c>keyword</c> that can be converted to the preferred form <see langword="keyword"/>.-->
-    </Rule>
-    <Rule Id="DOC105" Action="Warning">
-      <!-- The contains a parameter reference using <c>name</c> that can be converted to the preferred form <paramref name="name"/>.-->
-    </Rule>
-    <Rule Id="DOC106" Action="Warning">
-      <!-- The contains a type parameter reference using <c>T</c> that can be converted to the preferred form <typeparamref name="T"/>.-->
-    </Rule>
-    <Rule Id="DOC107" Action="Warning">
-      <!-- The contains a code element reference using <c>name</c> that can be converted to the preferred form <see cref="name"/>.-->
-    </Rule>
-    <Rule Id="DOC108" Action="Warning">
-      <!-- The documentation contains an empty paragraph element (<para/> or <p/>) used as a paragraph separator.-->
-    </Rule>
-    <Rule Id="DOC200" Action="Warning">
-      <!-- TThe documentation for the element an HTML element equivalent to a known XML documentation element.-->
-    </Rule>
-    <Rule Id="DOC201" Action="Warning">
-      <!-- The documentation for an <item> within a <list> did not include the required <term> and/or <description> elements.-->
-    </Rule>
-    <Rule Id="DOC202" Action="Warning">
-      <!-- The documentation contains a section element where a block or inline element was expected.-->
-    </Rule>
-    <Rule Id="DOC203" Action="Warning">
-      <!-- The documentation contains a block element where a section or inline element was expected.-->
-    </Rule>
-    <Rule Id="DOC204" Action="Warning">
-      <!-- The documentation contains an inline element where a section or block element was expected.-->
-    </Rule>
+    <Rule Id="DOC100" Action="Warning" />
+    <Rule Id="DOC101" Action="Warning" />
+    <Rule Id="DOC102" Action="Warning" />
+    <Rule Id="DOC103" Action="Warning" />
+    <Rule Id="DOC104" Action="Warning" />
+    <Rule Id="DOC105" Action="Warning" />
+    <Rule Id="DOC106" Action="Warning" />
+    <Rule Id="DOC107" Action="Warning" />
+    <Rule Id="DOC108" Action="Warning" />
+    <Rule Id="DOC200" Action="Warning" />
+    <Rule Id="DOC201" Action="Warning" />
+    <Rule Id="DOC202" Action="Warning" />
+    <Rule Id="DOC203" Action="Warning" />
+    <Rule Id="DOC204" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
-    <!--see https://docs.microsoft.com/en-us/visualstudio/code-quality/code-analysis-for-managed-code-warnings?view=vs-2019-->
-    <Rule Id="CA1000" Action="None">
-      <!-- A generic type contains a static (Shared in Visual Basic) member.-->
-    </Rule>
-    <Rule Id="CA1001" Action="Warning">
-      <!-- A class declares and implements an instance field that is a System.IDisposable type and the class does not implement IDisposable.-->
-    </Rule>
-    <Rule Id="CA1009" Action="Warning">
-      <!-- A delegate that handles a public or protected event does not have the correct signature, return type, or parameter names.-->
-    </Rule>
-    <Rule Id="CA1016" Action="Warning">
-      <!-- The assembly does not have a version number.-->
-    </Rule>
-    <Rule Id="CA1033" Action="Warning">
-      <!-- An unsealed externally visible type provides an explicit method implementation of a public interface and does not provide an alternative externally visible method that has the same name.-->
-    </Rule>
-    <Rule Id="CA1034" Action="None">
-      <!-- An externally visible type contains an externally visible type declaration. Nested enumerations and protected types are exempt from this rule.-->
-    </Rule>
-    <Rule Id="CA1036" Action="None">
-      <!-- A type implements the System.IComparable interface and does not override System.Object.Equals or does not overload the language-specific operator for equality, inequality, less-than, or greater-than. The rule does not report a violation if the type inherits only an implementation of the interface.-->
-    </Rule>
-    <Rule Id="CA1049" Action="Warning">
-      <!-- A type references a System.IntPtr field, a System.UIntPtr field, or a System.Runtime.InteropServices.HandleRef field, but does not implement System.IDisposable.-->
-    </Rule>
-    <Rule Id="CA1056" Action="Warning">
-      <!-- A type declares a string property whose name contains "uri", "Uri", "urn", "Urn", "url", or "Url".-->
-    </Rule>
-    <Rule Id="CA1060" Action="Warning">
-      <!-- A method uses Platform Invocation Services to access unmanaged code and is not a member of one of the NativeMethods classes.-->
-    </Rule>
-    <Rule Id="CA1061" Action="Warning">
-      <!-- A derived type declares a method with the same name and with the same number of parameters as one of its base methods; one or more of the parameters is a base type of the corresponding parameter in the base method; and any remaining parameters have types that are identical to the corresponding parameters in the base method.-->
-    </Rule>
-    <Rule Id="CA1063" Action="Warning">
-      <!-- The System.IDisposable interface is not implemented correctly-->
-    </Rule>
-    <Rule Id="CA1065" Action="Warning">
-      <!-- A method that is not expected to throw exceptions throws an exception.-->
-    </Rule>
-    <Rule Id="CA1301" Action="Warning">
-      <!-- A type extends System.Windows.Forms.Control and contains two or more top-level controls that have identical access keys that are stored in a resource file.-->
-    </Rule>
-    <Rule Id="CA1303" Action="None">
-      <!-- Do not pass literals as localized parameters warning at application level.-->
-    </Rule>
-    <Rule Id="CA1400" Action="Warning">
-      <!-- A public or protected method is marked with the System.Runtime.InteropServices.DllImportAttribute.-->
-    </Rule>
-    <Rule Id="CA1401" Action="Warning">
-      <!-- A public or protected method in a public type has the System.Runtime.InteropServices.DllImportAttribute attribute-->
-    </Rule>
-    <Rule Id="CA1403" Action="Warning">
-      <!-- A Component Object Model (COM) visible value type is marked with the System.Runtime.InteropServices.StructLayoutAttribute attribute set to System.Runtime.InteropServices.LayoutKind.Auto.-->
-    </Rule>
-    <Rule Id="CA1404" Action="Warning">
-      <!-- A call is made to the System.Runtime.InteropServices.Marshal.GetLastWin32Error method or the equivalent Win32 GetLastError function, and the call that comes immediately before is not to a platform invoke method.-->
-    </Rule>
-    <Rule Id="CA1405" Action="Warning">
-      <!-- A Component Object Model (COM) visible type derives from a type that is not COM visible.-->
-    </Rule>
-    <Rule Id="CA1410" Action="Warning">
-      <!-- COM registration methods should be matched-->
-    </Rule>
-    <Rule Id="CA1415" Action="Warning">
-      <!-- Declare P/Invokes correctly-->
-    </Rule>
-    <Rule Id="CA1710" Action="None">
-      <!-- Identifiers should have correct suffix -->
-    </Rule>
-    <Rule Id="CA1716" Action="None">
-      <!-- Identifiers should not match keywords-->
-    </Rule>
-    <Rule Id="CA1821" Action="Warning">
-      <!-- Remove empty finalizers-->
-    </Rule>
-    <Rule Id="CA1900" Action="Warning">
-      <!-- Value type fields should be portable-->
-    </Rule>
-    <Rule Id="CA1901" Action="Warning">
-      <!-- Value type fields should be portable-->
-    </Rule>
-    <Rule Id="CA2002" Action="Warning">
-      <!-- Do not lock on objects with weak identity-->
-    </Rule>
-    <Rule Id="CA2100" Action="Warning">
-      <!-- Review SQL queries for security vulnerabilities-->
-    </Rule>
-    <Rule Id="CA2101" Action="Warning">
-      <!-- Specify marshaling for P/Invoke string arguments-->
-    </Rule>
-    <Rule Id="CA2108" Action="Warning">
-      <!-- Review declarative security on value types-->
-    </Rule>
-    <Rule Id="CA2111" Action="Warning">
-      <!-- Pointers should not be visible-->
-    </Rule>
-    <Rule Id="CA2112" Action="Warning">
-      <!-- Secured types should not expose fields-->
-    </Rule>
-    <Rule Id="CA2114" Action="Warning">
-      <!-- Method security should be a superset of type-->
-    </Rule>
-    <Rule Id="CA2116" Action="Warning">
-      <!-- Method security should be a superset of type-->
-    </Rule>
-    <Rule Id="CA2117" Action="Warning">
-      <!-- APTCA types should only extend APTCA base types-->
-    </Rule>
-    <Rule Id="CA2122" Action="Warning">
-      <!-- Do not indirectly expose methods with link demands-->
-    </Rule>
-    <Rule Id="CA2123" Action="Warning">
-      <!-- Override link demands should be identical to base-->
-    </Rule>
-    <Rule Id="CA2124" Action="Warning">
-      <!-- Wrap vulnerable finally clauses in outer try-->
-    </Rule>
-    <Rule Id="CA2126" Action="Warning">
-      <!-- Type link demands require inheritance demands-->
-    </Rule>
-    <Rule Id="CA2131" Action="Warning">
-      <!-- Security critical types may not participate in type equivalence-->
-    </Rule>
-    <Rule Id="CA2132" Action="Warning">
-      <!-- Default constructors must be at least as critical as base type default constructors-->
-    </Rule>
-    <Rule Id="CA2133" Action="Warning">
-      <!-- Delegates must bind to methods with consistent transparency-->
-    </Rule>
-    <Rule Id="CA2134" Action="Warning">
-      <!-- Methods must keep consistent transparency when overriding base methods-->
-    </Rule>
-    <Rule Id="CA2137" Action="Warning">
-      <!-- Transparent methods must contain only verifiable IL-->
-    </Rule>
-    <Rule Id="CA2138" Action="Warning">
-      <!-- Transparent methods must not call methods with the SuppressUnmanagedCodeSecurity attribute-->
-    </Rule>
-    <Rule Id="CA2140" Action="Warning">
-      <!-- Transparent code must not reference security critical items-->
-    </Rule>
-    <Rule Id="CA2141" Action="Warning">
-      <!-- Transparent methods must not satisfy LinkDemands-->
-    </Rule>
-    <Rule Id="CA2146" Action="Warning">
-      <!-- Types must be at least as critical as their base types and interfaces-->
-    </Rule>
-    <Rule Id="CA2147" Action="Warning">
-      <!-- Transparent methods may not use security asserts-->
-    </Rule>
-    <Rule Id="CA2149" Action="Warning">
-      <!-- Transparent methods must not call into native code-->
-    </Rule>
-    <Rule Id="CA2200" Action="Warning">
-      <!-- Rethrow to preserve stack details-->
-    </Rule>
-    <Rule Id="CA2202" Action="Warning">
-      <!-- Do not dispose objects multiple times-->
-    </Rule>
-    <Rule Id="CA2207" Action="Warning">
-      <!-- Initialize value type static fields inline-->
-    </Rule>
-    <Rule Id="CA2212" Action="Warning">
-      <!-- Do not mark serviced components with WebMethod-->
-    </Rule>
-    <Rule Id="CA2213" Action="Warning">
-      <!-- Disposable fields should be disposed-->
-    </Rule>
-    <Rule Id="CA2214" Action="Warning">
-      <!-- Do not call overridable methods in constructors-->
-    </Rule>
-    <Rule Id="CA2216" Action="Warning">
-      <!-- Disposable types should declare finalizer-->
-    </Rule>
-    <Rule Id="CA2220" Action="Warning">
-      <!-- Finalizers should call base class finalizer-->
-    </Rule>
-    <Rule Id="CA2229" Action="Warning">
-      <!-- Implement serialization constructors-->
-    </Rule>
-    <Rule Id="CA2231" Action="Warning">
-      <!-- Overload operator equals on overriding ValueType.Equals-->
-    </Rule>
-    <Rule Id="CA2232" Action="Warning">
-      <!-- Mark Windows Forms entry points with STAThread-->
-    </Rule>
-    <Rule Id="CA2235" Action="Warning">
-      <!-- Mark all non-serializable fields-->
-    </Rule>
-    <Rule Id="CA2236" Action="Warning">
-      <!-- Call base class methods on ISerializable types-->
-    </Rule>
-    <Rule Id="CA2237" Action="Warning">
-      <!-- Mark ISerializable types with SerializableAttribute-->
-    </Rule>
-    <Rule Id="CA2238" Action="Warning">
-      <!-- Implement serialization methods correctly-->
-    </Rule>
-    <Rule Id="CA2240" Action="Warning">
-      <!-- Implement ISerializable correctly-->
-    </Rule>
-    <Rule Id="CA2241" Action="Warning">
-      <!-- Provide correct arguments to formatting methods-->
-    </Rule>
-    <Rule Id="CA2242" Action="Warning">
-      <!-- Test for NaN correctly-->
-    </Rule>
+    <Rule Id="CA1001" Action="Warning" />
+    <Rule Id="CA1009" Action="Warning" />
+    <Rule Id="CA1016" Action="Warning" />
+    <Rule Id="CA1033" Action="Warning" />
+    <Rule Id="CA1049" Action="Warning" />
+    <Rule Id="CA1056" Action="Warning" />
+    <Rule Id="CA1060" Action="Warning" />
+    <Rule Id="CA1061" Action="Warning" />
+    <Rule Id="CA1063" Action="Warning" />
+    <Rule Id="CA1065" Action="Warning" />
+    <Rule Id="CA1301" Action="Warning" />
+    <Rule Id="CA1303" Action="Info" />
+    <Rule Id="CA1400" Action="Warning" />
+    <Rule Id="CA1401" Action="Warning" />
+    <Rule Id="CA1403" Action="Warning" />
+    <Rule Id="CA1404" Action="Warning" />
+    <Rule Id="CA1405" Action="Warning" />
+    <Rule Id="CA1410" Action="Warning" />
+    <Rule Id="CA1415" Action="Warning" />
+    <Rule Id="CA1821" Action="Warning" />
+    <Rule Id="CA1900" Action="Warning" />
+    <Rule Id="CA1901" Action="Warning" />
+    <Rule Id="CA2002" Action="Warning" />
+    <Rule Id="CA2100" Action="Warning" />
+    <Rule Id="CA2101" Action="Warning" />
+    <Rule Id="CA2108" Action="Warning" />
+    <Rule Id="CA2111" Action="Warning" />
+    <Rule Id="CA2112" Action="Warning" />
+    <Rule Id="CA2114" Action="Warning" />
+    <Rule Id="CA2116" Action="Warning" />
+    <Rule Id="CA2117" Action="Warning" />
+    <Rule Id="CA2122" Action="Warning" />
+    <Rule Id="CA2123" Action="Warning" />
+    <Rule Id="CA2124" Action="Warning" />
+    <Rule Id="CA2126" Action="Warning" />
+    <Rule Id="CA2131" Action="Warning" />
+    <Rule Id="CA2132" Action="Warning" />
+    <Rule Id="CA2133" Action="Warning" />
+    <Rule Id="CA2134" Action="Warning" />
+    <Rule Id="CA2137" Action="Warning" />
+    <Rule Id="CA2138" Action="Warning" />
+    <Rule Id="CA2140" Action="Warning" />
+    <Rule Id="CA2141" Action="Warning" />
+    <Rule Id="CA2146" Action="Warning" />
+    <Rule Id="CA2147" Action="Warning" />
+    <Rule Id="CA2149" Action="Warning" />
+    <Rule Id="CA2200" Action="Warning" />
+    <Rule Id="CA2202" Action="Warning" />
+    <Rule Id="CA2207" Action="Warning" />
+    <Rule Id="CA2212" Action="Warning" />
+    <Rule Id="CA2213" Action="Warning" />
+    <Rule Id="CA2214" Action="Warning" />
+    <Rule Id="CA2216" Action="Warning" />
+    <Rule Id="CA2220" Action="Warning" />
+    <Rule Id="CA2229" Action="Warning" />
+    <Rule Id="CA2231" Action="Warning" />
+    <Rule Id="CA2232" Action="Warning" />
+    <Rule Id="CA2235" Action="Warning" />
+    <Rule Id="CA2236" Action="Warning" />
+    <Rule Id="CA2237" Action="Warning" />
+    <Rule Id="CA2238" Action="Warning" />
+    <Rule Id="CA2240" Action="Warning" />
+    <Rule Id="CA2241" Action="Warning" />
+    <Rule Id="CA2242" Action="Warning" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
+    <Rule Id="CS1591" Action="Info" />
   </Rules>
   <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Analyzers" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Analyzers">
-    <!-- see https://github.com/dotnet/roslyn-analyzers/blob/master/src/Microsoft.CodeAnalysis.Analyzers/Microsoft.CodeAnalysis.Analyzers.md -->
-    <Rule Id="RS1022" Action="Warning">
-      <!-- Do not use types from Workspaces assembly in an analyzer -->
-    </Rule>
+    <Rule Id="RS1022" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.CodeStyle" RuleNamespace="Microsoft.CodeAnalysis.CSharp.CodeStyle">
-    <Rule Id="IDE0055" Action="Warning">
-      <!-- -->
-    </Rule>
+    <Rule Id="IDE0055" Action="Warning" />
   </Rules>
   <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
-    <Rule Id="IDE0003" Action="None">
-      <!-- this Name simplification-->
-    </Rule>
-    <Rule Id="IDE0009" Action="None">
-      <!-- this Name simplification-->
-    </Rule>
-  </Rules>
-  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
-    <!-- see https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/DOCUMENTATION.md -->
-    <Rule Id="SA1003" Action="None">
-      <!-- The spacing around an operator symbol is incorrect, within a C# code file.-->
-    </Rule>
-    <Rule Id="SA1008" Action="None">
-      <!-- An opening parenthesis within a C# statement is not spaced correctly.-->
-    </Rule>
-    <Rule Id="SA1009" Action="None">
-      <!-- A closing parenthesis within a C# statement is not spaced correctly-->
-    </Rule>
-    <Rule Id="SA1012" Action="None">
-      <!-- An opening brace within a C# element is not spaced correctly.-->
-    </Rule>
-    <Rule Id="SA1013" Action="None">
-      <!-- A closing brace within a C# element is not spaced correctly.-->
-    </Rule>
-    <Rule Id="SA1101" Action="None">
-      <!-- A call to an instance member of the local class or a base class is not prefixed with 'this.', within a C# code file.-->
-    </Rule>
-    <Rule Id="SA1108" Action="None">
-      <!-- A C# statement contains a comment between the declaration of the statement and the opening brace of the statement.-->
-    </Rule>
-    <Rule Id="SA1116" Action="None">
-      <!-- The parameters to a C# method or indexer call or declaration span across multiple lines, but the first parameter does not start on the line after the opening bracket.-->
-    </Rule>
-    <Rule Id="SA1123" Action="None">
-      <!-- Region should not be located within a code element.-->
-    </Rule>
-    <Rule Id="SA1124" Action="None">
-      <!-- The C# code contains a region.-->
-    </Rule>
-    <Rule Id="SA1201" Action="None">
-      <!-- An element within a C# code file is out of order in relation to the other elements in the code.-->
-    </Rule>
-    <Rule Id="SA1203" Action="None">
-      <!-- A constant field is placed beneath a non-constant field.-->
-    </Rule>
-    <Rule Id="SA1202" Action="None">
-      <!-- An element within a C# code file is out of order within regard to access level, in relation to other elements in the code.-->
-    </Rule>
-    <Rule Id="SA1204" Action="None">
-      <!-- A static element is positioned beneath an instance element of the same type.-->
-    </Rule>
-    <Rule Id="SA1305" Action="None">
-      <!-- The name of a field or variable in C# uses Hungarian notation.-->
-    </Rule>
-    <Rule Id="SA1309" Action="None">
-      <!-- A field name in C# begins with an underscore.-->
-    </Rule>
-    <Rule Id="SA1412" Action="Warning">
-      <!-- The encoding of the file is not UTF-8 with byte order mark.-->
-    </Rule>
-    <Rule Id="SA1413" Action="None">
-      <!-- A multi-line initializer should use a comma on the last item.-->
-    </Rule>
-    <Rule Id="SA1502" Action="None">
-      <!-- A C# element containing opening and closing braces is written completely on a single line.-->
-    </Rule>
-    <Rule Id="SA1600" Action="None">
-      <!-- A C# code element is missing a documentation header.-->
-    </Rule>
-    <Rule Id="SA1609" Action="Info">
-      <!-- The Xml header documentation for a C# property does not contain a <value> tag.-->
-    </Rule>
-    <Rule Id="SA1623" Action="None">
-      <!-- The documentation text within a C# property's <summary> tag does not match the accessors within the property.-->
-    </Rule>
-    <Rule Id="SA1629" Action="None">
-      <!--A section of the Xml header documentation for a C# element does not end with a period (also known as a full stop). -->
-    </Rule>
-    <Rule Id="SA1632" Action="None">
-      <!-- From StyleCop 4.5 this rule is disabled by default.-->
-    </Rule>
-    <Rule Id="SA1633" Action="None">
-      <!-- A C# code file is missing a standard file header.-->
-    </Rule>
-    <Rule Id="SA1648" Action="None">
-      <!-- <inheritdoc> has been used on an element that doesn't inherit from a base class or implement an interface.-->
-    </Rule>
-    <Rule Id="SA1005" Action="None" />
-    <Rule Id="SA1025" Action="None" />
-    <Rule Id="SA1512" Action="None" />
-    <Rule Id="SA0001" Action="Info" />
+    <Rule Id="IDE0003" Action="None" />
+    <Rule Id="IDE0009" Action="None" />
   </Rules>
   <Rules AnalyzerId="Microsoft.CodeQuality.Analyzers" RuleNamespace="Microsoft.CodeQuality.Analyzers">
-    <Rule Id="CA1707" Action="None" />
     <Rule Id="CA1062" Action="Info" />
+    <Rule Id="CA1707" Action="None" />
+  </Rules>
+  <Rules AnalyzerId="Microsoft.NetCore.Analyzers" RuleNamespace="Microsoft.NetCore.Analyzers">
+    <Rule Id="CA1303" Action="Info" />
+  </Rules>
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <Rule Id="SA0001" Action="Info" />
+    <Rule Id="SA1003" Action="None" />
+    <Rule Id="SA1005" Action="None" />
+    <Rule Id="SA1008" Action="None" />
+    <Rule Id="SA1009" Action="None" />
+    <Rule Id="SA1012" Action="None" />
+    <Rule Id="SA1013" Action="None" />
+    <Rule Id="SA1025" Action="None" />
+    <Rule Id="SA1101" Action="None" />
+    <Rule Id="SA1108" Action="None" />
+    <Rule Id="SA1116" Action="None" />
+    <Rule Id="SA1123" Action="None" />
+    <Rule Id="SA1124" Action="None" />
+    <Rule Id="SA1201" Action="None" />
+    <Rule Id="SA1202" Action="None" />
+    <Rule Id="SA1203" Action="None" />
+    <Rule Id="SA1204" Action="None" />
+    <Rule Id="SA1309" Action="None" />
+    <Rule Id="SA1412" Action="Warning" />
+    <Rule Id="SA1413" Action="None" />
+    <Rule Id="SA1502" Action="None" />
+    <Rule Id="SA1512" Action="None" />
+    <Rule Id="SA1600" Action="None" />
+    <Rule Id="SA1609" Action="Info" />
+    <Rule Id="SA1623" Action="None" />
+    <Rule Id="SA1629" Action="None" />
+    <Rule Id="SA1632" Action="None" />
+    <Rule Id="SA1633" Action="None" />
+    <Rule Id="SA1648" Action="None" />
   </Rules>
 </RuleSet>
