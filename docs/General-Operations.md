@@ -88,7 +88,7 @@ input:  00 00 2A 00
 result: 2A 00
 ```
 
-Not that the final `0x00` value was not removed as we were only trimming most significant zero values.
+Note that the final `0x00` value was not removed as we were only trimming most significant zero values.
 
 
 #### Little Endian
