@@ -376,7 +376,6 @@ public static void ShiftBitsRightExample()
 
 ```
 
-
 ```none
 ShiftBitsRight Example
 shift:  5
