@@ -6,7 +6,7 @@ properties {
 
    $base_dir = resolve-path .
    $source_dir = "$base_dir\src"
-   $docs_dir = "$base\docs"
+   $docs_dir = "$base_dir\docs"
    $gulliver_dir = "$source_dir\Gulliver"
    $gulliver_tests_dir = "$source_dir\Gulliver.Tests"
    $docexamples_dir = "$source_dir\Gulliver.DocExamplers"
@@ -36,17 +36,21 @@ task build_src -depends clean {
    exec { dotnet build $gulliver_sln -c $config }
 }
 
-task build_docs -depends clean {
-   exec { "$docs_dir\make.bat html" }
+task build_docs -depends clean_docs {
+
+   exec { cmd.exe /c $docs_dir/make.bat html }
+   
 }
 
 task test {
    exec { & dotnet test $gulliver_sln -c $config --no-build --no-restore }
 }
 
-task clean {
+task clean_docs {
    rd "$docs_dir\_build" -recurse -force  -ErrorAction SilentlyContinue | out-null
+}
 
+task clean {
    rd "$gulliver_dir\bin" -recurse -force  -ErrorAction SilentlyContinue | out-null
    rd "$gulliver_dir\obj" -recurse -force  -ErrorAction SilentlyContinue | out-null
 

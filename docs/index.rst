@@ -32,7 +32,7 @@ The API surfaced by Gulliver is not outwardly complex, and the intention is to k
 
    General-Operations
    Bitwise-Byte-Array-Operations
-   Unsigned-Mathematical-Operations
+   Unsigned-Arithmetic-Operations
    Endian-Byte-Enumerables
    Concurent-Endian-Byte-Enumerables
    FixedBytes

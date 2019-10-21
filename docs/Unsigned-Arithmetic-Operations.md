@@ -1,8 +1,12 @@
-# Unsigned Mathematical Operations
+# Unsigned Arithmetic Operations
+
+For now arithmetic operations within Gulliver have been limited to those involving the treatment of byte arrays as unsigned integer values. Negative numbers and floating point values are out of scope for the needs of this library at the moment.
 
 Unless otherwise stated the following methods are statically defined in the `ByteArrayUtils` class and do not modify their input.
 
 ## Addition 
+
+Both the `ByteArrayUtils.AddUnsignedBigEndian` and `ByteArrayUtils.AddUnsignedLittleEndian` methods return the addition result of the provided `right` and `left` byte arrays accounting for the appropriate endiness of the input.
 
 ### Big Endian
 
@@ -82,6 +86,10 @@ result: 13745517
 
 ## Subtraction
 
+Both the `ByteArrayUtils.SubtractUnsignedBigEndian` and `ByteArrayUtils.SubtractUnsignedLittleEndian` methods return the subtraction result of the provided `right` (minuend) and `left` (subtrahend) byte arrays accounting for the appropriate endiness of the input.
+
+If the operation would result in a negative value, given we're only dealing with unsigned integer operations, the execution will throw a `InvalidOperationException`. 
+
 ### Big Endian
 
 ```c#
@@ -158,6 +166,10 @@ result: 3497869342
 ```
 
 ## Safe Summation
+
+Safe summation allows for the the safe addition or subtraction of a `long` values `delta` from the given `source` byte array input. This is useful for iterating or decrementing byte arrays. 
+
+Both the `ByteArrayUtils.TrySumBigEndian` and `ByteArrayUtils.TrySumLittleEndian` methods return a `bool` stating if the operation was successful, and will out a non-null value of `result` on success. 
 
 ### Big Endian
 
@@ -239,6 +251,15 @@ result: 13688451
 Seemingly conspicuously absent are the `TrySubtractBigEndian` and `TrySubtractLittleEndian` equivalents of the `TrySumBigEndian` and `TrySumLittleEndian` methods. In actuality the various TrySum methods allow for a negative `delta` and therefore are functionally equivalent for safe subtraction. 
 
 ## Comparison
+
+It is often not enough to simply compare the lengths of two arbitrary byte arrays to determine the equality or the largest / smallest unsigned integer value encoded as bytes.
+
+Both `ByteArrayUtils.CompareUnsignedBigEndian` and `ByteArrayUtils.CompareUnsignedLittleEndian` provide the ability to easily compare byte arrays as their unsigned integer values.
+
+The result is similar to that of `IComparer.Compare(left, right)`. The signed integer indicates the relative values of `left and 'right':
+- If 0, `left` equals `right`
+- If less than 0, `left` is less than 'right'
+- If greater than 0, `right` is greater than `left`
 
 ### Big Endian
 
