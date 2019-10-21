@@ -2,7 +2,7 @@
 
 Endianness, at least as far as computing is concerned, is the ordering of bytes within a binary representation of data. The most common representations of endianness are [Big-Endian](#Big-Endian) and [Little-Endian](#Little-Endian). There exist other forms, such as Middle-Endian, but those are beyond the scope of this document.
 
-![Simply Explaind. Comic by Oliver Widder Released under Attribution 3.0 Unported (CC BY 3.0)](/img/endianpig.png)
+!["Simply Explained." Comic by Oliver Widder Released under Attribution 3.0 Unported (CC BY 3.0)](/img/endianpig.png)
 
 ## Entomology
 
