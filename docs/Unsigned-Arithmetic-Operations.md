@@ -256,7 +256,7 @@ It is often not enough to simply compare the lengths of two arbitrary byte array
 
 Both `ByteArrayUtils.CompareUnsignedBigEndian` and `ByteArrayUtils.CompareUnsignedLittleEndian` provide the ability to easily compare byte arrays as their unsigned integer values.
 
-The result is similar to that of `IComparer.Compare(left, right)`. The signed integer indicates the relative values of `left and 'right':
+The result is similar to that of `IComparer.Compare(left, right)`. The signed integer indicates the relative values of `left` and `right`:
 - If 0, `left` equals `right`
 - If less than 0, `left` is less than 'right'
 - If greater than 0, `right` is greater than `left`
