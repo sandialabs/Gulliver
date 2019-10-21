@@ -185,7 +185,7 @@ Appending operations are endian agnostic, new byte values will appear after the 
 
 #### Append Bytes
 
-The `ByteArrayUtils.AppendBytes` operation simply adds `count` bytes to the end of the value provided by the `source` array. Optional the `element` parameter may be provided to use a byte value other than the default `0x00`.
+The `ByteArrayUtils.AppendBytes` operation simply adds `count` bytes to the end of the value provided by the `source` array. The optional `element` parameter may be provided to use a byte value other than the default `0x00`.
 
 ```c#
 public static byte[] ByteArrayUtils.AppendBytes(this byte[] source, int count, byte element = 0x00)
