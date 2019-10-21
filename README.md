@@ -16,7 +16,7 @@ Gulliver originally came to be for the sake of [Arcus]( https://github.com/sandi
 
 Gulliver is available via a [NuGet](https://www.nuget.org/packages/Gulliver/). Our releases use [SemVer](http://semver.org/) for versioning.
 
-Documentation can be found on [Gulliver's Read the Docs site](https://arcus.readthedocs.io/en/latest/).
+Documentation can be found on [Gulliver's Read the Docs site](https://gulliver.readthedocs.io/en/latest/).
 
 ## Usage
 
