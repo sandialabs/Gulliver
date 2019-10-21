@@ -1,4 +1,4 @@
-# ![Gulliver](https://api.nuget.org/v3-flatcontainer/gulliver/1.0.1/icon) Gulliver
+# ![Gulliver](resources/images/icon_64x64.png) Gulliver
 
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Gulliver?logo=nuget)](https://www.nuget.org/packages/Gulliver/)
 [![Documentation on ReadTheDocs](https://img.shields.io/badge/Read%20the%20Docs-Gulliver-lightgrey?logo=read%20the%20docs)](https://gulliver.readthedocs.io)
@@ -11,10 +11,11 @@ Gulliver was of course named for the titular character in "**[Gulliver's Travels
 
 Gulliver originally came to be for the sake of [Arcus]( https://github.com/sandialabs/arcus), a C# library for calculating, parsing, formatting, converting and comparing both IPv4 and IPv6 addresses and subnets. Inherently, by its nature, Arcus needed to do a great deal of byte manipulation. Eventually Gulliver came into a life of its own and it was decided that it should be broken off into its own library.
 
-
 ## Getting Started
 
-Gulliver is available via a [NuGet](https://www.nuget.org/packages/Gulliver/) package.
+Gulliver is available via a [NuGet](https://www.nuget.org/packages/Gulliver/). Our releases use [SemVer](http://semver.org/) for versioning.
+
+Documentation can be found on [Gulliver's Read the Docs site](https://arcus.readthedocs.io/en/latest/).
 
 ## Usage
 
@@ -47,14 +48,10 @@ The `LittleEndianByteEnumerable` and `BigEndianByteEnumerable` gives access to m
 
 ## Built With
 
-* [NuGet](https://www.nuget.org/) - Dependency Management
 * [JetBrains.Annotations](https://www.jetbrains.com/help/resharper/10.0/Code_Analysis__Code_Annotations.html) - Used to keep developers honest
+* [NuGet](https://www.nuget.org/) - Dependency Management
 * [Stackoverflow](https://stackoverflow.com/) - Because who really remembers how to code
 * [xUnit.net](https://xunit.net/) - Testing, testing, 1, 2, 3...
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning.
 
 ## Primary Authors and Contributors
 
