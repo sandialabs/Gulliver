@@ -64,7 +64,7 @@ To trim all `0x00` bytes starting at the 0th index of the byte array
 public static byte[] ByteArrayUtils.TrimBigEndianLeadingZeroBytes(this byte[] input)
 ```
 
-The following example trims the array `[0x00, 0x00, 0x2A, 0x00]` returning `[0x2A, 0x00`].
+The following example trims the array `[0x00, 0x00, 0x2A, 0x00]` returning `[0x2A, 0x00`]:
 
 ```c#
 public static void TrimBigEndianLeadingZeroBytes()
