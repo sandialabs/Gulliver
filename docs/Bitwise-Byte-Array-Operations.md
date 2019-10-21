@@ -101,7 +101,7 @@ result: 11111111 11101110 01010011 00000000
 
 ### AND
 
-`ByteArrayUtils.BitwiseAndBigEndian` and `ByteArrayUtils.BitwiseAndLittleEndian`will return the logical AND of the `left` and `right` byte arrays. In the case where the input byte arrays are not of the same length the shortest array will be padded by the appropriate count of `0x00` most significant bytes so that comparisons may appropriately take place.
+`ByteArrayUtils.BitwiseAndBigEndian` and `ByteArrayUtils.BitwiseAndLittleEndian` will return the logical AND of the `left` and `right` byte arrays. In the case where the input byte arrays are not of the same length the shortest array will be padded by the appropriate count of `0x00` most significant bytes so that comparisons may appropriately take place.
 
 #### Big Endian
 
