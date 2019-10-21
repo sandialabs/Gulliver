@@ -90,7 +90,6 @@ result: 2A 00
 
 Note that the final `0x00` value was not removed as we were only trimming most significant zero values.
 
-
 #### Little Endian
 
 To trim all `0x00` bytes starting at the end of the byte array
