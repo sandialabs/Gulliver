@@ -5,13 +5,13 @@
    // for more information on psake.ps1
    "version": "2.0.0",
    "tasks": [{
-         "label": "clean",
+         "label": "Clean",
          "type": "shell",
          "command": "psake.cmd '.\\psake.ps1' Clean",
          "group": "build"
       },
       {
-         "label": "build",
+         "label": "Default",
          "type": "shell",
          "command": "psake.cmd '.\\psake.ps1' Default",
          "group": {
@@ -20,24 +20,51 @@
          }
       },
       {
-         "label": "test",
+         "label": "Test",
          "type": "shell",
-         "command": "psake.cmd '.\\psake.ps1' test",
+         "command": "psake.cmd '.\\psake.ps1' Test",
          "group": {
             "kind": "test",
             "isDefault": true
          }
       },
       {
-         "label": "build docs",
+         "label": "Build Debug",
+         "type": "shell",
+         "command": "psake.cmd '.\\psake.ps1' build_debug",
+         "group": "build"
+      },
+      {
+         "label": "Build Release",
+         "type": "shell",
+         "command": "psake.cmd '.\\psake.ps1' build_release",
+         "group": "build"
+      },
+
+      {
+         "label": "Build Docs",
          "type": "shell",
          "command": "psake.cmd '.\\psake.ps1' build_docs",
          "group": "build"
       },
       {
-         "label": "pack",
+         "label": "Clean Docs",
          "type": "shell",
-         "command": "psake.cmd '.\\psake.ps1' pack",
+         "command": "psake.cmd '.\\psake.ps1' clean_docs",
+         "group": "build"
+      },
+
+
+      {
+         "label": "Pack Debug",
+         "type": "shell",
+         "command": "psake.cmd '.\\psake.ps1' pack_debug",
+         "group": "build"
+      },
+      {
+         "label": "Pack Release",
+         "type": "shell",
+         "command": "psake.cmd '.\\psake.ps1' pack_release",
          "group": "build"
       }
    ],
