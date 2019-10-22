@@ -10,7 +10,7 @@ What can be better than making byte arrays slightly more human readable!? We pro
 Implemented ``format`` values
 
 .. csv-table:: Implemented format values
-   :file: .\stringification-formats.csv
+   :file: stringification-formats.csv
    :header-rows: 1
 
 .. code-block:: c#
