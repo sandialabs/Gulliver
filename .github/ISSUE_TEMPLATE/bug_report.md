@@ -34,8 +34,7 @@ Do you have a solution, what would you recommend to fix it?
 
 # Can you help?
 
-Let us know if you are interested in helping, and in what capacity. eg: I want to write code and create a pull request, I can provide test cases, I have a suggestion on how it can be done, etc
-
+Let us know if you are interested in helping, and in what capacity. e.g.: I want to write code and create a pull request, I can provide test cases, I have a suggestion on how it can be done, etc.
 
 # Additional context
 
