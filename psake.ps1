@@ -61,6 +61,10 @@ task clean {
    rd "$docexamples_dir\obj" -recurse -force  -ErrorAction SilentlyContinue | out-null
 }
 
-task pack -depends release, build_src, build_docs {
-   dotnet pack $gulliver_csproj --no-restore --include-source --include-symbols -vd
+task pack -depends release, clean {
+   echo "releasing $config..."
+   echo "Tag: $tag"
+   echo "CommitHash: $commitHash"
+
+   dotnet pack $gulliver_csproj -c $config --no-restore --include-symbols --include-source --verbosity m
 }
