@@ -7,17 +7,30 @@ assignees: ''
 
 ---
 
-## Description 
-A clear and concise description of what the tech debt is and the reason of being created
+# Description 
 
-## Impact 
-Description of the current or possible impact of this tech debt.
+A clear and concise description of what the technical debt is, and the reason it should be improved.
 
-## Proposed solutions
-_How would you fix it?_
+# Impact 
+
+Description of the current or possible impact of this tech debt. Include both the positive and negative.
 
 ## Observations
 
-### Related files
+How would this change make things better?
 
-[files](url)
+# Proposed solutions
+
+Do you have a solution that may fix this issue?
+
+# Can you help?
+
+Let us know if you are interested in helping, and in what capacity. e.g.: I want to write code and create a pull request, I can provide test cases, I have a suggestion on how it can be done, etc.
+
+## Related files / Classes
+
+ - [files](url)
+
+# Additional context
+
+Add any other context about the problem here.
