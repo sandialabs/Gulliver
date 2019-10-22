@@ -21,7 +21,7 @@ How would this change make things better?
 
 # Proposed solutions
 
-Do you have a solution, what would you recommend to fix it?
+Do you have a solution that may fix this issue?
 
 # Can you help?
 

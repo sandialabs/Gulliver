@@ -30,7 +30,7 @@ If a code example is not possible, or too complex for the context of the issue d
 
 # Proposed solutions
 
-Do you have a solution, what would you recommend to fix it?
+Do you have a solution that may fix this issue?
 
 # Can you help?
 
