@@ -2,8 +2,8 @@
 
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Gulliver?logo=nuget)](https://www.nuget.org/packages/Gulliver/)
 [![Documentation on ReadTheDocs](https://img.shields.io/badge/Read%20the%20Docs-Gulliver-lightgrey?logo=read%20the%20docs)](https://gulliver.readthedocs.io)
-![Apache 2.0 license](https://img.shields.io/github/license/sandialabs/gulliver?logo=apache)
-![.NetStandard 1.3](https://img.shields.io/badge/targets-.NETStandard%201.3-5C2D91?logo=.net)
+[![Apache 2.0 license](https://img.shields.io/github/license/sandialabs/gulliver?logo=apache)](https://github.com/sandialabs/Gulliver/blob/master/LICENSE)
+[![.NetStandard 1.3](https://img.shields.io/badge/targets-.NETStandard%201.3-5C2D91?logo=.net)](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
 [![Join the chat at https://gitter.im/sandialabs/Gulliver](https://badges.gitter.im/sandialabs/Gulliver.svg)](https://gitter.im/sandialabs/Gulliver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Gulliver is a C# utility package and library engineered for the manipulation of arbitrary sized byte arrays accounting for appropriate endianness and jagged byte length. Functionality includes the as previously unsupported standard set of boolean algebraic operations, bitwise shifting, and unsigned endian aware mathematical addition, subtraction, and comparison. Gulliver exist to free developers from managing byte ordering and operations at the low level as was previously required by the standard C# language distributions.
