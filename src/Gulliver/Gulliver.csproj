@@ -9,14 +9,13 @@
     <embeduntrackedsources>true</embeduntrackedsources>
     <generatepackageonbuild>false</generatepackageonbuild>
     <generateruntimeconfigurationfiles>true</generateruntimeconfigurationfiles>
+    <packageicon>icon_64x64.png</packageicon>
     <includebuildoutput>true</includebuildoutput>
     <includesymbols>true</includesymbols>
     <ispackable>true</ispackable>
     <langversion>latest</langversion>
-    <packageiconurl>https://raw.githubusercontent.com/sandialabs/Gulliver/master/resources/images/icon_64x64.png</packageiconurl>
     <packagelanguage>en-US</packagelanguage>
-    <packagelicense>Apache-2.0</packagelicense>
-    <packagelicenseurl>http://www.apache.org/licenses/LICENSE-2.0</packagelicenseurl>
+    <packagelicenseexpression>Apache-2.0</packagelicenseexpression>
     <packageprojecturl>https://github.com/sandialabs/gulliver</packageprojecturl>
     <packagesummary>Gulliver is a C# utility package and library engineered for the manipulation of arbitrary sized byte arrays accounting for appropriate endianness and jagged byte length. Functionality includes the as previously unsupported standard set of boolean algebraic operations, bitwise shifting, and unsigned endian aware mathematical addition, subtraction, and comparison.</packagesummary>
     <packagetags>big-endian; bigendian; binary; bitwise; bitwise; boolean-logic; byte; byte-array; bytearray; bytes; csharp; dotnet; endian; endianness; fixedbytes; linq; little-endian; littleendian; math</packagetags>
@@ -77,6 +76,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+      <None Include="resources\images\icon_64x64.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
