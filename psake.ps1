@@ -1,5 +1,6 @@
 properties {
-   $global:config = "debug"
+   
+   $global:config = "debug" # default to debug
 
    $tag = $(git tag -l --points-at HEAD)
    $commitHash = $(git rev-parse --short HEAD)
@@ -15,52 +16,64 @@ properties {
    $gulliver_csproj = "$gulliver_dir\Gulliver.csproj"
 }
 
-task release -depends build_src {
-   $global:config = "release"
+# Default
+
+task default -Depends build_debug
+
+# Variable setting
+
+task release -Depends build_src -Description "config overidden to release" {
+   $global:config = "release" # override to release
 }
 
-task default -depends build_debug
+# C# build, testing, and release
+task clean {
+   Remove-Item "$gulliver_dir\bin" -recurse -force  -ErrorAction SilentlyContinue | out-null
+   Remove-Item "$gulliver_dir\obj" -recurse -force  -ErrorAction SilentlyContinue | out-null
 
-task build_release -depends release, build_src, build_docs
+   Remove-Item "$gulliver_tests_dir\bin" -recurse -force  -ErrorAction SilentlyContinue | out-null
+   Remove-Item "$gulliver_tests_dir\obj" -recurse -force  -ErrorAction SilentlyContinue | out-null
 
-task build_debug -depends build_src, build_docs, test
+   Remove-Item "$docexamples_dir\bin" -recurse -force  -ErrorAction SilentlyContinue | out-null
+   Remove-Item "$docexamples_dir\obj" -recurse -force  -ErrorAction SilentlyContinue | out-null
+}
 
-task build_src -depends clean {
-   echo "building $config..."
-   echo "Tag: $tag"
-   echo "CommitHash: $commitHash"
+task build_src -Depends clean -Description "Clean" {
+
+   Write-Output "building $config..."
+   Write-Output "Tag: $tag"
+   Write-Output "CommitHash: $commitHash"
 	
    exec { dotnet --version }
    exec { dotnet --info }
 
-   exec { dotnet build $gulliver_sln -c $config }
+   exec { & dotnet build $gulliver_sln -c $config }
 }
 
-task build_docs -depends clean_docs {
-
-   exec { cmd.exe /c $docs_dir/make.bat html }
-   
-}
-
-task test {
+task test -Description "Unit Tests" {
    exec { & dotnet test $gulliver_sln -c $config --no-build --no-restore }
 }
 
-task clean_docs {
-   rd "$docs_dir\_build" -recurse -force  -ErrorAction SilentlyContinue | out-null
+task pack -Depends clean -Description "create nuget packages" {
+   Write-Output "packaging $config..."
+   Write-Output "Tag: $tag"
+   Write-Output "CommitHash: $commitHash"
+
+   exec { & dotnet pack $gulliver_csproj -c $config --include-symbols --include-source --verbosity m }
 }
 
-task clean {
-   rd "$gulliver_dir\bin" -recurse -force  -ErrorAction SilentlyContinue | out-null
-   rd "$gulliver_dir\obj" -recurse -force  -ErrorAction SilentlyContinue | out-null
+task pack_debug -Depends clean, pack -Description "Package Debug"
+task pack_release -Depends release, clean, pack -Description "Package Release"
 
-   rd "$gulliver_tests_dir\bin" -recurse -force  -ErrorAction SilentlyContinue | out-null
-   rd "$gulliver_tests_dir\obj" -recurse -force  -ErrorAction SilentlyContinue | out-null
+task build_debug -Depends build_src, test -Description "Build Debug"
+task build_release -Depends release, build_src -Description "Build Release (no tests run)"
+   
+# Documentation
 
-   rd "$docexamples_dir\bin" -recurse -force  -ErrorAction SilentlyContinue | out-null
-   rd "$docexamples_dir\obj" -recurse -force  -ErrorAction SilentlyContinue | out-null
+task clean_docs -Description "Clean Sphnix Docs" {
+   Remove-Item "$docs_dir\_build" -recurse -force  -ErrorAction SilentlyContinue | out-null
 }
 
-task pack -depends release, build_src, build_docs {
-   dotnet pack $gulliver_csproj --no-restore --include-source --include-symbols -vd
+task build_docs -Depends clean_docs -Description "Build Sphnix Docs" {
+   exec { & cmd.exe /c $docs_dir/make.bat html }
 }
