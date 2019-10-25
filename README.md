@@ -6,6 +6,11 @@
 [![.NetStandard 1.3](https://img.shields.io/badge/targets-.NETStandard%201.3-5C2D91?logo=.net)](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
 [![Join the chat at https://gitter.im/sandialabs/Gulliver](https://badges.gitter.im/sandialabs/Gulliver.svg)](https://gitter.im/sandialabs/Gulliver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+[![Build Status](https://dev.azure.com/sandianationallabs/Gulliver/_apis/build/status/sandialabs.Gulliver?branchName=master)](https://dev.azure.com/sandianationallabs/Gulliver/_build/latest?definitionId=1&branchName=master)
+![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/sandianationallabs/Gulliver/1?compact_message)
+![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/sandianationallabs/Gulliver/1)
+
+
 Gulliver is a C# utility package and library engineered for the manipulation of arbitrary sized byte arrays accounting for appropriate endianness and jagged byte length. Functionality includes the as previously unsupported standard set of boolean algebraic operations, bitwise shifting, and unsigned endian aware mathematical addition, subtraction, and comparison. Gulliver exist to free developers from managing byte ordering and operations at the low level as was previously required by the standard C# language distributions.
 
 Gulliver was of course named for the titular character in "**[Gulliver's Travels](https://www.gutenberg.org/ebooks/829)**", a.k.a. "**Travels into Several Remote Nations of the World. In Four Parts. By Lemuel Gulliver, First a Surgeon, and then a Captain of Several Ships**" by Jonathan Swift, a book that the library author has admittedly not yet read but was pulled from the Computer Science zeitgeist referring to the big-endian versus little-endian nature of byte ordering.
