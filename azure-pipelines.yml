@@ -5,7 +5,7 @@ pr:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'vs2017-win2016'
 
 steps:
 - task: DotNetCoreCLI@2
@@ -18,6 +18,7 @@ steps:
   displayName: 'dotnet test'
   inputs:
     command: test
+    arguments: '--collect:"Code Coverage"'    
     projects: '**/*Tests.csproj'
 
 - task: DotNetCoreCLI@2
