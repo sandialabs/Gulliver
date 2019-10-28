@@ -28,7 +28,7 @@ namespace Gulliver
         ///             <description>formats as lower case hexadecimal digits with individual bytes delimited by a space character</description>
         ///         </item>
         ///         <item>
-        ///             <term>h</term>
+        ///             <term>hc</term>
         ///             <description>formats as lower case contiguous hexadecimal digits</description>
         ///         </item>
         ///         <item>
