@@ -1,0 +1,8 @@
+/*
+"fix"screen width. Based on https: //github.com/readthedocs/sphinx_rtd_theme/issues/295#issuecomment-455226058
+*/
+@media only screen and (min-width: 769px) {
+   .wy-nav-content {
+      max-width: 100%;
+   }
+}
