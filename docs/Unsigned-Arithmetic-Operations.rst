@@ -1,7 +1,7 @@
 Unsigned Arithmetic Operations
 ##############################
 
-For now arithmetic operations within Gulliver have been limited to those involving the treatment of byte arrays as unsigned integer values. Negative numbers and floating point values are out of scope for the needs of this library at the moment.
+For now arithmetic operations within Gulliver have been limited to those involving the treatment of byte arrays as unsigned integer values. Negative numbers and floating point values are (for the moment) out of scope for the needs of this library.
 
 .. note:: Unless otherwise stated the following methods are statically defined in the ``ByteArrayUtils`` class and do not modify their input.
 
