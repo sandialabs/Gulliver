@@ -24,7 +24,7 @@ Big-Endian
 
 Big-Endian, often referred to as *Network Byte Order*, ordering is left-to-right. Given the representation of an unsigned number in bytes the further to the left that a byte exists the more significant it is.
 
-For example, the decimal value of the unsigned integer ``6060842`` may be represented as ``0x5C7B2A`` in hexadecimal. This hexadecimal value is composed of the three bytes ``0x5C``, ``0x7B``, and ``0x28``. As such the value ``6060842`` may be represented in Big-Endian as a byte stream of ``[0x5C, 0x7B, 0x2A]``.
+For example, the decimal value of the unsigned integer :math:`8675309_{10}` may be represented as :math:`0x845FED_{16}` in hexadecimal. This hexadecimal value is composed of the three bytes :math:`0x84_{16}`, :math:`0x5F_{16}`, and :math:`0xED_{16}`. As such the value :math:`8675309_{10}` may be represented in Big-Endian as a byte stream of :math:`[0x5C_{16}, 0x7B_{16}, 0x2A_{16}]`.
 
 Big-Endian integer representation likely comes as second nature to developers familiar with right-to-left Arabic numerals [#ArabicNumerals]_ representation.
 
@@ -35,7 +35,7 @@ Little-Endian
 
 Little-Endian ordering is right-to-left. Given the representation of an unsigned number in bytes the further to the right a byte exists the more significant it is.
 
-For example, the decimal value of the unsigned integer ``8675309`` may be represented as ``0x85BF7D`` in hexadecimal. This hexadecimal value is composed of the three bytes ``0x85``, ``0xBF``, and ``0x7D``. As such the value ``8675309`` may be represented in Little-Endian as a byte stream of ``[0x7D, 0xBFm 0x85]``.
+For example, the decimal value of the unsigned integer :math:`8675309_{10}` may be represented as :math:`0x845FED_{16}` in hexadecimal. This hexadecimal value is composed of the three bytes :math:`0x84_{16}`, :math:`0x5F_{16}`, and :math:`0xED_{16}`. But because little-endian byte order is left to right :math:`8675309_{10}` may be represented in Little-Endian as a byte stream of :math:`[0xED_{16}, 0x5F_{16}, 0x84_{16}]`.
 
 To developers most affiliated with right-to-left natural languages Little-Endian may seem backwards.
 
