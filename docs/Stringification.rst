@@ -1,7 +1,7 @@
 Stringification
-===============
+###############
 
-What can be better than making byte arrays slightly more human readable!? We provide a number of ways to format a byte array that will hopefully meet your needs. Because ``byte[]`` don't implement ``IFormattable`` you have to be explicit about calling ``ByteArrayUtils.ToString`` and cannot rely on  string interpolation or ``string.Format`` and the typical format provider.
+What can be better than making byte arrays slightly more human readable!? We provide a number of ways to format a byte array that will hopefully meet your needs. Because ``byte[]`` doesn't implement ``IFormattable`` you have to be explicit about calling ``ByteArrayUtils.ToString`` and cannot rely on  string interpolation or ``string.Format`` and the typical format provider.
 
 .. code-block:: c#
 
@@ -14,31 +14,33 @@ Implemented ``format`` values
    :header-rows: 1
 
 .. code-block:: c#
+   :caption: Stringification Example
+   :name: Stringification  Example
 
    public static void StringificationExample()
    {
       // Setup
       var input = new byte[] { 0xC0, 0xFF, 0xEE, 0xC0, 0xDE };
-   
+
       // Conclusion
       Console.WriteLine("Stringification Example");
       Console.WriteLine($"input:\t{input.ToString("H")}");
-   
+
       Console.WriteLine("Hexadecimal Formats");
       Console.WriteLine($"H:\t\"{input.ToString("H")}\"");
       Console.WriteLine($"h:\t\"{input.ToString("h")}\"");
       Console.WriteLine($"HC:\t\"{input.ToString("HC")}\"");
       Console.WriteLine($"hc:\t\"{input.ToString("hc")}\"");
-   
+
       Console.WriteLine("Binary Formats");
       Console.WriteLine($"b:\t\"{input.ToString("b")}\"");
       Console.WriteLine($"bc:\t\"{input.ToString("bc")}\"");
-   
+
       Console.WriteLine("Integer Formats");
       Console.WriteLine($"d:\t\"{input.ToString("d")}\"");
       Console.WriteLine($"IBE:\t\"{input.ToString("IBE")}\"");
       Console.WriteLine($"ILE:\t\"{input.ToString("ILE")}\"");
-   
+
       Console.WriteLine(string.Empty);
    }
 

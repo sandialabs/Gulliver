@@ -1,5 +1,6 @@
 Gulliver
-========
+########
+
 .. image:: https://img.shields.io/nuget/vpre/gulliver?logo=nuget
    :alt: Nuget (with prereleases)
    :target: https://www.nuget.org/packages/Gulliver/
@@ -41,6 +42,7 @@ The API surfaced by Gulliver is not outwardly complex, and the intention is to k
 .. toctree::
    :maxdepth: 2
    :caption: Development
-   
+
    Community
+   Building
    Acknowledgements
