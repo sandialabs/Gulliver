@@ -1,5 +1,5 @@
 Gulliver
-========
+########
 
 .. image:: https://img.shields.io/nuget/vpre/gulliver?logo=nuget
    :alt: Nuget (with prereleases)
@@ -44,4 +44,5 @@ The API surfaced by Gulliver is not outwardly complex, and the intention is to k
    :caption: Development
 
    Community
+   Building
    Acknowledgements

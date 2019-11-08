@@ -291,7 +291,7 @@ Little Endian
 Safe Subtraction
 ----------------
 
-Seemingly conspicuously absent are the ``TrySubtractBigEndian`` and ``TrySubtractLittleEndian`` equivalents of the ``TrySumBigEndian`` and ``TrySumLittleEndian`` methods. In actuality the various TrySum methods allow for a negative ``delta`` and therefore are functionally equivalent for safe subtraction.
+.. note:: Seemingly conspicuously absent are the ``TrySubtractBigEndian`` and ``TrySubtractLittleEndian`` equivalents of the ``TrySumBigEndian`` and ``TrySumLittleEndian`` methods. In actuality the various TrySum methods allow for a negative ``delta`` and therefore are functionally equivalent for safe subtraction.
 
 Comparison
 **********

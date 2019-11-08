@@ -1,17 +1,17 @@
 Bitwise Byte Array Operations
-=============================
+#############################
 
 The various Bitwise byte array operations provided by Gulliver implement the standard expected bitwise operations that should fit the needs of most developers. In some cases these methods are endian aware such that byte arrays of differing lengths may be appropriately lined up for operations.
 
 Unless otherwise stated the following methods are statically defined in the ``ByteArrayUtils`` class and do not modify their input.
 
 Addressing
-^^^^^^^^^^
+**********
 
 The various addressing methods allow for the easy retrieval of individual byte, or bit data within the given byte array.
 
 Byte Array as Bit Array
------------------------
+=======================
 
 Byte arrays are great, but sometimes what we really need are bit (or ``boolean``) arrays instead. ``ByteArrayUtils.AddressBit`` method takes an array of ``byte`` treats it as if it were an array of bits instead returning the bit value at the given bit index ``index``.
 
@@ -63,18 +63,18 @@ Keep in mind there are 8 bits in a byte.
     result: [4]:0, [5]:0, [6]:1, [7]:1, [8]:1, [9]:0, [10]:1, [11]:1
 
 Boolean Operations
-^^^^^^^^^^^^^^^^^^
+******************
 
 Boolean operations include the standard **NOT**, **AND**, **OR**, and **XOR**.
 
 **XNOR**, and the remaining 11 truth functions were deemed unnecessary. But remember, as an exercise for the developer, a **XNOR** may be created by using a **NOT** on the result of an **OR** operation, and given the principal of `Functional Completeness <https://en.wikipedia.org/wiki/Functional_completeness>`_ each of the `16 truth functions <https://en.wikipedia.org/wiki/Truth_table#Binary_operations>`_ can be built using your newly created gate.
 
 NOT
----
+===
 
 ``ByteArrayUtils.BitwiseNot`` will return the inverse of the provided ``bytes``
 
-Due to its unary nature the ``ByteArrayUtils.BitwiseNot`` operation is endian agnostic.
+.. note:: Due to its unary nature the ``ByteArrayUtils.BitwiseNot`` operation is endian agnostic.
 
 .. code-block:: c#
 
@@ -113,12 +113,12 @@ Due to its unary nature the ``ByteArrayUtils.BitwiseNot`` operation is endian ag
    result: 11111111 11101110 01010011 00000000
 
 AND
----
+===
 
 ``ByteArrayUtils.BitwiseAndBigEndian`` and ``ByteArrayUtils.BitwiseAndLittleEndian`` will return the logical AND of the ``left`` and ``right`` byte arrays. In the case where the input byte arrays are not of the same length the shortest array will be padded by the appropriate count of ``0x00`` most significant bytes so that comparisons may appropriately take place.
 
 Big Endian
-++++++++++
+----------
 
 .. code-block:: c#
 
@@ -161,9 +161,8 @@ Big Endian
    rhs:    11000000 11111111 11101110
    result: 00000000 11000000 11001110
 
-
 Little Endian
-+++++++++++++
+-------------
 
 .. code-block:: c#
 
@@ -207,12 +206,12 @@ Little Endian
    result: 11000000 11011110 00000000
 
 OR
---
+==
 
 ``ByteArrayUtils.BitwiseOrBigEndian`` and ``ByteArrayUtils.BitwiseOrLittleEndian``will return the logical OR of the ``left`` and ``right`` byte arrays. In the case where the input byte arrays are not of the same length the shortest array will be padded by the appropriate count of ``0x00`` most significant bytes so that comparisons may appropriately take place.
 
 Big Endian
-++++++++++
+----------
 
 .. code-block:: c#
 
@@ -256,7 +255,7 @@ Big Endian
    result: 11000000 11111111 11111110
 
 Little Endian
-+++++++++++++
+-------------
 
 .. code-block:: c#
 
@@ -300,12 +299,12 @@ Little Endian
    result: 11000000 11111111 11101110
 
 XOR
----
+===
 
 ``ByteArrayUtils.BitwiseXorBigEndian`` and ``ByteArrayUtils.BitwiseXorLittleEndian`` will return the logical Exclusive Or of the ``left`` and ``right`` byte arrays. In the case where the input byte arrays are not of the same length the shortest array will be padded by the appropriate count of ``0x00`` most significant bytes so that comparisons may appropriately take place.
 
 Big Endian
-++++++++++
+----------
 
 .. code-block:: c#
 
@@ -349,7 +348,7 @@ Big Endian
    result: 11000000 00111111 00110000
 
 Little Endian
-+++++++++++++
+-------------
 
 .. code-block:: c#
 
@@ -393,14 +392,14 @@ Little Endian
    result: 00000000 00100001 11101110
 
 Bitshifting
-^^^^^^^^^^^
+***********
 
 Bitshifting allows for the shifting of the underlying bit values of bytes in the desired direction.
 
 Bitshifting operations are endian agnostic.
 
 Shift Right
------------
+===========
 
 ``ByteArrayUtils.ShiftBitsRight`` is an arithmetic bit shift that returns the value of ``bytes`` with its underlying bits shifted ``shift`` indexes to the right. If the ``carry`` value is desired there exists an overload, shown below, that outs the result.
 
@@ -443,9 +442,8 @@ Shift Right
    input:  10101101 00001011 11101100 00001111 11111110 11100000
    result: 00000101 01101000 01011111 01100000 01111111 11110111
 
-
 With Carry
-++++++++++
+----------
 
 An overload to the above ``ByteArrayUtils.ShiftBitsRight`` that provides the ``carry`` result of the operation.
 
@@ -493,7 +491,7 @@ An overload to the above ``ByteArrayUtils.ShiftBitsRight`` that provides the ``c
    carry:  00000000
 
 Shift Left
-----------
+==========
 
 ``ByteArrayUtils.ShiftBitsLeft`` is an arithmetic bit shift that returns the value of ``bytes`` with its underlying bits shifted ``shift`` indexes to the left. If the ``carry`` value is desired there exists an overload, shown below, that outs the result.
 
@@ -537,7 +535,7 @@ Shift Left
    result: 10100001 01111101 10000001 11111111 11011100 00000000
 
 With Carry
-++++++++++
+----------
 
 An overload to the above ``ByteArrayUtils.ShiftBitsLeft`` that provides the ``carry`` result of the operation.
 

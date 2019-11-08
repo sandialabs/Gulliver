@@ -1,17 +1,17 @@
 General Byte Array Operations
------------------------------
+#############################
 
 There exist a number of operations one may want to do on an array of bytes that don't directly relate to explicit higher order mathematical operations or typical bitwise operations, baring any other name space we're considering these general operations. Typically their about building, transforming, mutating, or gathering meta data.
 
 Unless otherwise stated the following methods are statically defined in the ``ByteArrayUtils`` class and do not modify their input.
 
 Byte Array Creation and Population
-==================================
+**********************************
 
 It is usually easy enough to new up a new byte array, however sometimes something a little more exotic than an array of ``0x00`` bytes are desired.
 
 Create
-^^^^^^
+======
 
 It can be necessary to create a byte array filled with a known value. In this case ``ByteArrayUtils.CreateByteArray`` can be used to create a byte array of a given ``length`` filled with an optional ``element`` value.
 
@@ -53,19 +53,19 @@ In the following example a byte array of length ``10`` is filled with the the re
 Creates a byte array ``resultBytes`` with a value of ``[0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42]``.
 
 Byte Array Mutation
-===================
+*******************
 
 Byte arrays often need to be altered in some way to process them, the addition of needing to be concerned with endiness can make this a bit less straightforward.
 
 Trimming
-^^^^^^^^
+========
 
 Leading zero byte trimming works similarly for both big and little endian byte arrays. In both cases leading, or most significant, zero value bytes are removed. For big endian those bytes starting at the 0th index are removed, whereas for little endian zero bytes are removed from the tail of the array.
 
 If a byte array has no most significant zero valued bytes then a copy of the original will be returned.
 
 Big Endian
-++++++++++
+----------
 
 To trim all ``0x00`` bytes starting at the 0th index of the byte array
 
@@ -103,7 +103,7 @@ The following example trims the array ``[0x00, 0x00, 0x2A, 0x00]`` returning ``[
 Note that the final ``0x00`` value was not removed as we were only trimming most significant zero values.
 
 Little Endian
-+++++++++++++
+-------------
 
 To trim all ``0x00`` bytes starting at the end of the byte array
 
@@ -137,12 +137,12 @@ To trim all ``0x00`` bytes starting at the end of the byte array
    result: 2A FF 2A
 
 Padding
-^^^^^^^
+=======
 
 When padding a byte array, if the the given array length is equal to or larger than ``finalLength`` a copy of the original array will be returned. Otherwise bytes with the value of ``element`` will be padded in the most significant value place.
 
 Big Endian
-++++++++++
+----------
 
 .. code-block:: c#
 
@@ -176,7 +176,7 @@ Big Endian
    result: 00 DE FA CE C0 DE
 
 Little Endian
-+++++++++++++
+-------------
 
 .. code-block:: c#
 
@@ -210,12 +210,12 @@ Little Endian
    result: DE FA CE C0 DE 00
 
 Appending
-^^^^^^^^^
+=========
 
 Appending operations are endian agnostic, new byte values will appear after the highest order index of the input array.
 
 Append Bytes
-++++++++++++
+------------
 
 The ``ByteArrayUtils.AppendBytes`` operation simply adds ``count`` bytes to the end of the value provided by the ``source`` array. The optional ``element`` parameter may be provided to use a byte value other than the default ``0x00``.
 
@@ -251,7 +251,7 @@ The ``ByteArrayUtils.AppendBytes`` operation simply adds ``count`` bytes to the 
    result: C0 C0 CA FE 00 00 00 00
 
 Append Shortest
-+++++++++++++++
+---------------
 
 ``ByteArrayUtils.AppendShortest`` works much like ``ByteArrayUtils.AppendBytes``, except instead of providing a desired byte count, the two input arrays lengths are compared and the shortest array is returned, along with the the longest array, with enough ``0x00`` bytes such that both byte arrays are now the same length.
 
@@ -293,11 +293,12 @@ Effectively this adds most significant ``0x00`` bytes to the shortest little end
    lhsResult: CA FE C0 FF EE
 
 Prepend
-^^^^^^^
+=======
+
 Prepending operations are endian agnostic, new byte values will appear after the lowest order index of the input array.
 
 Prepend Bytes
-+++++++++++++
+-------------
 
 The ``ByteArrayUtils.PrependBytes`` operation simply adds ``count`` bytes to the start of the value provided by the ``source`` array. The optional ``element`` parameter may be provided to use a byte value other than the default ``0x00``. This is essentially the inverse of ``ByteArrayUtils.AppendBytes`` operation.
 
@@ -333,7 +334,7 @@ The ``ByteArrayUtils.PrependBytes`` operation simply adds ``count`` bytes to the
    result: 00 00 00 00 C0 C0 CA FE
 
 Prepend Shortest
-++++++++++++++++
+----------------
 
 ``ByteArrayUtils.PrependShortest`` works much like ``ByteArrayUtils.PrependBytes``, except instead of providing a desired byte count, the two input arrays lengths are compared and the shortest array is returned, along with the the longest array, with enough ``0x00`` bytes such that both byte arrays are now the same length.
 
@@ -375,11 +376,11 @@ Effectively this adds most significant ``0x00`` bytes to the shortest big endian
    lhsResult: CA FE C0 FF EE
 
 Reversing
-^^^^^^^^^
+=========
 
 Unsurprisingly, hopefully, ``ByteArrayUtils.ReverseBytes`` returns the reverse of the provided ``bytes`` byte array.
 
-The ``ReverseBytes`` operation is endian agnostic.
+.. note:: The ``ReverseBytes`` operation is endian agnostic.
 
 .. code-block:: c#
 
@@ -411,12 +412,13 @@ The ``ReverseBytes`` operation is endian agnostic.
    input: C0 1D C0 FF EE
    result: EE FF C0 1D C0
 
-## Effective Length
+Effective Length
+****************
 
 Effective length provides the ability to count the number of non-most significant bytes within a byte array. Eg. the length of meaningful bytes within the array.
 
 Big Endian
-^^^^^^^^^^
+==========
 
 ``ByteArrayUtils.BigEndianEffectiveLength`` returns an ``int`` representing the byte length of the given ``input`` disregarding the ``0x00`` bytes at the beginning of the array.
 
@@ -451,7 +453,7 @@ Big Endian
    result: 3
 
 Little Endian
-^^^^^^^^^^^^^
+=============
 
 ``ByteArrayUtils.LittleEndianEffectiveLength`` returns an ``int`` representing the byte length of the given ``input`` disregarding the ``0x00`` bytes at the end of the array.
 

@@ -1,10 +1,10 @@
 FixedBytes
-==========
+##########
 
 The ``FixedBytes`` class brings many of these operations together allowing developers to treat a ``byte[]`` as a more complex object without the need to explicitly call helper or extension methods. It acts as a wrapper around an array of bytes in BigEndian byte order.
 
-``FixedBytes`` implements
--------------------------
+Implements
+**********
 
 - ``IFormattable``
 - ``IReadOnlyCollection<byte>``
@@ -15,12 +15,13 @@ The ``FixedBytes`` class brings many of these operations together allowing devel
 - ``IComparable``
 
 Operators
----------
+*********
 
 .. note::  Operators, where pertinent, treat ``FixedBytes`` as unsigned big-endian integers
 
 Bitwise
-+++++++
+=======
+
 - ``|`` - OR
 - ``&`` - AND
 - ``^`` - XOR
@@ -29,13 +30,13 @@ Bitwise
 - ``>>`` - Shift Right
 
 Mathematical
-++++++++++++
+============
 
 - ``+`` - Addition
 - ``-`` - Subtraction
 
 Comparison
-++++++++++
+==========
 
 - ``>`` - Greater Than
 - ``<`` - Less Than
@@ -45,13 +46,13 @@ Comparison
 - ``!=`` - Not Equals
 
 Explicit Conversion (cast from)
-+++++++++++++++++++++++++++++++
+===============================
 
 - ``byte[]``
 - ``List<byte>``
 
 Implicit Conversion (cast to)
-+++++++++++++++++++++++++++++
+=============================
 
 - ``byte[]``
 
