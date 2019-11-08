@@ -1,7 +1,7 @@
 Stringification
 ###############
 
-What can be better than making byte arrays slightly more human readable!? We provide a number of ways to format a byte array that will hopefully meet your needs. Because ``byte[]`` don't implement ``IFormattable`` you have to be explicit about calling ``ByteArrayUtils.ToString`` and cannot rely on  string interpolation or ``string.Format`` and the typical format provider.
+What can be better than making byte arrays slightly more human readable!? We provide a number of ways to format a byte array that will hopefully meet your needs. Because ``byte[]`` doesn't implement ``IFormattable`` you have to be explicit about calling ``ByteArrayUtils.ToString`` and cannot rely on  string interpolation or ``string.Format`` and the typical format provider.
 
 .. code-block:: c#
 
