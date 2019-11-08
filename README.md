@@ -1,4 +1,4 @@
-# ![Gulliver](resources/images/icon_64x64.png) Gulliver
+# ![Gulliver](src/Gulliver/icon.png) Gulliver
 
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Gulliver?logo=nuget)](https://www.nuget.org/packages/Gulliver/)
 [![Documentation on ReadTheDocs](https://img.shields.io/badge/Read%20the%20Docs-Gulliver-lightgrey?logo=read%20the%20docs)](https://gulliver.readthedocs.io)
@@ -12,7 +12,7 @@ Gulliver is a C# utility package and library engineered for the manipulation of 
 
 Gulliver was of course named for the titular character in "**[Gulliver's Travels](https://www.gutenberg.org/ebooks/829)**", a.k.a. "**Travels into Several Remote Nations of the World. In Four Parts. By Lemuel Gulliver, First a Surgeon, and then a Captain of Several Ships**" by Jonathan Swift, a book that the library author has admittedly not yet read but was pulled from the Computer Science zeitgeist referring to the big-endian versus little-endian nature of byte ordering.
 
-Gulliver originally came to be for the sake of [Arcus]( https://github.com/sandialabs/arcus), a C# library for calculating, parsing, formatting, converting and comparing both IPv4 and IPv6 addresses and subnets. Inherently, by its nature, Arcus needed to do a great deal of byte manipulation. Eventually Gulliver came into a life of its own and it was decided that it should be broken off into its own library.
+Gulliver originally came to be for the sake of [Arcus](https://github.com/sandialabs/arcus), a C# library for calculating, parsing, formatting, converting and comparing both IPv4 and IPv6 addresses and subnets. Inherently, by its nature, Arcus needed to do a great deal of byte manipulation. Eventually Gulliver came into a life of its own and it was decided that it should be broken off into its own library.
 
 ## Getting Started
 
@@ -26,41 +26,38 @@ Bit-curious developers will likely gain the most use out of the static `ByteArra
 
 Operations are broken down in several fundamental categories, with appropriate considerations made for the endianness of the byte array when appropriate.
 
-- General byte array operations
-  - Byte array creation and population
-  - Bytes as bit array addressing
-  - Byte array trimming, padding, and appending
-  - MSB length counting 
-  - MSB 0 value trimming
-  - Stringification
-- Bitwise byte array operations
-  - AND / OR / XOR / NOT
-  - Bitshifting
-- Unsigned Mathematical Operations
-  - Addition / Subtraction / Increment / Decrement 
-  - Comparison
-
+-  General byte array operations
+   -  Byte array creation and population
+   -  Bytes as bit array addressing
+   -  Byte array trimming, padding, and appending
+   -  MSB length counting
+   -  MSB 0 value trimming
+   -  Stringification
+-  Bitwise byte array operations
+   -  AND / OR / XOR / NOT
+   -  Bitshifting
+-  Unsigned Mathematical Operations
+   -  Addition / Subtraction / Increment / Decrement
+   -  Comparison
 
 The `FixedBytes` class brings many of these operations togheter allowing developers to treat a `byte[]` as a more complex object without the need to explicitly call helper or extension methods.
 
-
 The `LittleEndianByteEnumerable` and `BigEndianByteEnumerable` gives access to more cleanly treat little-endian and big-endian byte arrays as enumerables in an expected indexable manner regardless of the underlying endianness ignoring `0x00` valued most significant bytes and managing indexing of the most significant byte at the 0th index.
-
 
 `ConcurrentBigEndianByteEnumerable` and `ConcurrentLittleEndianByteEnumerable` allows for ease in parallel indexing a pair of byte arrays, that may not be of the same length, in the desired endianness. This comes in particularly useful when running bitwise or mathematical operations.
 
 ## Built With
 
-* [JetBrains.Annotations](https://www.jetbrains.com/help/resharper/10.0/Code_Analysis__Code_Annotations.html) - Used to keep developers honest
-* [NuGet](https://www.nuget.org/) - Dependency Management
-* [Stackoverflow](https://stackoverflow.com/) - Because who really remembers how to code
-* [xUnit.net](https://xunit.net/) - Testing, testing, 1, 2, 3...
+-  [JetBrains.Annotations](https://www.jetbrains.com/help/resharper/10.0/Code_Analysis__Code_Annotations.html) - Used to keep developers honest
+-  [NuGet](https://www.nuget.org/) - Dependency Management
+-  [Stackoverflow](https://stackoverflow.com/) - Because who really remembers how to code
+-  [xUnit.net](https://xunit.net/) - Testing, testing, 1, 2, 3...
 
 ## Primary Authors and Contributors
 
-* **Robert H. Engelhardt** - *Primary Developer, Source of Ideas Good and Bad* - [@rheone]( https://twitter.com/rheone)
-* **Andrew Steele** - *Code Review and Suggestions* - [@ahsteele]( https://twitter.com/ahsteele)
-* **Nick Bachicha** - *Git Wrangler and DevOps Extraordinaire* - [@nicksterx](https://twitter.com/nicksterx)
+-  **Robert H. Engelhardt** - _Primary Developer, Source of Ideas Good and Bad_ - [@rheone](https://twitter.com/rheone)
+-  **Andrew Steele** - _Code Review and Suggestions_ - [@ahsteele](https://twitter.com/ahsteele)
+-  **Nick Bachicha** - _Git Wrangler and DevOps Extraordinaire_ - [@nicksterx](https://twitter.com/nicksterx)
 
 ## Copyright
 
@@ -68,14 +65,14 @@ The `LittleEndianByteEnumerable` and `BigEndianByteEnumerable` gives access to m
 
 ## License
 
- >   Licensed under the Apache License, Version 2.0 (the "License");
- >   you may not use this file except in compliance with the License.
- >   You may obtain a copy of the License at
- >
- >       http://www.apache.org/licenses/LICENSE-2.0
- >
- >   Unless required by applicable law or agreed to in writing, software
- >   distributed under the License is distributed on an "AS IS" BASIS,
- >   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- >   See the License for the specific language governing permissions and
- >   limitations under the License.
+> Licensed under the Apache License, Version 2.0 (the "License");
+> you may not use this file except in compliance with the License.
+> You may obtain a copy of the License at
+>
+>       http://www.apache.org/licenses/LICENSE-2.0
+>
+> Unless required by applicable law or agreed to in writing, software
+> distributed under the License is distributed on an "AS IS" BASIS,
+> WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+> See the License for the specific language governing permissions and
+> limitations under the License.

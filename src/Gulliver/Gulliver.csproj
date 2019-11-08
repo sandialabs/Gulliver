@@ -9,7 +9,8 @@
     <embeduntrackedsources>true</embeduntrackedsources>
     <generatepackageonbuild>false</generatepackageonbuild>
     <generateruntimeconfigurationfiles>true</generateruntimeconfigurationfiles>
-    <packageicon>icon_64x64.png</packageicon>
+    <packageicon>icon.png</packageicon>
+    <packageiconurl>https://raw.githubusercontent.com/sandialabs/Gulliver/master/src/Gulliver/icon.png</packageiconurl>
     <includebuildoutput>true</includebuildoutput>
     <includesymbols>true</includesymbols>
     <ispackable>true</ispackable>
@@ -79,7 +80,8 @@
   </ItemGroup>
 
   <ItemGroup>
-      <None Include="resources\images\icon_64x64.png" Pack="true" PackagePath=""/>
+      <None Include="icon.png" Pack="true" visible="false" PackagePath=""/>
+      <None Include="icon.txt" Pack="true" visible="false" PackagePath=""/>
   </ItemGroup>
 
 </Project>
