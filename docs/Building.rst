@@ -34,7 +34,7 @@ C# Code
 Setup Your C# Environment
 =========================
 
-Gulliver is build with C#, if you want to build Gulliver you'll most likely want to set yourself up to build C# code.
+Gulliver is built with C#, if you want to build Gulliver you'll want to set yourself up to build C# code.
 
 #. Install the `.NET Core SDK <https://dotnet.microsoft.com/download>`_ appropriate for your environment.
 #. Consider installing `Visual Studio <https://visualstudio.microsoft.com/vs/>`_ and/or `Visual Studio Code <https://code.visualstudio.com/>`_.
