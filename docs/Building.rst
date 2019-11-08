@@ -24,7 +24,7 @@ The tasks of most concern are as follows:
 :``clean``: Cleans the C# portion of the project by removing the various ``obj`` and ``bin`` folders.
 :``build_src``: Cleans and builds the C# source.
 :``test``: Runs the Gulliver unit tests.
-:``pack_debug``: Create a ``Gulliver.nuget`` and ``Gulliver.nuspec`` debug packages.
+:``pack_debug``: Create a ``Gulliver.nupkg`` and ``Gulliver.snupkg`` debug packages.
 
 :``build_docs``: Builds the Sphinx Documentation as HTML.
 
