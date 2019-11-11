@@ -28,7 +28,7 @@
     <symbolpackageformat>snupkg</symbolpackageformat>
     <targetframework>netstandard1.3</targetframework>
     <title>Gulliver</title>
-    <version>1.0.2</version>
+    <version>1.0.3-preview20191111a</version>
   </PropertyGroup>
 
   <ItemGroup>

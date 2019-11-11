@@ -25,7 +25,8 @@ steps:
   displayName: 'dotnet pack'
   inputs:
     command: pack
-    packagesToPack: '**/*.csproj;!**/*Tests.csproj'
+    arguments: '--include-symbols -p:SymbolPackageFormat=snupkg'
+    packagesToPack: '**/Gulliver.csproj;'
 
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Pipeline Artifact'
