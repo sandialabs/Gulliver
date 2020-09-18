@@ -12,7 +12,7 @@ Endianness [#Endianness]_, at least as far as computing is concerned, is the ord
 
     Comic by `Oliver Widder <http://geek-and-poke.com/>`_ Released under `Attribution 3.0 Unported (CC BY 3.0) <https://creativecommons.org/licenses/by/3.0/>`_.
 
-Entomology
+Etymology
 **********
 
 The Computer Science terms Big-Endian and Little-Endian were introduced by Danny Cohen [#CohenDanny]_ in 1980. The key term *endian* has its roots in the novel Gulliver’s Travels [#GulliversTravels]_ by Jonathan Swift [#SwiftJonathan]_ where within a war occurs between two factions who are fighting over which end of a boiled egg should be opened for eating. The big end or the little end. Unsurprisingly, the same said book was the inspiration for the naming of the `Gulliver <https://github.com/sandialabs/gulliver>`_ library.
