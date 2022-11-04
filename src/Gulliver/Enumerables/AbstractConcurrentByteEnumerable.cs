@@ -12,8 +12,7 @@ namespace Gulliver.Enumerables
     public abstract class AbstractConcurrentByteEnumerable : IConcurrentByteEnumerable
     {
         /// <inheritdoc />
-        protected AbstractConcurrentByteEnumerable([NotNull] IByteEnumerable left,
-                                                   [NotNull] IByteEnumerable right)
+        protected AbstractConcurrentByteEnumerable([NotNull] IByteEnumerable left, [NotNull] IByteEnumerable right)
         {
             this.Left = left ?? throw new ArgumentNullException(nameof(left));
             this.Right = right ?? throw new ArgumentNullException(nameof(right));
@@ -56,8 +55,7 @@ namespace Gulliver.Enumerables
         /// <inheritdoc />
         public IEnumerator<(byte leftByte, byte rightByte)> GetReverseEnumerator()
         {
-            return this.ReverseEnumerable()
-                       .GetEnumerator();
+            return this.ReverseEnumerable().GetEnumerator();
         }
 
         /// <inheritdoc />
@@ -66,17 +64,13 @@ namespace Gulliver.Enumerables
         /// <inheritdoc />
         public IEnumerable<(byte leftByte, byte rightByte)> GetMsbToLsbEnumerable()
         {
-            return this.IsLittleEndian
-                       ? this.ReverseEnumerable()
-                       : this;
+            return this.IsLittleEndian ? this.ReverseEnumerable() : this;
         }
 
         /// <inheritdoc />
         public IEnumerable<(byte leftByte, byte rightByte)> GetLsbToMsbEnumerable()
         {
-            return this.IsLittleEndian
-                       ? this
-                       : this.ReverseEnumerable();
+            return this.IsLittleEndian ? this : this.ReverseEnumerable();
         }
 
         #endregion

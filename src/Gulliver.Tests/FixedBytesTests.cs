@@ -270,7 +270,7 @@ namespace Gulliver.Tests
             yield return new object[] { null, new FixedBytes(new byte[] { 0xFF }), null };
             yield return new object[] { null, null, null };
 
-            IEnumerable<(byte[] left, byte[] right)> Values()
+            static IEnumerable<(byte[] left, byte[] right)> Values()
             {
                 yield return (new byte[] { 0xFF }, Array.Empty<byte>());
                 yield return (new byte[] { 0x00 }, new byte[] { 0x00 });
@@ -309,7 +309,7 @@ namespace Gulliver.Tests
             yield return new object[] { null, new FixedBytes(new byte[] { 0xFF }), null };
             yield return new object[] { null, null, null };
 
-            IEnumerable<(byte[] left, byte[] right)> Values()
+            static IEnumerable<(byte[] left, byte[] right)> Values()
             {
                 yield return (new byte[] { 0xFF }, Array.Empty<byte>());
                 yield return (new byte[] { 0x00 }, new byte[] { 0x00 });
@@ -371,7 +371,7 @@ namespace Gulliver.Tests
             yield return new object[] { null, new FixedBytes(new byte[] { 0xFF }), null };
             yield return new object[] { null, null, null };
 
-            IEnumerable<(byte[] left, byte[] right)> Values()
+            static IEnumerable<(byte[] left, byte[] right)> Values()
             {
                 yield return (new byte[] { 0xFF }, Array.Empty<byte>());
                 yield return (new byte[] { 0x00 }, new byte[] { 0x00 });
@@ -411,7 +411,7 @@ namespace Gulliver.Tests
             yield return new object[] { null, new FixedBytes(new byte[] { 0xFF }), null };
             yield return new object[] { null, null, null };
 
-            IEnumerable<(byte[] left, byte[] right)> Values()
+            static IEnumerable<(byte[] left, byte[] right)> Values()
             {
                 yield return (new byte[] { 0xFF }, Array.Empty<byte>());
                 yield return (new byte[] { 0x00 }, new byte[] { 0x00 });
@@ -451,7 +451,7 @@ namespace Gulliver.Tests
             yield return new object[] { null, new FixedBytes(new byte[] { 0xFF }), null };
             yield return new object[] { null, null, null };
 
-            IEnumerable<(byte[] left, byte[] right)> Values()
+            static IEnumerable<(byte[] left, byte[] right)> Values()
             {
                 yield return (new byte[] { 0xFF }, Array.Empty<byte>());
                 yield return (new byte[] { 0x00 }, new byte[] { 0x00 });
@@ -489,7 +489,7 @@ namespace Gulliver.Tests
 
             yield return new object[] { null, null };
 
-            IEnumerable<byte[]> Values()
+            static IEnumerable<byte[]> Values()
             {
                 yield return Array.Empty<byte>();
                 yield return new byte[] { 0x00 };
@@ -528,7 +528,7 @@ namespace Gulliver.Tests
 
             yield return new object[] { null, null, 42 };
 
-            IEnumerable<byte[]> Values()
+            static IEnumerable<byte[]> Values()
             {
                 yield return Array.Empty<byte>();
                 yield return new byte[] { 0x00 };
@@ -583,7 +583,7 @@ namespace Gulliver.Tests
 
             yield return new object[] { null, null, 42 };
 
-            IEnumerable<byte[]> Values()
+            static IEnumerable<byte[]> Values()
             {
                 yield return Array.Empty<byte>();
                 yield return new byte[] { 0x00 };

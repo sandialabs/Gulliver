@@ -17,8 +17,7 @@ namespace Gulliver
         /// <param name="element">the byte value to fill the array with</param>
         /// <returns>the created byte array</returns>
         [NotNull]
-        public static byte[] CreateByteArray(int length,
-                                             byte element = 0x00)
+        public static byte[] CreateByteArray(int length, byte element = 0x00)
         {
             if (length < 0)
             {
@@ -39,6 +38,7 @@ namespace Gulliver
         ///     Return the given byte array in reverse
         /// </summary>
         /// <param name="bytes">the source bytes</param>
+        /// <returns></returns>
         [NotNull]
         public static byte[] ReverseBytes([NotNull] this byte[] bytes)
         {
@@ -95,8 +95,8 @@ namespace Gulliver
         /// </summary>
         /// <param name="bytes">the source bytes</param>
         /// <param name="index">the bit index</param>
-        public static bool AddressBit([NotNull] this byte[] bytes,
-                                      int index)
+        /// <returns></returns>
+        public static bool AddressBit([NotNull] this byte[] bytes, int index)
         {
             if (bytes == null)
             {
@@ -105,8 +105,7 @@ namespace Gulliver
 
             var bitLength = bytes.Length * 8;
 
-            if (index < 0
-                || index >= bitLength)
+            if (index < 0 || index >= bitLength)
             {
                 throw new ArgumentOutOfRangeException(nameof(index), index, $"index must be between 0 and {bitLength}");
             }
@@ -128,8 +127,7 @@ namespace Gulliver
         /// <returns>a byte array of shifted bits</returns>
         /// <exception cref="ArgumentNullException"><paramref name="bytes" /> is <see langword="null" />.</exception>
         [NotNull]
-        public static byte[] ShiftBitsLeft([NotNull] this byte[] bytes,
-                                           int shift)
+        public static byte[] ShiftBitsLeft([NotNull] this byte[] bytes, int shift)
         {
             if (bytes == null)
             {
@@ -154,9 +152,7 @@ namespace Gulliver
         /// <returns>the shifted byte array</returns>
         /// <exception cref="ArgumentNullException"><paramref name="bytes" /> is <see langword="null" />.</exception>
         [NotNull]
-        public static byte[] ShiftBitsLeft([NotNull] this byte[] bytes,
-                                           int shift,
-                                           out byte[] carry)
+        public static byte[] ShiftBitsLeft([NotNull] this byte[] bytes, int shift, out byte[] carry)
         {
             if (bytes == null)
             {
@@ -172,8 +168,10 @@ namespace Gulliver
 
             var result = new byte[length];
 
-            if (length == 0    // nothing to shift
-                || shift == 0) // no shifting, return copy of original with an empty carry byte array
+            if (
+                length == 0 // nothing to shift
+                || shift == 0
+            ) // no shifting, return copy of original with an empty carry byte array
             {
                 carry = Array.Empty<byte>();
                 Array.Copy(bytes, result, length);
@@ -182,10 +180,7 @@ namespace Gulliver
 
             var byteOffset = shift / 8;
             var shiftOffset = shift % 8;
-            var carryLength = byteOffset
-                              + (shiftOffset > 0
-                                     ? 1
-                                     : 0); // get the ceiling of the division w/o using Math.Ceiling to get size need for carry
+            var carryLength = byteOffset + (shiftOffset > 0 ? 1 : 0); // get the ceiling of the division w/o using Math.Ceiling to get size need for carry
 
             carry = new byte[carryLength]; // define carry
 
@@ -195,7 +190,7 @@ namespace Gulliver
                 if (sourceCopyBreak > 0) // partial carry
                 {
                     Array.Copy(bytes, carryLength, result, 0, length - carryLength); // result copy
-                    Array.Copy(bytes, 0, carry, 0, carryLength);                     // carry copy
+                    Array.Copy(bytes, 0, carry, 0, carryLength); // carry copy
                 }
                 else // complete carry
                 {
@@ -210,7 +205,7 @@ namespace Gulliver
             {
                 // shift one byte (8 bits) at a time
                 var sourceByte = bytes[i];
-                var resultByte = (byte)(sourceByte << shiftOffset);      // left shift source byte by the bit shift offset creating a 0-suffixed bits
+                var resultByte = (byte)(sourceByte << shiftOffset); // left shift source byte by the bit shift offset creating a 0-suffixed bits
                 var carryByte = (byte)(sourceByte >> (8 - shiftOffset)); // right shift source byte so that its value is equivalent to the carry of the above left shift operation
 
                 var resultIndex = i - byteOffset; //length - 1 - byteOffset + i -1;
@@ -250,8 +245,7 @@ namespace Gulliver
         /// <returns>a byte array of shifted bits</returns>
         /// <exception cref="ArgumentNullException"><paramref name="bytes" /> is <see langword="null" />.</exception>
         [NotNull]
-        public static byte[] ShiftBitsRight([NotNull] this byte[] bytes,
-                                            int shift)
+        public static byte[] ShiftBitsRight([NotNull] this byte[] bytes, int shift)
         {
             if (bytes == null)
             {
@@ -276,9 +270,7 @@ namespace Gulliver
         /// <returns>the shifted byte array</returns>
         /// <exception cref="ArgumentNullException"><paramref name="bytes" /> is <see langword="null" />.</exception>
         [NotNull]
-        public static byte[] ShiftBitsRight([NotNull] this byte[] bytes,
-                                            int shift,
-                                            out byte[] carry)
+        public static byte[] ShiftBitsRight([NotNull] this byte[] bytes, int shift, out byte[] carry)
         {
             if (bytes == null)
             {
@@ -294,8 +286,10 @@ namespace Gulliver
 
             var result = new byte[length];
 
-            if (length == 0    // nothing to shift
-                || shift == 0) // no shifting, return copy of original with an empty carry byte array
+            if (
+                length == 0 // nothing to shift
+                || shift == 0
+            ) // no shifting, return copy of original with an empty carry byte array
             {
                 carry = Array.Empty<byte>();
                 Array.Copy(bytes, result, length);
@@ -304,10 +298,7 @@ namespace Gulliver
 
             var byteOffset = shift / 8;
             var shiftOffset = shift % 8;
-            var carryLength = byteOffset
-                              + (shiftOffset > 0
-                                     ? 1
-                                     : 0); // get the ceiling of the division w/o using Math.Ceiling to get size need for carry
+            var carryLength = byteOffset + (shiftOffset > 0 ? 1 : 0); // get the ceiling of the division w/o using Math.Ceiling to get size need for carry
 
             carry = new byte[carryLength]; // define carry
 
@@ -333,7 +324,7 @@ namespace Gulliver
             {
                 // shift one byte (8 bits) at a time
                 var sourceByte = bytes[i];
-                var resultByte = (byte)(sourceByte >> shiftOffset);      // right shift source byte by the bit shift offset creating a 0-prefixed bits
+                var resultByte = (byte)(sourceByte >> shiftOffset); // right shift source byte by the bit shift offset creating a 0-prefixed bits
                 var carryByte = (byte)(sourceByte << (8 - shiftOffset)); // left shift source byte so that its value is equivalent to the carry of the above right shift operation
 
                 var resultIndex = i + byteOffset;
@@ -377,9 +368,8 @@ namespace Gulliver
         /// <param name="source">the source bytes</param>
         /// <param name="count">number of bytes to append</param>
         /// <param name="element">the byte to append</param>
-        public static byte[] AppendBytes([NotNull] this byte[] source,
-                                         int count,
-                                         byte element = 0x00)
+        /// <returns></returns>
+        public static byte[] AppendBytes([NotNull] this byte[] source, int count, byte element = 0x00)
         {
             if (source == null)
             {
@@ -388,7 +378,11 @@ namespace Gulliver
 
             if (count < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(count), count, $"{nameof(count)} must be greater than or equal to 0");
+                throw new ArgumentOutOfRangeException(
+                    nameof(count),
+                    count,
+                    $"{nameof(count)} must be greater than or equal to 0"
+                );
             }
 
             var result = new byte[source.Length + count];
@@ -405,8 +399,8 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        public static (byte[] left, byte[] right) AppendShortest([NotNull] byte[] left,
-                                                                 [NotNull] byte[] right)
+        /// <returns></returns>
+        public static (byte[] left, byte[] right) AppendShortest([NotNull] byte[] left, [NotNull] byte[] right)
         {
             if (left == null)
             {
@@ -427,8 +421,8 @@ namespace Gulliver
             }
 
             return leftLength > rightLength
-                       ? (left, AppendBytes(right, leftLength - rightLength))
-                       : (AppendBytes(left, rightLength - leftLength), right);
+                ? (left, AppendBytes(right, leftLength - rightLength))
+                : (AppendBytes(left, rightLength - leftLength), right);
         }
 
         #endregion
@@ -441,9 +435,8 @@ namespace Gulliver
         /// <param name="source">the source bytes</param>
         /// <param name="count">number of bytes to prepend</param>
         /// <param name="element">the byte to append</param>
-        public static byte[] PrependBytes([NotNull] this byte[] source,
-                                          int count,
-                                          byte element = 0x00)
+        /// <returns></returns>
+        public static byte[] PrependBytes([NotNull] this byte[] source, int count, byte element = 0x00)
         {
             if (source == null)
             {
@@ -452,7 +445,11 @@ namespace Gulliver
 
             if (count < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(count), count, $"{nameof(count)} must be greater than or equal to 0");
+                throw new ArgumentOutOfRangeException(
+                    nameof(count),
+                    count,
+                    $"{nameof(count)} must be greater than or equal to 0"
+                );
             }
 
             var result = new byte[count + source.Length];
@@ -469,8 +466,8 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        public static (byte[] left, byte[] right) PrependShortest([NotNull] byte[] left,
-                                                                  [NotNull] byte[] right)
+        /// <returns></returns>
+        public static (byte[] left, byte[] right) PrependShortest([NotNull] byte[] left, [NotNull] byte[] right)
         {
             if (left == null)
             {
@@ -491,8 +488,8 @@ namespace Gulliver
             }
 
             return leftLength > rightLength
-                       ? (left, PrependBytes(right, leftLength - rightLength))
-                       : (PrependBytes(left, rightLength - leftLength), right);
+                ? (left, PrependBytes(right, leftLength - rightLength))
+                : (PrependBytes(left, rightLength - leftLength), right);
         }
 
         #endregion

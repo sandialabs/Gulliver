@@ -14,6 +14,7 @@ namespace Gulliver
         ///     Create a <see cref="FixedBytes" /> based on the provided <paramref name="bytes" />
         /// </summary>
         /// <param name="bytes">bytes to copy into a new<see cref="FixedBytes" /> </param>
+        /// <returns></returns>
         [NotNull]
         public static FixedBytes ToFixedBytes([NotNull] this IEnumerable<byte> bytes)
         {

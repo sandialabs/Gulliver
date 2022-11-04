@@ -600,4 +600,4 @@ dotnet_diagnostic.S4114.severity = None	    # Methods should not have identical 
 # Misc
 dotnet_diagnostic.CS1591.severity = None	# Missing XML comment for publicly visible type or member 'Type_or_Member'
 dotnet_diagnostic.SA1600.severity = None	# Elements should be documented
-
+dotnet_diagnostic.CA1707.severity = None    # Identifiers should not contain underscores

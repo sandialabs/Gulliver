@@ -18,16 +18,17 @@ namespace Gulliver.DocExamples.BitwiseByteArrayOperations
             var bitLength = input.Length * 8;
 
             // Act
-            IEnumerable<string> result = Enumerable.Range(0, bitLength - 1)
-                                                    .Select(i =>
-                                                    {
-                                                        var bit = input.AddressBit(i);
-                                                        return (i, b: bit ? 1 : 0);
-                                                    })
-                                                    .Select(x => $"[{x.i}]:{x.b}")
-                                                    .Skip(4)
-                                                    .Take(bitLength - 8)
-                                                    .ToList();
+            IEnumerable<string> result = Enumerable
+                .Range(0, bitLength - 1)
+                .Select(i =>
+                {
+                    var bit = input.AddressBit(i);
+                    return (i, b: bit ? 1 : 0);
+                })
+                .Select(x => $"[{x.i}]:{x.b}")
+                .Skip(4)
+                .Take(bitLength - 8)
+                .ToList();
 
             // Conclusion
             Console.WriteLine("AddressBit Example");

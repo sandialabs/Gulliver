@@ -13,9 +13,10 @@ namespace Gulliver.Enumerables
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        public ConcurrentBigEndianByteEnumerable([NotNull] BigEndianByteEnumerable left,
-                                                 [NotNull] BigEndianByteEnumerable right)
-            : base(left, right) { }
+        public ConcurrentBigEndianByteEnumerable(
+            [NotNull] BigEndianByteEnumerable left,
+            [NotNull] BigEndianByteEnumerable right
+        ) : base(left, right) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConcurrentBigEndianByteEnumerable"/> class.
@@ -23,10 +24,11 @@ namespace Gulliver.Enumerables
         /// <param name="left">bytes in big endian order for left enumerable</param>
         /// <param name="right">bytes in big endian order for right enumerable</param>
         /// <param name="trim"><see langword="true" /> if most significant zero bytes should be trimmed on instantiation</param>
-        public ConcurrentBigEndianByteEnumerable([NotNull] IEnumerable<byte> left,
-                                                 [NotNull] IEnumerable<byte> right,
-                                                 bool trim = true)
-            : base(new BigEndianByteEnumerable(left, trim), new BigEndianByteEnumerable(right, trim)) { }
+        public ConcurrentBigEndianByteEnumerable(
+            [NotNull] IEnumerable<byte> left,
+            [NotNull] IEnumerable<byte> right,
+            bool trim = true
+        ) : base(new BigEndianByteEnumerable(left, trim), new BigEndianByteEnumerable(right, trim)) { }
 
         //#endregion
 

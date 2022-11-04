@@ -17,8 +17,7 @@ namespace Gulliver.Enumerables
         /// </summary>
         /// <param name="bytes">bytes in big endian order used to make the enumerable</param>
         /// <param name="trim"><see langword="true" /> if most significant zero bytes should be trimmed on instantiation</param>
-        public BigEndianByteEnumerable([NotNull] IEnumerable<byte> bytes,
-                                       bool trim = true)
+        public BigEndianByteEnumerable([NotNull] IEnumerable<byte> bytes, bool trim = true)
             : base(ConstructBytes(bytes, trim), trim, false)
         {
             if (bytes == null)
@@ -27,12 +26,12 @@ namespace Gulliver.Enumerables
             }
         }
 
-        internal static byte[] ConstructBytes(IEnumerable<byte> bytes,
-                                              bool trim)
+        internal static byte[] ConstructBytes(IEnumerable<byte> bytes, bool trim)
         {
             // BigEndian most significant bytes are at the lowest index (start of collection)
-            return bytes.SkipWhile(b => trim && b == 0x00) // remove most significant zero-valued bytes during iteration if called for
-                        .ToArray();
+            return bytes
+                .SkipWhile(b => trim && b == 0x00) // remove most significant zero-valued bytes during iteration if called for
+                .ToArray();
         }
 
         #region static factory methods
@@ -42,8 +41,8 @@ namespace Gulliver.Enumerables
         /// </summary>
         /// <param name="bytes">the source bytes</param>
         /// <param name="trim"><see langword="true" /> if most significant zero bytes should be trimmed</param>
-        public static BigEndianByteEnumerable FromLittleEndian([NotNull] IEnumerable<byte> bytes,
-                                                               bool trim = true)
+        /// <returns></returns>
+        public static BigEndianByteEnumerable FromLittleEndian([NotNull] IEnumerable<byte> bytes, bool trim = true)
         {
             if (bytes == null)
             {
@@ -59,8 +58,8 @@ namespace Gulliver.Enumerables
         /// </summary>
         /// <param name="bytes">the source bytes</param>
         /// <param name="trim"><see langword="true" /> if most significant zero bytes should be trimmed</param>
-        public static BigEndianByteEnumerable FromSystemEndian([NotNull] IEnumerable<byte> bytes,
-                                                               bool trim = true)
+        /// <returns></returns>
+        public static BigEndianByteEnumerable FromSystemEndian([NotNull] IEnumerable<byte> bytes, bool trim = true)
         {
             if (bytes == null)
             {
@@ -68,8 +67,8 @@ namespace Gulliver.Enumerables
             }
 
             return BitConverter.IsLittleEndian
-                       ? new BigEndianByteEnumerable(bytes.Reverse(), trim)
-                       : new BigEndianByteEnumerable(bytes, trim);
+                ? new BigEndianByteEnumerable(bytes.Reverse(), trim)
+                : new BigEndianByteEnumerable(bytes, trim);
         }
 
         #endregion

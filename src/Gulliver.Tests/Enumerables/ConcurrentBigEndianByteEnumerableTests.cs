@@ -50,7 +50,7 @@ namespace Gulliver.Tests.Enumerables
                 }
             }
 
-            IEnumerable<byte[]> ByteValues()
+            static IEnumerable<byte[]> ByteValues()
             {
                 return new[]
                        {

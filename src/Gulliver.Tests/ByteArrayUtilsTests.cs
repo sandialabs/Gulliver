@@ -33,7 +33,7 @@ namespace Gulliver.Tests
                    .OrderBy(i => i)
                    .ToArray();
 
-            IEnumerable<uint?> Values()
+            static IEnumerable<uint?> Values()
             {
                 var specialValues = new uint?[]
                                     {
@@ -138,7 +138,7 @@ namespace Gulliver.Tests
             return TestCases()
                 .Distinct();
 
-            IEnumerable<object[]> TestCases()
+            static IEnumerable<object[]> TestCases()
             {
                 foreach (var u in GetUintValues())
                 {

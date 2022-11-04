@@ -88,7 +88,7 @@ namespace Gulliver.Tests
             return TestCases()
                 .Distinct();
 
-            IEnumerable<object[]> TestCases()
+            static IEnumerable<object[]> TestCases()
             {
                 var systemIsLittleEndian = BitConverter.IsLittleEndian;
 
@@ -163,7 +163,7 @@ namespace Gulliver.Tests
             return TestCases()
                 .Distinct();
 
-            IEnumerable<object[]> TestCases()
+            static IEnumerable<object[]> TestCases()
             {
                 var systemIsLittleEndian = BitConverter.IsLittleEndian;
 
@@ -257,7 +257,7 @@ namespace Gulliver.Tests
             return TestCases()
                 .Distinct();
 
-            IEnumerable<object[]> TestCases()
+            static IEnumerable<object[]> TestCases()
             {
                 var systemIsLittleEndian = BitConverter.IsLittleEndian;
 
@@ -371,7 +371,7 @@ namespace Gulliver.Tests
                    .ToList()
                    .Distinct();
 
-            IEnumerable<object[]> TestCases()
+            static IEnumerable<object[]> TestCases()
             {
                 var systemIsLittleEndian = BitConverter.IsLittleEndian;
 
@@ -469,7 +469,7 @@ namespace Gulliver.Tests
                    .ToList()
                    .Distinct();
 
-            IEnumerable<object[]> TestCases()
+            static IEnumerable<object[]> TestCases()
             {
                 var systemIsLittleEndian = BitConverter.IsLittleEndian;
 
@@ -566,7 +566,7 @@ namespace Gulliver.Tests
             return TestCases()
                 .ToList();
 
-            IEnumerable<object[]> TestCases()
+            static IEnumerable<object[]> TestCases()
             {
                 var systemIsLittleEndian = BitConverter.IsLittleEndian;
 

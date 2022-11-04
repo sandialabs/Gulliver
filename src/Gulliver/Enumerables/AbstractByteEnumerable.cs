@@ -12,9 +12,7 @@ namespace Gulliver.Enumerables
     public abstract class AbstractByteEnumerable : IByteEnumerable
     {
         /// <inheritdoc />
-        protected AbstractByteEnumerable(byte[] bytes,
-                                         bool isTrimmed,
-                                         bool isLittleEndian)
+        protected AbstractByteEnumerable(byte[] bytes, bool isTrimmed, bool isLittleEndian)
         {
             this.Bytes = bytes ?? throw new ArgumentNullException(nameof(bytes));
             this.IsLittleEndian = isLittleEndian;
@@ -22,8 +20,11 @@ namespace Gulliver.Enumerables
         }
 
         /// <summary>
-        ///     Bytes
+        ///     Gets bytes
         /// </summary>
+        /// <value>
+        /// Bytes
+        /// </value>
         internal byte[] Bytes { get; }
 
         /// <inheritdoc />
