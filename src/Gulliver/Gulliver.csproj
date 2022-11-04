@@ -1,7 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <NeutralLanguage>en</NeutralLanguage>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <allowedoutputextensionsinpackagebuildoutputfolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</allowedoutputextensionsinpackagebuildoutputfolder>
     <authors>Sandia National Laboratories</authors>
     <copyright>Copyright 2022 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.</copyright>
@@ -29,28 +30,40 @@
     <title>Gulliver</title>
     <version>2.0.0-preview20221104</version>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Roslynator.Analyzers" Version="4.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.47.0.55603">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
-
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <!--Ruleset configuration; only valid for Debug configuration-->
     <CodeAnalysisRuleSet>..\analyzers.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\Gulliver.xml</DocumentationFile>
     <OutputPath>bin\</OutputPath>
   </PropertyGroup>
-
   <PropertyGroup>
-    <DocumentationFile>bin\Gulliver.xml</DocumentationFile>
     <OutputPath>bin\</OutputPath>
+    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
-
   <ItemGroup Condition="'$(Configuration)'=='Debug'">
     <!-- Analyzers; only valid for Debug configuration-->
     <AdditionalFiles Include="..\stylecop.json">
@@ -77,10 +90,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
-      <None Include="icon.png" Pack="true" visible="false" PackagePath="" />
-      <None Include="icon.txt" Pack="true" visible="false" PackagePath="" />
+    <None Include="icon.png" Pack="true" visible="false" PackagePath="" />
+    <None Include="icon.txt" Pack="true" visible="false" PackagePath="" />
   </ItemGroup>
-
+  <Target Name="Husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(HUSKY)' != 0">
+    <Exec Command="dotnet tool restore" StandardOutputImportance="Low" StandardErrorImportance="High" />
+    <Exec Command="dotnet husky install" StandardOutputImportance="Low" StandardErrorImportance="High" WorkingDirectory="..\.." />
+  </Target>
 </Project>

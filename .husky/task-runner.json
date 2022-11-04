@@ -1,0 +1,25 @@
+{
+  "tasks": [
+    {
+      "name": "Run dotnet format Style",
+      "group": "pre-commit",
+      "command": "dotnet",
+      "args": ["format", "style", "--no-restore", "--include", "${staged}"],
+      "include": ["**/*.cs"]
+    },
+    {
+      "name": "Run dotnet format Analyzers",
+      "group": "pre-commit",
+      "command": "dotnet",
+      "args": ["format", "analyzers", "--no-restore", "--include", "${staged}"],
+      "include": ["**/*.cs"]
+    },
+    {
+      "name": "Run csharpier",
+      "group": "pre-commit",
+      "command": "dotnet",
+      "args": ["csharpier", "${staged}"],
+      "include": ["**/*.cs"]
+    }
+  ]
+}
