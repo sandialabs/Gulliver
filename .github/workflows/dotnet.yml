@@ -22,7 +22,7 @@ jobs:
         dotnet-version: 6.0.x
         
     - name: Restore dependencies
-      run: dotnet restore '**/*.csproj'
+      run: dotnet restore src/Gulliver/Gulliver.csproj
       
     - name: Build
       run: dotnet build --no-restore
