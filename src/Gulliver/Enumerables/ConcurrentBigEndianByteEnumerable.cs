@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using JetBrains.Annotations;
 
 namespace Gulliver.Enumerables
 {
@@ -13,8 +12,7 @@ namespace Gulliver.Enumerables
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        public ConcurrentBigEndianByteEnumerable([NotNull] BigEndianByteEnumerable left,
-                                                 [NotNull] BigEndianByteEnumerable right)
+        public ConcurrentBigEndianByteEnumerable(BigEndianByteEnumerable left, BigEndianByteEnumerable right)
             : base(left, right) { }
 
         /// <summary>
@@ -23,9 +21,7 @@ namespace Gulliver.Enumerables
         /// <param name="left">bytes in big endian order for left enumerable</param>
         /// <param name="right">bytes in big endian order for right enumerable</param>
         /// <param name="trim"><see langword="true" /> if most significant zero bytes should be trimmed on instantiation</param>
-        public ConcurrentBigEndianByteEnumerable([NotNull] IEnumerable<byte> left,
-                                                 [NotNull] IEnumerable<byte> right,
-                                                 bool trim = true)
+        public ConcurrentBigEndianByteEnumerable(IEnumerable<byte> left, IEnumerable<byte> right, bool trim = true)
             : base(new BigEndianByteEnumerable(left, trim), new BigEndianByteEnumerable(right, trim)) { }
 
         //#endregion

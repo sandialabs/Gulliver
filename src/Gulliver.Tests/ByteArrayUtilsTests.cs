@@ -6,7 +6,9 @@ using Xunit.Abstractions;
 
 namespace Gulliver.Tests
 {
-    // ReSharper disable once TestClassNameDoesNotMatchFileNameWarning
+#if NET6_0_OR_GREATER
+#pragma warning disable IDE0062 // Make local function static (IDE0062); purposely allowing non-static functions that could be static for .net4.8 compatibility
+#endif
 
     /// <summary>
     ///     General ByteArrayUtils Tests
@@ -29,34 +31,32 @@ namespace Gulliver.Tests
 
         private static uint?[] GetUintValues()
         {
-            return Values()
-                   .OrderBy(i => i)
-                   .ToArray();
+            return Values().OrderBy(i => i).ToArray();
 
             IEnumerable<uint?> Values()
             {
                 var specialValues = new uint?[]
-                                    {
-                                        null,
-                                        1U << 7,
-                                        1U << 31,
-                                        1U << 32,
-                                        0x0055,
-                                        0x00AA,
-                                        0x00AC,
-                                        0x00CA,
-                                        0x00FF,
-                                        0x5500,
-                                        0x5555,
-                                        0xAA00,
-                                        0xAAAA,
-                                        0xAC00,
-                                        0xACCA,
-                                        0xCA00,
-                                        0xCAAC,
-                                        0xFFFF,
-                                        uint.MaxValue
-                                    };
+                {
+                    null,
+                    1U << 7,
+                    1U << 31,
+                    1U << 32,
+                    0x0055,
+                    0x00AA,
+                    0x00AC,
+                    0x00CA,
+                    0x00FF,
+                    0x5500,
+                    0x5555,
+                    0xAA00,
+                    0xAAAA,
+                    0xAC00,
+                    0xACCA,
+                    0xCA00,
+                    0xCAAC,
+                    0xFFFF,
+                    uint.MaxValue,
+                };
 
                 foreach (var value in specialValues)
                 {
@@ -94,8 +94,7 @@ namespace Gulliver.Tests
         [InlineData(2, 0x00)]
         [InlineData(2, 0xFF)]
         [InlineData(2, 0xAC)]
-        public void CreateByteArray_Test(int length,
-                                         byte element)
+        public void CreateByteArray_Test(int length, byte element)
         {
             // Arrange
             // Act
@@ -135,20 +134,15 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> BitwiseNot_Test_Values()
         {
-            return TestCases()
-                .Distinct();
+            return TestCases().Distinct();
 
             IEnumerable<object[]> TestCases()
             {
                 foreach (var u in GetUintValues())
                 {
-                    var expected = u != null
-                                       ? BitConverter.GetBytes(~u.Value)
-                                       : Array.Empty<byte>();
+                    var expected = u != null ? BitConverter.GetBytes(~u.Value) : Array.Empty<byte>();
 
-                    var bytes = u != null
-                                    ? BitConverter.GetBytes(u.Value)
-                                    : Array.Empty<byte>();
+                    var bytes = u != null ? BitConverter.GetBytes(u.Value) : Array.Empty<byte>();
 
                     yield return new object[] { expected, bytes };
                 }
@@ -157,8 +151,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(BitwiseNot_Test_Values))]
-        public void BitwiseNot_Test(byte[] expected,
-                                    byte[] input)
+        public void BitwiseNot_Test(byte[] expected, byte[] input)
         {
             // Arrange
             var original = input.ToArray();
@@ -178,7 +171,7 @@ namespace Gulliver.Tests
             // Arrange
             // Act
             // Assert
-            // ReSharper disable once AssignNullToNotNullAttribute
+
             Assert.Throws<ArgumentNullException>(() => ByteArrayUtils.BitwiseNot(null));
         }
 
@@ -222,9 +215,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(AddressBit_Values))]
-        public void AddressBit_Test(bool expected,
-                                    int index,
-                                    byte[] input)
+        public void AddressBit_Test(bool expected, int index, byte[] input)
         {
             // Arrange
             var original = input.ToArray();
@@ -240,7 +231,6 @@ namespace Gulliver.Tests
         [Fact]
         public void AddressBit_NullInput_ThrowsArgumentNullException_Test()
         {
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((byte[])null).AddressBit(default));
         }
 
@@ -249,7 +239,6 @@ namespace Gulliver.Tests
         [InlineData(8)]
         public void AddressBit_IndexOutOfRange_ThrowsArgumentOutOfRangeException_Test(int index)
         {
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] { 0xff }.AddressBit(index));
         }
 
@@ -283,12 +272,36 @@ namespace Gulliver.Tests
             yield return new object[] { new byte[] { 0b0000_0011 }, new byte[] { 0b1111_1100 }, new byte[] { 0b1111_1111 }, 6 };
             yield return new object[] { new byte[] { 0b0000_0001 }, new byte[] { 0b1111_1110 }, new byte[] { 0b1111_1111 }, 7 };
 
-            yield return new object[] { new byte[] { 0b0000_0000 }, new byte[] { 0b0000_1111, 0b1111_0000 }, new byte[] { 0b1111_1111 }, 12 };
-            yield return new object[] { new byte[] { 0b0000_0000 }, new byte[] { 0b0000_0001, 0b1111_1110 }, new byte[] { 0b1111_1111 }, 15 };
+            yield return new object[]
+            {
+                new byte[] { 0b0000_0000 },
+                new byte[] { 0b0000_1111, 0b1111_0000 },
+                new byte[] { 0b1111_1111 },
+                12,
+            };
+            yield return new object[]
+            {
+                new byte[] { 0b0000_0000 },
+                new byte[] { 0b0000_0001, 0b1111_1110 },
+                new byte[] { 0b1111_1111 },
+                15,
+            };
 
             yield return new object[] { new byte[] { 0b0000_0101 }, new byte[] { 0b1100_0000 }, new byte[] { 0b0101_1100 }, 4 };
-            yield return new object[] { new byte[] { 0b0000_0101, 0b1100_1100 }, new byte[] { 0b0011_0000 }, new byte[] { 0b0101_1100, 0b1100_0011 }, 4 };
-            yield return new object[] { new byte[] { 0b0000_0000, 0b0000_0001 }, new byte[] { 0b1011_1001, 0b1000_0110 }, new byte[] { 0b1101_1100, 0b1100_0011 }, 15 };
+            yield return new object[]
+            {
+                new byte[] { 0b0000_0101, 0b1100_1100 },
+                new byte[] { 0b0011_0000 },
+                new byte[] { 0b0101_1100, 0b1100_0011 },
+                4,
+            };
+            yield return new object[]
+            {
+                new byte[] { 0b0000_0000, 0b0000_0001 },
+                new byte[] { 0b1011_1001, 0b1000_0110 },
+                new byte[] { 0b1101_1100, 0b1100_0011 },
+                15,
+            };
 
             // ragged far shift
             yield return new object[] { new byte[] { 0x00 }, new byte[] { 0x00, 0x00, 0x01, 0xFE }, new byte[] { 0xFF }, 31 };
@@ -296,10 +309,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(ShiftBitsRight_Test_Values))]
-        public void ShiftBitsRight_Test(byte[] expected,
-                                        byte[] expectedCarryOut,
-                                        byte[] input,
-                                        int shift)
+        public void ShiftBitsRight_Test(byte[] expected, byte[] expectedCarryOut, byte[] input, int shift)
         {
             // Arrange
             var original = input.ToArray();
@@ -323,20 +333,16 @@ namespace Gulliver.Tests
         [Fact]
         public void ShiftBitsRight_NullInput_ThrowsArgumentNullException_Test()
         {
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((byte[])null).ShiftBitsRight(42, out _));
 
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((byte[])null).ShiftBitsRight(42));
         }
 
         [Fact]
         public void ShiftBitsRight_ShiftLessThanZero_ThrowsArgumentOutOfRangeException_Test()
         {
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] { 0x00 }.ShiftBitsRight(-1, out _));
 
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] { 0x00 }.ShiftBitsRight(-1));
         }
 
@@ -370,14 +376,44 @@ namespace Gulliver.Tests
             yield return new object[] { new byte[] { 0b1100_0000 }, new byte[] { 0b0011_1111 }, new byte[] { 0b1111_1111 }, 6 };
             yield return new object[] { new byte[] { 0b1000_0000 }, new byte[] { 0b0111_1111 }, new byte[] { 0b1111_1111 }, 7 };
 
-            yield return new object[] { new byte[] { 0b0000_0000 }, new byte[] { 0b0000_1111, 0b1111_0000 }, new byte[] { 0b1111_1111 }, 12 };
-            yield return new object[] { new byte[] { 0b0000_0000 }, new byte[] { 0b0111_1111, 0b1000_0000 }, new byte[] { 0b1111_1111 }, 15 };
+            yield return new object[]
+            {
+                new byte[] { 0b0000_0000 },
+                new byte[] { 0b0000_1111, 0b1111_0000 },
+                new byte[] { 0b1111_1111 },
+                12,
+            };
+            yield return new object[]
+            {
+                new byte[] { 0b0000_0000 },
+                new byte[] { 0b0111_1111, 0b1000_0000 },
+                new byte[] { 0b1111_1111 },
+                15,
+            };
 
-            yield return new object[] { new byte[] { 0b1110_0000, 0b0000_0000 }, new byte[] { 0b00001_1111, 0b1111_1111 }, new byte[] { 0b1111_1111, 0b1111_1111 }, 13 };
+            yield return new object[]
+            {
+                new byte[] { 0b1110_0000, 0b0000_0000 },
+                new byte[] { 0b00001_1111, 0b1111_1111 },
+                new byte[] { 0b1111_1111, 0b1111_1111 },
+                13,
+            };
 
             yield return new object[] { new byte[] { 0b1100_0000 }, new byte[] { 0b0000_0101 }, new byte[] { 0b101_1100 }, 4 };
-            yield return new object[] { new byte[] { 0b1100_1100, 0b0011_0000 }, new byte[] { 0b0000_0101 }, new byte[] { 0b0101_1100, 0b1100_0011 }, 4 };
-            yield return new object[] { new byte[] { 0b1000_0000, 0b0000_0000 }, new byte[] { 0b0110_1110, 0b0110_0001 }, new byte[] { 0b01101_1100, 0b1100_0011 }, 15 };
+            yield return new object[]
+            {
+                new byte[] { 0b1100_1100, 0b0011_0000 },
+                new byte[] { 0b0000_0101 },
+                new byte[] { 0b0101_1100, 0b1100_0011 },
+                4,
+            };
+            yield return new object[]
+            {
+                new byte[] { 0b1000_0000, 0b0000_0000 },
+                new byte[] { 0b0110_1110, 0b0110_0001 },
+                new byte[] { 0b01101_1100, 0b1100_0011 },
+                15,
+            };
 
             // ragged far shift
             yield return new object[] { new byte[] { 0x00 }, new byte[] { 0x7F, 0x80, 0x00, 0x00 }, new byte[] { 0xFF }, 31 };
@@ -385,10 +421,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(ShiftBitsLeft_Test_Values))]
-        public void ShiftBitsLeft_Test(byte[] expected,
-                                       byte[] expectedCarryOut,
-                                       byte[] input,
-                                       int shift)
+        public void ShiftBitsLeft_Test(byte[] expected, byte[] expectedCarryOut, byte[] input, int shift)
         {
             // Arrange
             var original = input.ToArray();
@@ -412,20 +445,16 @@ namespace Gulliver.Tests
         [Fact]
         public void ShiftBitsLeft_NullInput_ThrowsArgumentNullException_Test()
         {
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((byte[])null).ShiftBitsLeft(42, out _));
 
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((byte[])null).ShiftBitsLeft(42));
         }
 
         [Fact]
         public void ShiftBitsLeft_ShiftLessThanZero_ThrowsArgumentOutOfRangeException_Test()
         {
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] { 0x00 }.ShiftBitsLeft(-1, out _));
 
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentOutOfRangeException>(() => new byte[] { 0x00 }.ShiftBitsLeft(-1));
         }
 
@@ -457,7 +486,6 @@ namespace Gulliver.Tests
         [Fact]
         public void Reverse_InputNull_ThrowsArgumentNullException_Test()
         {
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((byte[])null).ReverseBytes());
         }
 
@@ -487,8 +515,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(AppendShortest_Test_Values))]
-        public void AppendShortest_Test(byte[] left,
-                                        byte[] right)
+        public void AppendShortest_Test(byte[] left, byte[] right)
         {
             // Arrange
             var leftOriginal = left.ToArray();
@@ -546,8 +573,7 @@ namespace Gulliver.Tests
         [Theory]
         [InlineData(null, new byte[] { 0x00 })]
         [InlineData(new byte[] { 0x00 }, null)]
-        public void AppendShortest_NullInput_ThrowsArgumentNullException_Test(byte[] left,
-                                                                              byte[] right)
+        public void AppendShortest_NullInput_ThrowsArgumentNullException_Test(byte[] left, byte[] right)
         {
             // Arrange
             // Act
@@ -566,9 +592,7 @@ namespace Gulliver.Tests
         [InlineData(new byte[] { }, 0, 0xAC)]
         [InlineData(new byte[] { 0x34, 0x12 }, 0, 0xAC)]
         [InlineData(new byte[] { 0x34, 0x12 }, 2, 0xAC)]
-        public void AppendBytes_Test(byte[] source,
-                                     int count,
-                                     byte element)
+        public void AppendBytes_Test(byte[] source, int count, byte element)
         {
             // Act
             var original = source.ToArray();
@@ -591,7 +615,7 @@ namespace Gulliver.Tests
             // Arrange
             // Act
             // Arrange
-            // ReSharper disable once AssignNullToNotNullAttribute
+
             Assert.Throws<ArgumentNullException>(() => ByteArrayUtils.AppendBytes(null, 1));
         }
 
@@ -632,9 +656,7 @@ namespace Gulliver.Tests
         [InlineData(new byte[] { }, 0, 0xAC)]
         [InlineData(new byte[] { 0x34, 0x12 }, 0, 0xAC)]
         [InlineData(new byte[] { 0x34, 0x12 }, 2, 0xAC)]
-        public void PrependBytes_Test(byte[] source,
-                                      int count,
-                                      byte element)
+        public void PrependBytes_Test(byte[] source, int count, byte element)
         {
             // Act
             var original = source.ToArray();
@@ -657,7 +679,7 @@ namespace Gulliver.Tests
             // Arrange
             // Act
             // Arrange
-            // ReSharper disable once AssignNullToNotNullAttribute
+
             Assert.Throws<ArgumentNullException>(() => ByteArrayUtils.PrependBytes(null, 1));
         }
 
@@ -713,8 +735,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(PrependShortest_Test_Values))]
-        public void PrependShortest_Test(byte[] left,
-                                         byte[] right)
+        public void PrependShortest_Test(byte[] left, byte[] right)
         {
             // Arrange
             var leftOriginal = left.ToArray();
@@ -772,8 +793,7 @@ namespace Gulliver.Tests
         [Theory]
         [InlineData(null, new byte[] { 0x00 })]
         [InlineData(new byte[] { 0x00 }, null)]
-        public void PrependShortest_NullInput_ThrowsArgumentNullException_Test(byte[] left,
-                                                                               byte[] right)
+        public void PrependShortest_NullInput_ThrowsArgumentNullException_Test(byte[] left, byte[] right)
         {
             // Arrange
             // Act

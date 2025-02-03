@@ -1,4 +1,4 @@
-# ![Gulliver](src/Gulliver/icon.png) Gulliver
+﻿# ![Gulliver](src/Gulliver/icon.png) Gulliver
 
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Gulliver?logo=nuget)](https://www.nuget.org/packages/Gulliver/)
 [![Documentation on ReadTheDocs](https://img.shields.io/badge/Read%20the%20Docs-Gulliver-lightgrey?logo=read%20the%20docs)](https://gulliver.readthedocs.io)
@@ -26,19 +26,19 @@ Bit-curious developers will likely gain the most use out of the static `ByteArra
 
 Operations are broken down in several fundamental categories, with appropriate considerations made for the endianness of the byte array when appropriate.
 
--  General byte array operations
-   -  Byte array creation and population
-   -  Bytes as bit array addressing
-   -  Byte array trimming, padding, and appending
-   -  MSB length counting
-   -  MSB 0 value trimming
-   -  Stringification
--  Bitwise byte array operations
-   -  AND / OR / XOR / NOT
-   -  Bitshifting
--  Unsigned Mathematical Operations
-   -  Addition / Subtraction / Increment / Decrement
-   -  Comparison
+- General byte array operations
+  - Byte array creation and population
+  - Bytes as bit array addressing
+  - Byte array trimming, padding, and appending
+  - MSB length counting
+  - MSB 0 value trimming
+  - Stringification
+- Bitwise byte array operations
+  - AND / OR / XOR / NOT
+  - Bitshifting
+- Unsigned Mathematical Operations
+  - Addition / Subtraction / Increment / Decrement
+  - Comparison
 
 The `FixedBytes` class brings many of these operations togheter allowing developers to treat a `byte[]` as a more complex object without the need to explicitly call helper or extension methods.
 
@@ -48,20 +48,19 @@ The `LittleEndianByteEnumerable` and `BigEndianByteEnumerable` gives access to m
 
 ## Built With
 
--  [JetBrains.Annotations](https://www.jetbrains.com/help/resharper/10.0/Code_Analysis__Code_Annotations.html) - Used to keep developers honest
--  [NuGet](https://www.nuget.org/) - Dependency Management
--  [Stackoverflow](https://stackoverflow.com/) - Because who really remembers how to code
--  [xUnit.net](https://xunit.net/) - Testing, testing, 1, 2, 3...
+- [NuGet](https://www.nuget.org/) - Dependency Management
+- [Stackoverflow](https://stackoverflow.com/) - Because who really remembers how to code
+- [xUnit.net](https://xunit.net/) - Testing, testing, 1, 2, 3...
 
 ## Primary Authors and Contributors
 
--  **Robert H. Engelhardt** - _Primary Developer, Source of Ideas Good and Bad_ - [@rheone](https://twitter.com/rheone)
--  **Andrew Steele** - _Code Review and Suggestions_ - [@ahsteele](https://twitter.com/ahsteele)
--  **Nick Bachicha** - _Git Wrangler and DevOps Extraordinaire_ - [@nicksterx](https://twitter.com/nicksterx)
+- **Robert H. Engelhardt** - _Primary Developer, Source of Ideas Good and Bad_ - [rheone](https://github.com/rheone)
+- **Andrew Steele** - _Code Review and Suggestions_ - [ahsteele](https://github.com/ahsteele)
+- **Nick Bachicha** - _Git Wrangler and DevOps Extraordinaire_ - [nicksterx](https://github.com/nicksterx)
 
 ## Copyright
 
-> Copyright 2019 National Technology & Engineering Solutions of Sandia, LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.
+> Copyright 2025 National Technology & Engineering Solutions of Sandia, LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.
 
 ## License
 

@@ -1,20 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29409.12
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gulliver", "Gulliver\Gulliver.csproj", "{B1C7E07C-8AF2-42AD-8C8F-EF73A4BB5D72}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gulliver.Tests", "Gulliver.Tests\Gulliver.Tests.csproj", "{A5E3A10B-9D68-46D4-AB13-965BE26A5815}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{D2F5012F-9140-4E18-A64A-A35F8812C1B3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeQuality", "CodeQuality", "{7D7ECA08-4C98-4752-9BA6-7F5407A19166}"
 	ProjectSection(SolutionItems) = preProject
+		..\acknowledgements.md = ..\acknowledgements.md
+		..\CODE_OF_CONDUCT.md = ..\CODE_OF_CONDUCT.md
+		..\HUMANS.md = ..\HUMANS.md
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+		..\SECURITY.md = ..\SECURITY.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "codequality", "codequality", "{7D7ECA08-4C98-4752-9BA6-7F5407A19166}"
+	ProjectSection(SolutionItems) = preProject
+		.csharpierrc.json = .csharpierrc.json
 		.editorconfig = .editorconfig
-		analyzers.ruleset = analyzers.ruleset
-		analyzers.tests.ruleset = analyzers.tests.ruleset
-		Gulliver.sln.DotSettings = Gulliver.sln.DotSettings
+		..\.editorconfig = ..\.editorconfig
+		..\dictionary.dic = ..\dictionary.dic
 		stylecop.json = stylecop.json
 	EndProjectSection
 EndProject
@@ -24,14 +32,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{88C96C1F-DCD
 		..\.gitignore = ..\.gitignore
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{ED5DBB6E-5660-43ED-899B-9BF78CC4A7A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gulliver.DocExamples", "Gulliver.DocExamples\Gulliver.DocExamples.csproj", "{33803929-3B7C-47B7-A816-71A30CF597E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{89D0C143-B917-499E-9A6E-BEE4B5E7C4E6}"
 	ProjectSection(SolutionItems) = preProject
-		..\HUMANS.md = ..\HUMANS.md
-		..\LICENSE = ..\LICENSE
-		..\README.md = ..\README.md
+		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gulliver.DocExamples", "Gulliver.DocExamples\Gulliver.DocExamples.csproj", "{33803929-3B7C-47B7-A816-71A30CF597E1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{3FE0A1A4-B22A-4676-9CCD-F60BB119B1AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "issue templates", "issue templates", "{E970F86E-BADD-45EF-8F64-1B1D1BB1EC95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflow", "workflow", "{DEF888CA-1CD2-461D-AAE4-E26703FB780C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,7 +70,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7D7ECA08-4C98-4752-9BA6-7F5407A19166} = {D2F5012F-9140-4E18-A64A-A35F8812C1B3}
 		{88C96C1F-DCD0-4E74-B8BE-DBE25CD03DAB} = {D2F5012F-9140-4E18-A64A-A35F8812C1B3}
-		{ED5DBB6E-5660-43ED-899B-9BF78CC4A7A2} = {D2F5012F-9140-4E18-A64A-A35F8812C1B3}
+		{89D0C143-B917-499E-9A6E-BEE4B5E7C4E6} = {D2F5012F-9140-4E18-A64A-A35F8812C1B3}
+		{3FE0A1A4-B22A-4676-9CCD-F60BB119B1AE} = {D2F5012F-9140-4E18-A64A-A35F8812C1B3}
+		{E970F86E-BADD-45EF-8F64-1B1D1BB1EC95} = {3FE0A1A4-B22A-4676-9CCD-F60BB119B1AE}
+		{DEF888CA-1CD2-461D-AAE4-E26703FB780C} = {3FE0A1A4-B22A-4676-9CCD-F60BB119B1AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3AD453FE-C4DC-49E5-987E-5CD24284B345}

@@ -1,0 +1,37 @@
+# Root .editorconfig as of 2025-02-03
+
+root = true
+
+# All files
+[*]
+charset = utf-8-bom
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+spelling_languages = en-us
+spelling_checkable_types = strings,identifiers,comments
+spelling_error_severity = information
+spelling_exclusion_path = .\dictionary.dic
+
+# json
+[*.json]
+indent_size = 2
+
+# YAML Files
+[*.{yml,yaml}]
+indent_size = 2
+
+# Bash Files
+[*.sh]
+end_of_line = lf
+
+# Batch Files
+[*.{cmd,bat,ps1}]
+end_of_line = crlf
+
+# XML
+[*.xml]
+indent_size = 2

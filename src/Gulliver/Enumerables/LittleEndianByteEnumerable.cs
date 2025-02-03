@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 
 namespace Gulliver.Enumerables
 {
@@ -9,7 +8,6 @@ namespace Gulliver.Enumerables
     ///     an enumerable used to iterate over an <see cref="IEnumerable{T}" /> of <see cref="byte" /> in as LittleEndian,
     ///     automatically ignoring zero-valued most significant bytes
     /// </summary>
-    [PublicAPI]
     public class LittleEndianByteEnumerable : AbstractByteEnumerable
     {
         /// <summary>
@@ -17,8 +15,7 @@ namespace Gulliver.Enumerables
         /// </summary>
         /// <param name="bytes">bytes in little endian order used to make the enumerable</param>
         /// <param name="trim"><see langword="true" /> if most significant zero bytes should be trimmed on instantiation</param>
-        public LittleEndianByteEnumerable([NotNull] IEnumerable<byte> bytes,
-                                          bool trim = true)
+        public LittleEndianByteEnumerable(IEnumerable<byte> bytes, bool trim = true)
             : base(ConstructBytes(bytes, trim), trim, true)
         {
             if (bytes == null)
@@ -27,19 +24,17 @@ namespace Gulliver.Enumerables
             }
         }
 
-        internal static byte[] ConstructBytes(IEnumerable<byte> bytes,
-                                              bool trim)
+        internal static byte[] ConstructBytes(IEnumerable<byte> bytes, bool trim)
         {
             // LittleEndian most significant bytes are at the highest index (end of collection)
             return trim
-                       ? Trim() // remove most significant zero-valued bytes during iteration
-                       : bytes.ToArray();
+                ? Trim() // remove most significant zero-valued bytes during iteration
+                : bytes.ToArray();
 
             byte[] Trim()
             {
                 var stack = new Stack<byte>(); // using a stack to reverse collected bytes
-                foreach (var x in bytes.Reverse()
-                                       .SkipWhile(b => b == 0x00)) // iterate in reverse skipping zero-valued bytes found at the original collections end
+                foreach (var x in bytes.Reverse().SkipWhile(b => b == 0x00)) // iterate in reverse skipping zero-valued bytes found at the original collections end
                 {
                     stack.Push(x);
                 }
@@ -55,8 +50,8 @@ namespace Gulliver.Enumerables
         /// </summary>
         /// <param name="bytes">the source bytes</param>
         /// <param name="trim"><see langword="true" /> if most significant zero bytes should be trimmed</param>
-        public static LittleEndianByteEnumerable FromBigEndian([NotNull] IEnumerable<byte> bytes,
-                                                               bool trim = true)
+        /// <returns></returns>
+        public static LittleEndianByteEnumerable FromBigEndian(IEnumerable<byte> bytes, bool trim = true)
         {
             if (bytes == null)
             {
@@ -72,8 +67,8 @@ namespace Gulliver.Enumerables
         /// </summary>
         /// <param name="bytes">the source bytes</param>
         /// <param name="trim"><see langword="true" /> if most significant zero bytes should be trimmed</param>
-        public static LittleEndianByteEnumerable FromSystemEndian([NotNull] IEnumerable<byte> bytes,
-                                                                  bool trim = true)
+        /// <returns></returns>
+        public static LittleEndianByteEnumerable FromSystemEndian(IEnumerable<byte> bytes, bool trim = true)
         {
             if (bytes == null)
             {
@@ -81,8 +76,8 @@ namespace Gulliver.Enumerables
             }
 
             return BitConverter.IsLittleEndian
-                       ? new LittleEndianByteEnumerable(bytes, trim)
-                       : new LittleEndianByteEnumerable(bytes.Reverse(), trim);
+                ? new LittleEndianByteEnumerable(bytes, trim)
+                : new LittleEndianByteEnumerable(bytes.Reverse(), trim);
         }
 
         #endregion

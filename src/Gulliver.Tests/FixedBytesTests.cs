@@ -4,10 +4,9 @@ using System.Globalization;
 using System.Linq;
 using Xunit;
 
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace Gulliver.Tests
 {
+#pragma warning disable IDE0062 // Make local function static (IDE0062); purposely allowing non-static functions that could be static for .net4.8 compatibility
     public class FixedBytesTests
     {
         #region Type
@@ -71,8 +70,7 @@ namespace Gulliver.Tests
 
             // Assert
             Assert.IsType<byte[]>(result);
-            Assert.True(bytes.Reverse()
-                             .SequenceEqual(result));
+            Assert.True(bytes.Reverse().SequenceEqual(result));
             Assert.NotSame(fixedBytes.GetBytesLittleEndian(), result);
         }
 
@@ -106,11 +104,9 @@ namespace Gulliver.Tests
             // Act
             // Assert
             Assert.Throws<ArgumentNullException>(() =>
-                                                 {
-                                                     // ReSharper disable once AssignNullToNotNullAttribute
-                                                     // ReSharper disable once UnusedVariable
-                                                     var fixedBytes = new FixedBytes(input);
-                                                 });
+            {
+                var fixedBytes = new FixedBytes(input);
+            });
         }
 
         [Fact]
@@ -122,11 +118,9 @@ namespace Gulliver.Tests
             // Act
             // Assert
             Assert.Throws<ArgumentException>(() =>
-                                             {
-                                                 // ReSharper disable once AssignNullToNotNullAttribute
-                                                 // ReSharper disable once UnusedVariable
-                                                 var fixedBytes = new FixedBytes(input, input.Length - 1);
-                                             });
+            {
+                var fixedBytes = new FixedBytes(input, input.Length - 1);
+            });
         }
 
         [Fact]
@@ -138,11 +132,9 @@ namespace Gulliver.Tests
             // Act
             // Assert
             Assert.Throws<ArgumentException>(() =>
-                                             {
-                                                 // ReSharper disable once AssignNullToNotNullAttribute
-                                                 // ReSharper disable once UnusedVariable
-                                                 var fixedBytes = new FixedBytes(input, -1);
-                                             });
+            {
+                var fixedBytes = new FixedBytes(input, -1);
+            });
         }
 
         [Fact]
@@ -158,9 +150,7 @@ namespace Gulliver.Tests
             // Assert
             var bytes = fixedBytes.GetBytes();
             Assert.Equal(length, bytes.Length);
-            Assert.Equal(Enumerable.Repeat((byte)0x00, length - input.Length)
-                                   .Concat(input),
-                         bytes);
+            Assert.Equal(Enumerable.Repeat((byte)0x00, length - input.Length).Concat(input), bytes);
         }
 
         #endregion
@@ -204,9 +194,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(Equal_IEnumerableBytes_Test_Values))]
-        public void Equal_IEnumerableBytes_Test(bool expected,
-                                                FixedBytes self,
-                                                IEnumerable<byte> other)
+        public void Equal_IEnumerableBytes_Test(bool expected, FixedBytes self, IEnumerable<byte> other)
         {
             // Arrange
             // Act
@@ -238,9 +226,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(Equal_FixedBytes_Test_Values))]
-        public void Equal_FixedBytes_Test(bool expected,
-                                          FixedBytes self,
-                                          FixedBytes other)
+        public void Equal_FixedBytes_Test(bool expected, FixedBytes self, FixedBytes other)
         {
             // Arrange
             // Act
@@ -282,9 +268,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(Addition_Test_Values))]
-        public void Addition_Test(FixedBytes expected,
-                                  FixedBytes left,
-                                  FixedBytes right)
+        public void Addition_Test(FixedBytes expected, FixedBytes left, FixedBytes right)
         {
             // Arrange
             // Act
@@ -323,9 +307,7 @@ namespace Gulliver.Tests
 
         [Theory(Skip = "Subtraction not yet implemented")]
         [MemberData(nameof(Subtraction_Test_Values))]
-        public void Subtraction_Test(FixedBytes expected,
-                                     FixedBytes left,
-                                     FixedBytes right)
+        public void Subtraction_Test(FixedBytes expected, FixedBytes left, FixedBytes right)
         {
             // Arrange
             // Act
@@ -345,10 +327,9 @@ namespace Gulliver.Tests
             // Act
             // Assert
             Assert.Throws<InvalidOperationException>(() =>
-                                                     {
-                                                         // ReSharper disable once UnusedVariable
-                                                         var result = left - right;
-                                                     });
+            {
+                var result = left - right;
+            });
         }
 
         #endregion
@@ -384,9 +365,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(LogicalOr_Test_Values))]
-        public void LogicalOr_Test(FixedBytes expected,
-                                   FixedBytes right,
-                                   FixedBytes left)
+        public void LogicalOr_Test(FixedBytes expected, FixedBytes right, FixedBytes left)
         {
             // Arrange
             // Act
@@ -424,9 +403,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(LogicalAnd_Test_Values))]
-        public void LogicalAnd_Test(FixedBytes expected,
-                                    FixedBytes right,
-                                    FixedBytes left)
+        public void LogicalAnd_Test(FixedBytes expected, FixedBytes right, FixedBytes left)
         {
             // Arrange
             // Act
@@ -464,9 +441,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(LogicalXor_Test_Values))]
-        public void LogicalXor_Test(FixedBytes expected,
-                                    FixedBytes right,
-                                    FixedBytes left)
+        public void LogicalXor_Test(FixedBytes expected, FixedBytes right, FixedBytes left)
         {
             // Arrange
             // Act
@@ -500,8 +475,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(LogicalNot_Test_Values))]
-        public void LogicalNot_Test(FixedBytes expected,
-                                    FixedBytes operand)
+        public void LogicalNot_Test(FixedBytes expected, FixedBytes operand)
         {
             // Arrange
             // Act
@@ -539,9 +513,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(LogicalLeftShift_Test_Values))]
-        public void LogicalLeftShift_Test(FixedBytes expected,
-                                          FixedBytes operand,
-                                          int shift)
+        public void LogicalLeftShift_Test(FixedBytes expected, FixedBytes operand, int shift)
         {
             // Arrange
             // Act
@@ -560,10 +532,9 @@ namespace Gulliver.Tests
             // Act
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(() =>
-                                                       {
-                                                           // ReSharper disable once UnusedVariable
-                                                           var result = fixedBytes << -1;
-                                                       });
+            {
+                var result = fixedBytes << -1;
+            });
         }
 
         #endregion
@@ -594,9 +565,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(LogicalRightShift_Test_Values))]
-        public void LogicalRightShift_Test(FixedBytes expected,
-                                           FixedBytes operand,
-                                           int shift)
+        public void LogicalRightShift_Test(FixedBytes expected, FixedBytes operand, int shift)
         {
             // Arrange
             // Act
@@ -615,10 +584,9 @@ namespace Gulliver.Tests
             // Act
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(() =>
-                                                       {
-                                                           // ReSharper disable once UnusedVariable
-                                                           var result = fixedBytes >> -1;
-                                                       });
+            {
+                var result = fixedBytes >> -1;
+            });
         }
 
         #endregion
@@ -649,7 +617,7 @@ namespace Gulliver.Tests
         {
             // Arrange
             // Act
-            // ReSharper disable once ExpressionIsAlwaysNull
+
             byte[] asBytes = (FixedBytes)null;
 
             // Assert
@@ -740,9 +708,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(Comparision_GreaterThan_Test_Values))]
-        public void Comparision_GreaterThan_FixedBytes_Test(bool expected,
-                                                            FixedBytes left,
-                                                            FixedBytes right)
+        public void Comparision_GreaterThan_FixedBytes_Test(bool expected, FixedBytes left, FixedBytes right)
         {
             // Arrange
             // Act
@@ -775,9 +741,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(Comparision_LessThan_Test_Values))]
-        public void Comparision_LessThan_FixedBytes_Test(bool expected,
-                                                         FixedBytes left,
-                                                         FixedBytes right)
+        public void Comparision_LessThan_FixedBytes_Test(bool expected, FixedBytes left, FixedBytes right)
         {
             // Arrange
             // Act
@@ -811,9 +775,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(Comparision_GreaterThanOrEquals_FixedBytes_Test_Values))]
-        public void Comparision_GreaterThanOrEquals_FixedBytes_Test(bool expected,
-                                                                    FixedBytes left,
-                                                                    FixedBytes right)
+        public void Comparision_GreaterThanOrEquals_FixedBytes_Test(bool expected, FixedBytes left, FixedBytes right)
         {
             // Arrange
             // Act
@@ -847,9 +809,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(Comparision_LessThanOrEquals_FixedBytes_Test_Values))]
-        public void Comparision_LessThanOrEquals_FixedBytes_Test(bool expected,
-                                                                 FixedBytes left,
-                                                                 FixedBytes right)
+        public void Comparision_LessThanOrEquals_FixedBytes_Test(bool expected, FixedBytes left, FixedBytes right)
         {
             // Arrange
             // Act
@@ -875,9 +835,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(Comparision_Equal_Test_Values))]
-        public void Comparision_Equal_Test(bool expected,
-                                           FixedBytes right,
-                                           FixedBytes left)
+        public void Comparision_Equal_Test(bool expected, FixedBytes right, FixedBytes left)
         {
             // Arrange
             // Act
@@ -968,9 +926,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(CompareTo_FixedBytes_Test_Values))]
-        public void CompareTo_FixedBytes_Test(int expected,
-                                              FixedBytes fixedBytes,
-                                              object comparedTo)
+        public void CompareTo_FixedBytes_Test(int expected, FixedBytes fixedBytes, object comparedTo)
         {
             // Arrange
             // Act
@@ -1004,9 +960,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(CompareTo_Bytes_Test_Values))]
-        public void CompareTo_Bytes_Test(int expected,
-                                         FixedBytes fixedBytes,
-                                         byte[] bytes)
+        public void CompareTo_Bytes_Test(int expected, FixedBytes fixedBytes, byte[] bytes)
         {
             // Arrange
             // Act
@@ -1044,9 +998,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(Comparision_Exactly_Test_Values))]
-        public void Comparision_Exactly_Test(bool expected,
-                                             FixedBytes right,
-                                             FixedBytes left)
+        public void Comparision_Exactly_Test(bool expected, FixedBytes right, FixedBytes left)
         {
             // Arrange
             // Act
@@ -1080,9 +1032,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(Exactly_Bytes_Test_Values))]
-        public void Exactly_Bytes_Test(bool expected,
-                                       FixedBytes self,
-                                       byte[] other)
+        public void Exactly_Bytes_Test(bool expected, FixedBytes self, byte[] other)
         {
             // Arrange
             // Act
@@ -1127,7 +1077,7 @@ namespace Gulliver.Tests
             var fixedBytes = new FixedBytes(lotsOfBytes);
 
             // Act
-            // ReSharper disable once UnusedVariable
+
             var hashCode = fixedBytes.GetHashCode();
 
             // Assert
@@ -1163,10 +1113,9 @@ namespace Gulliver.Tests
             // Act
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(() =>
-                                                       {
-                                                           // ReSharper disable once UnusedVariable
-                                                           var b = fixedBytes[-1];
-                                                       });
+            {
+                var b = fixedBytes[-1];
+            });
         }
 
         [Fact]
@@ -1178,10 +1127,9 @@ namespace Gulliver.Tests
             // Act
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(() =>
-                                                       {
-                                                           // ReSharper disable once UnusedVariable
-                                                           var b = fixedBytes[fixedBytes.Count];
-                                                       });
+            {
+                var b = fixedBytes[fixedBytes.Count];
+            });
         }
 
         #endregion
@@ -1216,7 +1164,28 @@ namespace Gulliver.Tests
 
             IEnumerable<string> Formats()
             {
-                return new[] { null, string.Empty, "g", "G", "H", "h", "HC", "hc", "d", "D", "o", "O", "b", "B", "bc", "BC", "I", "IBE", "ILE" };
+                return new[]
+                {
+                    null,
+                    string.Empty,
+                    "g",
+                    "G",
+                    "H",
+                    "h",
+                    "HC",
+                    "hc",
+                    "d",
+                    "D",
+                    "o",
+                    "O",
+                    "b",
+                    "B",
+                    "bc",
+                    "BC",
+                    "I",
+                    "IBE",
+                    "ILE",
+                };
             }
 
             IEnumerable<byte[]> Values()
@@ -1230,10 +1199,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(ToString_Format_Test_Values))]
-        public void ToString_Format_Test(string expected,
-                                         FixedBytes fixedBytes,
-                                         string format,
-                                         IFormatProvider formatProvider)
+        public void ToString_Format_Test(string expected, FixedBytes fixedBytes, string format, IFormatProvider formatProvider)
         {
             // Arrange
             // Act

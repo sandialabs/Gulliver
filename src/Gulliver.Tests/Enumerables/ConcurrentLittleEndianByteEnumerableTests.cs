@@ -7,6 +7,9 @@ using Xunit.Abstractions;
 
 namespace Gulliver.Tests.Enumerables
 {
+#if NET6_0_OR_GREATER
+#pragma warning disable IDE0062 // Make local function static (IDE0062); purposely allowing non-static functions that could be static for .net4.8 compatibility
+#endif
     public class ConcurrentLittleEndianByteEnumerableTests
     {
         #region Setup / Teardown
@@ -39,8 +42,7 @@ namespace Gulliver.Tests.Enumerables
 
         public static IEnumerable<object[]> Byte_Values()
         {
-            var byteValues = ByteValues()
-                .ToList();
+            var byteValues = ByteValues().ToList();
 
             foreach (var left in byteValues)
             {
@@ -53,14 +55,14 @@ namespace Gulliver.Tests.Enumerables
             IEnumerable<byte[]> ByteValues()
             {
                 return new[]
-                       {
-                           Array.Empty<byte>(),
-                           new byte[] {0x00},
-                           new byte[] {0xFF, 0xAC},
-                           new byte[] {0x00, 0x00, 0xFF, 0xAC},
-                           new byte[] {0xFF, 0xAC, 0x00, 0x00},
-                           new byte[] {0x00, 0x00, 0xFF, 0xAC, 0x00, 0x00}
-                       };
+                {
+                    Array.Empty<byte>(),
+                    new byte[] { 0x00 },
+                    new byte[] { 0xFF, 0xAC },
+                    new byte[] { 0x00, 0x00, 0xFF, 0xAC },
+                    new byte[] { 0xFF, 0xAC, 0x00, 0x00 },
+                    new byte[] { 0x00, 0x00, 0xFF, 0xAC, 0x00, 0x00 },
+                };
             }
         }
 
@@ -70,29 +72,26 @@ namespace Gulliver.Tests.Enumerables
 
         [Theory]
         [MemberData(nameof(Byte_Values))]
-        public void Iterate_FromByteEnumerable_Trimmed_Test(byte[] leftBytes,
-                                                            byte[] rightBytes)
+        public void Iterate_FromByteEnumerable_Trimmed_Test(byte[] leftBytes, byte[] rightBytes)
         {
             // Arrange
             this._testOutputHelper.WriteLine($"left: [{leftBytes.ToString("h")}]");
             this._testOutputHelper.WriteLine($"right: [{rightBytes.ToString("h")}]");
 
-            var expectedTrimmedLeftLength = leftBytes.Reverse()
-                                                     .SkipWhile(b => b == 0x00)
-                                                     .Count();
-            var expectedTrimmedRightLength = rightBytes.Reverse()
-                                                       .SkipWhile(b => b == 0x00)
-                                                       .Count();
+            var expectedTrimmedLeftLength = leftBytes.Reverse().SkipWhile(b => b == 0x00).Count();
+            var expectedTrimmedRightLength = rightBytes.Reverse().SkipWhile(b => b == 0x00).Count();
             var length = Math.Max(expectedTrimmedLeftLength, expectedTrimmedRightLength);
             this._testOutputHelper.WriteLine($"expectedLength: {length}");
 
-            var expectedLeft = leftBytes.Take(expectedTrimmedLeftLength)
-                                        .Concat(Enumerable.Repeat((byte)0x00, length - expectedTrimmedLeftLength))
-                                        .ToArray();
+            var expectedLeft = leftBytes
+                .Take(expectedTrimmedLeftLength)
+                .Concat(Enumerable.Repeat((byte)0x00, length - expectedTrimmedLeftLength))
+                .ToArray();
 
-            var expectedRight = rightBytes.Take(expectedTrimmedRightLength)
-                                          .Concat(Enumerable.Repeat((byte)0x00, length - expectedTrimmedRightLength))
-                                          .ToArray();
+            var expectedRight = rightBytes
+                .Take(expectedTrimmedRightLength)
+                .Concat(Enumerable.Repeat((byte)0x00, length - expectedTrimmedRightLength))
+                .ToArray();
 
             this._testOutputHelper.WriteLine($"expected left: [{expectedLeft.ToString("h")}]");
             this._testOutputHelper.WriteLine($"expected right: [{expectedRight.ToString("h")}]");
@@ -108,10 +107,8 @@ namespace Gulliver.Tests.Enumerables
 
             Assert.Equal(length, result.Count);
 
-            var leftResult = result.Select(tuple => tuple.leftByte)
-                                   .ToArray();
-            var rightResult = result.Select(tuple => tuple.rightByte)
-                                    .ToArray();
+            var leftResult = result.Select(tuple => tuple.leftByte).ToArray();
+            var rightResult = result.Select(tuple => tuple.rightByte).ToArray();
 
             this._testOutputHelper.WriteLine($"resulting left: [{leftResult.ToString("h")}]");
             this._testOutputHelper.WriteLine($"resulting right: [{rightResult.ToString("h")}]");
@@ -123,8 +120,7 @@ namespace Gulliver.Tests.Enumerables
 
         [Theory]
         [MemberData(nameof(Byte_Values))]
-        public void Iterate_FromByteEnumerable_NonTrimmed_Test(byte[] leftBytes,
-                                                               byte[] rightBytes)
+        public void Iterate_FromByteEnumerable_NonTrimmed_Test(byte[] leftBytes, byte[] rightBytes)
         {
             // Arrange
             this._testOutputHelper.WriteLine($"left: [{leftBytes.ToString("h")}]");
@@ -134,11 +130,9 @@ namespace Gulliver.Tests.Enumerables
 
             this._testOutputHelper.WriteLine($"expectedLength: {length}");
 
-            var expectedLeft = leftBytes.Concat(Enumerable.Repeat((byte)0x00, length - leftBytes.Length))
-                                        .ToArray();
+            var expectedLeft = leftBytes.Concat(Enumerable.Repeat((byte)0x00, length - leftBytes.Length)).ToArray();
 
-            var expectedRight = rightBytes.Concat(Enumerable.Repeat((byte)0x00, length - rightBytes.Length))
-                                          .ToArray();
+            var expectedRight = rightBytes.Concat(Enumerable.Repeat((byte)0x00, length - rightBytes.Length)).ToArray();
 
             this._testOutputHelper.WriteLine($"expected left: [{expectedLeft.ToString("h")}]");
             this._testOutputHelper.WriteLine($"expected right: [{expectedRight.ToString("h")}]");
@@ -154,10 +148,8 @@ namespace Gulliver.Tests.Enumerables
 
             Assert.Equal(length, result.Count);
 
-            var leftResult = result.Select(tuple => tuple.leftByte)
-                                   .ToArray();
-            var rightResult = result.Select(tuple => tuple.rightByte)
-                                    .ToArray();
+            var leftResult = result.Select(tuple => tuple.leftByte).ToArray();
+            var rightResult = result.Select(tuple => tuple.rightByte).ToArray();
 
             this._testOutputHelper.WriteLine($"resulting left: [{leftResult.ToString("h")}]");
             this._testOutputHelper.WriteLine($"resulting right: [{rightResult.ToString("h")}]");
@@ -169,31 +161,28 @@ namespace Gulliver.Tests.Enumerables
 
         [Theory]
         [MemberData(nameof(Byte_Values))]
-        public void ReverseIterate_FromByteEnumerable_Trimmed_Test(byte[] leftBytes,
-                                                                   byte[] rightBytes)
+        public void ReverseIterate_FromByteEnumerable_Trimmed_Test(byte[] leftBytes, byte[] rightBytes)
         {
             // Arrange
             this._testOutputHelper.WriteLine($"left: [{leftBytes.ToString("h")}]");
             this._testOutputHelper.WriteLine($"right: [{rightBytes.ToString("h")}]");
 
-            var expectedTrimmedLeftLength = leftBytes.Reverse()
-                                                     .SkipWhile(b => b == 0x00)
-                                                     .Count();
-            var expectedTrimmedRightLength = rightBytes.Reverse()
-                                                       .SkipWhile(b => b == 0x00)
-                                                       .Count();
+            var expectedTrimmedLeftLength = leftBytes.Reverse().SkipWhile(b => b == 0x00).Count();
+            var expectedTrimmedRightLength = rightBytes.Reverse().SkipWhile(b => b == 0x00).Count();
             var length = Math.Max(expectedTrimmedLeftLength, expectedTrimmedRightLength);
             this._testOutputHelper.WriteLine($"expectedLength: {length}");
 
-            var expectedLeft = leftBytes.Take(expectedTrimmedLeftLength)
-                                        .Concat(Enumerable.Repeat((byte)0x00, length - expectedTrimmedLeftLength))
-                                        .Reverse()
-                                        .ToArray();
+            var expectedLeft = leftBytes
+                .Take(expectedTrimmedLeftLength)
+                .Concat(Enumerable.Repeat((byte)0x00, length - expectedTrimmedLeftLength))
+                .Reverse()
+                .ToArray();
 
-            var expectedRight = rightBytes.Take(expectedTrimmedRightLength)
-                                          .Concat(Enumerable.Repeat((byte)0x00, length - expectedTrimmedRightLength))
-                                          .Reverse()
-                                          .ToArray();
+            var expectedRight = rightBytes
+                .Take(expectedTrimmedRightLength)
+                .Concat(Enumerable.Repeat((byte)0x00, length - expectedTrimmedRightLength))
+                .Reverse()
+                .ToArray();
 
             this._testOutputHelper.WriteLine($"expected left: [{expectedLeft.ToString("h")}]");
             this._testOutputHelper.WriteLine($"expected right: [{expectedRight.ToString("h")}]");
@@ -201,8 +190,7 @@ namespace Gulliver.Tests.Enumerables
             var enumerable = new ConcurrentLittleEndianByteEnumerable(leftBytes, rightBytes);
 
             // Act
-            var result = enumerable.ReverseEnumerable()
-                                   .ToList();
+            var result = enumerable.ReverseEnumerable().ToList();
 
             // Assert
             Assert.NotNull(result);
@@ -210,10 +198,8 @@ namespace Gulliver.Tests.Enumerables
 
             Assert.Equal(length, result.Count);
 
-            var leftResult = result.Select(tuple => tuple.leftByte)
-                                   .ToArray();
-            var rightResult = result.Select(tuple => tuple.rightByte)
-                                    .ToArray();
+            var leftResult = result.Select(tuple => tuple.leftByte).ToArray();
+            var rightResult = result.Select(tuple => tuple.rightByte).ToArray();
 
             this._testOutputHelper.WriteLine($"resulting left: [{leftResult.ToString("h")}]");
             this._testOutputHelper.WriteLine($"resulting right: [{rightResult.ToString("h")}]");
@@ -225,8 +211,7 @@ namespace Gulliver.Tests.Enumerables
 
         [Theory]
         [MemberData(nameof(Byte_Values))]
-        public void ReverseIterate_FromByteEnumerable_NonTrimmed_Test(byte[] leftBytes,
-                                                                      byte[] rightBytes)
+        public void ReverseIterate_FromByteEnumerable_NonTrimmed_Test(byte[] leftBytes, byte[] rightBytes)
         {
             // Arrange
             this._testOutputHelper.WriteLine($"left: [{leftBytes.ToString("h")}]");
@@ -236,13 +221,12 @@ namespace Gulliver.Tests.Enumerables
 
             this._testOutputHelper.WriteLine($"expectedLength: {length}");
 
-            var expectedLeft = leftBytes.Concat(Enumerable.Repeat((byte)0x00, length - leftBytes.Length))
-                                        .Reverse()
-                                        .ToArray();
+            var expectedLeft = leftBytes.Concat(Enumerable.Repeat((byte)0x00, length - leftBytes.Length)).Reverse().ToArray();
 
-            var expectedRight = rightBytes.Concat(Enumerable.Repeat((byte)0x00, length - rightBytes.Length))
-                                          .Reverse()
-                                          .ToArray();
+            var expectedRight = rightBytes
+                .Concat(Enumerable.Repeat((byte)0x00, length - rightBytes.Length))
+                .Reverse()
+                .ToArray();
 
             this._testOutputHelper.WriteLine($"expected left: [{expectedLeft.ToString("h")}]");
             this._testOutputHelper.WriteLine($"expected right: [{expectedRight.ToString("h")}]");
@@ -250,8 +234,7 @@ namespace Gulliver.Tests.Enumerables
             var enumerable = new ConcurrentLittleEndianByteEnumerable(leftBytes, rightBytes, false);
 
             // Act
-            var result = enumerable.ReverseEnumerable()
-                                   .ToList();
+            var result = enumerable.ReverseEnumerable().ToList();
 
             // Assert
             Assert.NotNull(result);
@@ -259,10 +242,8 @@ namespace Gulliver.Tests.Enumerables
 
             Assert.Equal(length, result.Count);
 
-            var leftResult = result.Select(tuple => tuple.leftByte)
-                                   .ToArray();
-            var rightResult = result.Select(tuple => tuple.rightByte)
-                                    .ToArray();
+            var leftResult = result.Select(tuple => tuple.leftByte).ToArray();
+            var rightResult = result.Select(tuple => tuple.rightByte).ToArray();
 
             this._testOutputHelper.WriteLine($"resulting left: [{leftResult.ToString("h")}]");
             this._testOutputHelper.WriteLine($"resulting right: [{rightResult.ToString("h")}]");
@@ -282,24 +263,17 @@ namespace Gulliver.Tests.Enumerables
         [InlineData(false, false)]
         [InlineData(true, false)]
         [InlineData(false, true)]
-        public void Ctor_LittleEndianByteEnumerable_NullInput_Throws_ArgumentNullException_Test(bool leftSet,
-                                                                                                bool rightSet)
+        public void Ctor_LittleEndianByteEnumerable_NullInput_Throws_ArgumentNullException_Test(bool leftSet, bool rightSet)
         {
             // Arrange
-            var left = leftSet
-                           ? new LittleEndianByteEnumerable(Array.Empty<byte>())
-                           : null;
+            var left = leftSet ? new LittleEndianByteEnumerable(Array.Empty<byte>()) : null;
 
-            var right = rightSet
-                            ? new LittleEndianByteEnumerable(Array.Empty<byte>())
-                            : null;
+            var right = rightSet ? new LittleEndianByteEnumerable(Array.Empty<byte>()) : null;
 
             // Act
             // Assert
-            // ReSharper disable AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => new ConcurrentLittleEndianByteEnumerable(left, right));
 
-            // ReSharper restore AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => new ConcurrentLittleEndianByteEnumerable(left, right));
         }
 
         #endregion
@@ -312,24 +286,17 @@ namespace Gulliver.Tests.Enumerables
         [InlineData(false, false)]
         [InlineData(true, false)]
         [InlineData(false, true)]
-        public void Ctor_IEnumerableByte_NullInput_Throws_ArgumentNullException_Test(bool leftSet,
-                                                                                     bool rightSet)
+        public void Ctor_IEnumerableByte_NullInput_Throws_ArgumentNullException_Test(bool leftSet, bool rightSet)
         {
             // Arrange
-            var left = leftSet
-                           ? Array.Empty<byte>()
-                           : null;
+            var left = leftSet ? Array.Empty<byte>() : null;
 
-            var right = rightSet
-                            ? Array.Empty<byte>()
-                            : null;
+            var right = rightSet ? Array.Empty<byte>() : null;
 
             // Act
             // Assert
-            // ReSharper disable AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => new ConcurrentLittleEndianByteEnumerable(left, right));
 
-            // ReSharper restore AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => new ConcurrentLittleEndianByteEnumerable(left, right));
         }
 
         #endregion

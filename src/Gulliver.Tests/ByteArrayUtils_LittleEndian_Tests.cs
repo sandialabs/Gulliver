@@ -6,7 +6,9 @@ using Xunit;
 
 namespace Gulliver.Tests
 {
-    // ReSharper disable once TestClassNameDoesNotMatchFileNameWarning
+#if NET6_0_OR_GREATER
+#pragma warning disable IDE0062 // Make local function static (IDE0062); purposely allowing non-static functions that could be static for .net4.8 compatibility
+#endif
 
     /// <summary>
     ///     Little Endian ByteArrayUtils Tests
@@ -27,25 +29,23 @@ namespace Gulliver.Tests
                 foreach (var input in uints)
                 {
                     var inputBytes = !BitConverter.IsLittleEndian
-                                         ? BitConverter.GetBytes(input)
-                                                       .ReverseBytes()
-                                         : BitConverter.GetBytes(input);
+                        ? BitConverter.GetBytes(input).ReverseBytes()
+                        : BitConverter.GetBytes(input);
 
                     var deltaBytes = !BitConverter.IsLittleEndian
-                                         ? BitConverter.GetBytes(delta)
-                                                       .ReverseBytes()
-                                         : BitConverter.GetBytes(delta);
+                        ? BitConverter.GetBytes(delta).ReverseBytes()
+                        : BitConverter.GetBytes(delta);
 
-                    if (delta < 0
-                        && input - delta < 0)
+                    if (delta < 0 && input - delta < 0)
                     {
                         yield return new object[] { false, Array.Empty<byte>(), inputBytes, delta };
                         yield break;
                     }
 
-                    var expectedBytes = delta < 0
-                                            ? ByteArrayUtils.SubtractUnsignedLittleEndian(inputBytes, deltaBytes)
-                                            : ByteArrayUtils.AddUnsignedLittleEndian(inputBytes, deltaBytes);
+                    var expectedBytes =
+                        delta < 0
+                            ? ByteArrayUtils.SubtractUnsignedLittleEndian(inputBytes, deltaBytes)
+                            : ByteArrayUtils.AddUnsignedLittleEndian(inputBytes, deltaBytes);
 
                     yield return new object[] { true, expectedBytes, inputBytes, delta };
                 }
@@ -54,10 +54,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(TrySumLittleEndian_Test_Values))]
-        public void TrySumLittleEndian_Long_Test(bool expectedSuccess,
-                                                 byte[] expectedBytes,
-                                                 byte[] input,
-                                                 long delta)
+        public void TrySumLittleEndian_Long_Test(bool expectedSuccess, byte[] expectedBytes, byte[] input, long delta)
         {
             // Arrange
 
@@ -75,7 +72,7 @@ namespace Gulliver.Tests
             // Arrange
             // Act
             // Assert
-            // ReSharper disable once AssignNullToNotNullAttribute
+
             Assert.Throws<ArgumentNullException>(() => ByteArrayUtils.TrySumLittleEndian(null, 42, out _));
         }
 
@@ -85,8 +82,7 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> AddUnsignedLittleEndian_Test_Values()
         {
-            return TestCases()
-                .Distinct();
+            return TestCases().Distinct();
 
             IEnumerable<object[]> TestCases()
             {
@@ -94,14 +90,13 @@ namespace Gulliver.Tests
 
                 foreach (var (left, right) in GetUintPairValues())
                 {
-                    var additionResult = BitConverter.GetBytes(Convert.ToUInt64(left, CultureInfo.InvariantCulture) + Convert.ToUInt64(right, CultureInfo.InvariantCulture));
+                    var additionResult = BitConverter.GetBytes(
+                        Convert.ToUInt64(left, CultureInfo.InvariantCulture)
+                            + Convert.ToUInt64(right, CultureInfo.InvariantCulture)
+                    );
 
-                    var leftBytes = left != null
-                                        ? BitConverter.GetBytes(left.Value)
-                                        : Array.Empty<byte>();
-                    var rightBytes = right != null
-                                         ? BitConverter.GetBytes(right.Value)
-                                         : Array.Empty<byte>();
+                    var leftBytes = left != null ? BitConverter.GetBytes(left.Value) : Array.Empty<byte>();
+                    var rightBytes = right != null ? BitConverter.GetBytes(right.Value) : Array.Empty<byte>();
 
                     if (!systemIsLittleEndian)
                     {
@@ -124,9 +119,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(AddUnsignedLittleEndian_Test_Values))]
-        public void AddUnsignedLittleEndian_Test(byte[] expected,
-                                                 byte[] left,
-                                                 byte[] right)
+        public void AddUnsignedLittleEndian_Test(byte[] expected, byte[] left, byte[] right)
         {
             // Arrange
             var leftOriginal = left.ToArray();
@@ -138,15 +131,14 @@ namespace Gulliver.Tests
             // Assert
             Assert.Equal(expected, result);
 
-            Assert.Equal(leftOriginal, left);   // input value not affected
+            Assert.Equal(leftOriginal, left); // input value not affected
             Assert.Equal(rightOriginal, right); // input value not affected
         }
 
         [Theory]
         [InlineData(null, new byte[] { 0x00 })]
         [InlineData(new byte[] { 0x00 }, null)]
-        public void AddUnsignedLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left,
-                                                                                       byte[] right)
+        public void AddUnsignedLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left, byte[] right)
         {
             // Arrange
             // Act
@@ -160,8 +152,7 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> SubtractUnsignedLittleEndian_Test_Values()
         {
-            return TestCases()
-                .Distinct();
+            return TestCases().Distinct();
 
             IEnumerable<object[]> TestCases()
             {
@@ -169,14 +160,13 @@ namespace Gulliver.Tests
 
                 foreach (var (left, right) in GetUintPairValues())
                 {
-                    var differenceResult = BitConverter.GetBytes(Convert.ToUInt64(left, CultureInfo.InvariantCulture) - Convert.ToUInt64(right, CultureInfo.InvariantCulture));
+                    var differenceResult = BitConverter.GetBytes(
+                        Convert.ToUInt64(left, CultureInfo.InvariantCulture)
+                            - Convert.ToUInt64(right, CultureInfo.InvariantCulture)
+                    );
 
-                    var leftBytes = left != null
-                                        ? BitConverter.GetBytes(left.Value)
-                                        : Array.Empty<byte>();
-                    var rightBytes = right != null
-                                         ? BitConverter.GetBytes(right.Value)
-                                         : Array.Empty<byte>();
+                    var leftBytes = left != null ? BitConverter.GetBytes(left.Value) : Array.Empty<byte>();
+                    var rightBytes = right != null ? BitConverter.GetBytes(right.Value) : Array.Empty<byte>();
 
                     if (!systemIsLittleEndian)
                     {
@@ -204,9 +194,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(SubtractUnsignedLittleEndian_Test_Values))]
-        public void SubtractUnsignedLittleEndian_Test(byte[] expected,
-                                                      byte[] left,
-                                                      byte[] right)
+        public void SubtractUnsignedLittleEndian_Test(byte[] expected, byte[] left, byte[] right)
         {
             // Arrange
             var leftOriginal = left.ToArray();
@@ -218,15 +206,14 @@ namespace Gulliver.Tests
             // Assert
             Assert.Equal(expected, result);
 
-            Assert.Equal(leftOriginal, left);   // input value not affected
+            Assert.Equal(leftOriginal, left); // input value not affected
             Assert.Equal(rightOriginal, right); // input value not affected
         }
 
         [Theory]
         [InlineData(null, new byte[] { 0x00 })]
         [InlineData(new byte[] { 0x00 }, null)]
-        public void SubtractUnsignedLittleEndian_NullInput_Throws_ArgumentNullException_Test(byte[] left,
-                                                                                             byte[] right)
+        public void SubtractUnsignedLittleEndian_NullInput_Throws_ArgumentNullException_Test(byte[] left, byte[] right)
         {
             // Arrange
             // Act
@@ -254,8 +241,7 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> CompareUnsignedLittleEndian_Test_Values()
         {
-            return TestCases()
-                .Distinct();
+            return TestCases().Distinct();
 
             IEnumerable<object[]> TestCases()
             {
@@ -263,12 +249,8 @@ namespace Gulliver.Tests
 
                 foreach (var (left, right) in GetUintPairValues())
                 {
-                    var leftBytes = left != null
-                                        ? BitConverter.GetBytes(left.Value)
-                                        : Array.Empty<byte>();
-                    var rightBytes = right != null
-                                         ? BitConverter.GetBytes(right.Value)
-                                         : Array.Empty<byte>();
+                    var leftBytes = left != null ? BitConverter.GetBytes(left.Value) : Array.Empty<byte>();
+                    var rightBytes = right != null ? BitConverter.GetBytes(right.Value) : Array.Empty<byte>();
 
                     if (!systemIsLittleEndian)
                     {
@@ -291,9 +273,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(CompareUnsignedLittleEndian_Test_Values))]
-        public void CompareUnsignedLittleEndian_Test(int expected,
-                                                     byte[] left,
-                                                     byte[] right)
+        public void CompareUnsignedLittleEndian_Test(int expected, byte[] left, byte[] right)
         {
             // Arrange
             var leftOriginal = left.ToArray();
@@ -309,15 +289,14 @@ namespace Gulliver.Tests
             // Assert
             Assert.Equal(expected, result);
 
-            Assert.Equal(leftOriginal, left);   // input value not affected
+            Assert.Equal(leftOriginal, left); // input value not affected
             Assert.Equal(rightOriginal, right); // input value not affected
         }
 
         [Theory]
         [InlineData(null, new byte[] { 0x00 })]
         [InlineData(new byte[] { 0x00 }, null)]
-        public void CompareUnsignedLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left,
-                                                                                           byte[] right)
+        public void CompareUnsignedLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left, byte[] right)
         {
             // Arrange
             // Act
@@ -337,8 +316,7 @@ namespace Gulliver.Tests
         [InlineData(2, new byte[] { 0xff, 0xff })]
         [InlineData(3, new byte[] { 0x00, 0xff, 0xff })]
         [InlineData(3, new byte[] { 0x00, 0xff, 0xff, 0x00 })]
-        public void LittleEndianEffectiveLength_Test(int expected,
-                                                     byte[] input)
+        public void LittleEndianEffectiveLength_Test(int expected, byte[] input)
         {
             // Arrange
 
@@ -355,7 +333,7 @@ namespace Gulliver.Tests
             // Arrange
             // Act
             // Assert
-            // ReSharper disable once AssignNullToNotNullAttribute
+
             Assert.Throws<ArgumentNullException>(() => ((byte[])null).LittleEndianEffectiveLength());
         }
 
@@ -367,9 +345,7 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> BitwiseAndLittleEndian_Test_Values()
         {
-            return TestCases()
-                   .ToList()
-                   .Distinct();
+            return TestCases().ToList().Distinct();
 
             IEnumerable<object[]> TestCases()
             {
@@ -379,12 +355,8 @@ namespace Gulliver.Tests
                 {
                     var operationResult = BitConverter.GetBytes((left ?? 0) & (right ?? 0));
 
-                    var leftBytes = left != null
-                                        ? BitConverter.GetBytes(left.Value)
-                                        : Array.Empty<byte>();
-                    var rightBytes = right != null
-                                         ? BitConverter.GetBytes(right.Value)
-                                         : Array.Empty<byte>();
+                    var leftBytes = left != null ? BitConverter.GetBytes(left.Value) : Array.Empty<byte>();
+                    var rightBytes = right != null ? BitConverter.GetBytes(right.Value) : Array.Empty<byte>();
 
                     if (!systemIsLittleEndian)
                     {
@@ -397,41 +369,39 @@ namespace Gulliver.Tests
                     var rightBytesTrimmed = rightBytes.TrimLittleEndianLeadingZeroBytes();
 
                     yield return new object[]
-                                 {
-                                     operationResult.Take(Math.Max(leftBytes.Length, rightBytes.Length))
-                                                    .ToArray(),
-                                     leftBytes, rightBytes
-                                 };
+                    {
+                        operationResult.Take(Math.Max(leftBytes.Length, rightBytes.Length)).ToArray(),
+                        leftBytes,
+                        rightBytes,
+                    };
 
                     yield return new object[]
-                                 {
-                                     operationResult.Take(Math.Max(leftBytesTrimmed.Length, rightBytes.Length))
-                                                    .ToArray(),
-                                     leftBytesTrimmed, rightBytes
-                                 };
+                    {
+                        operationResult.Take(Math.Max(leftBytesTrimmed.Length, rightBytes.Length)).ToArray(),
+                        leftBytesTrimmed,
+                        rightBytes,
+                    };
 
                     yield return new object[]
-                                 {
-                                     operationResult.Take(Math.Max(leftBytes.Length, rightBytesTrimmed.Length))
-                                                    .ToArray(),
-                                     leftBytes, rightBytesTrimmed
-                                 };
+                    {
+                        operationResult.Take(Math.Max(leftBytes.Length, rightBytesTrimmed.Length)).ToArray(),
+                        leftBytes,
+                        rightBytesTrimmed,
+                    };
 
                     yield return new object[]
-                                 {
-                                     operationResult.Take(Math.Max(leftBytesTrimmed.Length, rightBytesTrimmed.Length))
-                                                    .ToArray(),
-                                     leftBytesTrimmed, rightBytesTrimmed
-                                 };
+                    {
+                        operationResult.Take(Math.Max(leftBytesTrimmed.Length, rightBytesTrimmed.Length)).ToArray(),
+                        leftBytesTrimmed,
+                        rightBytesTrimmed,
+                    };
                 }
             }
         }
 
         [Theory]
         [MemberData(nameof(BitwiseAndLittleEndian_Test_Values))]
-        public void BitwiseAndLittleEndian_Test(byte[] expected,
-                                                byte[] left,
-                                                byte[] right)
+        public void BitwiseAndLittleEndian_Test(byte[] expected, byte[] left, byte[] right)
         {
             // Arrange
             var leftOriginal = left.ToArray();
@@ -443,15 +413,14 @@ namespace Gulliver.Tests
             // Assert
             Assert.Equal(expected, result);
 
-            Assert.Equal(leftOriginal, left);   // input value not affected
+            Assert.Equal(leftOriginal, left); // input value not affected
             Assert.Equal(rightOriginal, right); // input value not affected
         }
 
         [Theory]
         [InlineData(null, new byte[] { 0x00 })]
         [InlineData(new byte[] { 0x00 }, null)]
-        public void BitwiseAndLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left,
-                                                                                      byte[] right)
+        public void BitwiseAndLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left, byte[] right)
         {
             // Arrange
             // Act
@@ -465,9 +434,7 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> BitwiseOrLittleEndian_Test_Values()
         {
-            return TestCases()
-                   .ToList()
-                   .Distinct();
+            return TestCases().ToList().Distinct();
 
             IEnumerable<object[]> TestCases()
             {
@@ -477,12 +444,8 @@ namespace Gulliver.Tests
                 {
                     var operationResult = BitConverter.GetBytes((left ?? 0) | (right ?? 0));
 
-                    var leftBytes = left != null
-                                        ? BitConverter.GetBytes(left.Value)
-                                        : Array.Empty<byte>();
-                    var rightBytes = right != null
-                                         ? BitConverter.GetBytes(right.Value)
-                                         : Array.Empty<byte>();
+                    var leftBytes = left != null ? BitConverter.GetBytes(left.Value) : Array.Empty<byte>();
+                    var rightBytes = right != null ? BitConverter.GetBytes(right.Value) : Array.Empty<byte>();
 
                     if (!systemIsLittleEndian)
                     {
@@ -495,41 +458,39 @@ namespace Gulliver.Tests
                     var rightBytesTrimmed = rightBytes.TrimLittleEndianLeadingZeroBytes();
 
                     yield return new object[]
-                                 {
-                                     operationResult.Take(Math.Max(leftBytes.Length, rightBytes.Length))
-                                                    .ToArray(),
-                                     leftBytes, rightBytes
-                                 };
+                    {
+                        operationResult.Take(Math.Max(leftBytes.Length, rightBytes.Length)).ToArray(),
+                        leftBytes,
+                        rightBytes,
+                    };
 
                     yield return new object[]
-                                 {
-                                     operationResult.Take(Math.Max(leftBytesTrimmed.Length, rightBytes.Length))
-                                                    .ToArray(),
-                                     leftBytesTrimmed, rightBytes
-                                 };
+                    {
+                        operationResult.Take(Math.Max(leftBytesTrimmed.Length, rightBytes.Length)).ToArray(),
+                        leftBytesTrimmed,
+                        rightBytes,
+                    };
 
                     yield return new object[]
-                                 {
-                                     operationResult.Take(Math.Max(leftBytes.Length, rightBytesTrimmed.Length))
-                                                    .ToArray(),
-                                     leftBytes, rightBytesTrimmed
-                                 };
+                    {
+                        operationResult.Take(Math.Max(leftBytes.Length, rightBytesTrimmed.Length)).ToArray(),
+                        leftBytes,
+                        rightBytesTrimmed,
+                    };
 
                     yield return new object[]
-                                 {
-                                     operationResult.Take(Math.Max(leftBytesTrimmed.Length, rightBytesTrimmed.Length))
-                                                    .ToArray(),
-                                     leftBytesTrimmed, rightBytesTrimmed
-                                 };
+                    {
+                        operationResult.Take(Math.Max(leftBytesTrimmed.Length, rightBytesTrimmed.Length)).ToArray(),
+                        leftBytesTrimmed,
+                        rightBytesTrimmed,
+                    };
                 }
             }
         }
 
         [Theory]
         [MemberData(nameof(BitwiseOrLittleEndian_Test_Values))]
-        public void BitwiseOrLittleEndian_Test(byte[] expected,
-                                               byte[] left,
-                                               byte[] right)
+        public void BitwiseOrLittleEndian_Test(byte[] expected, byte[] left, byte[] right)
         {
             // Arrange
             var leftOriginal = left.ToArray();
@@ -541,15 +502,14 @@ namespace Gulliver.Tests
             // Assert
             Assert.Equal(expected, result);
 
-            Assert.Equal(leftOriginal, left);   // input value not affected
+            Assert.Equal(leftOriginal, left); // input value not affected
             Assert.Equal(rightOriginal, right); // input value not affected
         }
 
         [Theory]
         [InlineData(null, new byte[] { 0x00 })]
         [InlineData(new byte[] { 0x00 }, null)]
-        public void BitwiseOrLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left,
-                                                                                     byte[] right)
+        public void BitwiseOrLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left, byte[] right)
         {
             // Arrange
             // Act
@@ -563,8 +523,7 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> BitwiseXorLittleEndian_Test_Values()
         {
-            return TestCases()
-                .ToList();
+            return TestCases().ToList();
 
             IEnumerable<object[]> TestCases()
             {
@@ -574,13 +533,9 @@ namespace Gulliver.Tests
                 {
                     var expected = BitConverter.GetBytes((left ?? 0) ^ (right ?? 0));
 
-                    var leftBytes = left != null
-                                        ? BitConverter.GetBytes(left.Value)
-                                        : Array.Empty<byte>();
+                    var leftBytes = left != null ? BitConverter.GetBytes(left.Value) : Array.Empty<byte>();
 
-                    var rightBytes = right != null
-                                         ? BitConverter.GetBytes(right.Value)
-                                         : Array.Empty<byte>();
+                    var rightBytes = right != null ? BitConverter.GetBytes(right.Value) : Array.Empty<byte>();
 
                     if (!systemIsLittleEndian)
                     {
@@ -593,41 +548,39 @@ namespace Gulliver.Tests
                     var rightBytesTrimmed = rightBytes.TrimLittleEndianLeadingZeroBytes();
 
                     yield return new object[]
-                                 {
-                                     expected.Take(Math.Max(leftBytes.Length, rightBytes.Length))
-                                             .ToArray(),
-                                     leftBytes, rightBytes
-                                 };
+                    {
+                        expected.Take(Math.Max(leftBytes.Length, rightBytes.Length)).ToArray(),
+                        leftBytes,
+                        rightBytes,
+                    };
 
                     yield return new object[]
-                                 {
-                                     expected.Take(Math.Max(leftBytesTrimmed.Length, rightBytes.Length))
-                                             .ToArray(),
-                                     leftBytesTrimmed, rightBytes
-                                 };
+                    {
+                        expected.Take(Math.Max(leftBytesTrimmed.Length, rightBytes.Length)).ToArray(),
+                        leftBytesTrimmed,
+                        rightBytes,
+                    };
 
                     yield return new object[]
-                                 {
-                                     expected.Take(Math.Max(leftBytes.Length, rightBytesTrimmed.Length))
-                                             .ToArray(),
-                                     leftBytes, rightBytesTrimmed
-                                 };
+                    {
+                        expected.Take(Math.Max(leftBytes.Length, rightBytesTrimmed.Length)).ToArray(),
+                        leftBytes,
+                        rightBytesTrimmed,
+                    };
 
                     yield return new object[]
-                                 {
-                                     expected.Take(Math.Max(leftBytesTrimmed.Length, rightBytesTrimmed.Length))
-                                             .ToArray(),
-                                     leftBytesTrimmed, rightBytesTrimmed
-                                 };
+                    {
+                        expected.Take(Math.Max(leftBytesTrimmed.Length, rightBytesTrimmed.Length)).ToArray(),
+                        leftBytesTrimmed,
+                        rightBytesTrimmed,
+                    };
                 }
             }
         }
 
         [Theory]
         [MemberData(nameof(BitwiseXorLittleEndian_Test_Values))]
-        public void BitwiseXorLittleEndian_Test(byte[] expected,
-                                                byte[] left,
-                                                byte[] right)
+        public void BitwiseXorLittleEndian_Test(byte[] expected, byte[] left, byte[] right)
         {
             // Arrange
             var leftOriginal = left.ToArray();
@@ -639,15 +592,14 @@ namespace Gulliver.Tests
             // Assert
             Assert.Equal(expected, result);
 
-            Assert.Equal(leftOriginal, left);   // input value not affected
+            Assert.Equal(leftOriginal, left); // input value not affected
             Assert.Equal(rightOriginal, right); // input value not affected
         }
 
         [Theory]
         [InlineData(null, new byte[] { 0x00 })]
         [InlineData(new byte[] { 0x00 }, null)]
-        public void BitwiseXorLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left,
-                                                                                      byte[] right)
+        public void BitwiseXorLittleEndian_NullInput_ThrowsArgumentNullException_Test(byte[] left, byte[] right)
         {
             // Arrange
             // Act
@@ -668,10 +620,7 @@ namespace Gulliver.Tests
             {
                 var expected = Array.Empty<byte>();
 
-                var input = Enumerable.Range(0, i)
-                                      .Select(_ => (byte)0x00)
-                                      .Concat(expected.ToList())
-                                      .ToArray();
+                var input = Enumerable.Range(0, i).Select(_ => (byte)0x00).Concat(expected.ToList()).ToArray();
 
                 yield return new object[] { expected, input };
             }
@@ -681,10 +630,7 @@ namespace Gulliver.Tests
             {
                 var expected = new byte[] { 0x00, 0x0A, 0xF0 };
 
-                var input = expected
-                            .Concat(Enumerable.Range(0, i)
-                                              .Select(_ => (byte)0x00))
-                            .ToArray();
+                var input = expected.Concat(Enumerable.Range(0, i).Select(_ => (byte)0x00)).ToArray();
 
                 yield return new object[] { expected, input };
             }
@@ -694,10 +640,7 @@ namespace Gulliver.Tests
             {
                 var expected = new byte[] { 0x0A, 0xF0 };
 
-                var input = expected
-                            .Concat(Enumerable.Range(0, i)
-                                              .Select(_ => (byte)0x00))
-                            .ToArray();
+                var input = expected.Concat(Enumerable.Range(0, i).Select(_ => (byte)0x00)).ToArray();
 
                 yield return new object[] { expected, input };
             }
@@ -705,8 +648,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(TrimLittleEndianLeadingZeros_Test_Values))]
-        public void TrimLittleEndianLeadingZeros_Test(byte[] expected,
-                                                      byte[] input)
+        public void TrimLittleEndianLeadingZeros_Test(byte[] expected, byte[] input)
         {
             // Arrange
             var original = input.ToArray();
@@ -722,7 +664,6 @@ namespace Gulliver.Tests
         [Fact]
         public void TrimLittleEndianLeadingZeros_NullInput_ThrowsArgumentNullException_Test()
         {
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((byte[])null).TrimLittleEndianLeadingZeroBytes());
         }
 
@@ -756,10 +697,7 @@ namespace Gulliver.Tests
 
         [Theory]
         [MemberData(nameof(PadLittleEndianMostSignificantBytes_Test_Vales))]
-        public void PadLittleEndianMostSignificantBytes_Test(byte[] expected,
-                                                             byte[] input,
-                                                             int finalLength,
-                                                             byte element)
+        public void PadLittleEndianMostSignificantBytes_Test(byte[] expected, byte[] input, int finalLength, byte element)
         {
             // Arrange
             // Act
@@ -777,7 +715,7 @@ namespace Gulliver.Tests
             // Arrange
             // Act
             // Assert
-            // ReSharper disable once AssignNullToNotNullAttribute
+
             Assert.Throws<ArgumentNullException>(() => ((byte[])null).PadLittleEndianMostSignificantBytes(42));
         }
 
@@ -787,7 +725,7 @@ namespace Gulliver.Tests
             // Arrange
             // Act
             // Assert
-            // ReSharper disable once AssignNullToNotNullAttribute
+
             Assert.Throws<ArgumentOutOfRangeException>(() => new byte[1].PadLittleEndianMostSignificantBytes(-1));
         }
 

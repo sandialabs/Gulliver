@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Gulliver.Enumerables;
-using JetBrains.Annotations;
 
 namespace Gulliver
 {
@@ -16,8 +15,8 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        public static int CompareUnsignedLittleEndian([NotNull] byte[] left,
-                                                      [NotNull] byte[] right)
+        /// <returns></returns>
+        public static int CompareUnsignedLittleEndian(byte[] left, byte[] right)
         {
             if (left == null)
             {
@@ -36,9 +35,7 @@ namespace Gulliver
 
                 if (comparison != 0)
                 {
-                    return comparison > 0
-                               ? 1
-                               : -1;
+                    return comparison > 0 ? 1 : -1;
                 }
             }
 
@@ -49,7 +46,8 @@ namespace Gulliver
         ///     Gets the effective length (length if right most 0x00 bytes are trimmed) of a little endian byte array
         /// </summary>
         /// <param name="input">the input bytes</param>
-        public static int LittleEndianEffectiveLength([NotNull] this byte[] input)
+        /// <returns></returns>
+        public static int LittleEndianEffectiveLength(this byte[] input)
         {
             if (input == null)
             {
@@ -57,8 +55,7 @@ namespace Gulliver
             }
 
             var i = input.Length;
-            while (i > 0
-                   && input[i - 1] == 0x00)
+            while (i > 0 && input[i - 1] == 0x00)
             {
                 i--;
             }
@@ -70,7 +67,8 @@ namespace Gulliver
         ///     Trim all 0x00 valued bytes starting at the highest index
         /// </summary>
         /// <param name="input">the input bytes</param>
-        public static byte[] TrimLittleEndianLeadingZeroBytes([NotNull] this byte[] input)
+        /// <returns></returns>
+        public static byte[] TrimLittleEndianLeadingZeroBytes(this byte[] input)
         {
             if (input == null)
             {
@@ -92,9 +90,8 @@ namespace Gulliver
         /// <param name="source">the source bytes</param>
         /// <param name="finalLength">the final length of the padding</param>
         /// <param name="element">the byte to pad with</param>
-        public static byte[] PadLittleEndianMostSignificantBytes([NotNull] this byte[] source,
-                                                                 int finalLength,
-                                                                 byte element = 0x00)
+        /// <returns></returns>
+        public static byte[] PadLittleEndianMostSignificantBytes(this byte[] source, int finalLength, byte element = 0x00)
         {
             if (source == null)
             {
@@ -103,7 +100,11 @@ namespace Gulliver
 
             if (finalLength < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(finalLength), finalLength, $"{nameof(finalLength)} must be greater than or equal to 0");
+                throw new ArgumentOutOfRangeException(
+                    nameof(finalLength),
+                    finalLength,
+                    $"{nameof(finalLength)} must be greater than or equal to 0"
+                );
             }
 
             if (source.Length >= finalLength)
@@ -126,9 +127,8 @@ namespace Gulliver
         /// <param name="source">the source bytes</param>
         /// <param name="delta">the value to change by</param>
         /// <param name="result">the result</param>
-        public static bool TrySumLittleEndian([NotNull] byte[] source,
-                                              long delta,
-                                              [NotNull] out byte[] result)
+        /// <returns></returns>
+        public static bool TrySumLittleEndian(byte[] source, long delta, out byte[] result)
         {
             if (source == null)
             {
@@ -158,23 +158,21 @@ namespace Gulliver
             // addition
             result = AddUnsignedLittleEndian(source, rightOperand);
             return true;
+        }
 
-            byte[] GetLittleEndianAbsBytes(long input)
+        private static byte[] GetLittleEndianAbsBytes(long input)
+        {
+            if (input == long.MinValue)
             {
-                if (input == long.MinValue)
-                {
-                    // long.MinValue (-9223372036854775808) is a special case
-                    // getting the absolute value of a the minimum value of a twos complement number is invalid and will cause a OverflowException
-                    // We must therefor build the equivalent of abs(long.MinValue) little endian bytes manually
-                    return new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80 };
-                }
-
-                var bytes = BitConverter.GetBytes(Math.Abs(input));
-
-                return BitConverter.IsLittleEndian
-                           ? bytes
-                           : bytes.ReverseBytes();
+                // long.MinValue (-9223372036854775808) is a special case
+                // getting the absolute value of a the minimum value of a twos complement number is invalid and will cause a OverflowException
+                // We must therefor build the equivalent of abs(long.MinValue) little endian bytes manually
+                return new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80 };
             }
+
+            var bytes = BitConverter.GetBytes(Math.Abs(input));
+
+            return BitConverter.IsLittleEndian ? bytes : bytes.ReverseBytes();
         }
 
         /// <summary>
@@ -182,9 +180,8 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        [NotNull]
-        public static byte[] AddUnsignedLittleEndian([NotNull] byte[] left,
-                                                     [NotNull] byte[] right)
+        /// <returns></returns>
+        public static byte[] AddUnsignedLittleEndian(byte[] left, byte[] right)
         {
             if (left == null)
             {
@@ -204,7 +201,7 @@ namespace Gulliver
                 var sum = carry + leftByte + rightByte;
 
                 resultQueue.Enqueue((byte)(sum & 0xFF)); // push the byte value of sum
-                carry = sum >> 8;                         // new carry value is sum shifted by 8 bits (a byte)
+                carry = sum >> 8; // new carry value is sum shifted by 8 bits (a byte)
             }
 
             if (carry != 0) // if a carry value exists it should be pushed as it is the new MSB
@@ -221,9 +218,8 @@ namespace Gulliver
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
         /// <exception cref="InvalidOperationException">The operation would result in a non-unsigned value</exception>
-        [NotNull]
-        public static byte[] SubtractUnsignedLittleEndian([NotNull] byte[] left,
-                                                          [NotNull] byte[] right)
+        /// <returns></returns>
+        public static byte[] SubtractUnsignedLittleEndian(byte[] left, byte[] right)
         {
             if (left == null)
             {
@@ -284,8 +280,7 @@ namespace Gulliver
                 }
             }
 
-            return resultQueue.ToArray()
-                              .TrimLittleEndianLeadingZeroBytes(); // TODO, do without explicit trimming?
+            return resultQueue.ToArray().TrimLittleEndianLeadingZeroBytes(); // TODO, do without explicit trimming?
         }
 
         #endregion
@@ -300,9 +295,7 @@ namespace Gulliver
         /// <returns>bitwise AND of the two arrays of bytes</returns>
         /// <exception cref="ArgumentNullException"><paramref name="left" /> is <see langword="null" />.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="right" /> is <see langword="null" />.</exception>
-        [NotNull]
-        public static byte[] BitwiseAndLittleEndian([NotNull] byte[] left,
-                                                    [NotNull] byte[] right)
+        public static byte[] BitwiseAndLittleEndian(byte[] left, byte[] right)
         {
             if (left == null)
             {
@@ -315,8 +308,8 @@ namespace Gulliver
             }
 
             return new ConcurrentLittleEndianByteEnumerable(left, right, false)
-                   .Select(bytes => (byte)(bytes.leftByte & bytes.rightByte))
-                   .ToArray();
+                .Select(bytes => (byte)(bytes.leftByte & bytes.rightByte))
+                .ToArray();
         }
 
         /// <summary>
@@ -327,9 +320,7 @@ namespace Gulliver
         /// <returns>bitwise OR of the two arrays of bytes</returns>
         /// <exception cref="ArgumentNullException"><paramref name="left" /> is <see langword="null" />.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="right" /> is <see langword="null" />.</exception>
-        [NotNull]
-        public static byte[] BitwiseOrLittleEndian([NotNull] byte[] left,
-                                                   [NotNull] byte[] right)
+        public static byte[] BitwiseOrLittleEndian(byte[] left, byte[] right)
         {
             if (left == null)
             {
@@ -342,8 +333,8 @@ namespace Gulliver
             }
 
             return new ConcurrentLittleEndianByteEnumerable(left, right, false)
-                   .Select(bytes => (byte)(bytes.leftByte | bytes.rightByte))
-                   .ToArray();
+                .Select(bytes => (byte)(bytes.leftByte | bytes.rightByte))
+                .ToArray();
         }
 
         /// <summary>
@@ -354,9 +345,7 @@ namespace Gulliver
         /// <returns>bitwise OR of the two arrays of bytes</returns>
         /// <exception cref="ArgumentNullException"><paramref name="left" /> is <see langword="null" />.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="right" /> is <see langword="null" />.</exception>
-        [NotNull]
-        public static byte[] BitwiseXorLittleEndian([NotNull] byte[] left,
-                                                    [NotNull] byte[] right)
+        public static byte[] BitwiseXorLittleEndian(byte[] left, byte[] right)
         {
             if (left == null)
             {
@@ -369,8 +358,8 @@ namespace Gulliver
             }
 
             return new ConcurrentLittleEndianByteEnumerable(left, right, false)
-                   .Select(bytes => (byte)(bytes.leftByte ^ bytes.rightByte))
-                   .ToArray();
+                .Select(bytes => (byte)(bytes.leftByte ^ bytes.rightByte))
+                .ToArray();
         }
 
         #endregion

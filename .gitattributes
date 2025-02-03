@@ -24,4 +24,3 @@
 ###############################################################################
 *.sln       merge=binary
 *.csproj    merge=binary
-#*.vbproj    merge=binary

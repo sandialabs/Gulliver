@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 
 namespace Gulliver
 {
     /// <summary>
     ///     Static Extension helper methods for <see cref="IEnumerable{T}" />
     /// </summary>
-    [PublicAPI]
     public static class EnumerableByteHelpers
     {
         /// <summary>
         ///     Create a <see cref="FixedBytes" /> based on the provided <paramref name="bytes" />
         /// </summary>
         /// <param name="bytes">bytes to copy into a new<see cref="FixedBytes" /> </param>
-        [NotNull]
-        public static FixedBytes ToFixedBytes([NotNull] this IEnumerable<byte> bytes)
+        /// <returns></returns>
+        public static FixedBytes ToFixedBytes(this IEnumerable<byte> bytes)
         {
             if (bytes == null)
             {

@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 
 namespace Gulliver.Enumerables
 {
     /// <summary>
     ///     <see langword="abstract" /> <see cref="IByteEnumerable" /> implementation
     /// </summary>
-    [PublicAPI]
     public abstract class AbstractByteEnumerable : IByteEnumerable
     {
         /// <inheritdoc />
-        protected AbstractByteEnumerable(byte[] bytes,
-                                         bool isTrimmed,
-                                         bool isLittleEndian)
+        protected AbstractByteEnumerable(byte[] bytes, bool isTrimmed, bool isLittleEndian)
         {
             this.Bytes = bytes ?? throw new ArgumentNullException(nameof(bytes));
             this.IsLittleEndian = isLittleEndian;
@@ -22,8 +18,11 @@ namespace Gulliver.Enumerables
         }
 
         /// <summary>
-        ///     Bytes
+        ///     Gets bytes
         /// </summary>
+        /// <value>
+        /// Bytes
+        /// </value>
         internal byte[] Bytes { get; }
 
         /// <inheritdoc />
