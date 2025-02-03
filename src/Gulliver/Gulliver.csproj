@@ -16,7 +16,7 @@
     <PackageLanguage>en-US</PackageLanguage>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sandialabs/Gulliver</PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>..\..\README.md</PackageReadmeFile>
     <PackageTags>big-endian; bigendian; binary; bitwise; bitwise; boolean-logic; byte; byte-array; bytearray; bytes; csharp; dotnet; endian; endianness; fixedbytes; linq; little-endian; littleendian; math</PackageTags>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <RepositoryType>git</RepositoryType>

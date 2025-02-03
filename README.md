@@ -1,10 +1,10 @@
 ﻿# ![Gulliver](src/Gulliver/icon.png) Gulliver
 
-[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Gulliver?logo=nuget)](https://www.nuget.org/packages/Gulliver/)
-[![Documentation on ReadTheDocs](https://img.shields.io/badge/Read%20the%20Docs-Gulliver-lightgrey?logo=read%20the%20docs)](https://gulliver.readthedocs.io)
-[![Apache 2.0 license](https://img.shields.io/github/license/sandialabs/gulliver?logo=apache)](https://github.com/sandialabs/Gulliver/blob/master/LICENSE)
-[![.NetStandard 1.3](https://img.shields.io/badge/targets-.NETStandard%201.3-5C2D91?logo=.net)](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
-[![Join the chat at https://gitter.im/sandialabs/Gulliver](https://badges.gitter.im/sandialabs/Gulliver.svg)](https://gitter.im/sandialabs/Gulliver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/sandialabs/Gulliver/build.yml?branch=main)
+[![NuGet Version](https://img.shields.io/nuget/v/Gulliver)](https://www.nuget.org/packages/Gulliver)
+[![GitHub Release](https://img.shields.io/github/v/release/sandialabs/Gulliver)](https://github.com/sandialabs/Gulliver/releases)
+[![GitHub Tag](https://img.shields.io/github/v/tag/sandialabs/Gulliver)](https://github.com/sandialabs/Gulliver/tags)
+![Targets](https://img.shields.io/badge/.NET%20Standard%202.0%20|%20.NET%208.0%20|%20.NET%209.0-blue)
 
 [![Build Status](https://dev.azure.com/sandianationallabs/Gulliver/_apis/build/status/sandialabs.Gulliver?branchName=master)](https://dev.azure.com/sandianationallabs/Gulliver/_build/latest?definitionId=1&branchName=master)
 
