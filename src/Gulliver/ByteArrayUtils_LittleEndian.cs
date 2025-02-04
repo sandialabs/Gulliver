@@ -85,7 +85,7 @@ namespace Gulliver
         #region PadBigEndianMostSignificantBytes
 
         /// <summary>
-        ///     Pad a byte array, the the given array is already larger than the final length it will return the original array
+        ///     Pad a byte array, the given array is already larger than the final length it will return the original array
         /// </summary>
         /// <param name="source">the source bytes</param>
         /// <param name="finalLength">the final length of the padding</param>
@@ -194,7 +194,7 @@ namespace Gulliver
             }
 
             var enumerable = new ConcurrentLittleEndianByteEnumerable(left, right).GetLsbToMsbEnumerable();
-            var resultQueue = new Queue<byte>(); // use stack for fifo
+            var resultQueue = new Queue<byte>(); // use stack for FIFO
             var carry = 0;
             foreach (var (leftByte, rightByte) in enumerable)
             {

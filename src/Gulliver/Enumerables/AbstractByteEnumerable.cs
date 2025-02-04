@@ -9,7 +9,12 @@ namespace Gulliver.Enumerables
     /// </summary>
     public abstract class AbstractByteEnumerable : IByteEnumerable
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AbstractByteEnumerable"/> class.
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="isTrimmed"></param>
+        /// <param name="isLittleEndian"></param>
         protected AbstractByteEnumerable(byte[] bytes, bool isTrimmed, bool isLittleEndian)
         {
             this.Bytes = bytes ?? throw new ArgumentNullException(nameof(bytes));

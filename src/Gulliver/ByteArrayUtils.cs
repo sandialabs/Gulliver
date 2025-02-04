@@ -201,7 +201,7 @@ namespace Gulliver
                 var resultByte = (byte)(sourceByte << shiftOffset); // left shift source byte by the bit shift offset creating a 0-suffixed bits
                 var carryByte = (byte)(sourceByte >> (8 - shiftOffset)); // right shift source byte so that its value is equivalent to the carry of the above left shift operation
 
-                var resultIndex = i - byteOffset; //length - 1 - byteOffset + i -1;
+                var resultIndex = i - byteOffset; //length - 1 - byteOffset + i -1
                 var carryIndex = resultIndex - 1;
 
                 // set the destination byte
