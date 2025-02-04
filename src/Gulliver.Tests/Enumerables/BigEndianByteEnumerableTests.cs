@@ -146,7 +146,7 @@ namespace Gulliver.Tests.Enumerables
 
         #region Enumeration
 
-        #region Standared Enumeration
+        #region Standard Enumeration
 
         [Fact]
         public void Enumerate_Trimmed_Test()

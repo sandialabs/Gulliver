@@ -8,18 +8,18 @@ namespace Gulliver.Enumerables
     public interface IByteEnumerable : IReadOnlyCollection<byte>
     {
         /// <summary>
-        ///     Gets a value indicating whether returns <see langword="true" /> if the given <see cref="IByteEnumerable" /> is of little endian ordering
+        ///     Gets a value indicating whether the given <see cref="IByteEnumerable" /> is of little endian ordering
         /// </summary>
         /// <value>
-        /// A value indicating whether returns <see langword="true" /> if the given <see cref="IByteEnumerable" /> is of little endian ordering
+        /// A value indicating whether the given <see cref="IByteEnumerable" /> is of little endian ordering
         /// </value>
         bool IsLittleEndian { get; }
 
         /// <summary>
-        ///     Gets a value indicating whether returns <see langword="true" /> if most significant zero bytes are trimmed from iteration
+        ///     Gets a value indicating whether the most significant zero bytes are trimmed from the enumeration
         /// </summary>
         /// <value>
-        /// A value indicating whether returns <see langword="true" /> if most significant zero bytes are trimmed from iteration
+        /// A value indicating whether most significant zero bytes are trimmed from the enumeration
         /// </value>
         bool IsTrimmed { get; }
 

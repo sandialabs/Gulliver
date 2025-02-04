@@ -8,66 +8,66 @@ namespace Gulliver.Enumerables
     public interface IConcurrentByteEnumerable : IReadOnlyCollection<(byte leftByte, byte rightByte)>
     {
         /// <summary>
-        ///     Gets a value indicating whether returns <see langword="true" /> if the given <see cref="IByteEnumerable" /> is of little endian ordering
+        ///     Gets a value indicating whether the given <see cref="IByteEnumerable" /> is of little endian ordering
         /// </summary>
         /// <value>
-        /// A value indicating whether returns <see langword="true" /> if the given <see cref="IByteEnumerable" /> is of little endian ordering
+        /// A value indicating whether the given <see cref="IByteEnumerable" /> is of little endian ordering
         /// </value>
         bool IsLittleEndian { get; }
 
         /// <summary>
-        ///     Gets a value indicating whether returns <see langword="true" /> if most significant zero bytes are trimmed from iteration
+        ///     Gets a value indicating whether the most significant zero bytes are trimmed from enumeration
         /// </summary>
         /// <value>
-        /// A value indicating whether returns <see langword="true" /> if most significant zero bytes are trimmed from iteration
+        /// A value indicating whether returns the most significant zero bytes are trimmed from enumeration
         /// </value>
         bool IsMutuallyTrimmed { get; }
 
         /// <summary>
-        ///     Gets a value indicating whether returns <see langword="true" /> if most significant zero bytes are trimmed left
+        ///     Gets a value indicating whether the most significant zero bytes are trimmed left
         /// </summary>
         /// <value>
-        /// A value indicating whether returns <see langword="true" /> if most significant zero bytes are trimmed left
+        /// A value indicating whether the most significant zero bytes are trimmed left
         /// </value>
         bool IsLeftTrimmed { get; }
 
         /// <summary>
-        ///     Gets a value indicating whether returns <see langword="true" /> if most significant zero bytes are trimmed right
+        ///     Gets a value indicating whether the most significant zero bytes are trimmed right
         /// </summary>
         /// <value>
-        /// A value indicating whether returns <see langword="true" /> if most significant zero bytes are trimmed right
+        /// A value indicating whether the most significant zero bytes are trimmed right
         /// </value>
         bool IsRightTrimmed { get; }
 
         /// <summary>
-        ///     Gets the count of bytes for the largest <see cref="IByteEnumerable" />, same as count
+        ///     Gets the count of bytes for the largest <see cref="IByteEnumerable" />. Same as count
         /// </summary>
         /// <value>
-        /// The count of bytes for the largest <see cref="IByteEnumerable" />, same as count
+        /// The count of bytes for the largest <see cref="IByteEnumerable" />
         /// </value>
         int MaxCount { get; }
 
         /// <summary>
-        ///     Gets the count of bytes for the shortest <see cref="IByteEnumerable" />, same as count
+        ///     Gets the count of bytes for the shortest <see cref="IByteEnumerable" />. Same as count
         /// </summary>
         /// <value>
-        /// The count of bytes for the shortest <see cref="IByteEnumerable" />, same as count
+        /// The count of bytes for the shortest <see cref="IByteEnumerable" />
         /// </value>
         int MinCount { get; }
 
         /// <summary>
-        ///     Gets get the Left <see cref="IByteEnumerable" />
+        ///     Gets the Left <see cref="IByteEnumerable" />
         /// </summary>
         /// <value>
-        /// Get the Left <see cref="IByteEnumerable" />
+        /// The Left <see cref="IByteEnumerable" />
         /// </value>
         IByteEnumerable Left { get; }
 
         /// <summary>
-        ///     Gets get the Right <see cref="IByteEnumerable" />
+        ///     Gets he Right <see cref="IByteEnumerable" />
         /// </summary>
         /// <value>
-        /// Get the Right <see cref="IByteEnumerable" />
+        /// The Right <see cref="IByteEnumerable" />
         /// </value>
         IByteEnumerable Right { get; }
 

@@ -6,6 +6,7 @@ namespace Gulliver
     /// <summary>
     ///     Static Extension helper methods for <see cref="IEnumerable{T}" />
     /// </summary>
+    [Obsolete("Canidate for removal in future major version")]
     public static class EnumerableByteHelpers
     {
         /// <summary>

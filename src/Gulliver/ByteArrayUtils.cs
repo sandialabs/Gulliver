@@ -3,7 +3,7 @@
 namespace Gulliver
 {
     /// <summary>
-    ///     Byte Array helper methods
+    ///     Byte Array utility methods
     /// </summary>
     public static partial class ByteArrayUtils
     {
@@ -163,8 +163,8 @@ namespace Gulliver
 
             if (
                 length == 0 // nothing to shift
-                || shift == 0
-            ) // no shifting, return copy of original with an empty carry byte array
+                || shift == 0 // no shifting, return copy of original with an empty carry byte array
+            )
             {
                 carry = Array.Empty<byte>();
                 Array.Copy(bytes, result, length);
@@ -279,8 +279,8 @@ namespace Gulliver
 
             if (
                 length == 0 // nothing to shift
-                || shift == 0
-            ) // no shifting, return copy of original with an empty carry byte array
+                || shift == 0 // no shifting, return copy of original with an empty carry byte array
+            )
             {
                 carry = Array.Empty<byte>();
                 Array.Copy(bytes, result, length);

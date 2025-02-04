@@ -9,6 +9,7 @@ namespace Gulliver
     /// <summary>
     ///     An unsigned big-endian integer aligned representation of a readonly fixed length enumerable of bytes.
     /// </summary>
+    [Obsolete("Candidate for removal in future major version")]
     public class FixedBytes
         : IFormattable,
             IReadOnlyCollection<byte>,

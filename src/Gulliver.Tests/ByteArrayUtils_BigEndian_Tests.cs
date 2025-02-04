@@ -11,7 +11,7 @@ namespace Gulliver.Tests
 #endif
     public partial class ByteArrayUtilsTests
     {
-        #region Arithmatic
+        #region Arithmetic
 
         #region TrySumBigEndian
 

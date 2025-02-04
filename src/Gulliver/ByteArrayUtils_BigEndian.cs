@@ -117,10 +117,10 @@ namespace Gulliver
 
         #endregion // end: PadBigEndianMostSignificantBytes
 
-        #region Arithmatic
+        #region Arithmetic
 
         /// <summary>
-        ///     Add / Subtract <paramref name="delta" /> to bigendian <paramref name="source" />, handling the system endianness as
+        ///     Add / Subtract <paramref name="delta" /> to big endian <paramref name="source" />, handling the system endianness as
         ///     appropriate
         /// </summary>
         /// <param name="source">the source bytes</param>

@@ -120,7 +120,7 @@ namespace Gulliver
         #region Arithmatic
 
         /// <summary>
-        ///     Add / Subtract <paramref name="delta" /> to littlendian <paramref name="source" />, handling the system endianness
+        ///     Add / Subtract <paramref name="delta" /> to little endian <paramref name="source" />, handling the system endianness
         ///     as
         ///     appropriate
         /// </summary>
