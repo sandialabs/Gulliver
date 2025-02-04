@@ -40,7 +40,7 @@ In the following example a byte array of length ``10`` is filled with the the re
       Console.WriteLine("CreateByteArray example");
       Console.WriteLine($"length:\t{length}");
       Console.WriteLine($"element:\t{element}");
-      Console.WriteLine(\$"result:\t{result.ToString("H")}");
+      Console.WriteLine($"result:\t{result.ToString(\"H\")}");
     }
 
 .. code-block:: none

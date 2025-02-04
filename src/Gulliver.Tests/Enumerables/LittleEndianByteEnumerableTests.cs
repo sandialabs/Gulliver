@@ -159,10 +159,7 @@ namespace Gulliver.Tests.Enumerables
 
             // Act
             var result = new List<byte>();
-            foreach (var b in enumerable)
-            {
-                result.Add(b);
-            }
+            result.AddRange(enumerable);
 
             // Assert
             Assert.Equal(expected, result);
@@ -179,10 +176,7 @@ namespace Gulliver.Tests.Enumerables
 
             // Act
             var result = new List<byte>();
-            foreach (var b in enumerable)
-            {
-                result.Add(b);
-            }
+            result.AddRange(enumerable);
 
             // Assert
             Assert.Equal(expected, result);

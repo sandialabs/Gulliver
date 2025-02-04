@@ -60,4 +60,4 @@ Implicit Conversion (cast to)
 
    - `GitHub/Gulliver <https://github.com/sandialabs/gulliver>`_
 
-      - `FixedBytes <https://github.com/sandialabs/Gulliver/blob/master/src/Gulliver/FixedBytes.cs>`_
+      - `FixedBytes <https://github.com/sandialabs/Gulliver/blob/main/src/Gulliver/FixedBytes.cs>`_

@@ -6,7 +6,9 @@ using Xunit;
 
 namespace Gulliver.Tests
 {
+#if NET6_0_OR_GREATER
 #pragma warning disable IDE0062 // Make local function static (IDE0062); purposely allowing non-static functions that could be static for .net4.8 compatibility
+#endif
     public class FixedBytesTests
     {
         #region Type
@@ -103,10 +105,7 @@ namespace Gulliver.Tests
 
             // Act
             // Assert
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                var fixedBytes = new FixedBytes(input);
-            });
+            Assert.Throws<ArgumentNullException>(() => new FixedBytes(input));
         }
 
         [Fact]
@@ -117,10 +116,7 @@ namespace Gulliver.Tests
 
             // Act
             // Assert
-            Assert.Throws<ArgumentException>(() =>
-            {
-                var fixedBytes = new FixedBytes(input, input.Length - 1);
-            });
+            Assert.Throws<ArgumentException>(() => new FixedBytes(input, input.Length - 1));
         }
 
         [Fact]
@@ -131,10 +127,7 @@ namespace Gulliver.Tests
 
             // Act
             // Assert
-            Assert.Throws<ArgumentException>(() =>
-            {
-                var fixedBytes = new FixedBytes(input, -1);
-            });
+            Assert.Throws<ArgumentException>(() => new FixedBytes(input, -1));
         }
 
         [Fact]
@@ -326,10 +319,7 @@ namespace Gulliver.Tests
 
             // Act
             // Assert
-            Assert.Throws<InvalidOperationException>(() =>
-            {
-                var result = left - right;
-            });
+            Assert.Throws<InvalidOperationException>(() => left - right);
         }
 
         #endregion
@@ -531,10 +521,7 @@ namespace Gulliver.Tests
 
             // Act
             // Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                var result = fixedBytes << -1;
-            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => fixedBytes << -1);
         }
 
         #endregion
@@ -583,10 +570,7 @@ namespace Gulliver.Tests
 
             // Act
             // Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                var result = fixedBytes >> -1;
-            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => fixedBytes >> -1);
         }
 
         #endregion
@@ -684,7 +668,7 @@ namespace Gulliver.Tests
 
         #region Comparisions Operators
 
-        public static IEnumerable<object[]> Comparision_GreaterThan_Test_Values()
+        public static IEnumerable<object[]> Comparison_GreaterThan_Test_Values()
         {
             // expected: Left > Right
             // compare to self
@@ -707,8 +691,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [MemberData(nameof(Comparision_GreaterThan_Test_Values))]
-        public void Comparision_GreaterThan_FixedBytes_Test(bool expected, FixedBytes left, FixedBytes right)
+        [MemberData(nameof(Comparison_GreaterThan_Test_Values))]
+        public void Comparison_GreaterThan_FixedBytes_Test(bool expected, FixedBytes left, FixedBytes right)
         {
             // Arrange
             // Act
@@ -717,7 +701,7 @@ namespace Gulliver.Tests
             Assert.Equal(expected, result);
         }
 
-        public static IEnumerable<object[]> Comparision_LessThan_Test_Values()
+        public static IEnumerable<object[]> Comparison_LessThan_Test_Values()
         {
             // expected: Left < Right
             // compare to self
@@ -740,8 +724,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [MemberData(nameof(Comparision_LessThan_Test_Values))]
-        public void Comparision_LessThan_FixedBytes_Test(bool expected, FixedBytes left, FixedBytes right)
+        [MemberData(nameof(Comparison_LessThan_Test_Values))]
+        public void Comparison_LessThan_FixedBytes_Test(bool expected, FixedBytes left, FixedBytes right)
         {
             // Arrange
             // Act
@@ -751,7 +735,7 @@ namespace Gulliver.Tests
             Assert.Equal(expected, result);
         }
 
-        public static IEnumerable<object[]> Comparision_GreaterThanOrEquals_FixedBytes_Test_Values()
+        public static IEnumerable<object[]> Comparison_GreaterThanOrEquals_FixedBytes_Test_Values()
         {
             // expected: Left >= Right
             // compare to self
@@ -774,8 +758,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [MemberData(nameof(Comparision_GreaterThanOrEquals_FixedBytes_Test_Values))]
-        public void Comparision_GreaterThanOrEquals_FixedBytes_Test(bool expected, FixedBytes left, FixedBytes right)
+        [MemberData(nameof(Comparison_GreaterThanOrEquals_FixedBytes_Test_Values))]
+        public void Comparison_GreaterThanOrEquals_FixedBytes_Test(bool expected, FixedBytes left, FixedBytes right)
         {
             // Arrange
             // Act
@@ -785,7 +769,7 @@ namespace Gulliver.Tests
             Assert.Equal(expected, result);
         }
 
-        public static IEnumerable<object[]> Comparision_LessThanOrEquals_FixedBytes_Test_Values()
+        public static IEnumerable<object[]> Comparison_LessThanOrEquals_FixedBytes_Test_Values()
         {
             // expected: Left <= Right
             // compare to self
@@ -808,8 +792,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [MemberData(nameof(Comparision_LessThanOrEquals_FixedBytes_Test_Values))]
-        public void Comparision_LessThanOrEquals_FixedBytes_Test(bool expected, FixedBytes left, FixedBytes right)
+        [MemberData(nameof(Comparison_LessThanOrEquals_FixedBytes_Test_Values))]
+        public void Comparison_LessThanOrEquals_FixedBytes_Test(bool expected, FixedBytes left, FixedBytes right)
         {
             // Arrange
             // Act
@@ -819,7 +803,7 @@ namespace Gulliver.Tests
             Assert.Equal(expected, result);
         }
 
-        public static IEnumerable<object[]> Comparision_Equal_Test_Values()
+        public static IEnumerable<object[]> Comparison_Equal_Test_Values()
         {
             // equality compare to self
             var self = new FixedBytes(Array.Empty<byte>());
@@ -834,8 +818,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [MemberData(nameof(Comparision_Equal_Test_Values))]
-        public void Comparision_Equal_Test(bool expected, FixedBytes right, FixedBytes left)
+        [MemberData(nameof(Comparison_Equal_Test_Values))]
+        public void Comparison_Equal_Test(bool expected, FixedBytes right, FixedBytes left)
         {
             // Arrange
             // Act
@@ -858,37 +842,35 @@ namespace Gulliver.Tests
         }
 
         [Fact]
-        public void Comparision_ToNull_Test()
+        public void Comparison_ToNull_Test()
         {
             // Arrange
             var fixedByte = new FixedBytes(new byte[] { 0x00 });
 
             // Act
             // Assert operator ==
-#pragma warning disable SA1131  // purposely testing ordering
             Assert.False(fixedByte == null);
-            Assert.False(null == fixedByte);
+            Assert.False(fixedByte == null);
 
             // Assert operator !=
             Assert.True(fixedByte != null);
-            Assert.True(null != fixedByte);
+            Assert.True(fixedByte != null);
 
             // Assert operator >
             Assert.True(fixedByte > null);
-            Assert.False(null > fixedByte);
+            Assert.False(fixedByte < null);
 
             // Assert operator <
-            Assert.True(null < fixedByte);
+            Assert.True(fixedByte > null);
             Assert.False(fixedByte < null);
 
             // Assert operator >=
             Assert.False(fixedByte <= null);
-            Assert.True(null <= fixedByte);
+            Assert.True(fixedByte >= null);
 
             // Assert operator <=
             Assert.True(fixedByte >= null);
-            Assert.False(null >= fixedByte);
-#pragma warning restore SA1131
+            Assert.False(fixedByte <= null);
         }
 
         #endregion
@@ -982,7 +964,7 @@ namespace Gulliver.Tests
 
         #region Exactly (FixedBytes)
 
-        public static IEnumerable<object[]> Comparision_Exactly_Test_Values()
+        public static IEnumerable<object[]> Comparison_Exactly_Test_Values()
         {
             // equality compare to self
             var self = new FixedBytes(Array.Empty<byte>());
@@ -997,8 +979,8 @@ namespace Gulliver.Tests
         }
 
         [Theory]
-        [MemberData(nameof(Comparision_Exactly_Test_Values))]
-        public void Comparision_Exactly_Test(bool expected, FixedBytes right, FixedBytes left)
+        [MemberData(nameof(Comparison_Exactly_Test_Values))]
+        public void Comparison_Exactly_Test(bool expected, FixedBytes right, FixedBytes left)
         {
             // Arrange
             // Act
@@ -1077,11 +1059,10 @@ namespace Gulliver.Tests
             var fixedBytes = new FixedBytes(lotsOfBytes);
 
             // Act
-
-            var hashCode = fixedBytes.GetHashCode();
+            var exception = Record.Exception(() => fixedBytes.GetHashCode());
 
             // Assert
-            Assert.True(true, "No overflow failure detected"); // the value doesn't really matter to as so much as we don't thrown an overflow exception
+            Assert.Null(exception); // Ensure no exception was thrown
         }
 
         #endregion
@@ -1112,10 +1093,7 @@ namespace Gulliver.Tests
 
             // Act
             // Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                var b = fixedBytes[-1];
-            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => fixedBytes[-1]);
         }
 
         [Fact]
@@ -1126,10 +1104,7 @@ namespace Gulliver.Tests
 
             // Act
             // Assert
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                var b = fixedBytes[fixedBytes.Count];
-            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => fixedBytes[fixedBytes.Count]);
         }
 
         #endregion

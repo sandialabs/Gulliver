@@ -7,9 +7,9 @@ Concurrent Endian Byte Enumerables
 
    - `GitHub/Gulliver <https://github.com/sandialabs/gulliver>`_
 
-      - `IConcurrentByteEnumerable <https://github.com/sandialabs/Gulliver/blob/master/src/Gulliver/Enumerables/IConcurrentByteEnumerable.cs>`_
+      - `IConcurrentByteEnumerable <https://github.com/sandialabs/Gulliver/blob/main/src/Gulliver/Enumerables/IConcurrentByteEnumerable.cs>`_
 
-         - `AbstractConcurrentByteEnumerable <https://github.com/sandialabs/Gulliver/blob/master/src/Gulliver/Enumerables/AbstractConcurrentByteEnumerable.cs>`_
+         - `AbstractConcurrentByteEnumerable <https://github.com/sandialabs/Gulliver/blob/main/src/Gulliver/Enumerables/AbstractConcurrentByteEnumerable.cs>`_
 
-            - `ConcurrentBigEndianByteEnumerable <https://github.com/sandialabs/Gulliver/blob/master/src/Gulliver/Enumerables/ConcurrentBigEndianByteEnumerable.cs>`_
-            - `ConcurrentLittleEndianByteEnumerable <https://github.com/sandialabs/Gulliver/blob/master/src/Gulliver/Enumerables/ConcurrentLittleEndianByteEnumerable.cs>`_
+            - `ConcurrentBigEndianByteEnumerable <https://github.com/sandialabs/Gulliver/blob/main/src/Gulliver/Enumerables/ConcurrentBigEndianByteEnumerable.cs>`_
+            - `ConcurrentLittleEndianByteEnumerable <https://github.com/sandialabs/Gulliver/blob/main/src/Gulliver/Enumerables/ConcurrentLittleEndianByteEnumerable.cs>`_

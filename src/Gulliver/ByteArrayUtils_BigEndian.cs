@@ -85,7 +85,7 @@ namespace Gulliver
         #region PadBigEndianMostSignificantBytes
 
         /// <summary>
-        ///     Pad a byte array, the the given array is already larger than the final length it will return the original array
+        ///     Pad a byte array, the given array is already larger than the final length it will return the original array
         /// </summary>
         /// <param name="source">the source bytes</param>
         /// <param name="finalLength">the final length of the padding</param>

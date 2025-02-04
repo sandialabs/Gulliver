@@ -1,10 +1,10 @@
 ﻿# ![Gulliver](src/Gulliver/icon.png) Gulliver
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/sandialabs/Gulliver/build.yml?branch=main)
-[![NuGet Version](https://img.shields.io/nuget/v/Gulliver)](https://www.nuget.org/packages/Gulliver)
+[![nuget Version](https://img.shields.io/nuget/v/Gulliver)](https://www.nuget.org/packages/Gulliver)
 [![GitHub Release](https://img.shields.io/github/v/release/sandialabs/Gulliver)](https://github.com/sandialabs/Gulliver/releases)
 [![GitHub Tag](https://img.shields.io/github/v/tag/sandialabs/Gulliver)](https://github.com/sandialabs/Gulliver/tags)
-![Targets](https://img.shields.io/badge/.NET%20Standard%202.0%20|%20.NET%208.0%20|%20.NET%209.0-blue)
+![Targets](https://img.shields.io/badge/.NET%20Standard%202.0%20|%20.NET%208.0%20|%20.NET%209.0-blue?logo=.net)
 
 ## About the Project
 

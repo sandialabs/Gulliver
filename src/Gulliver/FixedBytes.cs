@@ -24,9 +24,7 @@ namespace Gulliver
         /// <value>
         ///     Underlying bytes
         /// </value>
-#pragma warning disable CA1819  // purposely ignore the returning of an array; extending classes need to be able to access the underlying array
         protected byte[] UnderlyingBytes { get; }
-#pragma warning restore CA1819
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="FixedBytes" /> class.
@@ -218,6 +216,12 @@ namespace Gulliver
 
         #endregion
 
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return this.ToString("G", CultureInfo.InvariantCulture);
+        }
+
         /// <summary>
         ///     Similar to <see cref="Equals(IEnumerable{byte})" />, but checks exact byte value (does not ignore 0 valued most
         ///     significant bytes)
@@ -270,12 +274,6 @@ namespace Gulliver
             return destinationArray;
         }
 
-        /// <inheritdoc />
-        public override string ToString()
-        {
-            return this.ToString("G", CultureInfo.InvariantCulture);
-        }
-
         #region Equality
 
         /// <inheritdoc />
@@ -316,6 +314,15 @@ namespace Gulliver
         }
 
         /// <summary>
+        ///     Explicit conversion of <see cref="byte" /> List to <see cref="FixedBytes" />
+        /// </summary>
+        /// <param name="bytes">the source bytes</param>
+        public static explicit operator FixedBytes(List<byte> bytes)
+        {
+            return ToFixedBytes(bytes);
+        }
+
+        /// <summary>
         ///     Explicit conversion of <see cref="byte" /> array to <see cref="FixedBytes" />
         /// </summary>
         /// <param name="bytes">the source bytes</param>
@@ -323,15 +330,6 @@ namespace Gulliver
         public static FixedBytes ToFixedBytes(byte[] bytes)
         {
             return bytes == null ? null : new FixedBytes(bytes);
-        }
-
-        /// <summary>
-        ///     Explicit conversion of <see cref="byte" /> List to <see cref="FixedBytes" />
-        /// </summary>
-        /// <param name="bytes">the source bytes</param>
-        public static explicit operator FixedBytes(List<byte> bytes)
-        {
-            return ToFixedBytes(bytes);
         }
 
         /// <summary>

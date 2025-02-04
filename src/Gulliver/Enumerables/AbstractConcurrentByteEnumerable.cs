@@ -10,7 +10,11 @@ namespace Gulliver.Enumerables
     /// </summary>
     public abstract class AbstractConcurrentByteEnumerable : IConcurrentByteEnumerable
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AbstractConcurrentByteEnumerable"/> class.
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
         protected AbstractConcurrentByteEnumerable(IByteEnumerable left, IByteEnumerable right)
         {
             this.Left = left ?? throw new ArgumentNullException(nameof(left));

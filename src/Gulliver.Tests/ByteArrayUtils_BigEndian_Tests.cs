@@ -338,7 +338,7 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> BitwiseAndBigEndian_Test_Values()
         {
-            return TestCases().ToList().Distinct();
+            return TestCases().Distinct();
 
             IEnumerable<object[]> TestCases()
             {
@@ -439,7 +439,7 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> BitwiseOrBigEndian_Test_Values()
         {
-            return TestCases().ToList().Distinct();
+            return TestCases().Distinct();
 
             IEnumerable<object[]> TestCases()
             {
@@ -540,7 +540,7 @@ namespace Gulliver.Tests
 
         public static IEnumerable<object[]> BitwiseXorBigEndian_Test_Values()
         {
-            return TestCases().ToList().Distinct();
+            return TestCases().Distinct();
 
             IEnumerable<object[]> TestCases()
             {

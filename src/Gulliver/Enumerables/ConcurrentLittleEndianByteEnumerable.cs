@@ -7,7 +7,11 @@ namespace Gulliver.Enumerables
     /// </summary>
     public class ConcurrentLittleEndianByteEnumerable : AbstractConcurrentByteEnumerable
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConcurrentLittleEndianByteEnumerable"/> class.
+        /// </summary>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
         public ConcurrentLittleEndianByteEnumerable(LittleEndianByteEnumerable left, LittleEndianByteEnumerable right)
             : base(left, right) { }
 
