@@ -5,6 +5,7 @@
 [![GitHub Release](https://img.shields.io/github/v/release/sandialabs/Gulliver)](https://github.com/sandialabs/Gulliver/releases)
 [![GitHub Tag](https://img.shields.io/github/v/tag/sandialabs/Gulliver)](https://github.com/sandialabs/Gulliver/tags)
 ![Targets](https://img.shields.io/badge/.NET%20Standard%202.0%20|%20.NET%208.0%20|%20.NET%209.0-blue?logo=.net)
+[![Apache 2.0 License](https://img.shields.io/github/license/sandialabs/Gilliver?logo=apache)](https://github.com/sandialabs/Gilliver/blob/main/LICENSE)
 
 ## About the Project
 
