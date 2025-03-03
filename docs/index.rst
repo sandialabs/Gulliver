@@ -1,22 +1,22 @@
 Gulliver
 ########
 
-.. image:: https://img.shields.io/github/actions/workflow/status/sandialabs/Gilliver/build.yml?branch=main)
+.. image:: https://img.shields.io/github/actions/workflow/status/sandialabs/Gulliver/build.yml?branch=main)
    :alt: GitHub Actions Workflow Status
-.. image:: https://img.shields.io/nuget/v/Gilliver
+.. image:: https://img.shields.io/nuget/v/Gulliver
    :alt: nuget Version
-   :target: https://www.nuget.org/packages/Gilliver/
-.. image:: https://img.shields.io/github/v/release/sandialabs/Gilliver
+   :target: https://www.nuget.org/packages/Gulliver/
+.. image:: https://img.shields.io/github/v/release/sandialabs/Gulliver
    :alt: GitHub Release
-   :target: https://github.com/sandialabs/Gilliver/releases
-.. image:: https://img.shields.io/github/v/tag/sandialabs/Gilliver
+   :target: https://github.com/sandialabs/Gulliver/releases
+.. image:: https://img.shields.io/github/v/tag/sandialabs/Gulliver
    :alt: GitHub Tag
-   :target: https://github.com/sandialabs/Gilliver/tags
+   :target: https://github.com/sandialabs/Gulliver/tags
 .. image:: https://img.shields.io/badge/.NET%20Standard%202.0%20|%20.NET%208.0%20|%20.NET%209.0-blue?logo=.net
    :alt: Targets .NET Standard 2.0, .NET 8, and .NET 9
-.. image:: https://img.shields.io/github/license/sandialabs/Gilliver?logo=apache
+.. image:: https://img.shields.io/github/license/sandialabs/Gulliver?logo=apache
    :alt: Apache 2.0 License
-   :target: https://github.com/sandialabs/Gilliver/blob/main/LICENSE
+   :target: https://github.com/sandialabs/Gulliver/blob/main/LICENSE
 
 Gulliver is a C# utility package and library engineered for the manipulation of arbitrary sized byte arrays accounting for appropriate endianness and jagged byte length. Functionality includes the as previously unsupported in .NET standard set of boolean algebraic operations, bitwise shifting, and unsigned endian aware mathematical addition, subtraction, and comparison. Gulliver exists to free developers from managing byte ordering and operations at the low level as was previously required by the standard C# language distributions.
 
