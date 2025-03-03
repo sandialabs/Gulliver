@@ -35,7 +35,7 @@ namespace Gulliver
         ///     Return the given byte array in reverse
         /// </summary>
         /// <param name="bytes">the source bytes</param>
-        /// <returns></returns>
+        /// <returns>The reversed byte array</returns>
         public static byte[] ReverseBytes(this byte[] bytes)
         {
             if (bytes == null)
@@ -90,7 +90,7 @@ namespace Gulliver
         /// </summary>
         /// <param name="bytes">the source bytes</param>
         /// <param name="index">the bit index</param>
-        /// <returns></returns>
+        /// <returns><see langword="true"/> if the specified bit is set; otherwise, <see langword="false"/>.</returns>
         public static bool AddressBit(this byte[] bytes, int index)
         {
             if (bytes == null)
@@ -359,7 +359,8 @@ namespace Gulliver
         /// <param name="source">the source bytes</param>
         /// <param name="count">number of bytes to append</param>
         /// <param name="element">the byte to append</param>
-        /// <returns></returns>
+        /// <returns> A new byte array containing the original bytes followed by <paramref name="count"/> instances of
+        /// <paramref name="element"/>.</returns>
         public static byte[] AppendBytes(this byte[] source, int count, byte element = 0x00)
         {
             if (source == null)
@@ -390,7 +391,7 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        /// <returns></returns>
+        /// <returns>A tuple containing two byte arrays of equal length, with the shorter array padded with 0x00 bytes.</returns>
         public static (byte[] left, byte[] right) AppendShortest(byte[] left, byte[] right)
         {
             if (left == null)
@@ -426,7 +427,7 @@ namespace Gulliver
         /// <param name="source">the source bytes</param>
         /// <param name="count">number of bytes to prepend</param>
         /// <param name="element">the byte to append</param>
-        /// <returns></returns>
+        /// <returns>A new byte array containing <paramref name="count"/> instances of <paramref name="element"/> followed by the original bytes.</returns>
         public static byte[] PrependBytes(this byte[] source, int count, byte element = 0x00)
         {
             if (source == null)
@@ -457,7 +458,7 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        /// <returns></returns>
+        /// <returns>A tuple containing two byte arrays of equal length, with the shorter array padded with 0x00 bytes at the beginning.</returns>
         public static (byte[] left, byte[] right) PrependShortest(byte[] left, byte[] right)
         {
             if (left == null)

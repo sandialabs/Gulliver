@@ -26,13 +26,17 @@ namespace Gulliver.Enumerables
         /// <summary>
         ///     Reverse enumerator
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     An enumerator that iterates through the bytes in reverse order.
+        /// </returns>
         IEnumerator<byte> GetReverseEnumerator();
 
         /// <summary>
         ///     Reverse the enumerable
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     An enumerable that iterates through the bytes in reverse order.
+        /// </returns>
         IEnumerable<byte> ReverseEnumerable();
     }
 }

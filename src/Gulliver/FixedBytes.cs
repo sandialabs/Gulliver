@@ -209,7 +209,10 @@ namespace Gulliver
         /// </summary>
         /// <param name="format">the format</param>
         /// <param name="formatProvider">the format provider</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A string representation of the underlying bytes formatted according to the specified <paramref name="format"/>
+        ///     and using the provided <paramref name="formatProvider"/>.
+        /// </returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
             return this.UnderlyingBytes.ToString(format, formatProvider);
@@ -228,7 +231,10 @@ namespace Gulliver
         ///     significant bytes)
         /// </summary>
         /// <param name="other">the value to compare to</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     <see langword="true"/> if the underlying bytes are equal to the specified <paramref name="other"/> bytes
+        ///     otherwise, <see langword="false"/>.
+        /// </returns>
         public bool Exactly(IEnumerable<byte> other)
         {
             return other != null && this.UnderlyingBytes.SequenceEqual(other);
@@ -239,7 +245,10 @@ namespace Gulliver
         ///     significant bytes)
         /// </summary>
         /// <param name="other">the value to compare to</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     <see langword="true"/> if the underlying bytes are equal to the specified <paramref name="other"/> bytes
+        ///     otherwise, <see langword="false"/>.
+        /// </returns>
         public bool Exactly(FixedBytes other)
         {
             return !ReferenceEquals(null, other) && (ReferenceEquals(this, other) || this.Exactly(other.UnderlyingBytes));
@@ -249,7 +258,10 @@ namespace Gulliver
         ///     Get a copy of the bytes as little-endian (least significant byte at 0th index)
         ///     intrinsically reversing the bytes
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new byte array containing the bytes in little-endian order, with the least significant byte at the 0th
+        ///     index.
+        /// </returns>
         public byte[] GetBytesLittleEndian()
         {
             return this.UnderlyingBytes.ReverseBytes();
@@ -258,7 +270,7 @@ namespace Gulliver
         /// <summary>
         ///     Creates a new instance of an empty <see cref="FixedBytes" />
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A new instance of an empty <see cref="FixedBytes"/></returns>
         public static FixedBytes Empty()
         {
             return Array.Empty<byte>().ToFixedBytes();
@@ -267,7 +279,7 @@ namespace Gulliver
         /// <summary>
         ///     Get a copy of the bytes
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A new instance of an empty <see cref="FixedBytes"/>.</returns>
         public byte[] GetBytes()
         {
             var destinationArray = new byte[this.UnderlyingBytes.Length];
@@ -327,7 +339,10 @@ namespace Gulliver
         ///     Explicit conversion of <see cref="byte" /> array to <see cref="FixedBytes" />
         /// </summary>
         /// <param name="bytes">the source bytes</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new instance of <see cref="FixedBytes"/> created from the specified <paramref name="bytes"/>
+        ///     or <see langword="null"/> if the input is <see langword="null"/>
+        /// </returns>
         public static FixedBytes ToFixedBytes(byte[] bytes)
         {
             return bytes == null ? null : new FixedBytes(bytes);
@@ -337,7 +352,10 @@ namespace Gulliver
         ///     Explicit conversion of <see cref="byte" /> List to <see cref="FixedBytes" />
         /// </summary>
         /// <param name="bytes">the source bytes</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new instance of <see cref="FixedBytes"/> created from the specified <paramref name="bytes"/>
+        ///     or <see langword="null"/> if the input is <see langword="null"/>
+        /// </returns>
         public static FixedBytes ToFixedBytes(List<byte> bytes)
         {
             return bytes == null ? null : new FixedBytes(bytes);
@@ -360,7 +378,10 @@ namespace Gulliver
         ///     Conversion from <see cref="FixedBytes" /> to <see cref="byte" /> array
         /// </summary>
         /// <param name="fixedBytes">input</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A byte array containing the bytes from the specified <paramref name="fixedBytes"/>
+        ///     or <see langword="null"/> if the input is <see langword="null"/>
+        /// </returns>
         public static byte[] FromFixedBytes(FixedBytes fixedBytes)
         {
             return fixedBytes == null ? null : fixedBytes.GetBytes();
@@ -385,7 +406,10 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new instance of <see cref="FixedBytes"/> representing the sum of the specified <paramref name="left"/>
+        ///     and <paramref name="right"/> operands or <see langword="null"/> if either operand is <see langword="null"/>
+        /// </returns>
         public static FixedBytes Add(FixedBytes left, FixedBytes right)
         {
             if (left == null || right == null)
@@ -411,7 +435,11 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new instance of <see cref="FixedBytes"/> representing the result of subtracting the specified
+        ///     <paramref name="right"/>  operand from the <paramref name="left"/> operand or <see langword="null"/>
+        ///     if either operand is <see langword="null"/>
+        /// </returns>
         public static FixedBytes Subtract(FixedBytes left, FixedBytes right)
         {
             if (left == null || right == null)
@@ -441,7 +469,11 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new instance of <see cref="FixedBytes"/> representing the result of the bitwise OR operation
+        ///     between the specified <paramref name="left"/> and <paramref name="right"/> operands or
+        ///     <see langword="null"/> if either operand is <see langword="null"/>
+        /// </returns>
         public static FixedBytes BitwiseOr(FixedBytes left, FixedBytes right)
         {
             if (left == null || right == null)
@@ -467,7 +499,11 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new instance of <see cref="FixedBytes"/> representing the result of the bitwise AND operation
+        ///     between the specified <paramref name="left"/> and <paramref name="right"/> operands or
+        ///     <see langword="null"/> if either operand is <see langword="null"/>
+        /// </returns>
         public static FixedBytes BitwiseAnd(FixedBytes left, FixedBytes right)
         {
             if (left == null || right == null)
@@ -493,7 +529,11 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new instance of <see cref="FixedBytes"/> representing the result of the bitwise XOR operation
+        ///     between the specified <paramref name="left"/> and <paramref name="right"/> operands or
+        ///     <see langword="null"/> if either operand is <see langword="null"/>
+        /// </returns>
         public static FixedBytes Xor(FixedBytes left, FixedBytes right)
         {
             if (left == null || right == null)
@@ -517,7 +557,10 @@ namespace Gulliver
         ///     Logical Not
         /// </summary>
         /// <param name="operand">the operand</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new instance of <see cref="FixedBytes"/> representing the result of the logical NOT operation
+        ///     on the specified <paramref name="operand"/> or <see langword="null"/> if the operand is <see langword="null"/>
+        /// </returns>
         public static FixedBytes LogicalNot(FixedBytes operand)
         {
             if (operand == null)
@@ -543,7 +586,11 @@ namespace Gulliver
         /// </summary>
         /// <param name="fixedBytes">input</param>
         /// <param name="shift">the shift count</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new instance of <see cref="FixedBytes"/> representing the result of left shifting the specified
+        ///     <paramref name="fixedBytes"/> by the given <paramref name="shift"/> count or <see langword="null"/>
+        ///     if the input is <see langword="null"/>
+        /// </returns>
         public static FixedBytes LeftShift(FixedBytes fixedBytes, int shift)
         {
             if (fixedBytes == null)
@@ -574,7 +621,11 @@ namespace Gulliver
         /// </summary>
         /// <param name="fixedBytes">input</param>
         /// <param name="shift">the shift count</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new instance of <see cref="FixedBytes"/> representing the result of right shifting the specified
+        ///     <paramref name="fixedBytes"/> by the given <paramref name="shift"/> count or <see langword="null"/>
+        ///     if the input is <see langword="null"/>
+        /// </returns>
         public static FixedBytes RightShift(FixedBytes fixedBytes, int shift)
         {
             if (fixedBytes == null)

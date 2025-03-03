@@ -10,8 +10,8 @@ namespace Gulliver.Enumerables
         /// <summary>
         /// Initializes a new instance of the <see cref="ConcurrentLittleEndianByteEnumerable"/> class.
         /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
+        /// <param name="left">The left little-endian byte enumerable to be used in the concurrent operation.</param>
+        /// <param name="right">The right little-endian byte enumerable to be used in the concurrent operation.</param>
         public ConcurrentLittleEndianByteEnumerable(LittleEndianByteEnumerable left, LittleEndianByteEnumerable right)
             : base(left, right) { }
 

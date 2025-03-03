@@ -15,7 +15,12 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A signed integer indicating the relative order of the two byte arrays:
+        ///     <see langword="1"/> if <paramref name="left"/> is greater,
+        ///     <see langword="-1"/> if <paramref name="right"/> is greater,
+        ///     or <see langword="0"/> if they are equal.
+        /// </returns>
         public static int CompareUnsignedLittleEndian(byte[] left, byte[] right)
         {
             if (left == null)
@@ -46,7 +51,9 @@ namespace Gulliver
         ///     Gets the effective length (length if right most 0x00 bytes are trimmed) of a little endian byte array
         /// </summary>
         /// <param name="input">the input bytes</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     The effective length of the byte array, which is the total length minus the number of trailing 0x00 bytes.
+        /// </returns>
         public static int LittleEndianEffectiveLength(this byte[] input)
         {
             if (input == null)
@@ -67,7 +74,9 @@ namespace Gulliver
         ///     Trim all 0x00 valued bytes starting at the highest index
         /// </summary>
         /// <param name="input">the input bytes</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new byte array containing the input bytes with all trailing 0x00 bytes removed.
+        /// </returns>
         public static byte[] TrimLittleEndianLeadingZeroBytes(this byte[] input)
         {
             if (input == null)
@@ -90,7 +99,11 @@ namespace Gulliver
         /// <param name="source">the source bytes</param>
         /// <param name="finalLength">the final length of the padding</param>
         /// <param name="element">the byte to pad with</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     The original byte array if its length is greater than or equal to <paramref name="finalLength"/>;
+        ///     otherwise, a new byte array padded with <paramref name="element"/> to reach the specified
+        ///     <paramref name="finalLength"/>.
+        /// </returns>
         public static byte[] PadLittleEndianMostSignificantBytes(this byte[] source, int finalLength, byte element = 0x00)
         {
             if (source == null)
@@ -120,14 +133,16 @@ namespace Gulliver
         #region Arithmatic
 
         /// <summary>
-        ///     Add / Subtract <paramref name="delta" /> to little endian <paramref name="source" />, handling the system endianness
-        ///     as
-        ///     appropriate
+        ///     Add / Subtract <paramref name="delta" /> to little endian <paramref name="source" />, handling the
+        ///     system endianness as appropriate
         /// </summary>
         /// <param name="source">the source bytes</param>
         /// <param name="delta">the value to change by</param>
         /// <param name="result">the result</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     <see langword="true"/> if the operation was successful and the result is valid,
+        ///     <see langword="false"/> if the operation was a subtraction that would result in a negative value.
+        /// </returns>
         public static bool TrySumLittleEndian(byte[] source, long delta, out byte[] result)
         {
             if (source == null)
@@ -180,7 +195,9 @@ namespace Gulliver
         /// </summary>
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new byte array representing the sum of the two input byte arrays treated as unsigned little endian.
+        /// </returns>
         public static byte[] AddUnsignedLittleEndian(byte[] left, byte[] right)
         {
             if (left == null)
@@ -218,7 +235,11 @@ namespace Gulliver
         /// <param name="left">the left side operand</param>
         /// <param name="right">the right side operand</param>
         /// <exception cref="InvalidOperationException">The operation would result in a non-unsigned value</exception>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new byte array representing the result of subtracting <paramref name="right"/> from
+        ///     <paramref name="left"/> treated as unsigned little endian. An empty array is returned if the result is
+        ///     zero.
+        /// </returns>
         public static byte[] SubtractUnsignedLittleEndian(byte[] left, byte[] right)
         {
             if (left == null)

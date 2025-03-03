@@ -13,8 +13,8 @@ namespace Gulliver.Enumerables
         /// <summary>
         /// Initializes a new instance of the <see cref="AbstractConcurrentByteEnumerable"/> class.
         /// </summary>
-        /// <param name="left"></param>
-        /// <param name="right"></param>
+        /// <param name="left">The left byte enumerable to be used in the concurrent operation.</param>
+        /// <param name="right">The right byte enumerable to be used in the concurrent operation.</param>
         protected AbstractConcurrentByteEnumerable(IByteEnumerable left, IByteEnumerable right)
         {
             this.Left = left ?? throw new ArgumentNullException(nameof(left));

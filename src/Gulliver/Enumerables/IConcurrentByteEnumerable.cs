@@ -74,25 +74,37 @@ namespace Gulliver.Enumerables
         /// <summary>
         ///     Reverse enumerator
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     An enumerator that iterates through pairs of bytes in reverse order,
+        ///     yielding tuples containing the first byte and the second byte.
+        /// </returns>
         IEnumerator<(byte leftByte, byte rightByte)> GetReverseEnumerator();
 
         /// <summary>
         ///     Reverse the enumerable
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     An enumerable that iterates through pairs of bytes in reverse order,
+        ///     yielding tuples containing the first byte and the second byte.
+        /// </returns>
         IEnumerable<(byte leftByte, byte rightByte)> ReverseEnumerable();
 
         /// <summary>
         ///     Get an enumerable that starts as the most significant byte
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     An enumerable that iterates through pairs of bytes starting from the most significant byte,
+        ///     yielding tuples containing the first byte (most significant) and the second byte (least significant).
+        /// </returns>
         IEnumerable<(byte leftByte, byte rightByte)> GetMsbToLsbEnumerable();
 
         /// <summary>
         ///     Get an enumerable that starts as the least significant byte
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        ///     An enumerable that iterates through pairs of bytes starting from the least significant byte,
+        ///     yielding tuples containing the first byte and the second byte.
+        /// </returns>
         IEnumerable<(byte leftByte, byte rightByte)> GetLsbToMsbEnumerable();
     }
 }

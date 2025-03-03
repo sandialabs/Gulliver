@@ -24,6 +24,16 @@ namespace Gulliver.Enumerables
             }
         }
 
+        /// <summary>
+        ///     Constructs a byte array from the provided enumerable of bytes, optionally trimming leading zero bytes.
+        /// </summary>
+        /// <param name="bytes">The source enumerable of bytes to construct the array from.</param>
+        /// <param name="trim">
+        ///     A boolean value indicating whether to trim leading zero-valued bytes from the resulting array.
+        /// </param>
+        /// <returns>
+        ///     A byte array containing the constructed bytes, with leading zero bytes removed if <paramref name="trim"/> is <see langword="true"/>.
+        /// </returns>
         internal static byte[] ConstructBytes(IEnumerable<byte> bytes, bool trim)
         {
             // BigEndian most significant bytes are at the lowest index (start of collection)
@@ -39,7 +49,10 @@ namespace Gulliver.Enumerables
         /// </summary>
         /// <param name="bytes">the source bytes</param>
         /// <param name="trim"><see langword="true" /> if most significant zero bytes should be trimmed</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new instance of <see cref="BigEndianByteEnumerable"/> created from the reversed input bytes,
+        ///     optionally trimming the most significant zero bytes if <paramref name="trim"/> is <see langword="true"/>.
+        /// </returns>
         public static BigEndianByteEnumerable FromLittleEndian(IEnumerable<byte> bytes, bool trim = true)
         {
             if (bytes == null)
@@ -56,7 +69,11 @@ namespace Gulliver.Enumerables
         /// </summary>
         /// <param name="bytes">the source bytes</param>
         /// <param name="trim"><see langword="true" /> if most significant zero bytes should be trimmed</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A new instance of <see cref="BigEndianByteEnumerable"/> created from the input bytes,
+        ///     reversed if the system is little-endian, and optionally trimming the most significant zero bytes
+        ///     if <paramref name="trim"/> is <see langword="true"/>.
+        /// </returns>
         public static BigEndianByteEnumerable FromSystemEndian(IEnumerable<byte> bytes, bool trim = true)
         {
             if (bytes == null)
