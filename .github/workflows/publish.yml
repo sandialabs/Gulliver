@@ -1,0 +1,53 @@
+# .NET Publish semver tag Workflow
+
+name: Publish .NET Package
+
+permissions:
+  contents: read
+  packages: write
+  pull-requests: write
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+      - "v*.*.*-*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Extract version
+        id: extract_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
+      - name: Restore dotnet tools
+        run: dotnet tool restore
+
+      - name: Restore dependencies
+        run: dotnet restore ./src
+
+      - name: Build
+        run: dotnet build ./src --no-restore --configuration Release /p:VersionFromCI=${{ env.VERSION }}
+
+      - name: Pack
+        run: dotnet pack ./src/Gulliver/Gulliver.csproj --configuration Release --no-build --output ./packages /p:VersionFromCI=${{ env.VERSION }}
+
+      - name: Publish to GitHub Packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: dotnet nuget push ./packages/*.nupkg --source "https://nuget.pkg.github.com/sandialabs/index.json" --api-key $GITHUB_TOKEN --skip-duplicate
+
+      - name: Publish to nuget.org
+        env:
+          NUGET_ORG_APIKEY: ${{ secrets.NUGET_ORG_APIKEY }}
+        run: dotnet nuget push ./packages/*.nupkg --source "https://api.nuget.org/v3/index.json" --api-key $NUGET_ORG_APIKEY --skip-duplicate

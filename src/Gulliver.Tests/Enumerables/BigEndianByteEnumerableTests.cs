@@ -39,7 +39,6 @@ namespace Gulliver.Tests.Enumerables
         [Fact]
         public void Ctor_NullBytes_Throws_ArgumentNullException_Test()
         {
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => new BigEndianByteEnumerable(null));
         }
 
@@ -110,8 +109,7 @@ namespace Gulliver.Tests.Enumerables
         {
             // Arrange
             var input = new byte[] { 0x00, 0x00, 0xAC, 0xCA, 0x00 };
-            var expected = input.SkipWhile(b => b == 0x00)
-                                .Reverse();
+            var expected = input.SkipWhile(b => b == 0x00).Reverse();
 
             var enumerable = new BigEndianByteEnumerable(input);
 
@@ -148,7 +146,7 @@ namespace Gulliver.Tests.Enumerables
 
         #region Enumeration
 
-        #region Standared Enumeration
+        #region Standard Enumeration
 
         [Fact]
         public void Enumerate_Trimmed_Test()
@@ -161,10 +159,7 @@ namespace Gulliver.Tests.Enumerables
 
             // Act
             var result = new List<byte>();
-            foreach (var b in enumerable)
-            {
-                result.Add(b);
-            }
+            result.AddRange(enumerable);
 
             // Assert
             Assert.Equal(expected, result);
@@ -181,10 +176,7 @@ namespace Gulliver.Tests.Enumerables
 
             // Act
             var result = new List<byte>();
-            foreach (var b in enumerable)
-            {
-                result.Add(b);
-            }
+            result.AddRange(enumerable);
 
             // Assert
             Assert.Equal(expected, result);
@@ -201,8 +193,7 @@ namespace Gulliver.Tests.Enumerables
         {
             // Arrange
             var input = new byte[] { 0x00, 0x00, 0xAC, 0xCA, 0x00 };
-            var expected = input.SkipWhile(b => b == 0x00)
-                                .Reverse();
+            var expected = input.SkipWhile(b => b == 0x00).Reverse();
 
             var enumerable = new BigEndianByteEnumerable(input);
 

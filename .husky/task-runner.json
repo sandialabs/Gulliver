@@ -1,0 +1,25 @@
+{
+  "tasks": [
+    {
+      "name": "style",
+      "group": "pre-commit",
+      "command": "dotnet",
+      "args": ["format", "src", "style", "--no-restore", "--include", "${staged}"],
+      "include": ["src/**/*.cs"]
+    },
+    {
+      "name": "analyzers",
+      "group": "pre-commit",
+      "command": "dotnet",
+      "args": ["format", "src", "analyzers", "--no-restore", "--include", "${staged}"],
+      "include": ["src/**/*.cs"]
+    },
+    {
+      "name": "csharpier",
+      "group": "pre-commit",
+      "command": "dotnet",
+      "args": ["csharpier", "--config-path", ".\\src\\.csharpierrc.json", "${staged}"],
+      "include": ["src/**/*.cs"]
+    }
+  ]
+}

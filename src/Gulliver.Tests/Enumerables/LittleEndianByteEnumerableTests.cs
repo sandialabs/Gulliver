@@ -39,7 +39,6 @@ namespace Gulliver.Tests.Enumerables
         [Fact]
         public void Ctor_NullBytes_Throws_ArgumentNullException_Test()
         {
-            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => new LittleEndianByteEnumerable(null));
         }
 
@@ -78,9 +77,7 @@ namespace Gulliver.Tests.Enumerables
         {
             // Arrange
             var input = new byte[] { 0x00, 0xAC, 0xCA, 0x00, 0x00 };
-            var expected = input.Reverse()
-                                .SkipWhile(b => b == 0x00)
-                                .Reverse();
+            var expected = input.Reverse().SkipWhile(b => b == 0x00).Reverse();
 
             var enumerable = new LittleEndianByteEnumerable(input);
 
@@ -112,8 +109,7 @@ namespace Gulliver.Tests.Enumerables
         {
             // Arrange
             var input = new byte[] { 0x00, 0xAC, 0xCA, 0x00, 0x00 };
-            var expected = input.Reverse()
-                                .SkipWhile(b => b == 0x00);
+            var expected = input.Reverse().SkipWhile(b => b == 0x00);
 
             var enumerable = new LittleEndianByteEnumerable(input);
 
@@ -157,18 +153,13 @@ namespace Gulliver.Tests.Enumerables
         {
             // Arrange
             var input = new byte[] { 0x00, 0xAC, 0xCA, 0x00, 0x00 };
-            var expected = input.Reverse()
-                                .SkipWhile(b => b == 0x00)
-                                .Reverse();
+            var expected = input.Reverse().SkipWhile(b => b == 0x00).Reverse();
 
             var enumerable = new LittleEndianByteEnumerable(input);
 
             // Act
             var result = new List<byte>();
-            foreach (var b in enumerable)
-            {
-                result.Add(b);
-            }
+            result.AddRange(enumerable);
 
             // Assert
             Assert.Equal(expected, result);
@@ -185,10 +176,7 @@ namespace Gulliver.Tests.Enumerables
 
             // Act
             var result = new List<byte>();
-            foreach (var b in enumerable)
-            {
-                result.Add(b);
-            }
+            result.AddRange(enumerable);
 
             // Assert
             Assert.Equal(expected, result);
@@ -205,8 +193,7 @@ namespace Gulliver.Tests.Enumerables
         {
             // Arrange
             var input = new byte[] { 0x00, 0xAC, 0xCA, 0x00, 0x00 };
-            var expected = input.Reverse()
-                                .SkipWhile(b => b == 0x00);
+            var expected = input.Reverse().SkipWhile(b => b == 0x00);
 
             var enumerable = new LittleEndianByteEnumerable(input);
 

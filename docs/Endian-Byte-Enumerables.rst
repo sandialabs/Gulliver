@@ -7,9 +7,9 @@ The ``LittleEndianByteEnumerable`` and ``BigEndianByteEnumerable`` gives access 
 
    - `GitHub/Gulliver <https://github.com/sandialabs/gulliver>`_
 
-      - `IByteEnumerable <https://github.com/sandialabs/Gulliver/blob/master/src/Gulliver/Enumerables/IByteEnumerable.cs>`_
+      - `IByteEnumerable <https://github.com/sandialabs/Gulliver/blob/main/src/Gulliver/Enumerables/IByteEnumerable.cs>`_
 
-        - `AbstractByteEnumerable <https://github.com/sandialabs/Gulliver/blob/master/src/Gulliver/Enumerables/AbstractByteEnumerable.cs>`_
+        - `AbstractByteEnumerable <https://github.com/sandialabs/Gulliver/blob/main/src/Gulliver/Enumerables/AbstractByteEnumerable.cs>`_
 
-           - `BigEndianByteEnumerable <https://github.com/sandialabs/Gulliver/blob/master/src/Gulliver/Enumerables/BigEndianByteEnumerable.cs>`_
-           - `LittleEndianByteEnumerable <https://github.com/sandialabs/Gulliver/blob/master/src/Gulliver/Enumerables/LittleEndianByteEnumerable.cs>`_
+           - `BigEndianByteEnumerable <https://github.com/sandialabs/Gulliver/blob/main/src/Gulliver/Enumerables/BigEndianByteEnumerable.cs>`_
+           - `LittleEndianByteEnumerable <https://github.com/sandialabs/Gulliver/blob/main/src/Gulliver/Enumerables/LittleEndianByteEnumerable.cs>`_

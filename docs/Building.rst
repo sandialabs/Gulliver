@@ -1,32 +1,7 @@
 How to Build Gulliver
 #####################
 
-.. note:: Make sure you clone the latest version of Gulliver's master branch from Github `https://github.com/sandialabs/Gulliver.git <https://github.com/sandialabs/Gulliver.git>`_.
-
-Building with psake
-*******************
-
-Gulliver uses `psake <https://github.com/psake/psake>`_, *a build automation tool written in PowerShell*, to aid in the build, but it isn't explicitly necessary. To use psake follow the `"How to get started" <https://github.com/psake/psake#how-to-get-started>`_ guide on their site, adding it to your path.
-
-If you'd rather not use psake jump ahead to see the manual way of doing things.
-
-psake tasks
-===========
-
-The psake tasks are defined in the ``pasake.ps1`` PowerShell script in the project root directory.
-
-.. note:: If you're using `Visual Studio Code <https://code.visualstudio.com/>`_, and if you're not you should be, the psake tasks are available in the Task Explorer. The tasks are referenced in the ``.vscode\tasks.json`` in the root directly of Gulliver.
-
-.. warning:: Before attempting to run any of the psake tasks make sure you have the appropriate prerequisites  in place.
-
-The tasks of most concern are as follows:
-
-:``clean``: Cleans the C# portion of the project by removing the various ``obj`` and ``bin`` folders.
-:``build_src``: Cleans and builds the C# source.
-:``test``: Runs the Gulliver unit tests.
-:``pack_debug``: Create a ``Gulliver.nupkg`` and ``Gulliver.snupkg`` debug packages.
-
-:``build_docs``: Builds the Sphinx Documentation as HTML.
+.. note:: Make sure you clone the latest version of Gulliver's main branch from Github `https://github.com/sandialabs/Gulliver.git <https://github.com/sandialabs/Gulliver.git>`_.
 
 C# Code
 *******
@@ -36,7 +11,7 @@ Setup Your C# Environment
 
 Gulliver is built with C#, if you want to build Gulliver you'll want to set yourself up to build C# code.
 
-#. Install the `.NET Core SDK <https://dotnet.microsoft.com/download>`_ appropriate for your environment.
+#. Install the `.NET SDK <https://dotnet.microsoft.com/download>`_ appropriate for your environment.
 #. Consider installing `Visual Studio <https://visualstudio.microsoft.com/vs/>`_ and/or `Visual Studio Code <https://code.visualstudio.com/>`_.
 #. Everything you want to do here on out can be done with `dotnet <https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet?tabs=netcore21>`_ command line tool.
 

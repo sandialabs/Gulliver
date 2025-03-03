@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using JetBrains.Annotations;
 
 namespace Gulliver.Enumerables
 {
@@ -8,9 +7,12 @@ namespace Gulliver.Enumerables
     /// </summary>
     public class ConcurrentLittleEndianByteEnumerable : AbstractConcurrentByteEnumerable
     {
-        /// <inheritdoc />
-        public ConcurrentLittleEndianByteEnumerable([NotNull] LittleEndianByteEnumerable left,
-                                                    [NotNull] LittleEndianByteEnumerable right)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConcurrentLittleEndianByteEnumerable"/> class.
+        /// </summary>
+        /// <param name="left">The left little-endian byte enumerable to be used in the concurrent operation.</param>
+        /// <param name="right">The right little-endian byte enumerable to be used in the concurrent operation.</param>
+        public ConcurrentLittleEndianByteEnumerable(LittleEndianByteEnumerable left, LittleEndianByteEnumerable right)
             : base(left, right) { }
 
         /// <summary>
@@ -19,9 +21,7 @@ namespace Gulliver.Enumerables
         /// <param name="left">bytes in little endian order for left enumerable</param>
         /// <param name="right">bytes in little endian order for right enumerable</param>
         /// <param name="trim"><see langword="true" /> if most significant zero bytes should be trimmed on instantiation</param>
-        public ConcurrentLittleEndianByteEnumerable([NotNull] IEnumerable<byte> left,
-                                                    [NotNull] IEnumerable<byte> right,
-                                                    bool trim = true)
+        public ConcurrentLittleEndianByteEnumerable(IEnumerable<byte> left, IEnumerable<byte> right, bool trim = true)
             : base(new LittleEndianByteEnumerable(left, trim), new LittleEndianByteEnumerable(right, trim)) { }
 
         //#endregion

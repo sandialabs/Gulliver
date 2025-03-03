@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
-using JetBrains.Annotations;
 
 namespace Gulliver
 {
@@ -57,10 +56,7 @@ namespace Gulliver
         /// <param name="format">the optional format specifier</param>
         /// <param name="formatProvider">the format provider</param>
         /// <returns>a byte array represented as a string</returns>
-        [NotNull]
-        public static string ToString(this byte[] bytes,
-                                      string format = "g",
-                                      IFormatProvider formatProvider = null)
+        public static string ToString(this byte[] bytes, string format = "g", IFormatProvider formatProvider = null)
         {
             if (formatProvider == null)
             {
@@ -83,13 +79,11 @@ namespace Gulliver
 
                 // Hexadecimal formats
                 case "H": // upper hexadecimal
-                    return DelimitedBaseConverter(bytes, 16)
-                        .ToUpperInvariant();
+                    return DelimitedBaseConverter(bytes, 16).ToUpperInvariant();
                 case "h": // lower hexadecimal
                     return DelimitedBaseConverter(bytes, 16);
                 case "HC": // upper hexadecimal contiguous
-                    return DelimitedBaseConverter(bytes, 16, string.Empty)
-                        .ToUpperInvariant();
+                    return DelimitedBaseConverter(bytes, 16, string.Empty).ToUpperInvariant();
                 case "hc": // lower hexadecimal contiguous
                     return DelimitedBaseConverter(bytes, 16, string.Empty);
 
@@ -145,34 +139,40 @@ namespace Gulliver
                 return new BigInteger(unsignedLittleEndianBytes).ToString(formatProvider);
             }
 
-            string DelimitedBaseConverter(byte[] input,
-                                          int @base,
-                                          string delimiter = " ",
-                                          int? paddingWidth = null,
-                                          char paddingChar = '0')
+            string DelimitedBaseConverter(
+                byte[] input,
+                int @base,
+                string delimiter = " ",
+                int? paddingWidth = null,
+                char paddingChar = '0'
+            )
             {
                 if (!new[] { 2, 8, 10, 16 }.Contains(@base))
                 {
-                    throw new ArgumentException($"{nameof(@base)} must be 2, 8, 10, or 16 (binary, octal, decimal, or hexadecimal respectively)", nameof(@base));
+                    throw new ArgumentException(
+                        $"{nameof(@base)} must be 2, 8, 10, or 16 (binary, octal, decimal, or hexadecimal respectively)",
+                        nameof(@base)
+                    );
                 }
 
-                if (paddingWidth.HasValue
-                    && paddingWidth.Value < 0)
+                if (paddingWidth.HasValue && paddingWidth.Value < 0)
                 {
                     throw new ArgumentException($"{nameof(paddingWidth)} may not be negative", nameof(paddingWidth));
                 }
 
                 // use padding width if defined, otherwise use a width of 8 for binary, 3 for octal and decimal, and 2 for hexadecimal
-                var width = paddingWidth
-                            ?? (@base == 2
-                                    ? 8
-                                    : @base == 8 || @base == 10
-                                        ? 3
-                                        : 2);
+                var width =
+                    paddingWidth
+                    ?? (
+                        @base == 2 ? 8
+                        : @base == 8 || @base == 10 ? 3
+                        : 2
+                    );
 
-                return string.Join(delimiter ?? string.Empty,
-                                   input.Select(b => Convert.ToString(b, @base)
-                                                            .PadLeft(width, paddingChar)));
+                return string.Join(
+                    delimiter ?? string.Empty,
+                    input.Select(b => Convert.ToString(b, @base).PadLeft(width, paddingChar))
+                );
             }
         }
     }

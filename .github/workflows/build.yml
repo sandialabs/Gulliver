@@ -1,0 +1,41 @@
+# .NET Build and Test Workflow
+
+name: Build and Test
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDKs
+        uses: actions/setup-dotnet@v4
+        with:
+          # .net 4.8.x is included by default in windows-latest
+          dotnet-version: |
+            8.0.x
+            9.0.x
+
+      - name: Restore dotnet tools
+        run: dotnet tool restore
+
+      - name: Restore dependencies
+        run: dotnet restore ./src
+
+      - name: Build
+        run: dotnet build ./src --no-restore -p:VersionFromCI="0.0.0-cibuild"
+
+      - name: Test
+        run: dotnet test ./src --no-build --verbosity normal
