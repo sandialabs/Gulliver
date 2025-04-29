@@ -18,7 +18,7 @@
       "name": "csharpier",
       "group": "pre-commit",
       "command": "dotnet",
-      "args": ["csharpier", "--config-path", ".\\src\\.csharpierrc.json", "${staged}"],
+      "args": ["csharpier", "format", "--config-path", ".\\src\\.csharpierrc.json", "${staged}"],
       "include": ["src/**/*.cs"]
     }
   ]

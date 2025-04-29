@@ -84,7 +84,7 @@ Per the [Husky.Net instructions](https://alirezanet.github.io/Husky.Net/guide/au
 On occasion a manual run is desired it may be done so via the `src` directory and with the command
 
 ```shell
-dotnet format style; dotnet format analyzers; dotnet csharpier .
+dotnet format style; dotnet format analyzers; dotnet csharpier format .
 ```
 
 These commands may be called independently, but order may matter.
