@@ -16,6 +16,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      HUSKY: 0  # don't run husky.net hooks
 
     steps:
       - name: Checkout code
@@ -30,11 +32,13 @@ jobs:
         id: extract_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
 
-      - name: Restore dotnet tools
+      - name: Restore .NET tools
         run: dotnet tool restore
+        working-directory: .
 
       - name: Restore dependencies
-        run: dotnet restore ./src
+        run: dotnet restore
+        working-directory: ./src
 
       - name: Build
         run: dotnet build ./src --no-restore --configuration Release /p:VersionFromCI=${{ env.VERSION }}
