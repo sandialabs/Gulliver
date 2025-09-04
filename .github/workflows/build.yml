@@ -11,10 +11,13 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      HUSKY: 0  # don't run husky.net hooks
 
     steps:
       - name: Checkout code
@@ -28,11 +31,13 @@ jobs:
             8.0.x
             9.0.x
 
-      - name: Restore dotnet tools
+      - name: Restore .NET tools
         run: dotnet tool restore
+        working-directory: .
 
       - name: Restore dependencies
-        run: dotnet restore ./src
+        run: dotnet restore
+        working-directory: ./src
 
       - name: Build
         run: dotnet build ./src --no-restore -p:VersionFromCI="0.0.0-cibuild"
