@@ -4,7 +4,7 @@
 [![nuget Version](https://img.shields.io/nuget/v/Gulliver)](https://www.nuget.org/packages/Gulliver)
 [![GitHub Release](https://img.shields.io/github/v/release/sandialabs/Gulliver)](https://github.com/sandialabs/Gulliver/releases)
 [![GitHub Tag](https://img.shields.io/github/v/tag/sandialabs/Gulliver)](https://github.com/sandialabs/Gulliver/tags)
-![Targets](https://img.shields.io/badge/.NET%20Standard%202.0%20|%20.NET%208.0%20|%20.NET%209.0-blue?logo=.net)
+![Targets](https://img.shields.io/badge/.NET%20Standard%202.0%20|%20.NET%208.0%20|%20.NET%209.0|%20.NET%2010.0-blue?logo=.net)
 [![Apache 2.0 License](https://img.shields.io/github/license/sandialabs/Gulliver?logo=apache)](https://github.com/sandialabs/Gulliver/blob/main/LICENSE)
 
 ## About the Project
@@ -67,7 +67,7 @@ This project uses [Semantic Versioning](https://semver.org/)
 
 ### Targeting
 
-The project targets [.NET Standard 2.0](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0), [.NET 8](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-8), and [.NET 9](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9/overview). The test project similarly targets .NET 8, .NET 9, but targets [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48) for the .NET Standard 2.0 tests.
+The project targets [.NET Standard 2.0](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0), [.NET 8](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-8), [.NET 9](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-9/overview), and [.NET 10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/overview). The test project similarly targets .NET 8, .NET 9, and .NET 10, but targets [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48) for the .NET Standard 2.0 tests.
 
 ### Commit Hook
 
